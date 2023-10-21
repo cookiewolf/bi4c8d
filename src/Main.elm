@@ -4,15 +4,10 @@ import Browser
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Html
+import Html.Attributes
 import Model exposing (Model)
 import Msg exposing (Msg(..))
 import View
-
-
-type alias Document msg =
-    { title : String
-    , body : List (Html.Html msg)
-    }
 
 
 main : Program () Model Msg
@@ -43,9 +38,11 @@ update msg model =
 
 viewDocument : Model -> Browser.Document Msg
 viewDocument model =
-    { title = t SiteTitle, body = viewSections model }
-
-
-viewSections : Model -> List (Html.Html Msg)
-viewSections model =
-    View.viewSections model
+    { title = t SiteTitle
+    , body =
+        [ Html.div
+            [ Html.Attributes.class "page-wrapper"
+            ]
+            (View.viewSections model)
+        ]
+    }

@@ -1,4 +1,5 @@
 import "./reset.css";
+import "./style.css";
 import { Elm } from "../Main.elm";
 
 if (process.env.NODE_ENV === "development") {
