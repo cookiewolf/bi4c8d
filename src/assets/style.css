@@ -1,0 +1,12 @@
+.page-wrapper {
+  margin: 0 auto;
+  max-width: 800px;
+  width: 100%;
+}
+
+.section-container {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 0 1rem;
+  width: 100%;
+}
