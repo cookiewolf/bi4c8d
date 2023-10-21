@@ -1,0 +1,7 @@
+backend:
+  name: git-gateway
+  repo: cookiewolf/bi4c8d
+  branch: main
+publish_mode: editorial_workflow
+media_folder: public/images/uploads
+public_folder: /images/uploads
