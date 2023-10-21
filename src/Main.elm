@@ -1,6 +1,8 @@
 module Main exposing (main)
 
 import Browser
+import Copy.Keys exposing (Key(..))
+import Copy.Text exposing (t)
 import Html
 import Model exposing (Model)
 import Msg exposing (Msg(..))
@@ -41,7 +43,7 @@ update msg model =
 
 viewDocument : Model -> Browser.Document Msg
 viewDocument model =
-    { title = "Bi4c8d", body = viewSections model }
+    { title = t SiteTitle, body = viewSections model }
 
 
 viewSections : Model -> List (Html.Html Msg)
