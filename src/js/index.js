@@ -2,6 +2,8 @@ import "../css/reset.css";
 import "../css/style.css";
 import { Elm } from "../elm/Main.elm";
 
+import mainText from "../../data/main-text.json"
+
 if (process.env.NODE_ENV === "development") {
     const ElmDebugTransform = await import("elm-debug-transformer")
 
@@ -11,4 +13,9 @@ if (process.env.NODE_ENV === "development") {
 }
 
 const root = document.querySelector("#app div");
-const app = Elm.Main.init({ node: root });
+const app = Elm.Main.init({
+    node: root,
+    flags: {
+        "main-text": mainText
+    }
+});

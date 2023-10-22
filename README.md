@@ -55,7 +55,7 @@ We're using elm-test-rs(https://github.com/mpizenberg/elm-test-rs) to run [elm t
 ### Content
 
 - Assets to be copied to deploy bundle root are in `public/`
-- Markdown content is in `content/` and compiled to `.json` files with `npm run generate`
+- Markdown content is in `content/` and compiled to `data/*.json` files with `npm run generate`
 
 
 ### Styling & layouts
