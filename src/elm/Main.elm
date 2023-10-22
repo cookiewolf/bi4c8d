@@ -3,6 +3,7 @@ module Main exposing (main)
 import Browser
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
+import Data
 import Html
 import Html.Attributes
 import Model exposing (Model)
@@ -10,7 +11,7 @@ import Msg exposing (Msg(..))
 import View
 
 
-main : Program () Model Msg
+main : Program Data.Flags Model Msg
 main =
     Browser.document
         { init = init
@@ -20,9 +21,9 @@ main =
         }
 
 
-init : flags -> ( Model, Cmd Msg )
-init =
-    always ( {}, Cmd.none )
+init : Data.Flags -> ( Model, Cmd Msg )
+init flags =
+    ( { content = Data.decodedContent flags }, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
