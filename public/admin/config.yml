@@ -1,7 +1,14 @@
 backend:
-  name: git-gateway
+  name: github
   repo: cookiewolf/bi4c8d
   branch: main
 publish_mode: editorial_workflow
 media_folder: public/images/uploads
 public_folder: /images/uploads
+collections:
+  - name: "main-text" # Used in routes, e.g., /admin/collections/blog
+    label: "Main text" # Used in the UI
+    folder: "content/main-text" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    fields:
+      - { label: "Title", name: "title", widget: "string" }

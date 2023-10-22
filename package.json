@@ -4,7 +4,9 @@
     "postinstall": "elm-tooling install",
     "dev": "vite",
     "prebuild": "elm-tooling install",
-    "build": "vite build",
+    "build": "npm run generate && vite build",
+    "generate": "npm run generate_main-text",
+    "generate_main-text": "mkdir -p ./data && m2j -o ./data/main-text.json -c ./content/main-text/*.md",
     "serve": "vite preview",
     "format": "elm-format",
     "lint": "elm-review",
@@ -13,12 +15,11 @@
   "devDependencies": {
     "elm-review": "^2.10.1",
     "elm-tooling": "^1.14.0",
+    "markdown-to-json": "^0.5.4",
     "vite": "^4.3.0",
     "vite-plugin-elm": "^2.8.0-beta.3"
   },
   "dependencies": {
-    "@fontsource/chau-philomene-one": "^5.0.0",
-    "@fontsource/sono": "^5.0.0",
     "elm-debug-transformer": "^1.1.2"
   }
 }
