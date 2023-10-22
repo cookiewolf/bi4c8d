@@ -1,6 +1,6 @@
 # bi4c8d
 
--  Staging URL: 
+-  [Staging URL](https://bi4c8d.netlify.app)
 -  Production URL: 
 
 # Development
@@ -52,9 +52,11 @@ We're using elm-test-rs(https://github.com/mpizenberg/elm-test-rs) to run [elm t
 - `tests/*` contains test files
 - `src/*` contains app source files
 
-### Content & Pages
+### Content
 
-- TBC
+- Assets to be copied to deploy bundle root are in `public/`
+- Markdown content is in `content/` and compiled to `.json` files with `npm run generate`
+
 
 ### Styling & layouts
 
