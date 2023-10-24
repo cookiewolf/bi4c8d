@@ -11,6 +11,18 @@ collections:
     folder: "content/main-text" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     fields:
-      - { label: "Title", name: "title", widget: "string" }
       - {label: "Section", name: "section", widget: "select", options: ["section-one", "section-two"]}
+      - { label: "Title", name: "title", widget: "string" }
       - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "message"
+    label: "Message"
+    folder: "content/message"
+    create: true
+    fields:
+      - {label: "Section", name: "section", widget: "select", options: ["section-one", "section-two"]}
+      - { label: "Date & time", name: "datetime", widget: "datetime" }
+      - { label: "Forwarded from", name: "forwarded-from", widget: "string", required: false }
+      - {label: "Body", name: "body", widget: "markdown"}
+      - { label: "View count", name: "view-count", widget: "number", required: false }
+      - { label: "Avatar icon", name: "avatar-src", widget: "image" }

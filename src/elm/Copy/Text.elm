@@ -12,3 +12,6 @@ t key =
     case key of
         SiteTitle ->
             "Bi4c8d"
+
+        ForwardedLabel ->
+            "Forwarded from: "
