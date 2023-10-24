@@ -2,6 +2,7 @@ module View.Section1 exposing (view)
 
 import Data
 import Html
+import Markdown
 import Model exposing (Model)
 import Msg exposing (Msg(..))
 
@@ -31,5 +32,5 @@ viewMainText : Data.MainText -> Html.Html Msg
 viewMainText mainText =
     Html.div []
         [ Html.h3 [] [ Html.text mainText.title ]
-        , Html.p [] [ Html.text mainText.body ]
+        , Html.div [] (Markdown.markdownToHtml mainText.body)
         ]
