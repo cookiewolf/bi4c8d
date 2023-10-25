@@ -43,11 +43,7 @@ decodedContent flags =
         Ok goodContent ->
             goodContent
 
-        Err error ->
-            let
-                _ =
-                    Debug.log "data import error" error
-            in
+        Err _ ->
             { mainText = []
             , messages = []
             }
