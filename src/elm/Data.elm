@@ -1,4 +1,4 @@
-module Data exposing (Content, Flags, MainText, Message, SectionId(..), decodedContent, filterBySection)
+module Data exposing (Content, Flags, Image, MainText, Message, SectionId(..), decodedContent, filterBySection)
 
 import Dict
 import Iso8601
