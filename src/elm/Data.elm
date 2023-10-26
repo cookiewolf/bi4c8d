@@ -54,6 +54,7 @@ decodedContent flags =
         Ok goodContent ->
             { goodContent
                 | messages = orderMessagesByDatetime goodContent.messages
+                , images = orderByDisplayPosition goodContent.images
             }
 
         Err _ ->
@@ -66,6 +67,11 @@ decodedContent flags =
 orderMessagesByDatetime : List Message -> List Message
 orderMessagesByDatetime messages =
     List.sortBy (\message -> Time.posixToMillis message.datetime) messages
+
+
+orderByDisplayPosition : List { a | displayPosition : Int } -> List { a | displayPosition : Int }
+orderByDisplayPosition items =
+    List.sortBy .displayPosition items
 
 
 flagsDecoder : Json.Decode.Decoder Content
