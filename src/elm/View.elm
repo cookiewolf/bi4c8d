@@ -9,4 +9,9 @@ import View.Section1
 
 viewSections : Model -> List (Html.Html Msg)
 viewSections model =
-    [ Html.div [ Html.Attributes.class "section-container" ] [ View.Section1.view model ] ]
+    [ Html.div
+        [ Html.Attributes.id "section-1"
+        , Html.Attributes.class "section"
+        ]
+        (View.Section1.view model)
+    ]
