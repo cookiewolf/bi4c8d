@@ -7,13 +7,14 @@ import Msg exposing (Msg)
 import Test exposing (Test, describe, test)
 import Test.Html.Query as Query
 import Test.Html.Selector as Selector
+import Time
 import View.Section1
 
 
 suite : Test
 suite =
     let
-        view : Model -> Html.Html Msg
+        view : Model -> List (Html.Html Msg)
         view =
             View.Section1.view
 
@@ -36,12 +37,13 @@ suite =
                 , messages =
                     [ { avatarSrc = "/images/uploads/generic-avatar.png"
                       , body = "\nThis is a rich text body.\n\n**It has bold text.**\n"
-                      , datetime = "2023-10-24T16:04:44.461Z"
+                      , datetime = Time.millisToPosix 0
                       , forwardedFrom = "Joe Test"
                       , section = Section1
                       , viewCount = 994
                       }
                     ]
+                , images = []
                 }
             }
     in
@@ -49,7 +51,7 @@ suite =
         [ describe "View section 1 tests"
             [ test "Section 1 view has body that is HTML" <|
                 \() ->
-                    view model
+                    Html.div [] (view model)
                         |> Query.fromHtml
                         |> Query.has
                             [ Selector.tag "h2"
