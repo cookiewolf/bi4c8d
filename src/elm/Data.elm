@@ -1,4 +1,4 @@
-module Data exposing (Content, Flags, MainText, Message, SectionId(..), decodedContent, filterBySection)
+module Data exposing (Content, Flags, Image, MainText, Message, SectionId(..), decodedContent, filterBySection)
 
 import Dict
 import Iso8601
@@ -9,6 +9,7 @@ import Time
 type alias Content =
     { mainText : List MainText
     , messages : List Message
+    , images : List Image
     }
 
 
@@ -33,6 +34,14 @@ type alias Message =
     }
 
 
+type alias Image =
+    { section : SectionId
+    , source : String
+    , alt : String
+    , displayPosition : Int
+    }
+
+
 type SectionId
     = SectionInvalid
     | Section1
@@ -45,11 +54,13 @@ decodedContent flags =
         Ok goodContent ->
             { goodContent
                 | messages = orderMessagesByDatetime goodContent.messages
+                , images = orderByDisplayPosition goodContent.images
             }
 
         Err _ ->
             { mainText = []
             , messages = []
+            , images = []
             }
 
 
@@ -58,12 +69,18 @@ orderMessagesByDatetime messages =
     List.sortBy (\message -> Time.posixToMillis message.datetime) messages
 
 
+orderByDisplayPosition : List { a | displayPosition : Int } -> List { a | displayPosition : Int }
+orderByDisplayPosition items =
+    List.sortBy .displayPosition items
+
+
 flagsDecoder : Json.Decode.Decoder Content
 flagsDecoder =
-    Json.Decode.map2
+    Json.Decode.map3
         Content
         (Json.Decode.field "main-text" mainTextDictDecoder)
         (Json.Decode.field "messages" messageDictDecoder)
+        (Json.Decode.field "images" imageDictDecoder)
 
 
 mainTextDictDecoder : Json.Decode.Decoder (List MainText)
@@ -104,6 +121,24 @@ messageDecoder =
         (Json.Decode.field "view-count" Json.Decode.int)
         (Json.Decode.field "avatar-src" Json.Decode.string)
         (Json.Decode.field "content" Json.Decode.string)
+
+
+imageDictDecoder : Json.Decode.Decoder (List Image)
+imageDictDecoder =
+    Json.Decode.dict imageDecoder
+        |> Json.Decode.map Dict.toList
+        |> Json.Decode.map (\keyedItems -> List.map (\( _, image ) -> image) keyedItems)
+
+
+imageDecoder : Json.Decode.Decoder Image
+imageDecoder =
+    Json.Decode.map4 Image
+        (Json.Decode.field "section" Json.Decode.string
+            |> Json.Decode.andThen sectionIdFromString
+        )
+        (Json.Decode.field "source" Json.Decode.string)
+        (Json.Decode.field "alt" Json.Decode.string)
+        (Json.Decode.field "display-position" Json.Decode.int)
 
 
 posixFromString : String -> Json.Decode.Decoder Time.Posix

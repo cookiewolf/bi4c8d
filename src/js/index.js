@@ -4,6 +4,7 @@ import { Elm } from "../elm/Main.elm";
 
 import mainText from "../../data/main-text.json"
 import messages from "../../data/messages.json"
+import images from "../../data/images.json"
 
 if (process.env.NODE_ENV === "development") {
     const ElmDebugTransform = await import("elm-debug-transformer")
@@ -18,6 +19,7 @@ const app = Elm.Main.init({
     node: root,
     flags: {
         "main-text": mainText,
-        "messages": messages
+        "messages": messages,
+        "images": images
     }
 });
