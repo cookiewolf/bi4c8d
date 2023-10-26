@@ -1,6 +1,7 @@
-module Copy.Text exposing (t)
+module Copy.Text exposing (monthToString, t)
 
 import Copy.Keys exposing (Key(..))
+import Time
 
 
 
@@ -15,3 +16,43 @@ t key =
 
         ForwardedLabel ->
             "Forwarded from: "
+
+
+monthToString : Time.Month -> String
+monthToString month =
+    case month of
+        Time.Jan ->
+            "January"
+
+        Time.Feb ->
+            "February"
+
+        Time.Mar ->
+            "March"
+
+        Time.Apr ->
+            "April"
+
+        Time.May ->
+            "May"
+
+        Time.Jun ->
+            "June"
+
+        Time.Jul ->
+            "July"
+
+        Time.Aug ->
+            "August"
+
+        Time.Sep ->
+            "September"
+
+        Time.Oct ->
+            "October"
+
+        Time.Nov ->
+            "November"
+
+        Time.Dec ->
+            "December"

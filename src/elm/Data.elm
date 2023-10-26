@@ -1,7 +1,9 @@
 module Data exposing (Content, Flags, MainText, Message, SectionId(..), decodedContent, filterBySection)
 
 import Dict
+import Iso8601
 import Json.Decode
+import Time
 
 
 type alias Content =
@@ -23,7 +25,7 @@ type alias MainText =
 
 type alias Message =
     { section : SectionId
-    , datetime : String
+    , datetime : Time.Posix
     , forwardedFrom : String
     , viewCount : Int
     , avatarSrc : String
@@ -41,12 +43,19 @@ decodedContent : Json.Decode.Value -> Content
 decodedContent flags =
     case Json.Decode.decodeValue flagsDecoder flags of
         Ok goodContent ->
-            goodContent
+            { goodContent
+                | messages = orderMessagesByDatetime goodContent.messages
+            }
 
         Err _ ->
             { mainText = []
             , messages = []
             }
+
+
+orderMessagesByDatetime : List Message -> List Message
+orderMessagesByDatetime messages =
+    List.sortBy (\message -> Time.posixToMillis message.datetime) messages
 
 
 flagsDecoder : Json.Decode.Decoder Content
@@ -88,11 +97,23 @@ messageDecoder =
         (Json.Decode.field "section" Json.Decode.string
             |> Json.Decode.andThen sectionIdFromString
         )
-        (Json.Decode.field "datetime" Json.Decode.string)
+        (Json.Decode.field "datetime" Json.Decode.string
+            |> Json.Decode.andThen posixFromString
+        )
         (Json.Decode.field "forwarded-from" Json.Decode.string)
         (Json.Decode.field "view-count" Json.Decode.int)
         (Json.Decode.field "avatar-src" Json.Decode.string)
         (Json.Decode.field "content" Json.Decode.string)
+
+
+posixFromString : String -> Json.Decode.Decoder Time.Posix
+posixFromString dateString =
+    case Iso8601.toTime dateString of
+        Ok aDatetime ->
+            Json.Decode.succeed aDatetime
+
+        Err _ ->
+            Json.Decode.succeed (Time.millisToPosix 0)
 
 
 sectionIdFromString : String -> Json.Decode.Decoder SectionId
