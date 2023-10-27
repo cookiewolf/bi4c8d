@@ -1,5 +1,7 @@
 import "../css/reset.css";
 import "../css/style.css";
+import "@fontsource/inter";
+
 import { Elm } from "../elm/Main.elm";
 
 import mainText from "../../data/main-text.json"

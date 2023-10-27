@@ -15,7 +15,7 @@ import View.MainText
 view : Model -> List (Html.Html Msg)
 view model =
     [ Html.h2 [] [ Html.text "Section 1" ]
-    , View.MainText.view model.content.mainText
+    , View.MainText.view Data.Section1 model.content.mainText
     , viewMessageList model.content.messages
     ]
 
@@ -30,6 +30,7 @@ viewMessageList messageList =
                         (isFirstOnDate message messageList)
                 )
                 (Data.filterBySection Data.Section1 messageList)
+                |> List.concat
             )
 
     else
@@ -56,30 +57,31 @@ isFirstOnDate message allMessages =
             False
 
 
-viewMessage : Data.Message -> Bool -> Html.Html Msg
+viewMessage : Data.Message -> Bool -> List (Html.Html Msg)
 viewMessage message isFirst =
-    Html.div []
-        [ Html.div [ Html.Attributes.class "message" ]
-            [ Html.img
-                [ Html.Attributes.class "message-avatar"
-                , Html.Attributes.src message.avatarSrc
+    [ Html.div [ Html.Attributes.class "message" ]
+        [ if isFirst then
+            Html.h3 [ Html.Attributes.class "message-date" ]
+                [ viewMessageDate message.datetime
                 ]
-                []
-            , if isFirst then
-                Html.h3 [ Html.Attributes.class "message-date" ]
-                    [ viewMessageDate message.datetime
-                    ]
 
-              else
-                Html.text ""
+          else
+            Html.text ""
+        , Html.div [ Html.Attributes.class "message-inner" ]
+            [ Html.h4 [ Html.Attributes.class "message-forwarded-from" ] [ Html.text (t ForwardedLabel ++ message.forwardedFrom) ]
+            , Html.div [ Html.Attributes.class "message-body" ] (Markdown.markdownToHtml message.body)
+            , Html.div [ Html.Attributes.class "message-meta-info" ]
+                [ Html.span [ Html.Attributes.class "message-view-count" ] [ viewMessageViewCount message.viewCount ]
+                , Html.span [ Html.Attributes.class "message-time" ] [ viewMessageTime message.datetime ]
+                ]
             ]
-        , Html.h4 [ Html.Attributes.class "message-forwarded-from" ] [ Html.text (t ForwardedLabel ++ message.forwardedFrom) ]
-        , Html.div [ Html.Attributes.class "message-body" ] (Markdown.markdownToHtml message.body)
-        , Html.div []
-            [ Html.span [ Html.Attributes.class "message-view-count" ] [ viewMessageViewCount message.viewCount ]
-            , Html.span [ Html.Attributes.class "message-time" ] [ viewMessageTime message.datetime ]
+        , Html.img
+            [ Html.Attributes.class "message-avatar"
+            , Html.Attributes.src message.avatarSrc
             ]
+            []
         ]
+    ]
 
 
 viewMessageDate : Time.Posix -> Html.Html Msg
