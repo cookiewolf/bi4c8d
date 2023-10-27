@@ -19,12 +19,13 @@ collections:
     label: "Message"
     folder: "content/message"
     create: true
+    identifier_field: "forwarded-from"
     fields:
-      - { label: "Section", name: "section", widget: "select", options: ["section-one", "section-six"] }
+      - { label: "Section", name: "section", widget: "select", options: ["section-one", "section-seven", "section-eleven"] }
       - { label: "Date & time", name: "datetime", widget: "datetime" }
-      - { label: "Forwarded from", name: "forwarded-from", widget: "string", required: false }
+      - { label: "Forwarded from", name: "forwarded-from", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "View count", name: "view-count", widget: "number", required: false }
+      - { label: "View count", name: "view-count", widget: "number" }
       - { label: "Avatar icon", name: "avatar-src", widget: "image" }
 
   - name: "image"
