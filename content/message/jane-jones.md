@@ -1,12 +1,14 @@
 ---
 section: section-one
-datetime: 2023-10-27T10:22:36.166Z
-forwarded-from: Jane Jones
-view-count: 23449
+datetime: 2021-03-26T05:39:36.166Z
+forwarded-from: "Tim Morgan, We are Awake  "
+view-count: 129000
 avatar-src: /images/uploads/generic-avatar.png
 ---
-The second message on 27 Oct has **bold text**
+The whole point of COVID is lockdown /masks..
 
-* and
-* a
-* short list
+The whole point of lockdown /masks is mandatory vaccines.
+
+It's all about vaccines - digital ID cards and health passports.
+
+The whole point of digital identity is total control over all Citizens..
