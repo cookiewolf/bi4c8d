@@ -115,6 +115,9 @@ html body {
 /** Image **/
 
 .images {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .image {
@@ -122,4 +125,3 @@ html body {
 
 .image img {
 }
-
