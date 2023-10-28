@@ -2,6 +2,7 @@ module Views exposing (suite)
 
 import Data exposing (SectionId(..))
 import Html
+import InView
 import Model exposing (Model)
 import Msg exposing (Msg)
 import Test exposing (Test, describe, test)
@@ -17,6 +18,9 @@ suite =
         view : Model -> List (Html.Html Msg)
         view =
             View.Section1.view
+
+        ( inViewModel, inViewCmds ) =
+            InView.init Msg.InViewMsg []
 
         model =
             { content =
@@ -45,6 +49,7 @@ suite =
                     ]
                 , images = []
                 }
+            , inView = inViewModel
             }
     in
     describe "View section 1"
