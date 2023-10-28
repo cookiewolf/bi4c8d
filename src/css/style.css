@@ -115,11 +115,18 @@ html body {
 /** Image **/
 
 .images {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .image {
 }
 
 .image img {
+  margin: 20px;
 }
 
+.in-view {
+  border: 4px solid purple;
+}

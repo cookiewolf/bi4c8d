@@ -25,3 +25,7 @@ const app = Elm.Main.init({
         "images": images
     }
 });
+
+window.addEventListener("scroll", () => {
+    app.ports.onScroll.send({x: window.scrollX, y: window.scrollY});
+});

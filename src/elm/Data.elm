@@ -1,4 +1,4 @@
-module Data exposing (Content, Flags, Image, MainText, Message, SectionId(..), decodedContent, filterBySection)
+module Data exposing (Content, Flags, Image, MainText, Message, SectionId(..), decodedContent, filterBySection, trackableIdFromItem, trackableIdListFromFlags)
 
 import Dict
 import Iso8601
@@ -164,9 +164,36 @@ sectionIdFromString sectionString =
             Json.Decode.succeed SectionInvalid
 
 
+sectionIdToString : SectionId -> String
+sectionIdToString sectionId =
+    case sectionId of
+        Section1 ->
+            "section-one"
+
+        Section2 ->
+            "section-two"
+
+        SectionInvalid ->
+            "section-invalid"
+
+
 filterBySection :
     SectionId
     -> List { item | section : SectionId }
     -> List { item | section : SectionId }
 filterBySection sectionId itemList =
     List.filter (\item -> item.section == sectionId) itemList
+
+
+trackableIdListFromFlags : Flags -> List String
+trackableIdListFromFlags flags =
+    (decodedContent flags).images
+        |> List.map trackableIdFromItem
+
+
+trackableIdFromItem : { item | section : SectionId, displayPosition : Int } -> String
+trackableIdFromItem item =
+    String.join "-"
+        [ sectionIdToString item.section
+        , String.fromInt item.displayPosition
+        ]

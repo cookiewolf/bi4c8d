@@ -1,4 +1,4 @@
-module Main exposing (main)
+port module Main exposing (main)
 
 import Browser
 import Copy.Keys exposing (Key(..))
@@ -6,9 +6,13 @@ import Copy.Text exposing (t)
 import Data
 import Html
 import Html.Attributes
+import InView
 import Model exposing (Model)
 import Msg exposing (Msg(..))
 import View
+
+
+port onScroll : ({ x : Float, y : Float } -> msg) -> Sub msg
 
 
 main : Program Data.Flags Model Msg
@@ -23,18 +27,52 @@ main =
 
 init : Data.Flags -> ( Model, Cmd Msg )
 init flags =
-    ( { content = Data.decodedContent flags }, Cmd.none )
+    let
+        trackable =
+            Data.trackableIdListFromFlags flags
+
+        ( inViewModel, inViewCmds ) =
+            InView.init InViewMsg trackable
+    in
+    ( { content = Data.decodedContent flags
+      , inView = inViewModel
+      }
+    , inViewCmds
+    )
 
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.none
+    Sub.batch
+        [ InView.subscriptions InViewMsg model.inView
+        , onScroll OnScroll
+        ]
 
 
 update msg model =
     case msg of
-        NoOp ->
-            ( model, Cmd.none )
+        OnScroll offset ->
+            ( { model | inView = InView.updateViewportOffset offset model.inView }
+            , Cmd.none
+            )
+
+        InViewMsg inViewMsg ->
+            let
+                ( inView, inViewCmds ) =
+                    InView.update InViewMsg inViewMsg model.inView
+            in
+            ( { model | inView = inView }
+            , inViewCmds
+            )
+
+        OnElementLoad id ->
+            let
+                ( inView, inViewCmds ) =
+                    InView.addElements InViewMsg [ id ] model.inView
+            in
+            ( { model | inView = inView }
+            , inViewCmds
+            )
 
 
 viewDocument : Model -> Browser.Document Msg
