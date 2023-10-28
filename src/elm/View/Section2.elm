@@ -38,9 +38,28 @@ viewImage inViewState image =
         trackableId : String
         trackableId =
             Data.trackableIdFromItem image
+
+        positionData =
+            []
+
+        maybePositionData : Maybe ( Bool, ( Int, Int, Int ) )
+        maybePositionData =
+            isVerticallyCenter trackableId inViewState
+
+        ( answer, ( height, x, y ) ) =
+            Maybe.withDefault ( False, ( 0, 0, 0 ) )
+                maybePositionData
     in
     Html.div []
-        [ Html.div [ Html.Attributes.class "image" ]
+        [ Html.div
+            ([ Html.Attributes.class "image" ]
+                ++ (if answer then
+                        [ Html.Attributes.style "padding-bottom" (String.fromInt height ++ "px") ]
+
+                    else
+                        []
+                   )
+            )
             [ Html.img
                 ([ Html.Attributes.src image.source
                  , Html.Attributes.alt image.alt
@@ -48,20 +67,15 @@ viewImage inViewState image =
                  , Html.Attributes.style "z-index" (String.fromInt image.displayPosition)
                  , Html.Events.on "load" (Json.Decode.succeed (Msg.OnElementLoad trackableId))
                  ]
-                    ++ (case isVerticallyCenter trackableId inViewState of
-                            Just ( answer, ( x, y ) ) ->
-                                if answer then
-                                    [ Html.Attributes.style "position" "fixed"
-                                    , Html.Attributes.style "margin-top" (String.fromInt (y + 100) ++ "px")
-                                    , Html.Attributes.style "top" (String.fromInt -y ++ "px")
-                                    , Html.Attributes.style "left" (String.fromInt x ++ "px")
-                                    ]
+                    ++ (if answer then
+                            [ Html.Attributes.style "position" "fixed"
+                            , Html.Attributes.style "margin-top" (String.fromInt (y + 100) ++ "px")
+                            , Html.Attributes.style "top" (String.fromInt -y ++ "px")
+                            , Html.Attributes.style "left" (String.fromInt x ++ "px")
+                            ]
 
-                                else
-                                    []
-
-                            Nothing ->
-                                []
+                        else
+                            []
                        )
                 )
                 []
@@ -69,10 +83,10 @@ viewImage inViewState image =
         ]
 
 
-isVerticallyCenter : String -> InView.State -> Maybe ( Bool, ( Int, Int ) )
+isVerticallyCenter : String -> InView.State -> Maybe ( Bool, ( Int, Int, Int ) )
 isVerticallyCenter id state =
     let
         calc { viewport } element =
-            ( viewport.y + viewport.height / 2 > element.y + element.height / 2, ( truncate element.x, truncate element.y - truncate viewport.y ) )
+            ( viewport.y + viewport.height / 2 > element.y + element.height / 2, ( truncate element.height, truncate element.x, truncate element.y - truncate viewport.y ) )
     in
     InView.custom (\a b -> Maybe.map (calc a) b) id state
