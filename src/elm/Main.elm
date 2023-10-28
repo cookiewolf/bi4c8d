@@ -65,6 +65,15 @@ update msg model =
             , inViewCmds
             )
 
+        OnElementLoad id ->
+            let
+                ( inView, inViewCmds ) =
+                    InView.addElements InViewMsg [ id ] model.inView
+            in
+            ( { model | inView = inView }
+            , inViewCmds
+            )
+
 
 viewDocument : Model -> Browser.Document Msg
 viewDocument model =
