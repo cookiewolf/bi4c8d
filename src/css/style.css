@@ -37,12 +37,19 @@ html body {
 }
 
 .main-text {
+  border: solid var(--black) 1px;
+  border-radius: var(--default-radius);
+  padding: 30px 30px 20px 30px;
 }
 
 .main-text-title {
+  padding: 0 0 20px 0;
 }
 
 .main-text-body {
+  background: url(images/main-text-icons.svg) bottom right no-repeat;
+  background-size: 70px;
+  padding-bottom: 40px;
 }
 
 /** Message **/
