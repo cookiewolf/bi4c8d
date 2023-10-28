@@ -29,7 +29,7 @@ init : Data.Flags -> ( Model, Cmd Msg )
 init flags =
     let
         trackable =
-            List.indexedMap (\index image -> image.source) (Data.decodedContent flags).images
+            Data.trackableIdListFromFlags flags
 
         ( inViewModel, inViewCmds ) =
             InView.init InViewMsg trackable

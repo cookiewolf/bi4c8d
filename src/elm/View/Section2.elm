@@ -3,7 +3,6 @@ module View.Section2 exposing (view)
 import Data
 import Html
 import Html.Attributes
-import Html.Events
 import InView
 import Json.Decode
 import Model exposing (Model)
@@ -34,14 +33,18 @@ viewImageList inViewState imageList =
 
 viewImage : InView.State -> Data.Image -> Html.Html Msg
 viewImage inViewState image =
+    let
+        trackableId : String
+        trackableId =
+            Data.trackableIdFromItem image
+    in
     Html.div []
         [ Html.div [ Html.Attributes.class "image" ]
             [ Html.img
                 [ Html.Attributes.src image.source
                 , Html.Attributes.alt image.alt
-                , Html.Attributes.id image.source
-                , Html.Events.on "load" (Json.Decode.succeed (Msg.OnElementLoad image.source))
-                , case InView.isInView image.source inViewState of
+                , Html.Attributes.id trackableId
+                , case InView.isInView trackableId inViewState of
                     Just answer ->
                         if answer then
                             Html.Attributes.class "in-view"
