@@ -4,7 +4,6 @@ import Data
 import Html
 import Html.Attributes
 import InView
-import Json.Decode
 import Model exposing (Model)
 import Msg exposing (Msg)
 import View.MainText
