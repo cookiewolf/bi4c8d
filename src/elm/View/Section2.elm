@@ -39,9 +39,6 @@ viewImage inViewState image =
         trackableId =
             Data.trackableIdFromItem image
 
-        positionData =
-            []
-
         maybePositionData : Maybe ( Bool, ( Int, Int, Int ) )
         maybePositionData =
             isVerticallyCenter trackableId inViewState
