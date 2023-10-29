@@ -47,7 +47,7 @@ html body {
 }
 
 .main-text-body {
-  background: url(images/main-text-icons.svg) bottom right no-repeat;
+  background: url(/images/main-text-icons.svg) bottom right no-repeat;
   background-size: 70px;
   padding-bottom: 40px;
 }
@@ -91,7 +91,7 @@ html body {
 }
 
 .message-forwarded-from {
-  background: url(images/arrow_email_forward_message_right_icon.svg) no-repeat;
+  background: url(/images/arrow_email_forward_message_right_icon.svg) no-repeat;
   font-size: 0.75rem;
   font-weight: normal;
   padding: 5px 0 0 28px;
@@ -111,7 +111,7 @@ html body {
 }
 
 .message-view-count {
-  background: url(images/eye.svg) no-repeat;
+  background: url(/images/eye.svg) no-repeat;
   padding: 10px 0 0 30px;
 }
 
