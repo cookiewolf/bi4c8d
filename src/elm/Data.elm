@@ -1,4 +1,4 @@
-module Data exposing (Content, Flags, Image, MainText, Message, SectionId(..), decodedContent, filterBySection, trackableIdFromItem, trackableIdListFromFlags)
+module Data exposing (ChartDatum, Content, Flags, Image, MainText, Message, SectionId(..), decodedContent, filterBySection, trackableIdFromItem, trackableIdListFromFlags)
 
 import Dict
 import Iso8601
@@ -42,10 +42,15 @@ type alias Image =
     }
 
 
+type alias ChartDatum =
+    { x : Float, y : Float, z : Float }
+
+
 type SectionId
     = SectionInvalid
     | Section1
     | Section2
+    | Section3
 
 
 decodedContent : Json.Decode.Value -> Content
@@ -172,6 +177,9 @@ sectionIdToString sectionId =
 
         Section2 ->
             "section-two"
+
+        Section3 ->
+            "section-three"
 
         SectionInvalid ->
             "section-invalid"
