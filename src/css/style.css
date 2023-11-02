@@ -122,9 +122,7 @@ html body {
 /** Image **/
 
 .images {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
+  position: relative;
 }
 
 .image {
@@ -133,5 +131,4 @@ html body {
 .image img {
   margin: 20px 0;
   max-width: 800px;
-  position: relative;
 }

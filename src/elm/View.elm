@@ -20,4 +20,10 @@ viewSections model =
         , Html.Attributes.class "section"
         ]
         (View.Section2.view model)
+    , -- repeat section one for debug
+      Html.div
+        [ Html.Attributes.id "section-1"
+        , Html.Attributes.class "section"
+        ]
+        (View.Section1.view model)
     ]
