@@ -50,6 +50,7 @@ suite =
                 , images = []
                 }
             , inView = inViewModel
+            , chartHovering = []
             }
     in
     describe "View section 1"
