@@ -8,5 +8,5 @@ import InView
 type alias Model =
     { content : Data.Content
     , inView : InView.State
-    , chartHovering : List (Chart.Item.One Data.ChartDatum Chart.Item.Dot)
+    , chartHovering : List (Chart.Item.One Data.LineChartDatum Chart.Item.Dot)
     }
