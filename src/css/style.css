@@ -13,7 +13,7 @@ html body {
 }
 
 .page-wrapper {
-  margin: 0 auto;
+  margin: 1rem auto;
   max-width: 800px;
   width: 100%;
 }
@@ -21,7 +21,7 @@ html body {
 .section {
   margin: 0 auto;
   max-width: 800px;
-  padding: 0 1rem;
+  padding: 2rem 1rem;
   width: 100%;
 }
 
@@ -131,4 +131,9 @@ html body {
 .image img {
   margin: 20px 0;
   max-width: 800px;
+}
+
+/** Chart **/
+.chart {
+  margin: 4rem 2rem;
 }

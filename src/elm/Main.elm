@@ -36,6 +36,7 @@ init flags =
     in
     ( { content = Data.decodedContent flags
       , inView = inViewModel
+      , chartHovering = []
       }
     , inViewCmds
     )
@@ -73,6 +74,9 @@ update msg model =
             ( { model | inView = inView }
             , inViewCmds
             )
+
+        OnChartHover hovering ->
+            ( { model | chartHovering = hovering }, Cmd.none )
 
 
 viewDocument : Model -> Browser.Document Msg

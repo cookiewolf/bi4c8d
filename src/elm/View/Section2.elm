@@ -14,7 +14,7 @@ import View.MainText
 view : Model -> List (Html.Html Msg)
 view model =
     [ Html.h2 [] [ Html.text "Section 2" ]
-    , View.MainText.view Data.Section2 model.content.mainText
+    , View.MainText.viewTop Data.Section2 model.content.mainText
     , viewImageList model.inView model.content.images
     ]
 

@@ -1,4 +1,4 @@
-module View.MainText exposing (view)
+module View.MainText exposing (viewBottom, viewTop)
 
 import Data
 import Html
@@ -7,22 +7,51 @@ import Markdown
 import Msg exposing (Msg)
 
 
-view : Data.SectionId -> List Data.MainText -> Html.Html Msg
-view sectionId mainTextList =
-    if List.length mainTextList > 0 then
-        Html.div [ Html.Attributes.class "main-texts" ]
-            (List.map
-                (\mainText -> viewMainText mainText)
+viewTop : Data.SectionId -> List Data.MainText -> Html.Html Msg
+viewTop sectionId mainTextList =
+    let
+        maybeMainTextList =
+            List.map
+                (\mainText -> viewMainText mainText True)
                 (Data.filterBySection sectionId mainTextList)
-            )
+                |> List.reverse
+                |> List.head
+    in
+    case maybeMainTextList of
+        Just mainTextHead ->
+            Html.div [ Html.Attributes.class "main-texts" ]
+                [ mainTextHead ]
 
-    else
-        Html.text ""
+        Nothing ->
+            Html.text ""
 
 
-viewMainText : Data.MainText -> Html.Html Msg
-viewMainText mainText =
+viewBottom : Data.SectionId -> List Data.MainText -> Html.Html Msg
+viewBottom sectionId mainTextList =
+    let
+        maybeMainTextList =
+            List.map
+                (\mainText -> viewMainText mainText False)
+                (Data.filterBySection sectionId mainTextList)
+                |> List.reverse
+                |> List.tail
+    in
+    case maybeMainTextList of
+        Just mainTextTail ->
+            Html.div [ Html.Attributes.class "main-texts" ]
+                mainTextTail
+
+        Nothing ->
+            Html.text ""
+
+
+viewMainText : Data.MainText -> Bool -> Html.Html Msg
+viewMainText mainText showTitle =
     Html.div [ Html.Attributes.class "main-text" ]
-        [ Html.h3 [ Html.Attributes.class "main-text-title" ] [ Html.text mainText.title ]
+        [ if showTitle then
+            Html.h3 [ Html.Attributes.class "main-text-title" ] [ Html.text mainText.title ]
+
+          else
+            Html.text ""
         , Html.div [ Html.Attributes.class "main-text-body" ] (Markdown.markdownToHtml mainText.body)
         ]
