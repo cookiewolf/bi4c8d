@@ -22,7 +22,9 @@ view model =
 viewImageList : InView.State -> List Data.Image -> Html.Html Msg
 viewImageList inViewState imageList =
     if List.length imageList > 0 then
-        Html.div [ Html.Attributes.class "images" ]
+        Html.div
+            [ Html.Attributes.class "images"
+            ]
             (List.map
                 (\image -> viewImage inViewState image)
                 (Data.filterBySection Data.Section2 imageList)
@@ -39,51 +41,59 @@ viewImage inViewState image =
         trackableId =
             Data.trackableIdFromItem image
 
-        maybePositionData : Maybe ( Bool, ( Int, Int, Int ) )
+        maybePositionData : Maybe ( Bool, { height : Int, xPosition : Int, yPosition : Int } )
         maybePositionData =
             isVerticallyCenter trackableId inViewState
 
-        ( answer, ( height, x, y ) ) =
-            Maybe.withDefault ( False, ( 0, 0, 0 ) )
+        ( answer, { height, xPosition, yPosition } ) =
+            Maybe.withDefault ( False, { height = 0, xPosition = 0, yPosition = 0 } )
                 maybePositionData
+
+        reachedLastInTrackableList =
+            False
     in
-    Html.div []
-        [ Html.div
-            ([ Html.Attributes.class "image" ]
-                ++ (if answer then
-                        [ Html.Attributes.style "padding-bottom" (String.fromInt height ++ "px") ]
+    Html.div
+        ([ Html.Attributes.class "image" ]
+            ++ (if answer then
+                    [ Html.Attributes.style "padding-bottom" (String.fromInt (height // 2) ++ "px") ]
+
+                else
+                    []
+               )
+        )
+        [ Html.img
+            ([ Html.Attributes.src image.source
+             , Html.Attributes.alt image.alt
+             , Html.Attributes.id trackableId
+             , Html.Attributes.style "z-index" (String.fromInt image.displayPosition)
+             , Html.Events.on "load" (Json.Decode.succeed (Msg.OnElementLoad trackableId))
+             ]
+                ++ (if answer && not reachedLastInTrackableList then
+                        [ Html.Attributes.style "position" "absolute"
+
+                        --, Html.Attributes.style "margin-top" (String.fromInt (yPosition + 100) ++ "px")
+                        --, Html.Attributes.style "top" (String.fromInt (-yPosition + 100) ++ "px")
+                        , Html.Attributes.style "top" "0"
+
+                        --, Html.Attributes.style "left" (String.fromInt xPosition ++ "px")
+                        ]
 
                     else
                         []
                    )
             )
-            [ Html.img
-                ([ Html.Attributes.src image.source
-                 , Html.Attributes.alt image.alt
-                 , Html.Attributes.id trackableId
-                 , Html.Attributes.style "z-index" (String.fromInt image.displayPosition)
-                 , Html.Events.on "load" (Json.Decode.succeed (Msg.OnElementLoad trackableId))
-                 ]
-                    ++ (if answer then
-                            [ Html.Attributes.style "position" "fixed"
-                            , Html.Attributes.style "margin-top" (String.fromInt (y + 100) ++ "px")
-                            , Html.Attributes.style "top" (String.fromInt -y ++ "px")
-                            , Html.Attributes.style "left" (String.fromInt x ++ "px")
-                            ]
-
-                        else
-                            []
-                       )
-                )
-                []
-            ]
+            []
         ]
 
 
-isVerticallyCenter : String -> InView.State -> Maybe ( Bool, ( Int, Int, Int ) )
+isVerticallyCenter : String -> InView.State -> Maybe ( Bool, { height : Int, xPosition : Int, yPosition : Int } )
 isVerticallyCenter id state =
     let
         calc { viewport } element =
-            ( viewport.y + viewport.height / 2 > element.y + element.height / 2, ( truncate element.height, truncate element.x, truncate element.y - truncate viewport.y ) )
+            ( viewport.y + viewport.height / 2 > element.y + element.height / 2, { height = truncate element.height, xPosition = truncate element.x, yPosition = truncate element.y - truncate viewport.y } )
     in
     InView.custom (\a b -> Maybe.map (calc a) b) id state
+
+
+
+--Just ( False, { height = 0, xPosition = 0, yPosition = 0 } )

@@ -12,6 +12,10 @@ html body {
   font-family: Inter, sans-serif;
 }
 
+p {
+  margin-bottom: 1rem;
+}
+
 .page-wrapper {
   margin: 1rem auto;
   max-width: 800px;
@@ -122,9 +126,7 @@ html body {
 /** Image **/
 
 .images {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
+  position: relative;
 }
 
 .image {
@@ -133,7 +135,6 @@ html body {
 .image img {
   margin: 20px 0;
   max-width: 800px;
-  position: relative;
 }
 
 /** Chart **/
