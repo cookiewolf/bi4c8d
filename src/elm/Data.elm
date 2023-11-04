@@ -185,6 +185,9 @@ sectionIdFromString sectionString =
         "section-two" ->
             Json.Decode.succeed Section2
 
+        "section-three" ->
+            Json.Decode.succeed Section3
+
         _ ->
             Json.Decode.succeed SectionInvalid
 

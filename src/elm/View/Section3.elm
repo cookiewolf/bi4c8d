@@ -8,6 +8,7 @@ import Chart.Svg
 import Copy.Text
 import Data
 import Html
+import Html.Attributes
 import Model exposing (Model)
 import Msg exposing (Msg)
 import Svg
@@ -18,8 +19,9 @@ import View.MainText
 view : Model -> List (Html.Html Msg)
 view model =
     [ Html.h2 [] [ Html.text "Section 3" ]
-    , View.MainText.view Data.Section3 model.content.mainText
-    , Html.div [] [ viewChart model ]
+    , View.MainText.viewTop Data.Section3 model.content.mainText
+    , Html.div [ Html.Attributes.class "chart" ] [ viewChart model ]
+    , View.MainText.viewBottom Data.Section3 model.content.mainText
     ]
 
 
