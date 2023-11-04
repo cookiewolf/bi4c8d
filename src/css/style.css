@@ -12,6 +12,10 @@ html body {
   font-family: Inter, sans-serif;
 }
 
+p {
+  margin-bottom: 1rem;
+}
+
 .page-wrapper {
   margin: 1rem auto;
   max-width: 800px;
