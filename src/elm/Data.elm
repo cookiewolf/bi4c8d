@@ -56,13 +56,13 @@ type alias LineChartData =
 
 type alias LineChartDatum =
     { x : Float
-    , y1 : Maybe Float
-    , y2 : Maybe Float
-    , y3 : Maybe Float
-    , y4 : Maybe Float
-    , y5 : Maybe Float
-    , y6 : Maybe Float
-    , y7 : Maybe Float
+    , y1 : { tooltip : String, count : Maybe Float }
+    , y2 : { tooltip : String, count : Maybe Float }
+    , y3 : { tooltip : String, count : Maybe Float }
+    , y4 : { tooltip : String, count : Maybe Float }
+    , y5 : { tooltip : String, count : Maybe Float }
+    , y6 : { tooltip : String, count : Maybe Float }
+    , y7 : { tooltip : String, count : Maybe Float }
     }
 
 
@@ -238,29 +238,39 @@ lineChartData : LineChartData
 lineChartData =
     { set1Label = "COVID-19 Agenda"
     , set2Label = "UK – No Mandatory Vaccines – Medical Freedom"
-    , set3Label = ""
+    , set3Label = "Third test set"
     , set4Label = ""
     , set5Label = ""
     , set6Label = ""
     , set7Label = ""
     , dataPoints =
-        [ { x = posixToFloatFromString "2021-02-17", y1 = Just (toFloat 4473), y2 = Just (toFloat 2142), y3 = Nothing, y4 = Nothing, y5 = Nothing, y6 = Nothing, y7 = Nothing }
-        , { x = posixToFloatFromString "2021-02-24", y1 = Just (toFloat 4555), y2 = Just (toFloat 2263), y3 = Nothing, y4 = Nothing, y5 = Nothing, y6 = Nothing, y7 = Nothing }
-        , { x = posixToFloatFromString "2021-03-11", y1 = Just (toFloat 4747), y2 = Just (toFloat 2798), y3 = Nothing, y4 = Nothing, y5 = Nothing, y6 = Nothing, y7 = Nothing }
-        , { x = posixToFloatFromString "2021-03-17", y1 = Just (toFloat 4827), y2 = Just (toFloat 3033), y3 = Nothing, y4 = Nothing, y5 = Nothing, y6 = Nothing, y7 = Nothing }
-        , { x = posixToFloatFromString "2021-04-06", y1 = Just (toFloat 5469), y2 = Just (toFloat 4422), y3 = Nothing, y4 = Nothing, y5 = Nothing, y6 = Nothing, y7 = Nothing }
-        , { x = posixToFloatFromString "2021-04-13", y1 = Just (toFloat 5616), y2 = Just (toFloat 4620), y3 = Nothing, y4 = Nothing, y5 = Nothing, y6 = Nothing, y7 = Nothing }
-        , { x = posixToFloatFromString "2021-04-21", y1 = Just (toFloat 5948), y2 = Just (toFloat 5046), y3 = Nothing, y4 = Nothing, y5 = Nothing, y6 = Nothing, y7 = Nothing }
-        , { x = posixToFloatFromString "2021-04-27", y1 = Just (toFloat 6072), y2 = Just (toFloat 5534), y3 = Nothing, y4 = Nothing, y5 = Nothing, y6 = Nothing, y7 = Nothing }
-        , { x = posixToFloatFromString "2021-05-05", y1 = Just (toFloat 6294), y2 = Just (toFloat 5816), y3 = Nothing, y4 = Nothing, y5 = Nothing, y6 = Nothing, y7 = Nothing }
-        , { x = posixToFloatFromString "2021-05-20", y1 = Just (toFloat 6521), y2 = Just (toFloat 6142), y3 = Nothing, y4 = Nothing, y5 = Nothing, y6 = Nothing, y7 = Nothing }
-        , { x = posixToFloatFromString "2021-05-30", y1 = Just (toFloat 6644), y2 = Just (toFloat 6246), y3 = Nothing, y4 = Nothing, y5 = Nothing, y6 = Nothing, y7 = Nothing }
-        , { x = posixToFloatFromString "2021-06-05", y1 = Just (toFloat 6768), y2 = Just (toFloat 6291), y3 = Nothing, y4 = Nothing, y5 = Nothing, y6 = Nothing, y7 = Nothing }
-        , { x = posixToFloatFromString "2021-06-17", y1 = Just (toFloat 7175), y2 = Just (toFloat 6384), y3 = Nothing, y4 = Nothing, y5 = Nothing, y6 = Nothing, y7 = Nothing }
-        , { x = posixToFloatFromString "2021-07-01", y1 = Just (toFloat 7635), y2 = Just (toFloat 6515), y3 = Nothing, y4 = Nothing, y5 = Nothing, y6 = Nothing, y7 = Nothing }
-        , { x = posixToFloatFromString "2021-07-06", y1 = Just (toFloat 7849), y2 = Just (toFloat 6579), y3 = Nothing, y4 = Nothing, y5 = Nothing, y6 = Nothing, y7 = Nothing }
-        , { x = posixToFloatFromString "2021-07-15", y1 = Just (toFloat 8095), y2 = Just (toFloat 6689), y3 = Nothing, y4 = Nothing, y5 = Nothing, y6 = Nothing, y7 = Nothing }
-        , { x = posixToFloatFromString "2021-07-27", y1 = Just (toFloat 8840), y2 = Just (toFloat 6936), y3 = Nothing, y4 = Nothing, y5 = Nothing, y6 = Nothing, y7 = Nothing }
+        [ { x = posixToFloatFromString "2021-02-17"
+          , y1 = { tooltip = "Tooltip for set 1 3173", count = Just (toFloat 3173) }
+          , y2 = { tooltip = "Tooltip for set 2 1142", count = Just (toFloat 1142) }
+          , y3 = { tooltip = "Tooltip for set 3 Nothing", count = Nothing }
+          , y4 = { tooltip = "", count = Nothing }
+          , y5 = { tooltip = "", count = Nothing }
+          , y6 = { tooltip = "", count = Nothing }
+          , y7 = { tooltip = "", count = Nothing }
+          }
+        , { x = posixToFloatFromString "2021-02-24"
+          , y1 = { tooltip = "Tooltip for set 1 3255", count = Just (toFloat 3255) }
+          , y2 = { tooltip = "", count = Just (toFloat 1263) }
+          , y3 = { tooltip = "Tooltip for set 3 2000", count = Just (toFloat 2000) }
+          , y4 = { tooltip = "", count = Nothing }
+          , y5 = { tooltip = "", count = Nothing }
+          , y6 = { tooltip = "", count = Nothing }
+          , y7 = { tooltip = "", count = Nothing }
+          }
+        , { x = posixToFloatFromString "2021-03-11"
+          , y1 = { tooltip = "hello3", count = Just (toFloat 3547) }
+          , y2 = { tooltip = "", count = Just (toFloat 1798) }
+          , y3 = { tooltip = "Tooltip set 3 1850", count = Just (toFloat 1850) }
+          , y4 = { tooltip = "", count = Nothing }
+          , y5 = { tooltip = "", count = Nothing }
+          , y6 = { tooltip = "", count = Nothing }
+          , y7 = { tooltip = "", count = Nothing }
+          }
         ]
     }
 
