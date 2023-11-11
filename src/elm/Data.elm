@@ -10,6 +10,7 @@ type alias Content =
     { mainText : List MainText
     , messages : List Message
     , images : List Image
+    , graphs : List Graph
     }
 
 
@@ -42,7 +43,7 @@ type alias Image =
     }
 
 
-type alias LineChartData =
+type alias Graph =
     { set1Label : String
     , set2Label : String
     , set3Label : String
@@ -86,6 +87,7 @@ decodedContent flags =
             { mainText = []
             , messages = []
             , images = []
+            , graphs = []
             }
 
 
@@ -101,11 +103,12 @@ orderByDisplayPosition items =
 
 flagsDecoder : Json.Decode.Decoder Content
 flagsDecoder =
-    Json.Decode.map3
+    Json.Decode.map4
         Content
         (Json.Decode.field "main-text" mainTextDictDecoder)
         (Json.Decode.field "messages" messageDictDecoder)
         (Json.Decode.field "images" imageDictDecoder)
+        (Json.Decode.field "graphs" graphDictDecoder)
 
 
 mainTextDictDecoder : Json.Decode.Decoder (List MainText)
@@ -164,6 +167,51 @@ imageDecoder =
         (Json.Decode.field "source" Json.Decode.string)
         (Json.Decode.field "alt" Json.Decode.string)
         (Json.Decode.field "display-position" Json.Decode.int)
+
+
+graphDictDecoder : Json.Decode.Decoder (List Graph)
+graphDictDecoder =
+    Json.Decode.dict graphDecoder
+        |> Json.Decode.map Dict.toList
+        |> Json.Decode.map (\keyedItems -> List.map (\( _, graph ) -> graph) keyedItems)
+
+
+graphDecoder : Json.Decode.Decoder Graph
+graphDecoder =
+    Json.Decode.map8 Graph
+        (Json.Decode.field "label1" Json.Decode.string)
+        (Json.Decode.field "label2" Json.Decode.string)
+        (Json.Decode.field "label3" Json.Decode.string)
+        (Json.Decode.field "label4" Json.Decode.string)
+        (Json.Decode.field "label5" Json.Decode.string)
+        (Json.Decode.field "label6" Json.Decode.string)
+        (Json.Decode.field "label7" Json.Decode.string)
+        (Json.Decode.field "datapoints" datapointsDecoder)
+
+
+datapointsDecoder : Json.Decode.Decoder (List LineChartDatum)
+datapointsDecoder =
+    Json.Decode.map2
+        (Json.Decode.field "date" Json.Decode.string
+            |> Json.Decode.andThen posixFromStringDecoder
+        )
+        (Json.Decode.field "data" lineChartDatumDecoder)
+
+
+lineChartDatumDecoder : Json.Decode.Decoder LineChartDatum
+lineChartDatumDecoder =
+    Json.Decode.map2
+        (Json.Decode.field "date" Json.Decode.float)
+        (Json.Decode.field "data" lineChartYPointsDecoder)
+
+
+lineChartYPointsDecoder : Json.Decode.Decoder {}
+lineChartYPointsDecoder =
+    Json.Decode.map2
+
+
+
+-- Helpers
 
 
 posixFromStringDecoder : String -> Json.Decode.Decoder Time.Posix
@@ -234,7 +282,7 @@ trackableIdFromItem item =
         ]
 
 
-lineChartData : LineChartData
+lineChartData : Graph
 lineChartData =
     { set1Label = "COVID-19 Agenda"
     , set2Label = "UK – No Mandatory Vaccines – Medical Freedom"
