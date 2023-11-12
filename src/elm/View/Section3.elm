@@ -41,7 +41,8 @@ viewChart model =
             [ Chart.Attributes.lowest dateRangeStart Chart.Attributes.exactly
             , Chart.Attributes.highest dateRangeEnd Chart.Attributes.exactly
             ]
-        , Chart.Events.onMouseMove Msg.OnChartHover (Chart.Events.getNearest Chart.Item.dots)
+        , Chart.Events.onMouseMove Msg.OnChartHover
+            (Chart.Events.getNearest Chart.Item.dots)
         , Chart.Events.onMouseLeave (Msg.OnChartHover [])
         ]
         [ Chart.xAxis []
@@ -55,26 +56,69 @@ viewChart model =
                     [ Svg.text (formatFullTime Time.utc info.timestamp) ]
                 ]
         , Chart.series .x
-            [ Chart.interpolatedMaybe .y1
+            [ Chart.interpolatedMaybe (\item -> item.y1.count)
                 []
                 [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
                 |> Chart.named Data.lineChartData.set1Label
-            , Chart.interpolatedMaybe .y2
+            , Chart.interpolatedMaybe (\item -> item.y2.count)
                 []
                 [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
                 |> Chart.named Data.lineChartData.set2Label
+            , Chart.interpolatedMaybe (\item -> item.y3.count)
+                []
+                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                |> Chart.named Data.lineChartData.set3Label
             ]
-            Data.lineChartData.dataPoints
-        , Chart.legendsAt .min
+            -- Todo get graphs by section & render multiple?
+            (List.head model.content.graphs
+                |> Maybe.withDefault Data.lineChartData
+            ).dataPoints
+        , Chart.legendsAt .max
             .max
             [ Chart.Attributes.column
-            , Chart.Attributes.moveRight 15
             , Chart.Attributes.spacing 5
+            , Chart.Attributes.moveLeft 250
             ]
             [ Chart.Attributes.width 20 ]
         , Chart.each model.chartHovering <|
             \_ item ->
-                [ Chart.tooltip item [] [] [] ]
+                let
+                    data =
+                        Chart.Item.getData item
+
+                    y =
+                        Chart.Item.getY item
+
+                    tooltip =
+                        if data.y1.count == Just y then
+                            data.y1.tooltip
+
+                        else if data.y2.count == Just y then
+                            data.y2.tooltip
+
+                        else if data.y3.count == Just y then
+                            data.y3.tooltip
+
+                        else if data.y4.count == Just y then
+                            data.y4.tooltip
+
+                        else if data.y5.count == Just y then
+                            data.y5.tooltip
+
+                        else if data.y6.count == Just y then
+                            data.y6.tooltip
+
+                        else if data.y7.count == Just y then
+                            data.y7.tooltip
+
+                        else
+                            ""
+                in
+                if String.length tooltip > 0 then
+                    [ Chart.tooltip item [] [] [ Html.text tooltip ] ]
+
+                else
+                    []
         ]
 
 

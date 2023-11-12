@@ -73,10 +73,13 @@ viewImage inViewState image =
              , Html.Events.on "load" (Json.Decode.succeed (Msg.OnElementLoad trackableId))
              ]
                 ++ (if answer && not reachedLastInTrackableList then
-                        [ Html.Attributes.style "position" "fixed"
-                        , Html.Attributes.style "margin-top" (String.fromInt (yPosition + 80) ++ "px")
-                        , Html.Attributes.style "top" (String.fromInt (-yPosition + 80) ++ "px")
-                        , Html.Attributes.style "left" (String.fromInt xPosition ++ "px")
+                        [ Html.Attributes.style "position" "absolute"
+                        , Html.Attributes.style "margin-top" (String.fromInt (yPosition - 80) ++ "px")
+                        , Html.Attributes.style "top"
+                            (String.fromInt (-yPosition + 100) ++ "px")
+
+                        --, Html.Attributes.style "top" "0"
+                        --, Html.Attributes.style "left" (String.fromInt xPosition ++ "px")
                         ]
 
                     else
