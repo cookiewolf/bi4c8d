@@ -10,6 +10,7 @@ type alias Content =
     { mainText : List MainText
     , messages : List Message
     , images : List Image
+    , graphs : List Graph
     }
 
 
@@ -42,7 +43,7 @@ type alias Image =
     }
 
 
-type alias LineChartData =
+type alias Graph =
     { set1Label : String
     , set2Label : String
     , set3Label : String
@@ -56,14 +57,18 @@ type alias LineChartData =
 
 type alias LineChartDatum =
     { x : Float
-    , y1 : { tooltip : String, count : Maybe Float }
-    , y2 : { tooltip : String, count : Maybe Float }
-    , y3 : { tooltip : String, count : Maybe Float }
-    , y4 : { tooltip : String, count : Maybe Float }
-    , y5 : { tooltip : String, count : Maybe Float }
-    , y6 : { tooltip : String, count : Maybe Float }
-    , y7 : { tooltip : String, count : Maybe Float }
+    , y1 : YPoint
+    , y2 : YPoint
+    , y3 : YPoint
+    , y4 : YPoint
+    , y5 : YPoint
+    , y6 : YPoint
+    , y7 : YPoint
     }
+
+
+type alias YPoint =
+    { tooltip : String, count : Maybe Float }
 
 
 type SectionId
@@ -86,6 +91,7 @@ decodedContent flags =
             { mainText = []
             , messages = []
             , images = []
+            , graphs = []
             }
 
 
@@ -101,11 +107,12 @@ orderByDisplayPosition items =
 
 flagsDecoder : Json.Decode.Decoder Content
 flagsDecoder =
-    Json.Decode.map3
+    Json.Decode.map4
         Content
         (Json.Decode.field "main-text" mainTextDictDecoder)
         (Json.Decode.field "messages" messageDictDecoder)
         (Json.Decode.field "images" imageDictDecoder)
+        (Json.Decode.field "graphs" graphDictDecoder)
 
 
 mainTextDictDecoder : Json.Decode.Decoder (List MainText)
@@ -166,6 +173,59 @@ imageDecoder =
         (Json.Decode.field "display-position" Json.Decode.int)
 
 
+graphDictDecoder : Json.Decode.Decoder (List Graph)
+graphDictDecoder =
+    Json.Decode.dict graphDecoder
+        |> Json.Decode.map Dict.toList
+        |> Json.Decode.map (\keyedItems -> List.map (\( _, graph ) -> graph) keyedItems)
+
+
+graphDecoder : Json.Decode.Decoder Graph
+graphDecoder =
+    Json.Decode.map8 Graph
+        (Json.Decode.field "label1" Json.Decode.string)
+        (Json.Decode.field "label2" Json.Decode.string)
+        (Json.Decode.field "label3" Json.Decode.string)
+        (Json.Decode.field "label4" Json.Decode.string)
+        (Json.Decode.field "label5" Json.Decode.string)
+        (Json.Decode.field "label6" Json.Decode.string)
+        (Json.Decode.field "label7" Json.Decode.string)
+        (Json.Decode.field "datapoints" (Json.Decode.list datapointDecoder))
+
+
+datapointDecoder : Json.Decode.Decoder LineChartDatum
+datapointDecoder =
+    Json.Decode.map8 LineChartDatum
+        (Json.Decode.field "date" Json.Decode.string
+            |> Json.Decode.andThen floatFromIsoStringDecoder
+        )
+        (Json.Decode.field "data" (yPointDecoder ( "count1", "tooltip1" )))
+        (Json.Decode.field "data" (yPointDecoder ( "count2", "tooltip2" )))
+        (Json.Decode.field "data" (yPointDecoder ( "count3", "tooltip3" )))
+        (Json.Decode.field "data" (yPointDecoder ( "count4", "tooltip4" )))
+        (Json.Decode.field "data" (yPointDecoder ( "count5", "tooltip5" )))
+        (Json.Decode.field "data" (yPointDecoder ( "count6", "tooltip6" )))
+        (Json.Decode.field "data" (yPointDecoder ( "count7", "tooltip7" )))
+
+
+yPointDecoder : ( String, String ) -> Json.Decode.Decoder YPoint
+yPointDecoder ( countField, tooltipField ) =
+    Json.Decode.map2 YPoint
+        (Json.Decode.maybe (Json.Decode.field tooltipField Json.Decode.string)
+            |> Json.Decode.andThen tooltipFromMaybe
+        )
+        (Json.Decode.maybe (Json.Decode.field countField Json.Decode.float))
+
+
+tooltipFromMaybe : Maybe String -> Json.Decode.Decoder String
+tooltipFromMaybe maybeTooltip =
+    Json.Decode.succeed (Maybe.withDefault "" maybeTooltip)
+
+
+
+-- Helpers
+
+
 posixFromStringDecoder : String -> Json.Decode.Decoder Time.Posix
 posixFromStringDecoder dateString =
     case Iso8601.toTime dateString of
@@ -174,6 +234,16 @@ posixFromStringDecoder dateString =
 
         Err _ ->
             Json.Decode.succeed (Time.millisToPosix 0)
+
+
+floatFromIsoStringDecoder : String -> Json.Decode.Decoder Float
+floatFromIsoStringDecoder dateString =
+    case Iso8601.toTime dateString of
+        Ok aDatetime ->
+            Json.Decode.succeed (toFloat (Time.posixToMillis aDatetime))
+
+        Err _ ->
+            Json.Decode.succeed 0
 
 
 sectionIdFromString : String -> Json.Decode.Decoder SectionId
@@ -234,44 +304,17 @@ trackableIdFromItem item =
         ]
 
 
-lineChartData : LineChartData
+lineChartData : Graph
 lineChartData =
-    { set1Label = "COVID-19 Agenda"
-    , set2Label = "UK – No Mandatory Vaccines – Medical Freedom"
-    , set3Label = "Third test set"
+    { set1Label = "Empty test data"
+    , set2Label = ""
+    , set3Label = ""
     , set4Label = ""
     , set5Label = ""
     , set6Label = ""
     , set7Label = ""
     , dataPoints =
-        [ { x = posixToFloatFromString "2021-02-17"
-          , y1 = { tooltip = "Tooltip for set 1 3173", count = Just (toFloat 3173) }
-          , y2 = { tooltip = "Tooltip for set 2 1142", count = Just (toFloat 1142) }
-          , y3 = { tooltip = "Tooltip for set 3 Nothing", count = Nothing }
-          , y4 = { tooltip = "", count = Nothing }
-          , y5 = { tooltip = "", count = Nothing }
-          , y6 = { tooltip = "", count = Nothing }
-          , y7 = { tooltip = "", count = Nothing }
-          }
-        , { x = posixToFloatFromString "2021-02-24"
-          , y1 = { tooltip = "Tooltip for set 1 3255", count = Just (toFloat 3255) }
-          , y2 = { tooltip = "", count = Just (toFloat 1263) }
-          , y3 = { tooltip = "Tooltip for set 3 2000", count = Just (toFloat 2000) }
-          , y4 = { tooltip = "", count = Nothing }
-          , y5 = { tooltip = "", count = Nothing }
-          , y6 = { tooltip = "", count = Nothing }
-          , y7 = { tooltip = "", count = Nothing }
-          }
-        , { x = posixToFloatFromString "2021-03-11"
-          , y1 = { tooltip = "hello3", count = Just (toFloat 3547) }
-          , y2 = { tooltip = "", count = Just (toFloat 1798) }
-          , y3 = { tooltip = "Tooltip set 3 1850", count = Just (toFloat 1850) }
-          , y4 = { tooltip = "", count = Nothing }
-          , y5 = { tooltip = "", count = Nothing }
-          , y6 = { tooltip = "", count = Nothing }
-          , y7 = { tooltip = "", count = Nothing }
-          }
-        ]
+        []
     }
 
 

@@ -38,3 +38,42 @@ collections:
       - { label: "Image", name: "source", widget: "image" }
       - { label: "Alt Description", name: "alt", widget: "string" }
       - { label: "Display position", name: "display-position", widget: "number" }
+
+  - name: "graph"
+    label: "Graph"
+    folder: "content/graph"
+    create: true
+    fields:
+      - { label: "Graph Title", name: "title", widget: "string" }
+      - { label: "Dataset 1 Label", name: "label1", widget: "string", required: false }
+      - { label: "Dataset 2 Label", name: "label2", widget: "string", required: false }
+      - { label: "Dataset 3 Label", name: "label3", widget: "string", required: false }
+      - { label: "Dataset 4 Label", name: "label4", widget: "string", required: false }
+      - { label: "Dataset 5 Label", name: "label5", widget: "string", required: false }
+      - { label: "Dataset 6 Label", name: "label6", widget: "string", required: false }
+      - { label: "Dataset 7 Label", name: "label7", widget: "string", required: false }
+      - label: "Datapoint"
+        name: datapoint
+        widget: list
+        fields:
+          - { label: "Date", name: "date", widget: "datetime", date_format: "DD MMM YYYY", time_format: false }
+          - label: Data
+            name: data
+            widget: object
+            fields:
+              - { label: "Count1", name: "count1", widget: "number", required: false }
+              - { label: "Tooltip1", name: "tooltip1", widget: "string", required: false }
+              - { label: "Count2", name: "count2", widget: "number", required: false }
+              - { label: "Tooltip2", name: "tooltip2", widget: "string", required: false }
+              - { label: "Count3", name: "count3", widget: "number", required: false }
+              - { label: "Tooltip3", name: "tooltip3", widget: "string", required: false }
+              - { label: "Count4", name: "count4", widget: "number", required: false }
+              - { label: "Tooltip4", name: "tooltip4", widget: "string", required: false }
+              - { label: "Count5", name: "count5", widget: "number", required: false }
+              - { label: "Tooltip5", name: "tooltip5", widget: "string", required: false }
+              - { label: "Count6", name: "count6", widget: "number", required: false }
+              - { label: "Tooltip6", name: "tooltip6", widget: "string", required: false }
+              - { label: "Count7", name: "count7", widget: "number", required: false }
+              - { label: "Tooltip7", name: "tooltip7", widget: "string", required: false }
+
+
