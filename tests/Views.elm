@@ -48,6 +48,7 @@ suite =
                       }
                     ]
                 , images = []
+                , graphs = []
                 }
             , inView = inViewModel
             , chartHovering = []
