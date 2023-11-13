@@ -33,6 +33,10 @@ viewChart model =
 
         dateRangeEnd =
             toFloat 1627776000000
+
+        graph =
+            List.head model.content.graphs
+                |> Maybe.withDefault Data.lineChartData
     in
     Chart.chart
         [ Chart.Attributes.height 300
@@ -59,20 +63,17 @@ viewChart model =
             [ Chart.interpolatedMaybe (\item -> item.y1.count)
                 []
                 [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
-                |> Chart.named Data.lineChartData.set1Label
+                |> Chart.named graph.set1Label
             , Chart.interpolatedMaybe (\item -> item.y2.count)
                 []
                 [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
-                |> Chart.named Data.lineChartData.set2Label
+                |> Chart.named graph.set2Label
             , Chart.interpolatedMaybe (\item -> item.y3.count)
                 []
                 [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
-                |> Chart.named Data.lineChartData.set3Label
+                |> Chart.named graph.set3Label
             ]
-            -- Todo get graphs by section & render multiple?
-            (List.head model.content.graphs
-                |> Maybe.withDefault Data.lineChartData
-            ).dataPoints
+            graph.dataPoints
         , Chart.legendsAt .max
             .max
             [ Chart.Attributes.column

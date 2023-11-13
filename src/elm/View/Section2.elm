@@ -50,16 +50,12 @@ viewImage inViewState image =
                 maybePositionData
 
         reachedLastInTrackableList =
-            let
-                _ =
-                    Debug.log "id" (Maybe.withDefault "1" (List.head (List.reverse (String.split "-" trackableId))))
-            in
             False
     in
     Html.div
         ([ Html.Attributes.class "image" ]
             ++ (if answer then
-                    [ Html.Attributes.style "padding-bottom" (String.fromInt height ++ "px") ]
+                    [ Html.Attributes.style "padding-bottom" (String.fromInt (height // 2) ++ "px") ]
 
                 else
                     []
@@ -83,7 +79,7 @@ viewImage inViewState image =
                         ]
 
                     else
-                        [ Html.Attributes.style "position" "relative" ]
+                        []
                    )
             )
             []
