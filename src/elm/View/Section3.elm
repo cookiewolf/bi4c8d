@@ -90,7 +90,7 @@ viewChart model =
                 |> Chart.named graph.set7Label
             ]
             graph.dataPoints
-        , Chart.legendsAt .max
+        , Chart.legendsAt .min
             .max
             [ Chart.Attributes.column
             , Chart.Attributes.spacing 5
