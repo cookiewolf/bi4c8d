@@ -53,7 +53,7 @@ collections:
       - { label: "Dataset 6 Label", name: "label6", widget: "string", required: false }
       - { label: "Dataset 7 Label", name: "label7", widget: "string", required: false }
       - label: "Datapoint"
-        name: datapoint
+        name: datapoints
         widget: list
         fields:
           - { label: "Date", name: "date", widget: "datetime", date_format: "DD MMM YYYY", time_format: false }
