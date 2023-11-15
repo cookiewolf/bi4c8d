@@ -72,6 +72,22 @@ viewChart model =
                 []
                 [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
                 |> Chart.named graph.set3Label
+            , Chart.interpolatedMaybe (\item -> item.y4.count)
+                []
+                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                |> Chart.named graph.set4Label
+            , Chart.interpolatedMaybe (\item -> item.y5.count)
+                []
+                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                |> Chart.named graph.set5Label
+            , Chart.interpolatedMaybe (\item -> item.y6.count)
+                []
+                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                |> Chart.named graph.set6Label
+            , Chart.interpolatedMaybe (\item -> item.y7.count)
+                []
+                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                |> Chart.named graph.set7Label
             ]
             graph.dataPoints
         , Chart.legendsAt .max
