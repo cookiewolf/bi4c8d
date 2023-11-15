@@ -14,6 +14,8 @@ datapoints:
       count2: 2140
       count3: 14374
       count4: 2302
+      tooltip1: A tooltip
+      tooltip3: Another tooltip
   - date: 2021-02-24T09:52:10.940Z
     data:
       count1: 4554
@@ -55,7 +57,7 @@ datapoints:
       count5: 9762
   - date: 2021-04-27T09:54:01.815Z
     data:
-      count1: 
+      count1: null
       count2: 5534
       count3: 16551
       count4: 10737
@@ -141,5 +143,4 @@ datapoints:
       count5: 13238
       count6: 7171
       count7: 1677
-
 ---
