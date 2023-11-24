@@ -19,7 +19,7 @@ suite =
         view =
             View.Section1.view
 
-        ( inViewModel, inViewCmds ) =
+        ( inViewModel, _ ) =
             InView.init Msg.InViewMsg []
 
         model =
