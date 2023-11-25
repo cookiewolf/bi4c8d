@@ -76,6 +76,14 @@ type SectionId
     | Section1
     | Section2
     | Section3
+    | Section4
+    | Section5
+    | Section6
+    | Section7
+    | Section8
+    | Section9
+    | Section10
+    | Section11
 
 
 decodedContent : Json.Decode.Value -> Content
@@ -258,6 +266,30 @@ sectionIdFromString sectionString =
         "section-three" ->
             Json.Decode.succeed Section3
 
+        "section-four" ->
+            Json.Decode.succeed Section4
+
+        "section-five" ->
+            Json.Decode.succeed Section5
+
+        "section-six" ->
+            Json.Decode.succeed Section6
+
+        "section-seven" ->
+            Json.Decode.succeed Section7
+
+        "section-eight" ->
+            Json.Decode.succeed Section8
+
+        "section-nine" ->
+            Json.Decode.succeed Section9
+
+        "section-ten" ->
+            Json.Decode.succeed Section10
+
+        "section-eleven" ->
+            Json.Decode.succeed Section11
+
         _ ->
             Json.Decode.succeed SectionInvalid
 
@@ -273,6 +305,30 @@ sectionIdToString sectionId =
 
         Section3 ->
             "section-three"
+
+        Section4 ->
+            "section-four"
+
+        Section5 ->
+            "section-five"
+
+        Section6 ->
+            "section-six"
+
+        Section7 ->
+            "section-seven"
+
+        Section8 ->
+            "section-eight"
+
+        Section9 ->
+            "section-nine"
+
+        Section10 ->
+            "section-ten"
+
+        Section11 ->
+            "section-eleven"
 
         SectionInvalid ->
             "section-invalid"
@@ -316,13 +372,3 @@ lineChartData =
     , dataPoints =
         []
     }
-
-
-posixToFloatFromString : String -> Float
-posixToFloatFromString dateString =
-    case Iso8601.toTime dateString of
-        Ok aDatetime ->
-            toFloat (Time.posixToMillis aDatetime)
-
-        Err _ ->
-            toFloat 0
