@@ -130,9 +130,6 @@ viewChart model =
 
                         else
                             ""
-
-                    _ =
-                        Debug.log "tootip y" data
                 in
                 if String.length tooltip > 0 then
                     [ Chart.tooltip item [] [] [ Html.text tooltip ] ]
