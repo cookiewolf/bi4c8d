@@ -141,3 +141,17 @@ p {
 .chart {
   margin: 4rem 2rem;
 }
+
+/** Portrait **/
+.portraits {
+  display: flex;
+  flex-flow: wrap;
+  max-width: 800px;
+}
+
+.portrait {
+  height: 100%;
+  opacity: 2%;
+  padding: 4px;
+  width: 80px;
+}
