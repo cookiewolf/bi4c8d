@@ -13,23 +13,24 @@ view : Model -> List (Html.Html Msg)
 view model =
     [ Html.h2 []
         [ Html.text "Section 8 - 2000 images with tickers"
-        , viewPortraitList
+        , viewPortraitList model.randomIntList
         ]
     ]
 
 
-viewPortraitList : Html.Html Msg
-viewPortraitList =
+viewPortraitList : List Int -> Html.Html Msg
+viewPortraitList randomIntList =
     Html.div [ Html.Attributes.class "portraits" ]
-        (List.map
-            (\count ->
-                animatedImg (fadeIn (count * 100))
+        (List.map2
+            (\count randomInt ->
+                animatedImg (fadeIn ((randomInt * 100) + count * 10))
                     [ Html.Attributes.src (jpgSrcFromInt count)
                     , Html.Attributes.class "portrait"
                     ]
                     []
             )
             (List.range 0 865)
+            randomIntList
         )
 
 
@@ -49,8 +50,6 @@ fadeIn delay =
         { duration = 6000
         , options =
             [ Simple.Animation.delay delay
-            , Simple.Animation.loop
-            , Simple.Animation.yoyo
             ]
         }
         [ Simple.Animation.Property.opacity 0 ]

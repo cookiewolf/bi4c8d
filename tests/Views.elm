@@ -50,6 +50,7 @@ suite =
                 , images = []
                 , graphs = []
                 }
+            , randomIntList = []
             , inView = inViewModel
             , chartHovering = []
             }

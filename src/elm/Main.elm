@@ -9,6 +9,7 @@ import Html.Attributes
 import InView
 import Model exposing (Model)
 import Msg exposing (Msg(..))
+import Random
 import View
 
 
@@ -35,10 +36,14 @@ init flags =
             InView.init InViewMsg trackable
     in
     ( { content = Data.decodedContent flags
+      , randomIntList = []
       , inView = inViewModel
       , chartHovering = []
       }
-    , inViewCmds
+    , Cmd.batch
+        [ Random.generate NewRandomIntList generateRandomIntList
+        , inViewCmds
+        ]
     )
 
 
@@ -52,6 +57,11 @@ subscriptions model =
 
 update msg model =
     case msg of
+        NewRandomIntList newRandomIntList ->
+            ( { model | randomIntList = newRandomIntList }
+            , Cmd.none
+            )
+
         OnScroll offset ->
             ( { model | inView = InView.updateViewportOffset offset model.inView }
             , Cmd.none
@@ -89,3 +99,8 @@ viewDocument model =
             (View.viewSections model)
         ]
     }
+
+
+generateRandomIntList : Random.Generator (List Int)
+generateRandomIntList =
+    Random.list 865 (Random.int 0 100)
