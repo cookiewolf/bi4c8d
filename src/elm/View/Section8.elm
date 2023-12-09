@@ -2,6 +2,7 @@ module View.Section8 exposing (view)
 
 import Html
 import Html.Attributes
+import InView
 import Model exposing (Model)
 import Msg exposing (Msg)
 import Simple.Animation
@@ -11,25 +12,35 @@ import Simple.Animation.Property
 
 view : Model -> List (Html.Html Msg)
 view model =
+    let
+        sectionInView =
+            InView.isInOrAboveView "section-8" model.inView
+                |> Maybe.withDefault False
+    in
     [ Html.h2 []
         [ Html.text "Section 8 - 2000 images with tickers"
-        , viewPortraitList
+        , if sectionInView then
+            viewPortraitList model.randomIntList
+
+          else
+            Html.text ""
         ]
     ]
 
 
-viewPortraitList : Html.Html Msg
-viewPortraitList =
+viewPortraitList : List Int -> Html.Html Msg
+viewPortraitList randomIntList =
     Html.div [ Html.Attributes.class "portraits" ]
-        (List.map
-            (\count ->
-                animatedImg (fadeIn (count * 100))
+        (List.map2
+            (\count randomInt ->
+                animatedImg (fadeIn ((randomInt * 100) + count * 10))
                     [ Html.Attributes.src (jpgSrcFromInt count)
                     , Html.Attributes.class "portrait"
                     ]
                     []
             )
             (List.range 0 865)
+            randomIntList
         )
 
 
@@ -49,8 +60,6 @@ fadeIn delay =
         { duration = 6000
         , options =
             [ Simple.Animation.delay delay
-            , Simple.Animation.loop
-            , Simple.Animation.yoyo
             ]
         }
         [ Simple.Animation.Property.opacity 0 ]
