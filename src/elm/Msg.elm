@@ -3,10 +3,12 @@ module Msg exposing (Msg(..))
 import Chart.Item
 import Data
 import InView
+import Time
 
 
 type Msg
-    = NewRandomIntList (List Int)
+    = Tick Time.Posix
+    | NewRandomIntList (List Int)
     | OnScroll { x : Float, y : Float }
     | InViewMsg InView.Msg
     | OnElementLoad String

@@ -1,4 +1,4 @@
-module Data exposing (Content, Flags, Image, LineChartDatum, MainText, Message, SectionId(..), decodedContent, filterBySection, lineChartData, trackableIdFromItem, trackableIdListFromFlags)
+module Data exposing (Content, Flags, Image, LineChartDatum, MainText, Message, SectionId(..), TickerState, decodedContent, filterBySection, initialTickerState, lineChartData, trackableIdFromItem, trackableIdListFromFlags, updateTickerState)
 
 import Dict
 import Iso8601
@@ -74,6 +74,10 @@ type alias YPoint =
 
 type alias Ticker =
     { label : String, total : Int }
+
+
+type alias TickerState =
+    { label : String, count : Int, limit : Int }
 
 
 type SectionId
@@ -392,4 +396,26 @@ lineChartData =
     , set7Label = ""
     , dataPoints =
         []
+    }
+
+
+
+-- Ticker state helpers
+
+
+initialTickerState : Flags -> List TickerState
+initialTickerState flags =
+    (decodedContent flags).tickers
+        |> List.map (\ticker -> { count = 0, label = ticker.label, limit = ticker.total })
+
+
+updateTickerState : TickerState -> TickerState
+updateTickerState tickerState =
+    { tickerState
+        | count =
+            if tickerState.count < tickerState.limit then
+                tickerState.count + 1
+
+            else
+                tickerState.count
     }
