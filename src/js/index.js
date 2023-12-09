@@ -8,6 +8,7 @@ import mainText from "../../data/main-text.json"
 import messages from "../../data/messages.json"
 import images from "../../data/images.json"
 import graphs from "../../data/graphs.json"
+import tickers from "../../data/tickers.json"
 
 if (process.env.NODE_ENV === "development") {
     const ElmDebugTransform = await import("elm-debug-transformer")
@@ -24,7 +25,8 @@ const app = Elm.Main.init({
         "main-text": mainText,
         "messages": messages,
         "images": images,
-        "graphs": graphs
+        "graphs": graphs,
+        "tickers": tickers
     }
 });
 
