@@ -49,10 +49,13 @@ suite =
                     ]
                 , images = []
                 , graphs = []
+                , tickers = []
                 }
+            , tickerState = []
             , randomIntList = []
             , inView = inViewModel
             , chartHovering = []
+            , time = Time.millisToPosix 0
             }
     in
     describe "View section 1"
