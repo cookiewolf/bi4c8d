@@ -2,6 +2,7 @@ module View.Section8 exposing (view)
 
 import Html
 import Html.Attributes
+import InView
 import Model exposing (Model)
 import Msg exposing (Msg)
 import Simple.Animation
@@ -11,9 +12,18 @@ import Simple.Animation.Property
 
 view : Model -> List (Html.Html Msg)
 view model =
+    let
+        sectionInView =
+            InView.isInOrAboveView "section-8" model.inView
+                |> Maybe.withDefault False
+    in
     [ Html.h2 []
         [ Html.text "Section 8 - 2000 images with tickers"
-        , viewPortraitList model.randomIntList
+        , if sectionInView then
+            viewPortraitList model.randomIntList
+
+          else
+            Html.text ""
         ]
     ]
 

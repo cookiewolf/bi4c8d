@@ -29,11 +29,14 @@ main =
 init : Data.Flags -> ( Model, Cmd Msg )
 init flags =
     let
-        trackable =
+        trackableImages =
             Data.trackableIdListFromFlags flags
 
+        trackableSections =
+            [ "section-8" ]
+
         ( inViewModel, inViewCmds ) =
-            InView.init InViewMsg trackable
+            InView.init InViewMsg (trackableImages ++ trackableSections)
     in
     ( { content = Data.decodedContent flags
       , randomIntList = []
