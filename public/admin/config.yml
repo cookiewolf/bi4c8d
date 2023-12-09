@@ -76,4 +76,11 @@ collections:
               - { label: "Count7", name: "count7", widget: "number", required: false }
               - { label: "Tooltip7", name: "tooltip7", widget: "string", required: false }
 
-
+  - name: "ticker"
+    label: "Ticker"
+    folder: "content/ticker"
+    create: true
+    identifier_field: label
+    fields:
+      - { label: "Label", name: "label", widget: "string" }
+      - { label: "Total", name: "total", widget: "number" }

@@ -11,6 +11,7 @@ type alias Content =
     , messages : List Message
     , images : List Image
     , graphs : List Graph
+    , tickers : List Ticker
     }
 
 
@@ -71,6 +72,10 @@ type alias YPoint =
     { tooltip : String, count : Maybe Float }
 
 
+type alias Ticker =
+    { label : String, total : Int }
+
+
 type SectionId
     = SectionInvalid
     | Section1
@@ -100,6 +105,7 @@ decodedContent flags =
             , messages = []
             , images = []
             , graphs = []
+            , tickers = []
             }
 
 
@@ -115,12 +121,13 @@ orderByDisplayPosition items =
 
 flagsDecoder : Json.Decode.Decoder Content
 flagsDecoder =
-    Json.Decode.map4
+    Json.Decode.map5
         Content
         (Json.Decode.field "main-text" mainTextDictDecoder)
         (Json.Decode.field "messages" messageDictDecoder)
         (Json.Decode.field "images" imageDictDecoder)
         (Json.Decode.field "graphs" graphDictDecoder)
+        (Json.Decode.field "tickers" tickerDictDecoder)
 
 
 mainTextDictDecoder : Json.Decode.Decoder (List MainText)
@@ -228,6 +235,20 @@ yPointDecoder ( countField, tooltipField ) =
 tooltipFromMaybe : Maybe String -> Json.Decode.Decoder String
 tooltipFromMaybe maybeTooltip =
     Json.Decode.succeed (Maybe.withDefault "" maybeTooltip)
+
+
+tickerDictDecoder : Json.Decode.Decoder (List Ticker)
+tickerDictDecoder =
+    Json.Decode.dict tickerDecoder
+        |> Json.Decode.map Dict.toList
+        |> Json.Decode.map (\keyedItems -> List.map (\( _, image ) -> image) keyedItems)
+
+
+tickerDecoder : Json.Decode.Decoder Ticker
+tickerDecoder =
+    Json.Decode.map2 Ticker
+        (Json.Decode.field "label" Json.Decode.string)
+        (Json.Decode.field "total" Json.Decode.int)
 
 
 
