@@ -10,6 +10,7 @@ import InView
 import Model exposing (Model)
 import Msg exposing (Msg(..))
 import Random
+import Time
 import View
 
 
@@ -32,13 +33,18 @@ init flags =
         trackableImages =
             Data.trackableIdListFromFlags flags
 
+        initialTickerState =
+            Data.initialTickerState flags
+
         trackableSections =
             [ "section-8" ]
 
         ( inViewModel, inViewCmds ) =
             InView.init InViewMsg (trackableImages ++ trackableSections)
     in
-    ( { content = Data.decodedContent flags
+    ( { time = Time.millisToPosix 0
+      , content = Data.decodedContent flags
+      , tickerState = initialTickerState
       , randomIntList = []
       , inView = inViewModel
       , chartHovering = []
@@ -53,13 +59,23 @@ init flags =
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
-        [ InView.subscriptions InViewMsg model.inView
+        [ Time.every 100 Tick -- 10 times per second
+        , InView.subscriptions InViewMsg model.inView
         , onScroll OnScroll
         ]
 
 
 update msg model =
     case msg of
+        Tick newTime ->
+            ( { model
+                | time = newTime
+                , tickerState =
+                    List.map (\tickerState -> Data.updateTickerState tickerState) model.tickerState
+              }
+            , Cmd.none
+            )
+
         NewRandomIntList newRandomIntList ->
             ( { model | randomIntList = newRandomIntList }
             , Cmd.none

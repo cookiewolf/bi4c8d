@@ -1,5 +1,6 @@
 module View.Section8 exposing (view)
 
+import Data
 import Html
 import Html.Attributes
 import InView
@@ -8,6 +9,7 @@ import Msg exposing (Msg)
 import Simple.Animation
 import Simple.Animation.Animated
 import Simple.Animation.Property
+import Time
 
 
 view : Model -> List (Html.Html Msg)
@@ -19,6 +21,7 @@ view model =
     in
     [ Html.h2 []
         [ Html.text "Section 8 - 2000 images with tickers"
+        , viewTickers model
         , if sectionInView then
             viewPortraitList model.randomIntList
 
@@ -26,6 +29,21 @@ view model =
             Html.text ""
         ]
     ]
+
+
+viewTickers : Model -> Html.Html Msg
+viewTickers model =
+    Html.div [] (List.map (\ticker -> viewTicker model.time ticker) model.tickerState)
+
+
+viewTicker : Time.Posix -> Data.TickerState -> Html.Html Msg
+viewTicker now tickerState =
+    Html.div [] [ Html.text (tickerState.label ++ ": " ++ viewTickerCount now tickerState) ]
+
+
+viewTickerCount : Time.Posix -> Data.TickerState -> String
+viewTickerCount now tickerState =
+    String.fromInt tickerState.count
 
 
 viewPortraitList : List Int -> Html.Html Msg
