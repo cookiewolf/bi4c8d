@@ -53,6 +53,7 @@ suite =
                 }
             , tickerState = []
             , randomIntList = []
+            , viewportHeightWidth = ( 800, 800 )
             , inView = inViewModel
             , chartHovering = []
             , time = Time.millisToPosix 0
