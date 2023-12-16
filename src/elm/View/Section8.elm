@@ -21,7 +21,12 @@ view model =
     in
     [ Html.h2 []
         [ Html.text "Section 8 - 2000 images with tickers"
-        , viewTickers model
+        , if sectionInView then
+            viewTickers
+                model
+
+          else
+            Html.text ""
         , if sectionInView then
             viewPortraitList model.randomIntList
 
@@ -33,12 +38,19 @@ view model =
 
 viewTickers : Model -> Html.Html Msg
 viewTickers model =
-    Html.div [] (List.map (\ticker -> viewTicker model.time ticker) model.tickerState)
+    Html.div [ Html.Attributes.class "tickers" ]
+        (List.map
+            (\ticker -> viewTicker model.viewportHeightWidth model.time ticker)
+            model.tickerState
+        )
 
 
-viewTicker : Time.Posix -> Data.TickerState -> Html.Html Msg
-viewTicker now tickerState =
-    Html.div [] [ Html.text (tickerState.label ++ ": " ++ viewTickerCount now tickerState) ]
+viewTicker : ( Float, Float ) -> Time.Posix -> Data.TickerState -> Html.Html Msg
+viewTicker viewportHeightWidth now tickerState =
+    Simple.Animation.Animated.div
+        (slideIn viewportHeightWidth tickerState.label)
+        [ Html.Attributes.class "ticker" ]
+        [ Html.text (tickerState.label ++ ": " ++ viewTickerCount now tickerState) ]
 
 
 viewTickerCount : Time.Posix -> Data.TickerState -> String
@@ -82,3 +94,22 @@ fadeIn delay =
         }
         [ Simple.Animation.Property.opacity 0 ]
         [ Simple.Animation.Property.opacity 1 ]
+
+
+slideIn : ( Float, Float ) -> String -> Simple.Animation.Animation
+slideIn ( height, width ) id =
+    let
+        ( ( startX, startY ), ( endX, endY ) ) =
+            case id of
+                "Data emailed to incorrect recipient" ->
+                    ( ( 0, 20 ), ( 200, 20 ) )
+
+                _ ->
+                    ( ( width, 0 ), ( 0, height / 3 ) )
+    in
+    Simple.Animation.fromTo
+        { duration = 8000
+        , options = []
+        }
+        [ Simple.Animation.Property.xy startX startY ]
+        [ Simple.Animation.Property.xy endX endY ]

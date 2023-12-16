@@ -1,6 +1,7 @@
 port module Main exposing (main)
 
 import Browser
+import Browser.Dom
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Data
@@ -10,6 +11,7 @@ import InView
 import Model exposing (Model)
 import Msg exposing (Msg(..))
 import Random
+import Task
 import Time
 import View
 
@@ -47,11 +49,13 @@ init flags =
       , tickerState = initialTickerState
       , randomIntList = []
       , inView = inViewModel
+      , viewportHeightWidth = ( 800, 800 )
       , chartHovering = []
       }
     , Cmd.batch
         [ Random.generate NewRandomIntList generateRandomIntList
         , inViewCmds
+        , Task.perform GotViewport Browser.Dom.getViewport
         ]
     )
 
@@ -59,7 +63,7 @@ init flags =
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
-        [ Time.every 100 Tick -- 10 times per second
+        [ Time.every 200 Tick -- 5 times per second
         , InView.subscriptions InViewMsg model.inView
         , onScroll OnScroll
         ]
@@ -71,13 +75,26 @@ update msg model =
             ( { model
                 | time = newTime
                 , tickerState =
-                    List.map (\tickerState -> Data.updateTickerState tickerState) model.tickerState
+                    let
+                        section8InView =
+                            InView.isInOrAboveView "section-8" model.inView |> Maybe.withDefault False
+                    in
+                    if section8InView then
+                        List.map (\tickerState -> Data.updateTickerState tickerState) model.tickerState
+
+                    else
+                        model.tickerState
               }
             , Cmd.none
             )
 
         NewRandomIntList newRandomIntList ->
             ( { model | randomIntList = newRandomIntList }
+            , Cmd.none
+            )
+
+        GotViewport viewport ->
+            ( { model | viewportHeightWidth = Maybe.withDefault model.viewportHeightWidth (Just ( viewport.viewport.height, viewport.viewport.width )) }
             , Cmd.none
             )
 
