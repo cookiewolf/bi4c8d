@@ -12,5 +12,6 @@ type alias Model =
     , tickerState : List Data.TickerState
     , randomIntList : List Int
     , inView : InView.State
+    , viewportHeightWidth : ( Float, Float )
     , chartHovering : List (Chart.Item.One Data.LineChartDatum Chart.Item.Dot)
     }

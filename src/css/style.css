@@ -32,7 +32,7 @@ p {
 #section-1 {
 }
 
-#section-2 {
+#section-8 {
 }
 
 /** Main Text **/
@@ -154,4 +154,18 @@ p {
   opacity: 2%;
   padding: 4px;
   width: 80px;
+}
+
+/** Ticker **/
+.tickers {
+  height: 0;
+}
+
+.ticker {
+  background-color: var(--black);
+  color: var(--white);
+  padding: 10px 20px;
+  position: relative;
+  width: fit-content;
+  z-index: 99;
 }

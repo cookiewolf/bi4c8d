@@ -38,7 +38,7 @@ viewSections model =
     List.indexedMap
         (\index sectionView ->
             Html.div
-                [ Html.Attributes.id ("section-" ++ String.fromInt index)
+                [ Html.Attributes.id ("section-" ++ String.fromInt (index + 1))
                 , Html.Attributes.class "section"
                 ]
                 sectionView
