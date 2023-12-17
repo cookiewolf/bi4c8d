@@ -1,4 +1,4 @@
-module Data exposing (Content, Flags, Image, LineChartDatum, MainText, Message, SectionId(..), TickerState, decodedContent, filterBySection, initialTickerState, lineChartData, trackableIdFromItem, trackableIdListFromFlags, updateTickerState)
+module Data exposing (Content, Flags, Image, LineChartDatum, MainText, Message, Post, SectionId(..), TickerState, decodedContent, filterBySection, initialTickerState, lineChartData, trackableIdFromItem, trackableIdListFromFlags, updateTickerState)
 
 import Dict
 import Iso8601
@@ -8,6 +8,7 @@ import Time
 
 type alias Content =
     { mainText : List MainText
+    , posts : List Post
     , messages : List Message
     , images : List Image
     , graphs : List Graph
@@ -26,7 +27,7 @@ type alias MainText =
     }
 
 
-type alias Message =
+type alias Post =
     { section : SectionId
     , datetime : Time.Posix
     , forwardedFrom : String
@@ -34,6 +35,19 @@ type alias Message =
     , avatarSrc : String
     , body : String
     }
+
+
+type alias Message =
+    { section : SectionId
+    , side : Side
+    , datetime : Time.Posix
+    , body : String
+    }
+
+
+type Side
+    = Left
+    | Right
 
 
 type alias Image =
@@ -101,12 +115,13 @@ decodedContent flags =
     case Json.Decode.decodeValue flagsDecoder flags of
         Ok goodContent ->
             { goodContent
-                | messages = orderMessagesByDatetime goodContent.messages
+                | posts = orderPostsByDatetime goodContent.posts
                 , images = orderByDisplayPosition goodContent.images
             }
 
         Err _ ->
             { mainText = []
+            , posts = []
             , messages = []
             , images = []
             , graphs = []
@@ -114,9 +129,9 @@ decodedContent flags =
             }
 
 
-orderMessagesByDatetime : List Message -> List Message
-orderMessagesByDatetime messages =
-    List.sortBy (\message -> Time.posixToMillis message.datetime) messages
+orderPostsByDatetime : List Post -> List Post
+orderPostsByDatetime posts =
+    List.sortBy (\post -> Time.posixToMillis post.datetime) posts
 
 
 orderByDisplayPosition : List { a | displayPosition : Int } -> List { a | displayPosition : Int }
@@ -126,9 +141,10 @@ orderByDisplayPosition items =
 
 flagsDecoder : Json.Decode.Decoder Content
 flagsDecoder =
-    Json.Decode.map5
+    Json.Decode.map6
         Content
         (Json.Decode.field "main-text" mainTextDictDecoder)
+        (Json.Decode.field "posts" postDictDecoder)
         (Json.Decode.field "messages" messageDictDecoder)
         (Json.Decode.field "images" imageDictDecoder)
         (Json.Decode.field "graphs" graphDictDecoder)
@@ -162,7 +178,29 @@ messageDictDecoder =
 
 messageDecoder : Json.Decode.Decoder Message
 messageDecoder =
-    Json.Decode.map6 Message
+    Json.Decode.map4 Message
+        (Json.Decode.field "section" Json.Decode.string
+            |> Json.Decode.andThen sectionIdFromString
+        )
+        (Json.Decode.field "side" Json.Decode.string
+            |> Json.Decode.andThen sideFromString
+        )
+        (Json.Decode.field "datetime" Json.Decode.string
+            |> Json.Decode.andThen posixFromStringDecoder
+        )
+        (Json.Decode.field "content" Json.Decode.string)
+
+
+postDictDecoder : Json.Decode.Decoder (List Post)
+postDictDecoder =
+    Json.Decode.dict postDecoder
+        |> Json.Decode.map Dict.toList
+        |> Json.Decode.map (\keyedItems -> List.map (\( _, post ) -> post) keyedItems)
+
+
+postDecoder : Json.Decode.Decoder Post
+postDecoder =
+    Json.Decode.map6 Post
         (Json.Decode.field "section" Json.Decode.string
             |> Json.Decode.andThen sectionIdFromString
         )
@@ -375,6 +413,16 @@ filterBySection :
     -> List { item | section : SectionId }
 filterBySection sectionId itemList =
     List.filter (\item -> item.section == sectionId) itemList
+
+
+sideFromString : String -> Json.Decode.Decoder Side
+sideFromString side =
+    case side of
+        "right" ->
+            Json.Decode.succeed Right
+
+        _ ->
+            Json.Decode.succeed Left
 
 
 

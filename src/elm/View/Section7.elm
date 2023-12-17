@@ -4,10 +4,10 @@ import Data
 import Html
 import Model exposing (Model)
 import Msg exposing (Msg)
-import View.Messages
+import View.Posts
 
 
 view : Model -> List (Html.Html Msg)
 view model =
-    [ View.Messages.view Data.Section7 model.content.messages
+    [ View.Posts.view Data.Section7 model.content.posts
     ]

@@ -5,6 +5,7 @@ import "@fontsource/inter";
 import { Elm } from "../elm/Main.elm";
 
 import mainText from "../../data/main-text.json"
+import posts from "../../data/posts.json"
 import messages from "../../data/messages.json"
 import images from "../../data/images.json"
 import graphs from "../../data/graphs.json"
@@ -23,6 +24,7 @@ const app = Elm.Main.init({
     node: root,
     flags: {
         "main-text": mainText,
+        "posts": posts,
         "messages": messages,
         "images": images,
         "graphs": graphs,

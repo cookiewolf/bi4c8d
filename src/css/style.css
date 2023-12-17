@@ -55,15 +55,15 @@ p {
   padding-bottom: 40px;
 }
 
-/** Message **/
+/** Post **/
 
-.messages {
+.posts {
   align-items: center;
   display: flex;
   flex-direction: column;
 }
 
-.message {
+.post {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -71,19 +71,19 @@ p {
   text-align: center;
 }
 
-.message-inner {
+.post-inner {
   border: solid var(--black) 1px;
   border-radius: var(--default-radius);
   padding: 10px 20px;
   width: 360px;
 }
 
-.message-avatar {
+.post-avatar {
   margin: -55px 0 0 -55px;
   align-self: start;
 }
 
-.message-date {
+.post-date {
   background-color: var(--grey-light);
   border-radius: var(--default-radius);
   font-size: 1rem;
@@ -93,32 +93,32 @@ p {
   width: 250px;
 }
 
-.message-forwarded-from {
-  background: url(/images/arrow_email_forward_message_right_icon.svg) no-repeat;
+.post-forwarded-from {
+  background: url(/images/arrow_email_forward_post_right_icon.svg) no-repeat;
   font-size: 0.75rem;
   font-weight: normal;
   padding: 5px 0 0 28px;
   text-align: left;
 }
 
-.message-body {
+.post-body {
   font-size: 1.125rem;
   padding: 20px 0;
   text-align: left;
 }
 
-.message-meta-info {
+.post-meta-info {
   color: var(--grey-dark);
   font-size: 1rem;
   text-align: right;
 }
 
-.message-view-count {
+.post-view-count {
   background: url(/images/eye.svg) no-repeat;
   padding: 10px 0 0 30px;
 }
 
-.message-time {
+.post-time {
   padding-left: 10px;
 }
 

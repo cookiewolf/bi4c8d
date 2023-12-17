@@ -38,7 +38,7 @@ suite =
                       , title = "Section 2 context"
                       }
                     ]
-                , messages =
+                , posts =
                     [ { avatarSrc = "/images/uploads/generic-avatar.png"
                       , body = "\nThis is a rich text body.\n\n**It has bold text.**\n"
                       , datetime = Time.millisToPosix 0
@@ -47,6 +47,7 @@ suite =
                       , viewCount = 994
                       }
                     ]
+                , messages = []
                 , images = []
                 , graphs = []
                 , tickers = []
