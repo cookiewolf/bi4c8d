@@ -1,4 +1,4 @@
-module Data exposing (Content, Flags, Image, LineChartDatum, MainText, Message, Post, SectionId(..), TickerState, decodedContent, filterBySection, initialTickerState, lineChartData, trackableIdFromItem, trackableIdListFromFlags, updateTickerState)
+module Data exposing (Content, Flags, Image, LineChartDatum, MainText, Message, Post, SectionId(..), TickerState, decodedContent, filterBySection, initialTickerState, lineChartData, sideToString, trackableIdFromItem, trackableIdListFromFlags, updateTickerState)
 
 import Dict
 import Iso8601
@@ -423,6 +423,16 @@ sideFromString side =
 
         _ ->
             Json.Decode.succeed Left
+
+
+sideToString : Side -> String
+sideToString side =
+    case side of
+        Right ->
+            "right"
+
+        Left ->
+            "left"
 
 
 
