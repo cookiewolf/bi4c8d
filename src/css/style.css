@@ -122,6 +122,48 @@ p {
   padding-left: 10px;
 }
 
+/** Message **/
+.messages {
+  border: solid 1px var(--grey-dark);
+}
+
+.messages h3 {
+  background-color: var(--grey-light);
+  padding: 10px 20px;
+}
+
+.messages-inner {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.message-body {
+  border: solid 1px var(--grey-dark);
+  border-radius: 2rem;
+  margin: 10px 0;
+  padding: 20px;
+}
+
+.message.left {
+  margin-right: 30%;
+}
+
+.message.right {
+  margin-left: 30%;
+}
+.message.left .message-body {
+  background-color: var(--grey-light);
+}
+
+.message-time {
+  margin: 10px 0;
+}
+
+.message.right .message-time {
+  text-align: right;
+}
+
 /** Image **/
 
 .images {

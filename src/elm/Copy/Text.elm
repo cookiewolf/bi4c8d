@@ -17,6 +17,9 @@ t key =
         ForwardedLabel ->
             "Forwarded from: "
 
+        Section10MessageHeading ->
+            "LockBit"
+
 
 monthToString : Time.Month -> String
 monthToString month =

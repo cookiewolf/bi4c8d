@@ -1,7 +1,5 @@
 module View.Messages exposing (view)
 
-import Copy.Keys exposing (Key(..))
-import Copy.Text exposing (t)
 import Data
 import Html
 import Html.Attributes
@@ -10,18 +8,21 @@ import Msg exposing (Msg)
 import Time
 
 
-view : Data.SectionId -> List Data.Message -> Html.Html Msg
-view sectionId messageList =
+view : Data.SectionId -> List Data.Message -> String -> Html.Html Msg
+view sectionId messageList title =
     if List.length messageList > 0 then
         Html.div [ Html.Attributes.class "messages" ]
-            (List.map
-                (\message ->
-                    viewMessage message
-                        (isLastAtTime message messageList)
+            [ Html.h3 [] [ Html.text title ]
+            , Html.div [ Html.Attributes.class "messages-inner" ]
+                (List.map
+                    (\message ->
+                        viewMessage message
+                            (isLastAtTime message messageList)
+                    )
+                    (Data.filterBySection sectionId messageList)
+                    |> List.concat
                 )
-                (Data.filterBySection sectionId messageList)
-                |> List.concat
-            )
+            ]
 
     else
         Html.text ""
@@ -49,11 +50,19 @@ isLastAtTime message allMessages =
 
 viewMessage : Data.Message -> Bool -> List (Html.Html Msg)
 viewMessage message isLast =
-    [ Html.div [ Html.Attributes.class "message" ]
-        [ Html.div [ Html.Attributes.class "message-inner" ]
-            [ Html.div [ Html.Attributes.class "message-body" ] (Markdown.markdownToHtml message.body)
-            , Html.span [ Html.Attributes.class "message-time" ] [ viewMessageTime message.datetime ]
+    [ Html.div
+        [ Html.Attributes.class "message"
+        , Html.Attributes.class (Data.sideToString message.side)
+        ]
+        [ Html.div
+            [ Html.Attributes.class "message-body"
             ]
+            (Markdown.markdownToHtml message.body)
+        , if isLast then
+            Html.div [ Html.Attributes.class "message-time" ] [ viewMessageTime message.datetime ]
+
+          else
+            Html.text ""
         ]
     ]
 

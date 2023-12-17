@@ -5,3 +5,5 @@ type Key
     = SiteTitle
       -- Post
     | ForwardedLabel
+      -- Message
+    | Section10MessageHeading
