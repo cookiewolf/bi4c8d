@@ -63,7 +63,7 @@ init flags =
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
-        [ Time.every 200 Tick -- 5 times per second
+        [ Time.every 10 Tick -- 5 times per second
         , InView.subscriptions InViewMsg model.inView
         , onScroll OnScroll
         ]

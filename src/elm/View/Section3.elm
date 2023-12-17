@@ -18,8 +18,7 @@ import View.MainText
 
 view : Model -> List (Html.Html Msg)
 view model =
-    [ Html.h2 [] [ Html.text "Section 3" ]
-    , View.MainText.viewTop Data.Section3 model.content.mainText
+    [ View.MainText.viewTop Data.Section3 model.content.mainText
     , Html.div [ Html.Attributes.class "chart" ] [ viewChart model ]
     , View.MainText.viewBottom Data.Section3 model.content.mainText
     ]
@@ -49,7 +48,8 @@ viewChart model =
             (Chart.Events.getNearest Chart.Item.dots)
         , Chart.Events.onMouseLeave (Msg.OnChartHover [])
         ]
-        [ Chart.xAxis []
+        [ Chart.labelAt (Chart.Attributes.percent 50) (Chart.Attributes.percent 100) [] [ Svg.text graph.title ]
+        , Chart.xAxis []
         , Chart.yLabels []
         , Chart.generate 8 (Chart.Svg.times Time.utc) .x [] <|
             \_ info ->

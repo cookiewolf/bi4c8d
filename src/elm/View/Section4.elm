@@ -9,6 +9,5 @@ import View.StackingImage
 
 view : Model -> List (Html.Html Msg)
 view model =
-    [ Html.h2 [] [ Html.text "Section 4 - white squares stacking" ]
-    , View.StackingImage.viewImageList Data.Section4 model.inView model.content.images
+    [ View.StackingImage.viewImageList Data.Section4 model.inView model.content.images
     ]
