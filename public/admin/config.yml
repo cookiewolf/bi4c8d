@@ -15,9 +15,9 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
 
-  - name: "message"
-    label: "Message"
-    folder: "content/message"
+  - name: "post"
+    label: "Post"
+    folder: "content/post"
     create: true
     identifier_field: "forwarded-from"
     fields:
@@ -27,6 +27,18 @@ collections:
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "View count", name: "view-count", widget: "number" }
       - { label: "Avatar icon", name: "avatar-src", widget: "image" }
+
+  - name: "message"
+    label: "Message"
+    folder: "content/message"
+    create: true
+    identifier_field: "datetime"
+    fields:
+      - { label: "Section", name: "section", widget: "select", options: ["section-ten"] }
+      - { label: "Side", name: "side", widget: "select", options: ["left", "right"] }
+      - { label: "Date & time", name: "datetime", widget: "datetime" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
 
   - name: "image"
     label: "Image"

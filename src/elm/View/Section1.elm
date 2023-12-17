@@ -5,11 +5,11 @@ import Html
 import Model exposing (Model)
 import Msg exposing (Msg)
 import View.MainText
-import View.Messages
+import View.Posts
 
 
 view : Model -> List (Html.Html Msg)
 view model =
     [ View.MainText.viewTop Data.Section1 model.content.mainText
-    , View.Messages.view Data.Section1 model.content.messages
+    , View.Posts.view Data.Section1 model.content.posts
     ]

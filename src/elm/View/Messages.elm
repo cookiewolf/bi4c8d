@@ -17,7 +17,7 @@ view sectionId messageList =
             (List.map
                 (\message ->
                     viewMessage message
-                        (isFirstOnDate message messageList)
+                        (isLastAtTime message messageList)
                 )
                 (Data.filterBySection sectionId messageList)
                 |> List.concat
@@ -27,19 +27,19 @@ view sectionId messageList =
         Html.text ""
 
 
-isFirstOnDate : Data.Message -> List Data.Message -> Bool
-isFirstOnDate message allMessages =
+isLastAtTime : Data.Message -> List Data.Message -> Bool
+isLastAtTime message allMessages =
     let
-        messagesSameDay =
+        messagesSameTime =
             List.filter
                 (\{ datetime } ->
-                    viewMessageDate
+                    viewMessageTime
                         datetime
-                        == viewMessageDate message.datetime
+                        == viewMessageTime message.datetime
                 )
                 allMessages
     in
-    case List.head messagesSameDay of
+    case List.head (List.reverse messagesSameTime) of
         Just aMessage ->
             message == aMessage
 
@@ -48,43 +48,14 @@ isFirstOnDate message allMessages =
 
 
 viewMessage : Data.Message -> Bool -> List (Html.Html Msg)
-viewMessage message isFirst =
+viewMessage message isLast =
     [ Html.div [ Html.Attributes.class "message" ]
-        [ if isFirst then
-            Html.h3 [ Html.Attributes.class "message-date" ]
-                [ viewMessageDate message.datetime
-                ]
-
-          else
-            Html.text ""
-        , Html.div [ Html.Attributes.class "message-inner" ]
-            [ Html.h4 [ Html.Attributes.class "message-forwarded-from" ] [ Html.text (t ForwardedLabel ++ message.forwardedFrom) ]
-            , Html.div [ Html.Attributes.class "message-body" ] (Markdown.markdownToHtml message.body)
-            , Html.div [ Html.Attributes.class "message-meta-info" ]
-                [ Html.span [ Html.Attributes.class "message-view-count" ] [ viewMessageViewCount message.viewCount ]
-                , Html.span [ Html.Attributes.class "message-time" ] [ viewMessageTime message.datetime ]
-                ]
+        [ Html.div [ Html.Attributes.class "message-inner" ]
+            [ Html.div [ Html.Attributes.class "message-body" ] (Markdown.markdownToHtml message.body)
+            , Html.span [ Html.Attributes.class "message-time" ] [ viewMessageTime message.datetime ]
             ]
-        , Html.img
-            [ Html.Attributes.class "message-avatar"
-            , Html.Attributes.src message.avatarSrc
-            ]
-            []
         ]
     ]
-
-
-viewMessageDate : Time.Posix -> Html.Html Msg
-viewMessageDate posix =
-    Html.text
-        (String.join ""
-            [ Copy.Text.monthToString (Time.toMonth Time.utc posix)
-            , " "
-            , String.fromInt (Time.toDay Time.utc posix)
-            , ", "
-            , String.fromInt (Time.toYear Time.utc posix)
-            ]
-        )
 
 
 viewMessageTime : Time.Posix -> Html.Html Msg
@@ -95,15 +66,4 @@ viewMessageTime posix =
          ]
             |> List.map (\timeDigit -> String.padLeft 2 '0' timeDigit)
             |> String.join ":"
-        )
-
-
-viewMessageViewCount : Int -> Html.Html Msg
-viewMessageViewCount viewCount =
-    Html.text
-        (if toFloat viewCount / 1000 > 1 then
-            String.fromInt (viewCount // 1000) ++ "k"
-
-         else
-            String.fromInt viewCount
         )
