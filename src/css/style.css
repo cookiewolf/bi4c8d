@@ -17,9 +17,6 @@ p {
 }
 
 .page-wrapper {
-  margin: 1rem auto;
-  max-width: 800px;
-  width: 100%;
 }
 
 .section {
@@ -33,6 +30,8 @@ p {
 }
 
 #section-8 {
+ max-width: 100%;
+ width: 100%;
 }
 
 /** Main Text **/
@@ -146,11 +145,11 @@ p {
 .portraits {
   display: flex;
   flex-flow: wrap;
-  max-width: 800px;
 }
 
 .portrait {
   height: 100%;
+  justify-content: center;
   opacity: 2%;
   padding: 4px;
   width: 80px;

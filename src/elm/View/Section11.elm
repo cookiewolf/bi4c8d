@@ -9,6 +9,5 @@ import View.Messages
 
 view : Model -> List (Html.Html Msg)
 view model =
-    [ Html.h2 [] [ Html.text "Section 11 - telegram messages" ]
-    , View.Messages.view Data.Section11 model.content.messages
+    [ View.Messages.view Data.Section11 model.content.messages
     ]

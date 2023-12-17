@@ -45,7 +45,8 @@ type alias Image =
 
 
 type alias Graph =
-    { set1Label : String
+    { title : String
+    , set1Label : String
     , set2Label : String
     , set3Label : String
     , set4Label : String
@@ -201,15 +202,16 @@ graphDictDecoder =
 
 graphDecoder : Json.Decode.Decoder Graph
 graphDecoder =
-    Json.Decode.map8 Graph
-        (Json.Decode.field "label1" Json.Decode.string)
-        (Json.Decode.field "label2" Json.Decode.string)
-        (Json.Decode.field "label3" Json.Decode.string)
-        (Json.Decode.field "label4" Json.Decode.string)
-        (Json.Decode.field "label5" Json.Decode.string)
-        (Json.Decode.field "label6" Json.Decode.string)
-        (Json.Decode.field "label7" Json.Decode.string)
-        (Json.Decode.field "datapoints" (Json.Decode.list datapointDecoder))
+    Json.Decode.succeed Graph
+        |> andMap (Json.Decode.field "title" Json.Decode.string)
+        |> andMap (Json.Decode.field "label1" Json.Decode.string)
+        |> andMap (Json.Decode.field "label2" Json.Decode.string)
+        |> andMap (Json.Decode.field "label3" Json.Decode.string)
+        |> andMap (Json.Decode.field "label4" Json.Decode.string)
+        |> andMap (Json.Decode.field "label5" Json.Decode.string)
+        |> andMap (Json.Decode.field "label6" Json.Decode.string)
+        |> andMap (Json.Decode.field "label7" Json.Decode.string)
+        |> andMap (Json.Decode.field "datapoints" (Json.Decode.list datapointDecoder))
 
 
 datapointDecoder : Json.Decode.Decoder LineChartDatum
@@ -257,6 +259,14 @@ tickerDecoder =
 
 
 -- Helpers
+
+
+andMap :
+    Json.Decode.Decoder a
+    -> Json.Decode.Decoder (a -> b)
+    -> Json.Decode.Decoder b
+andMap =
+    Json.Decode.map2 (|>)
 
 
 posixFromStringDecoder : String -> Json.Decode.Decoder Time.Posix
@@ -387,7 +397,8 @@ trackableIdFromItem item =
 
 lineChartData : Graph
 lineChartData =
-    { set1Label = "Empty test data"
+    { title = "Empty test data"
+    , set1Label = ""
     , set2Label = ""
     , set3Label = ""
     , set4Label = ""

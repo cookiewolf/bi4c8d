@@ -19,20 +19,17 @@ view model =
             InView.isInOrAboveView "section-8" model.inView
                 |> Maybe.withDefault False
     in
-    [ Html.h2 []
-        [ Html.text "Section 8 - 2000 images with tickers"
-        , if sectionInView then
-            viewTickers
-                model
+    [ if sectionInView then
+        viewTickers
+            model
 
-          else
-            Html.text ""
-        , if sectionInView then
-            viewPortraitList model.randomIntList
+      else
+        Html.text ""
+    , if sectionInView then
+        viewPortraitList model.randomIntList
 
-          else
-            Html.text ""
-        ]
+      else
+        Html.text ""
     ]
 
 
@@ -50,7 +47,7 @@ viewTicker viewportHeightWidth now tickerState =
     Simple.Animation.Animated.div
         (slideIn viewportHeightWidth tickerState.label)
         [ Html.Attributes.class "ticker" ]
-        [ Html.text (tickerState.label ++ ": " ++ viewTickerCount now tickerState) ]
+        [ Html.h2 [] [ Html.text (tickerState.label ++ ": " ++ viewTickerCount now tickerState) ] ]
 
 
 viewTickerCount : Time.Posix -> Data.TickerState -> String

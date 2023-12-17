@@ -66,8 +66,8 @@ suite =
                     Html.div [] (view model)
                         |> Query.fromHtml
                         |> Query.has
-                            [ Selector.tag "h2"
-                            , Selector.text "Section 1"
+                            [ Selector.tag "h3"
+                            , Selector.text "Section one context"
                             ]
             ]
         ]

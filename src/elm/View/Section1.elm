@@ -10,7 +10,6 @@ import View.Messages
 
 view : Model -> List (Html.Html Msg)
 view model =
-    [ Html.h2 [] [ Html.text "Section 1" ]
-    , View.MainText.viewTop Data.Section1 model.content.mainText
+    [ View.MainText.viewTop Data.Section1 model.content.mainText
     , View.Messages.view Data.Section1 model.content.messages
     ]
