@@ -1,4 +1,4 @@
 ---
 label: Data posted or faxed to incorrect recipient
-total: 768
+total: 761
 ---
