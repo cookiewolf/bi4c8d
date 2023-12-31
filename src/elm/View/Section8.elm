@@ -19,7 +19,8 @@ view model =
             InView.isInOrAboveView "section-8" model.inView
                 |> Maybe.withDefault False
     in
-    [ if sectionInView then
+    [ Html.div [] []
+    , if sectionInView then
         viewTickers
             model
 
