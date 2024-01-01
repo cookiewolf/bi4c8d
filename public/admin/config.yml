@@ -32,9 +32,9 @@ collections:
     label: "Message"
     folder: "content/message"
     create: true
-    identifier_field: "datetime"
     fields:
       - { label: "Section", name: "section", widget: "select", options: ["section-ten"] }
+      - { label: "Message Title", name: "title", widget: "string", hint: "Not displayed - for id in CMS" }
       - { label: "Side", name: "side", widget: "select", options: ["left", "right"] }
       - { label: "Date & time", name: "datetime", widget: "datetime" }
       - { label: "Body", name: "body", widget: "markdown" }
