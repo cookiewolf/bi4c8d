@@ -53,6 +53,7 @@ suite =
                 , tickers = []
                 }
             , tickerState = []
+            , breachCount = 0
             , randomIntList = []
             , viewportHeightWidth = ( 800, 800 )
             , inView = inViewModel
