@@ -20,6 +20,13 @@ t key =
         Section10MessageHeading ->
             "LockBit"
 
+        TotalBreachesSinceView count ->
+            String.join " "
+                [ "Since you’ve been on this webpage"
+                , String.fromInt count
+                , "people have had their personal data compromised..."
+                ]
+
 
 monthToString : Time.Month -> String
 monthToString month =

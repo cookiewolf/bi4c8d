@@ -7,3 +7,4 @@ type Key
     | ForwardedLabel
       -- Message
     | Section10MessageHeading
+    | TotalBreachesSinceView Int
