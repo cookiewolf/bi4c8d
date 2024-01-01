@@ -26,10 +26,8 @@ p {
   width: 100%;
 }
 
-#section-1 {
-}
-
-#section-8 {
+#section-8,
+#section-9 {
  max-width: 100%;
  width: 100%;
 }
@@ -37,6 +35,10 @@ p {
 /** Main Text **/
 
 .main-texts {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 2rem 0;
+  width: 100%;
 }
 
 .main-text {
@@ -209,4 +211,11 @@ p {
   position: relative;
   width: fit-content;
   z-index: 99;
+}
+
+/** Final ticker **/
+h2.final-ticker {
+  font-size: 6rem;
+  margin: 10px auto;
+  padding: 1rem 6rem;
 }

@@ -47,6 +47,7 @@ init flags =
     ( { time = Time.millisToPosix 0
       , content = Data.decodedContent flags
       , tickerState = initialTickerState
+      , breachCount = 0
       , randomIntList = []
       , inView = inViewModel
       , viewportHeightWidth = ( 800, 800 )
@@ -63,7 +64,7 @@ init flags =
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
-        [ Time.every 10 Tick -- 100 times per second
+        [ Time.every 100 Tick -- 10 times per second
         , InView.subscriptions InViewMsg model.inView
         , onScroll OnScroll
         ]
@@ -84,6 +85,12 @@ update msg model =
 
                     else
                         model.tickerState
+                , breachCount =
+                    if remainderBy 13 (Time.posixToMillis model.time) == 0 then
+                        model.breachCount + 1
+
+                    else
+                        model.breachCount
               }
             , Cmd.none
             )

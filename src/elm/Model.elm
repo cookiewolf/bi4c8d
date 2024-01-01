@@ -10,6 +10,7 @@ type alias Model =
     { time : Time.Posix
     , content : Data.Content
     , tickerState : List Data.TickerState
+    , breachCount : Int
     , randomIntList : List Int
     , inView : InView.State
     , viewportHeightWidth : ( Float, Float )
