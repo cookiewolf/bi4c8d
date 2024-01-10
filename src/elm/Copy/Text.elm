@@ -17,6 +17,9 @@ t key =
         ForwardedLabel ->
             "Forwarded from: "
 
+        Section8Heading ->
+            "Between July 2020 and June 2021, data breaches exposed financial data from 42.2 million accounts."
+
         Section10MessageHeading ->
             "LockBit"
 

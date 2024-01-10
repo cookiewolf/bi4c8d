@@ -1,5 +1,7 @@
 module View.Section8 exposing (view)
 
+import Copy.Keys exposing (Key(..))
+import Copy.Text exposing (t)
 import Data
 import Html
 import Html.Attributes
@@ -19,18 +21,20 @@ view model =
             InView.isInOrAboveView "section-8" model.inView
                 |> Maybe.withDefault False
     in
-    [ Html.div [] []
-    , if sectionInView then
-        viewTickers
-            model
+    [ Html.div []
+        [ Html.h2 [ Html.Attributes.class "heading" ] [ Html.text (t Section8Heading) ]
+        , if sectionInView then
+            viewTickers
+                model
 
-      else
-        Html.text ""
-    , if sectionInView then
-        viewPortraitList model.randomIntList
+          else
+            Html.text ""
+        , if sectionInView then
+            viewPortraitList model.randomIntList
 
-      else
-        Html.text ""
+          else
+            Html.text ""
+        ]
     ]
 
 
