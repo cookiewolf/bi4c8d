@@ -20,6 +20,9 @@ t key =
         Section10MessageHeading ->
             "LockBit"
 
+        Section11MessageHeading ->
+            ""
+
         TotalBreachesSinceView count ->
             String.join " "
                 [ "Since you’ve been on this webpage"
