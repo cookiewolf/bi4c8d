@@ -6,6 +6,7 @@ type Key
       -- Post
     | ForwardedLabel
       -- Message
+    | Section8Heading
     | Section10MessageHeading
     | Section11MessageHeading
     | TotalBreachesSinceView Int
