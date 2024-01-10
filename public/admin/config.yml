@@ -33,7 +33,7 @@ collections:
     folder: "content/message"
     create: true
     fields:
-      - { label: "Section", name: "section", widget: "select", options: ["section-ten"] }
+      - { label: "Section", name: "section", widget: "select", options: ["section-ten", "section-eleven"] }
       - { label: "Message Title", name: "title", widget: "string", hint: "Not displayed - for id in CMS" }
       - { label: "Side", name: "side", widget: "select", options: ["left", "right"] }
       - { label: "Date & time", name: "datetime", widget: "datetime" }
