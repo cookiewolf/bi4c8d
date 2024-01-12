@@ -88,11 +88,11 @@ type alias YPoint =
 
 
 type alias Ticker =
-    { label : String, total : Int }
+    { id : Int, label : String, total : Int }
 
 
 type alias TickerState =
-    { label : String, count : Int, limit : Int }
+    { id : Int, label : String, count : Int, limit : Int }
 
 
 type SectionId
@@ -285,12 +285,16 @@ tickerDictDecoder : Json.Decode.Decoder (List Ticker)
 tickerDictDecoder =
     Json.Decode.dict tickerDecoder
         |> Json.Decode.map Dict.toList
-        |> Json.Decode.map (\keyedItems -> List.map (\( _, image ) -> image) keyedItems)
+        |> Json.Decode.map
+            (\keyedItems ->
+                List.indexedMap (\index ( _, ticker ) -> { ticker | id = index }) keyedItems
+            )
 
 
 tickerDecoder : Json.Decode.Decoder Ticker
 tickerDecoder =
-    Json.Decode.map2 Ticker
+    Json.Decode.map3 Ticker
+        (Json.Decode.succeed 0)
         (Json.Decode.field "label" Json.Decode.string)
         (Json.Decode.field "total" Json.Decode.int)
 
@@ -475,7 +479,7 @@ lineChartData =
 initialTickerState : Flags -> List TickerState
 initialTickerState flags =
     (decodedContent flags).tickers
-        |> List.map (\ticker -> { count = 0, label = ticker.label, limit = ticker.total })
+        |> List.map (\ticker -> { id = ticker.id, count = 0, label = ticker.label, limit = ticker.total })
 
 
 updateTickerState : TickerState -> TickerState
