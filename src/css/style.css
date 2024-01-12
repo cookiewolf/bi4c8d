@@ -177,16 +177,17 @@ p {
 /** Image **/
 
 .images {
+  margin-top: 3rem;
   position: relative;
 }
 
 .image {
- position: sticky;
- top: 0;
+  position: sticky;
+  top: 3rem;
 }
 
 .image img {
-  margin: 20px auto;
+  margin: 0 auto;
 }
 
 /** Chart **/

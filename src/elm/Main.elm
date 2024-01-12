@@ -143,4 +143,4 @@ viewDocument model =
 
 generateRandomIntList : Random.Generator (List Int)
 generateRandomIntList =
-    Random.list 865 (Random.int 0 100)
+    Random.list 619 (Random.int 0 100)
