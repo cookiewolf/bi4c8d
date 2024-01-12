@@ -199,6 +199,7 @@ p {
 .portraits {
   display: flex;
   flex-flow: wrap;
+  justify-content: space-between;
 }
 
 .portrait {
