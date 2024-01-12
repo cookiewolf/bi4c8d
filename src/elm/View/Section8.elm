@@ -71,14 +71,14 @@ viewPortraitList randomIntList =
                     ]
                     []
             )
-            (List.range 0 865)
+            (List.range 1 619)
             randomIntList
         )
 
 
 jpgSrcFromInt : Int -> String
 jpgSrcFromInt count =
-    "/images/portraits/" ++ String.fromInt count ++ ".jpg"
+    "/images/portraits/" ++ String.padLeft 3 '0' (String.fromInt count) ++ ".jpg"
 
 
 animatedImg : Simple.Animation.Animation -> List (Html.Attribute Msg) -> List (Html.Html Msg) -> Html.Html Msg
@@ -105,7 +105,7 @@ slideInTicker ( height, width ) id =
             toFloat (id + 1)
 
         endY =
-            idFloat * (height / 6)
+            idFloat * (height / 8)
 
         ( ( startX, startY ), endX ) =
             case id of
