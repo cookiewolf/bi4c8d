@@ -36,7 +36,13 @@ init flags =
             Data.initialTickerState flags
 
         trackableSections =
-            [ "section-8" ]
+            [ "section-8"
+            , "fade-image-1"
+            , "fade-image-2"
+            , "fade-image-3"
+            , "fade-image-4"
+            , "fade-image-5"
+            ]
 
         ( inViewModel, inViewCmds ) =
             InView.init InViewMsg trackableSections

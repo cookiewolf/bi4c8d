@@ -195,6 +195,12 @@ p {
   margin: 4rem 2rem;
 }
 
+/** Faces with information **/
+.faces-with-info {
+  background: var(--black);
+  padding: 2rem;
+}
+
 /** Portrait **/
 .portraits {
   display: flex;
