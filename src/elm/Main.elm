@@ -32,9 +32,6 @@ main =
 init : Data.Flags -> ( Model, Cmd Msg )
 init flags =
     let
-        trackableImages =
-            Data.trackableIdListFromFlags flags
-
         initialTickerState =
             Data.initialTickerState flags
 
@@ -42,7 +39,7 @@ init flags =
             [ "section-8" ]
 
         ( inViewModel, inViewCmds ) =
-            InView.init InViewMsg (trackableImages ++ trackableSections)
+            InView.init InViewMsg trackableSections
     in
     ( { time = Time.millisToPosix 0
       , content = Data.decodedContent flags

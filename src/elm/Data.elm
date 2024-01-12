@@ -441,6 +441,7 @@ sideToString side =
 
 
 -- TRACKABLE element helpers
+-- TODO not in use but will be for section 5
 
 
 trackableIdListFromFlags : Flags -> List String
