@@ -181,11 +181,12 @@ p {
 }
 
 .image {
+ position: sticky;
+ top: 0;
 }
 
 .image img {
-  margin: 20px 0;
-  max-width: 800px;
+  margin: 20px auto;
 }
 
 /** Chart **/
