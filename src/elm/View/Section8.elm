@@ -50,7 +50,7 @@ viewTickers model =
 viewTicker : ( Float, Float ) -> Time.Posix -> Data.TickerState -> Html.Html Msg
 viewTicker viewportHeightWidth now tickerState =
     Simple.Animation.Animated.div
-        (slideIn viewportHeightWidth tickerState.label)
+        (slideInTicker viewportHeightWidth tickerState.id)
         [ Html.Attributes.class "ticker" ]
         [ Html.h2 [] [ Html.text (tickerState.label ++ ": " ++ viewTickerCount now tickerState) ] ]
 
@@ -98,20 +98,64 @@ fadeIn delay =
         [ Simple.Animation.Property.opacity 1 ]
 
 
-slideIn : ( Float, Float ) -> String -> Simple.Animation.Animation
-slideIn ( height, width ) id =
+slideInTicker : ( Float, Float ) -> Int -> Simple.Animation.Animation
+slideInTicker ( height, width ) id =
     let
-        ( ( startX, startY ), ( endX, endY ) ) =
+        idFloat =
+            toFloat (id + 1)
+
+        endY =
+            idFloat * (height / 6)
+
+        ( ( startX, startY ), endX ) =
             case id of
-                "Data emailed to incorrect recipient" ->
-                    ( ( 0, 20 ), ( 200, 20 ) )
+                0 ->
+                    ( ( 0, 20 ), 200 )
+
+                1 ->
+                    ( ( width, 40 ), 0 )
+
+                2 ->
+                    ( ( width, 60 ), 400 )
+
+                3 ->
+                    ( ( 0, 80 ), 60 )
+
+                4 ->
+                    ( ( 0, 100 ), 200 )
+
+                5 ->
+                    ( ( 0, 120 ), width / 2 )
+
+                6 ->
+                    ( ( width, 140 ), 600 )
+
+                7 ->
+                    ( ( 0, 160 ), 800 )
+
+                8 ->
+                    ( ( width, 180 ), 400 )
+
+                9 ->
+                    ( ( width, 200 ), 600 )
+
+                10 ->
+                    ( ( width, 220 ), 800 )
+
+                11 ->
+                    ( ( 0, 240 ), width / 2 )
+
+                12 ->
+                    ( ( width, 260 ), 400 )
 
                 _ ->
-                    ( ( width, 0 ), ( 0, height / 3 ) )
+                    ( ( width, 0 ), 0 )
     in
     Simple.Animation.fromTo
-        { duration = 8000
-        , options = []
+        { duration = (id + 1) * 2000
+        , options = [ Simple.Animation.delay (id * 1000) ]
         }
-        [ Simple.Animation.Property.xy startX startY ]
+        [ Simple.Animation.Property.opacity 0
+        , Simple.Animation.Property.xy startX startY
+        ]
         [ Simple.Animation.Property.xy endX endY ]
