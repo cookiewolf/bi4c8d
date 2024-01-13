@@ -197,8 +197,33 @@ p {
 
 /** Faces with information **/
 .faces-with-info {
+  align-items: center;
   background: var(--black);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   padding: 2rem;
+  width: 100%;
+}
+
+.faces-with-info img {
+  margin: 2rem 0;
+  padding-right: 150px;
+}
+
+#fade-image-1,
+#fade-image-5 {
+  align-self: flex-start;
+}
+
+#fade-image-2,
+#fade-image-3 {
+  align-self: center;
+}
+
+
+#fade-image-4 {
+  align-self: flex-end;
 }
 
 /** Portrait **/
