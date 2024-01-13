@@ -63,9 +63,9 @@ viewImage state fadeImage =
 
 
 imageSrcList =
-    [ "/images/portraits/001.jpg"
-    , "/images/portraits/043.jpg"
-    , "/images/portraits/060.jpg"
-    , "/images/portraits/200.jpg"
-    , "/images/portraits/156.jpg"
+    [ "/images/info-faces/001.jpg"
+    , "/images/info-faces/002.jpg"
+    , "/images/info-faces/003.jpg"
+    , "/images/info-faces/004.jpg"
+    , "/images/info-faces/005.jpg"
     ]
