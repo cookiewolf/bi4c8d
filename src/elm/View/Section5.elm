@@ -11,61 +11,103 @@ import Msg exposing (Msg(..))
 
 type alias FadeImage =
     { id : String
-    , src : String
-    , opacity : String
-    , scale : String
+    , srcId : Int
+    , isBlank : Bool
+    , scale : Float
     }
 
 
 view : Model -> List (Html.Html Msg)
 view model =
     [ Html.div [ Html.Attributes.class "faces-with-info" ]
-        (List.indexedMap
-            (\index imageSrc ->
+        (List.map
+            (\imageSrcId ->
                 let
                     itemId =
-                        "fade-image-" ++ String.fromInt (index + 1)
+                        "fade-image-" ++ String.fromInt imageSrcId
 
-                    ( itemOpacity, itemScale ) =
-                        case InView.isInViewWithMargin itemId (InView.Margin 100 0 100 0) model.inView of
+                    isBlank =
+                        case InView.isInOrAboveViewWithMargin itemId (InView.Margin 200 0 (toFloat imageSrcId * 150) 0) model.inView of
                             Just True ->
-                                ( "1", "1" )
+                                False
 
                             _ ->
-                                ( "0", "0.5" )
+                                True
                 in
                 viewImage model.inView
                     { id = itemId
-                    , src = imageSrc
-                    , opacity = itemOpacity
-                    , scale = itemScale
+                    , srcId = imageSrcId
+                    , isBlank = isBlank
+                    , scale =
+                        if isBlank then
+                            0.25
+
+                        else
+                            1
                     }
             )
-            imageSrcList
+            (List.range 1 3)
         )
     ]
 
 
 viewImage : InView.State -> FadeImage -> Html.Html Msg
 viewImage state fadeImage =
-    Html.img
-        [ Html.Attributes.id fadeImage.id
-        , Html.Attributes.src fadeImage.src
-        , Html.Events.on "load" (Json.Decode.succeed (OnElementLoad fadeImage.id))
-        , Html.Attributes.style "opacity" fadeImage.opacity
-        , Html.Attributes.style "max-width" "100%"
-
-        -- , style "height" "100%"
-        , Html.Attributes.style "transition" "opacity 15s , transform 10s"
-        , Html.Attributes.style "transform" ("scale(" ++ fadeImage.scale ++ ")")
+    Html.div
+        [ Html.Attributes.id ("profile-" ++ fadeImage.id)
+        , Html.Attributes.style "display" "flex"
+        , Html.Attributes.style "flex-direction" "row"
         ]
-        []
+        [ Html.img
+            [ Html.Attributes.id fadeImage.id
+            , Html.Attributes.src (imageSrcFromId fadeImage.isBlank fadeImage.srcId)
+            , Html.Events.on "load" (Json.Decode.succeed (OnElementLoad fadeImage.id))
+            , Html.Attributes.style "max-width" "100%"
+            , Html.Attributes.style "opacity" "1"
+            , Html.Attributes.style "transition" (imageTransformFromId fadeImage.isBlank fadeImage.srcId)
+            , Html.Attributes.style "transform" ("scale(" ++ String.fromFloat fadeImage.scale ++ ")")
+            ]
+            []
+        , Html.div
+            [ Html.Attributes.class "profile-info"
+            , Html.Attributes.style "opacity"
+                (String.fromFloat (fadeImage.scale - 0.25))
+            , Html.Attributes.style "transition" (imageOpacityFromId fadeImage.isBlank fadeImage.srcId)
+            ]
+            [ Html.p [] [ Html.text "_________ Name" ]
+            , Html.p [] [ Html.text "_________ Age" ]
+            , Html.p [] [ Html.text "_________ Location" ]
+            , Html.p [] [ Html.text "_________ Place of work" ]
+            ]
+        ]
 
 
-imageSrcList =
-    [ "/images/info-faces/001.jpg"
-    , "/images/info-faces/002.jpg"
-    , "/images/info-faces/003.jpg"
-    , "/images/info-faces/004.jpg"
-    , "/images/info-faces/005.jpg"
-    ]
+imageTransformFromId : Bool -> Int -> String
+imageTransformFromId isBlank srcId =
+    if isBlank then
+        "transform 0s"
+
+    else
+        "transform " ++ String.fromInt (srcId * 8) ++ "s"
+
+
+imageOpacityFromId : Bool -> Int -> String
+imageOpacityFromId isBlank srcId =
+    if isBlank then
+        "opacity 0s"
+
+    else
+        "opacity " ++ String.fromInt (srcId * 10) ++ "s"
+
+
+imageSrcFromId : Bool -> Int -> String
+imageSrcFromId isBlank srcId =
+    "/images/info-faces/00"
+        ++ String.fromInt srcId
+        ++ (if isBlank then
+                "-white.jpg"
+
+            else
+                ""
+                    ++ ".jpg"
+           )

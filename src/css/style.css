@@ -5,6 +5,7 @@
   --grey-dark: #a9a4a4;
   
   --default-radius: 30px;
+  --max-section-width: 1140px;
 }
 
 html body {
@@ -21,9 +22,20 @@ p {
 
 .section {
   margin: 0 auto;
-  max-width: 800px;
+  max-width: var(--max-section-width);
   padding: 2rem 1rem;
   width: 100%;
+}
+
+#section-4,
+#section-5 {
+  background: var(--black);
+  margin: 0 auto;
+  padding: 0;
+}
+
+#section-4 {
+  padding: 4rem 0 0 0;
 }
 
 #section-8,
@@ -35,7 +47,7 @@ p {
 #section-8 h2.heading {
   font-size: 2.5rem;
   margin: 0 auto;
-  max-width: 800px;
+  max-width: var(--max-section-width);
   padding: 2rem 0;
   width: 100%;
 }
@@ -44,7 +56,7 @@ p {
 
 .main-texts {
   margin: 0 auto;
-  max-width: 800px;
+  max-width: var(--max-section-width);
   padding: 2rem 0;
   width: 100%;
 }
@@ -192,38 +204,45 @@ p {
 
 /** Chart **/
 .chart {
-  margin: 4rem 2rem;
+  margin: 4rem auto;
+  max-width: 750px;
 }
 
 /** Faces with information **/
 .faces-with-info {
-  align-items: center;
-  background: var(--black);
+  align-items: flex-start;
+  background-image: url(/images/info-faces/background.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: var(--white);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 2rem;
+  height: 500px;
+  justify-content: space-between;
   width: 100%;
 }
 
-.faces-with-info img {
-  margin: 2rem 0;
-  padding-right: 150px;
+#profile-fade-image-1 {
+  padding: 4rem 1rem;
 }
 
-#fade-image-1,
-#fade-image-5 {
-  align-self: flex-start;
+#profile-fade-image-2 {
+  padding: 6rem 1rem 0 0;
 }
 
-#fade-image-2,
-#fade-image-3 {
-  align-self: center;
+#profile-fade-image-3 {
+  padding: 2rem 1rem 0 0;
 }
 
+.profile-info {
+  font-size: 0.75rem;
+  margin-top: 100px;
+  padding-left: 1rem;
+}
 
-#fade-image-4 {
-  align-self: flex-end;
+.profile-info p {
+  margin-bottom: 0;
 }
 
 /** Portrait **/
