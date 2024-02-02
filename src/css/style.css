@@ -34,6 +34,10 @@ p {
   padding: 0;
 }
 
+#section-4 {
+  padding: 4rem 0 0 0;
+}
+
 #section-8,
 #section-9 {
  max-width: 100%;
@@ -206,7 +210,7 @@ p {
 
 /** Faces with information **/
 .faces-with-info {
-  align-items: center;
+  align-items: flex-start;
   background-image: url(/images/info-faces/background.png);
   background-size: cover;
   background-repeat: no-repeat;
@@ -219,14 +223,26 @@ p {
   width: 100%;
 }
 
-.image-profile {
-  padding: 0 2rem;
+#profile-fade-image-1 {
+  padding: 4rem 1rem;
+}
+
+#profile-fade-image-2 {
+  padding: 6rem 1rem 0 0;
+}
+
+#profile-fade-image-3 {
+  padding: 2rem 1rem 0 0;
 }
 
 .profile-info {
-  opacity: 1;
+  font-size: 0.75rem;
   margin-top: 100px;
   padding-left: 1rem;
+}
+
+.profile-info p {
+  margin-bottom: 0;
 }
 
 /** Portrait **/

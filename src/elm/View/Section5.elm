@@ -13,8 +13,7 @@ type alias FadeImage =
     { id : String
     , srcId : Int
     , isBlank : Bool
-    , opacity : String
-    , scale : String
+    , scale : Float
     }
 
 
@@ -34,31 +33,17 @@ view model =
 
                             _ ->
                                 True
-
-                    isJustInView =
-                        case InView.isInViewWithMargin itemId (InView.Margin 200 0 400 0) model.inView of
-                            Just True ->
-                                False
-
-                            _ ->
-                                True
                 in
                 viewImage model.inView
                     { id = itemId
                     , srcId = imageSrcId
                     , isBlank = isBlank
-                    , opacity =
-                        if isBlank then
-                            "1"
-
-                        else
-                            "1"
                     , scale =
                         if isBlank then
-                            "0.25"
+                            0.25
 
                         else
-                            "1"
+                            1
                     }
             )
             (List.range 1 3)
@@ -69,7 +54,7 @@ view model =
 viewImage : InView.State -> FadeImage -> Html.Html Msg
 viewImage state fadeImage =
     Html.div
-        [ Html.Attributes.class "image-profile"
+        [ Html.Attributes.id ("profile-" ++ fadeImage.id)
         , Html.Attributes.style "display" "flex"
         , Html.Attributes.style "flex-direction" "row"
         ]
@@ -78,22 +63,41 @@ viewImage state fadeImage =
             , Html.Attributes.src (imageSrcFromId fadeImage.isBlank fadeImage.srcId)
             , Html.Events.on "load" (Json.Decode.succeed (OnElementLoad fadeImage.id))
             , Html.Attributes.style "max-width" "100%"
-            , Html.Attributes.style "opacity" fadeImage.opacity
-            , Html.Attributes.style "transition" (imageTransitionFromId fadeImage.isBlank fadeImage.srcId)
-            , Html.Attributes.style "transform" ("scale(" ++ fadeImage.scale ++ ")")
+            , Html.Attributes.style "opacity" "1"
+            , Html.Attributes.style "transition" (imageTransformFromId fadeImage.isBlank fadeImage.srcId)
+            , Html.Attributes.style "transform" ("scale(" ++ String.fromFloat fadeImage.scale ++ ")")
             ]
             []
-        , Html.div [ Html.Attributes.class "profile-info" ] [ Html.text "profile info" ]
+        , Html.div
+            [ Html.Attributes.class "profile-info"
+            , Html.Attributes.style "opacity"
+                (String.fromFloat (fadeImage.scale - 0.25))
+            , Html.Attributes.style "transition" (imageOpacityFromId fadeImage.isBlank fadeImage.srcId)
+            ]
+            [ Html.p [] [ Html.text "_________ Name" ]
+            , Html.p [] [ Html.text "_________ Age" ]
+            , Html.p [] [ Html.text "_________ Location" ]
+            , Html.p [] [ Html.text "_________ Place of work" ]
+            ]
         ]
 
 
-imageTransitionFromId : Bool -> Int -> String
-imageTransitionFromId isBlank srcId =
+imageTransformFromId : Bool -> Int -> String
+imageTransformFromId isBlank srcId =
     if isBlank then
-        "opacity 0s, transform 0s"
+        "transform 0s"
 
     else
-        "opacity 10s, transform 20s"
+        "transform " ++ String.fromInt (srcId * 8) ++ "s"
+
+
+imageOpacityFromId : Bool -> Int -> String
+imageOpacityFromId isBlank srcId =
+    if isBlank then
+        "opacity 0s"
+
+    else
+        "opacity " ++ String.fromInt (srcId * 10) ++ "s"
 
 
 imageSrcFromId : Bool -> Int -> String
