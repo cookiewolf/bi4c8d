@@ -207,23 +207,26 @@ p {
 /** Faces with information **/
 .faces-with-info {
   align-items: center;
-  background: url(/images/info-faces/background.png);
+  background-image: url(/images/info-faces/background.png);
+  background-size: cover;
+  background-repeat: no-repeat;
   color: var(--white);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 2rem;
+  height: 500px;
+  justify-content: space-between;
   width: 100%;
 }
 
-.faces-with-info .image-wrapper {
-  /**background: var(--white) no-repeat fixed center;
-  background-size: 50%;**/
+.image-profile {
+  padding: 0 2rem;
 }
 
 .profile-info {
   opacity: 1;
   margin-top: 100px;
+  padding-left: 1rem;
 }
 
 /** Portrait **/

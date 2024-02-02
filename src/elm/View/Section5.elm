@@ -28,7 +28,7 @@ view model =
                         "fade-image-" ++ String.fromInt imageSrcId
 
                     isBlank =
-                        case InView.isInOrAboveViewWithMargin itemId (InView.Margin 200 0 400 0) model.inView of
+                        case InView.isInOrAboveViewWithMargin itemId (InView.Margin 200 0 (toFloat imageSrcId * 150) 0) model.inView of
                             Just True ->
                                 False
 
@@ -55,13 +55,13 @@ view model =
                             "1"
                     , scale =
                         if isBlank then
-                            "0.5"
+                            "0.25"
 
                         else
                             "1"
                     }
             )
-            (List.range 1 5)
+            (List.range 1 3)
         )
     ]
 
@@ -69,21 +69,20 @@ view model =
 viewImage : InView.State -> FadeImage -> Html.Html Msg
 viewImage state fadeImage =
     Html.div
-        [ Html.Attributes.style "display" "flex"
+        [ Html.Attributes.class "image-profile"
+        , Html.Attributes.style "display" "flex"
         , Html.Attributes.style "flex-direction" "row"
         ]
-        [ Html.div [ Html.Attributes.class "image-wrapper" ]
-            [ Html.img
-                [ Html.Attributes.id fadeImage.id
-                , Html.Attributes.src (imageSrcFromId fadeImage.isBlank fadeImage.srcId)
-                , Html.Events.on "load" (Json.Decode.succeed (OnElementLoad fadeImage.id))
-                , Html.Attributes.style "max-width" "100%"
-                , Html.Attributes.style "opacity" fadeImage.opacity
-                , Html.Attributes.style "transition" (imageTransitionFromId fadeImage.isBlank fadeImage.srcId)
-                , Html.Attributes.style "transform" ("scale(" ++ fadeImage.scale ++ ")")
-                ]
-                []
+        [ Html.img
+            [ Html.Attributes.id fadeImage.id
+            , Html.Attributes.src (imageSrcFromId fadeImage.isBlank fadeImage.srcId)
+            , Html.Events.on "load" (Json.Decode.succeed (OnElementLoad fadeImage.id))
+            , Html.Attributes.style "max-width" "100%"
+            , Html.Attributes.style "opacity" fadeImage.opacity
+            , Html.Attributes.style "transition" (imageTransitionFromId fadeImage.isBlank fadeImage.srcId)
+            , Html.Attributes.style "transform" ("scale(" ++ fadeImage.scale ++ ")")
             ]
+            []
         , Html.div [ Html.Attributes.class "profile-info" ] [ Html.text "profile info" ]
         ]
 
