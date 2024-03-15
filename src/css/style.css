@@ -5,7 +5,7 @@
   --grey-dark: #a9a4a4;
   
   --default-radius: 30px;
-  --max-section-width: 1140px;
+  --max-section-width: 800px;
 }
 
 html body {
@@ -57,7 +57,6 @@ p {
 .main-texts {
   margin: 0 auto;
   max-width: var(--max-section-width);
-  width: 75%;
 }
 
 .main-text {
@@ -155,6 +154,8 @@ p {
 /** Message **/
 .messages {
   border: solid 1px var(--grey-dark);
+  margin: 0 auto;
+  max-width: 1040px;
 }
 
 .messages h3 {
