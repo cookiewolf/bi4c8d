@@ -33,12 +33,9 @@ p {
 
 #section-2,
 #section-4,
-#section-5 {
+#section-5,
+#section-7 {
   background: var(--black);
-}
-
-#section-4 {
-  padding: 4rem 0 0 0;
 }
 
 #section-8,
@@ -104,6 +101,11 @@ p {
   border: solid var(--black) 1px;
   border-radius: var(--default-radius);
   padding: 10px 20px;
+}
+
+#section-7 .post-inner {
+  border: solid var(--white) 1px;
+  color: var(--white);
 }
 
 .post-avatar {
@@ -206,6 +208,10 @@ p {
 
 .image img {
   margin: 0 auto;
+}
+
+#section-4 .image img {
+  max-width: 80%
 }
 
 /** Chart **/
