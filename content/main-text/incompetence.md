@@ -1,0 +1,7 @@
+---
+section: section-six
+title: Incompetence
+---
+In January 1995, The Guardian obtained a 17-page report from the Central Computer and Telecommunications Agency, a now defunct government procurement body, which detailed how electronic ID cards were being researched in an attempt to introduce them by the then Conservative government by the turn of the millennia. It was all happening behind closed doors, and in itself was evidence of governance without the consent of the governed, but what was even more telling was the way that the report ended up in The Guardian’s hands. We don’t know who revealed the documents to the Guardian, but we do know that the person who gave them to the newspaper acquired them after purchasing a secondhand filing cabinet from a Camden junk shop for £355. In that cabinet was a bundle of papers, including the ID card report.
+
+Government departments have a track record of losing important documents. Over a 5-year period from 2017-2021, government departments reported 4,871 encrypted devices used by government staff as missing6. Devices and documents have been lost, stolen, dropped, left on buses7, and lost in the post, potentially exposing sensitive information about millions of British citizens. The question this poses to the public is: how do you trust governments with an increased amount of public data when the past has shown that there’s plenty of reasons to think that they won’t keep it and them safe?
