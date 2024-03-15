@@ -13,11 +13,16 @@ html body {
   font-family: Inter, sans-serif;
 }
 
+h1 {
+  padding: 2rem 0;
+}
+
 p {
   margin-bottom: 1rem;
 }
 
 .page-wrapper {
+  text-align: center;
 }
 
 .section {
