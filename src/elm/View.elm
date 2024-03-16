@@ -40,7 +40,13 @@ viewSections model =
             Html.div
                 [ Html.Attributes.id ("section-" ++ String.fromInt (index + 1))
                 , Html.Attributes.class "section"
+                , Html.Attributes.style "min-height" (sectionHeightFromViewport model.viewportHeightWidth)
                 ]
                 sectionView
         )
         (sectionViews model)
+
+
+sectionHeightFromViewport : ( Float, Float ) -> String
+sectionHeightFromViewport viewportHeighWidth =
+    String.fromFloat (Tuple.first viewportHeighWidth) ++ "px"
