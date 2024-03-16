@@ -11,5 +11,5 @@ import View.StackingImage
 view : Model -> List (Html.Html Msg)
 view model =
     [ View.MainText.viewTop Data.Section2 model.content.mainText
-    , View.StackingImage.viewImageList Data.Section2 model.inView model.content.images
+    , View.StackingImage.viewImageList Data.Section2 model
     ]
