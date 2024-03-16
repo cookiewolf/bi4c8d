@@ -212,7 +212,8 @@ p {
 }
 
 #section-4 .image img {
-  max-width: 80%
+  max-width: 80%;
+  opacity: 50%;
 }
 
 /** Chart **/
