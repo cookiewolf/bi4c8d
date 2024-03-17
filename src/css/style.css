@@ -216,6 +216,10 @@ p {
   opacity: 50%;
 }
 
+#section-4 .image img[alt="Image Recognition 1"] {
+  opacity: 90%;
+}
+
 /** Chart **/
 .chart {
   margin: 4rem auto;
@@ -233,7 +237,7 @@ p {
   flex-direction: row;
   flex-wrap: wrap;
   height: 500px;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
 }
 
@@ -263,7 +267,7 @@ p {
 .portraits {
   display: flex;
   flex-flow: wrap;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .portrait {
