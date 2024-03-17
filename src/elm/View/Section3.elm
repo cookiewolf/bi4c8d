@@ -28,10 +28,10 @@ viewChart : Model -> Html.Html Msg
 viewChart model =
     let
         dateRangeStart =
-            toFloat 1612137600000
+            toFloat 883612800000
 
         dateRangeEnd =
-            toFloat 1627776000000
+            toFloat 1672531200000
 
         graph =
             List.head model.content.graphs
