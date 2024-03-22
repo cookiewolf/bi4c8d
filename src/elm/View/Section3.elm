@@ -19,7 +19,9 @@ import View.MainText
 view : Model -> List (Html.Html Msg)
 view model =
     [ View.MainText.viewTop Data.Section3 model.content.mainText
-    , Html.div [ Html.Attributes.class "chart" ] [ viewChart model ]
+    , Html.div [ Html.Attributes.class "graph-container" ]
+        [ Html.div [ Html.Attributes.class "chart" ] [ viewChart model ]
+        ]
     , View.MainText.viewBottom Data.Section3 model.content.mainText
     ]
 
@@ -44,14 +46,20 @@ viewChart model =
             [ Chart.Attributes.lowest dateRangeStart Chart.Attributes.exactly
             , Chart.Attributes.highest dateRangeEnd Chart.Attributes.exactly
             ]
+        , Chart.Attributes.domain
+            [ Chart.Attributes.lowest 25 Chart.Attributes.exactly
+            , Chart.Attributes.highest 55 Chart.Attributes.exactly
+            ]
         , Chart.Events.onMouseMove Msg.OnChartHover
             (Chart.Events.getNearest Chart.Item.dots)
         , Chart.Events.onMouseLeave (Msg.OnChartHover [])
         ]
-        [ Chart.labelAt (Chart.Attributes.percent 50) (Chart.Attributes.percent 100) [] [ Svg.text graph.title ]
+        [ Chart.labelAt (Chart.Attributes.percent 50) (Chart.Attributes.percent 115) [ Chart.Attributes.fontSize 20 ] [ Svg.text graph.title ]
         , Chart.xAxis []
-        , Chart.yLabels []
-        , Chart.generate 8 (Chart.Svg.times Time.utc) .x [] <|
+        , Chart.yLabels
+            [ Chart.Attributes.format (\yLabel -> "£" ++ String.fromFloat yLabel ++ " mil")
+            ]
+        , Chart.generate 20 (Chart.Svg.times Time.utc) .x [] <|
             \_ info ->
                 [ Chart.xLabel
                     [ Chart.Attributes.x (toFloat <| Time.posixToMillis info.timestamp)
@@ -60,43 +68,93 @@ viewChart model =
                     [ Svg.text (formatFullTime Time.utc info.timestamp) ]
                 ]
         , Chart.series .x
-            [ Chart.interpolatedMaybe (\item -> item.y1.count)
-                []
-                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
-                |> Chart.named graph.set1Label
-            , Chart.interpolatedMaybe (\item -> item.y2.count)
-                []
-                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
-                |> Chart.named graph.set2Label
-            , Chart.interpolatedMaybe (\item -> item.y3.count)
-                []
-                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
-                |> Chart.named graph.set3Label
-            , Chart.interpolatedMaybe (\item -> item.y4.count)
-                []
-                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
-                |> Chart.named graph.set4Label
-            , Chart.interpolatedMaybe (\item -> item.y5.count)
-                []
-                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
-                |> Chart.named graph.set5Label
-            , Chart.interpolatedMaybe (\item -> item.y6.count)
-                []
-                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
-                |> Chart.named graph.set6Label
-            , Chart.interpolatedMaybe (\item -> item.y7.count)
-                []
-                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
-                |> Chart.named graph.set7Label
-            ]
+            ([ Chart.interpolatedMaybe (\item -> item.y1.count)
+                [ Chart.Attributes.color "#E4003B" ]
+                [ Chart.Attributes.color "#E40038"
+                , Chart.Attributes.circle
+                , Chart.Attributes.size 4
+                ]
+                |> Chart.named (Maybe.withDefault "" graph.set1Label)
+             ]
+                ++ (case graph.set2Label of
+                        Just aLabel ->
+                            [ Chart.interpolatedMaybe (\item -> item.y2.count)
+                                [ Chart.Attributes.color "#0087DC" ]
+                                [ Chart.Attributes.color "#0087DC"
+                                , Chart.Attributes.circle
+                                , Chart.Attributes.size 4
+                                ]
+                                |> Chart.named aLabel
+                            ]
+
+                        Nothing ->
+                            []
+                   )
+                ++ (case graph.set3Label of
+                        Just aLabel ->
+                            [ Chart.interpolatedMaybe (\item -> item.y3.count)
+                                []
+                                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                                |> Chart.named aLabel
+                            ]
+
+                        Nothing ->
+                            []
+                   )
+                ++ (case graph.set4Label of
+                        Just aLabel ->
+                            [ Chart.interpolatedMaybe (\item -> item.y4.count)
+                                []
+                                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                                |> Chart.named aLabel
+                            ]
+
+                        Nothing ->
+                            []
+                   )
+                ++ (case graph.set5Label of
+                        Just aLabel ->
+                            [ Chart.interpolatedMaybe (\item -> item.y5.count)
+                                []
+                                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                                |> Chart.named aLabel
+                            ]
+
+                        Nothing ->
+                            []
+                   )
+                ++ (case graph.set6Label of
+                        Just aLabel ->
+                            [ Chart.interpolatedMaybe (\item -> item.y6.count)
+                                []
+                                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                                |> Chart.named aLabel
+                            ]
+
+                        Nothing ->
+                            []
+                   )
+                ++ (case graph.set7Label of
+                        Just aLabel ->
+                            [ Chart.interpolatedMaybe (\item -> item.y7.count)
+                                []
+                                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                                |> Chart.named aLabel
+                            ]
+
+                        Nothing ->
+                            []
+                   )
+            )
             graph.dataPoints
         , Chart.legendsAt .min
             .max
-            [ Chart.Attributes.column
-            , Chart.Attributes.spacing 5
-            , Chart.Attributes.moveLeft 250
+            [ Chart.Attributes.row
+            , Chart.Attributes.moveRight 50
+            , Chart.Attributes.spacing 15
+            , Chart.Attributes.moveUp 25
             ]
-            [ Chart.Attributes.width 20 ]
+            []
         , Chart.each model.chartHovering <|
             \_ item ->
                 let
@@ -141,6 +199,4 @@ viewChart model =
 
 formatFullTime : Time.Zone -> Time.Posix -> String
 formatFullTime timezone posix =
-    String.join ""
-        [ Copy.Text.monthToString (Time.toMonth timezone posix)
-        ]
+    String.fromInt (Time.toYear timezone posix)

@@ -2,11 +2,6 @@
 title: Public Order and Safety spending
 label1: Labour government
 label2: Conservative government
-label3: e
-label4: t
-label5: y
-label6: e
-label7: p
 datapoints:
   - date: 1999-06-15T00:00:00.000Z
     data:

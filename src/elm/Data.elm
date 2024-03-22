@@ -60,13 +60,13 @@ type alias Image =
 
 type alias Graph =
     { title : String
-    , set1Label : String
-    , set2Label : String
-    , set3Label : String
-    , set4Label : String
-    , set5Label : String
-    , set6Label : String
-    , set7Label : String
+    , set1Label : Maybe String
+    , set2Label : Maybe String
+    , set3Label : Maybe String
+    , set4Label : Maybe String
+    , set5Label : Maybe String
+    , set6Label : Maybe String
+    , set7Label : Maybe String
     , dataPoints : List LineChartDatum
     }
 
@@ -242,13 +242,13 @@ graphDecoder : Json.Decode.Decoder Graph
 graphDecoder =
     Json.Decode.succeed Graph
         |> andMap (Json.Decode.field "title" Json.Decode.string)
-        |> andMap (Json.Decode.field "label1" Json.Decode.string)
-        |> andMap (Json.Decode.field "label2" Json.Decode.string)
-        |> andMap (Json.Decode.field "label3" Json.Decode.string)
-        |> andMap (Json.Decode.field "label4" Json.Decode.string)
-        |> andMap (Json.Decode.field "label5" Json.Decode.string)
-        |> andMap (Json.Decode.field "label6" Json.Decode.string)
-        |> andMap (Json.Decode.field "label7" Json.Decode.string)
+        |> andMap (Json.Decode.maybe (Json.Decode.field "label1" Json.Decode.string))
+        |> andMap (Json.Decode.maybe (Json.Decode.field "label2" Json.Decode.string))
+        |> andMap (Json.Decode.maybe (Json.Decode.field "label3" Json.Decode.string))
+        |> andMap (Json.Decode.maybe (Json.Decode.field "label4" Json.Decode.string))
+        |> andMap (Json.Decode.maybe (Json.Decode.field "label5" Json.Decode.string))
+        |> andMap (Json.Decode.maybe (Json.Decode.field "label6" Json.Decode.string))
+        |> andMap (Json.Decode.maybe (Json.Decode.field "label7" Json.Decode.string))
         |> andMap (Json.Decode.field "datapoints" (Json.Decode.list datapointDecoder))
 
 
@@ -271,13 +271,13 @@ yPointDecoder : ( String, String ) -> Json.Decode.Decoder YPoint
 yPointDecoder ( countField, tooltipField ) =
     Json.Decode.map2 YPoint
         (Json.Decode.maybe (Json.Decode.field tooltipField Json.Decode.string)
-            |> Json.Decode.andThen tooltipFromMaybe
+            |> Json.Decode.andThen emptyStringFromMaybe
         )
         (Json.Decode.maybe (Json.Decode.field countField Json.Decode.float))
 
 
-tooltipFromMaybe : Maybe String -> Json.Decode.Decoder String
-tooltipFromMaybe maybeTooltip =
+emptyStringFromMaybe : Maybe String -> Json.Decode.Decoder String
+emptyStringFromMaybe maybeTooltip =
     Json.Decode.succeed (Maybe.withDefault "" maybeTooltip)
 
 
@@ -461,13 +461,13 @@ trackableIdFromItem item =
 lineChartData : Graph
 lineChartData =
     { title = "Empty test data"
-    , set1Label = ""
-    , set2Label = ""
-    , set3Label = ""
-    , set4Label = ""
-    , set5Label = ""
-    , set6Label = ""
-    , set7Label = ""
+    , set1Label = Nothing
+    , set2Label = Nothing
+    , set3Label = Nothing
+    , set4Label = Nothing
+    , set5Label = Nothing
+    , set6Label = Nothing
+    , set7Label = Nothing
     , dataPoints =
         []
     }
