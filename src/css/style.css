@@ -32,6 +32,7 @@ p {
 }
 
 #section-2,
+#section-3 .graph-container,
 #section-4,
 #section-5,
 #section-7 {
@@ -221,7 +222,14 @@ p {
 }
 
 /** Chart **/
+.graph-container {
+  color: var(--grey-light);
+  margin: 2rem auto;
+  padding: 4rem 0 2rem 0;
+}
+
 .chart {
+  font-size: 0.75rem;
   margin: 4rem auto;
   max-width: 750px;
 }
