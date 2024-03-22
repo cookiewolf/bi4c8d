@@ -33,6 +33,7 @@ type alias Post =
     , forwardedFrom : String
     , viewCount : Int
     , avatarSrc : String
+    , maybeVideo : Maybe String
     , body : String
     }
 
@@ -200,7 +201,7 @@ postDictDecoder =
 
 postDecoder : Json.Decode.Decoder Post
 postDecoder =
-    Json.Decode.map6 Post
+    Json.Decode.map7 Post
         (Json.Decode.field "section" Json.Decode.string
             |> Json.Decode.andThen sectionIdFromString
         )
@@ -210,6 +211,7 @@ postDecoder =
         (Json.Decode.field "forwarded-from" Json.Decode.string)
         (Json.Decode.field "view-count" Json.Decode.int)
         (Json.Decode.field "avatar-src" Json.Decode.string)
+        (Json.Decode.maybe (Json.Decode.field "video-src" Json.Decode.string))
         (Json.Decode.field "content" Json.Decode.string)
 
 

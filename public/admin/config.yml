@@ -27,6 +27,7 @@ collections:
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "View count", name: "view-count", widget: "number" }
       - { label: "Avatar icon", name: "avatar-src", widget: "image" }
+      - { label: "Video embed src", name: "video-src", widget: "string" }
 
   - name: "message"
     label: "Message"

@@ -152,6 +152,22 @@ p {
   padding-left: 10px;
 }
 
+/* Video */
+.video-container {
+  height: 0px;
+  margin-bottom: 2em;
+  padding-top: 56.25%;
+  position: relative;
+}
+
+.video {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
 /** Message **/
 .messages {
   border: solid 1px var(--grey-dark);

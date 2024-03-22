@@ -59,7 +59,8 @@ viewPost post isFirst =
             Html.text ""
         , Html.div [ Html.Attributes.class "post-inner" ]
             [ Html.h4 [ Html.Attributes.class "post-forwarded-from" ] [ Html.text (t ForwardedLabel ++ post.forwardedFrom) ]
-            , Html.div [ Html.Attributes.class "post-body" ] (Markdown.markdownToHtml post.body)
+            , Html.div [ Html.Attributes.class "post-body" ]
+                (viewVideo post.maybeVideo :: Markdown.markdownToHtml post.body)
             , Html.div [ Html.Attributes.class "post-meta-info" ]
                 [ Html.span [ Html.Attributes.class "post-view-count" ] [ viewPostViewCount post.viewCount ]
                 , Html.span [ Html.Attributes.class "post-time" ] [ viewPostTime post.datetime ]
@@ -107,3 +108,19 @@ viewPostViewCount viewCount =
          else
             String.fromInt viewCount
         )
+
+
+viewVideo : Maybe String -> Html.Html Msg
+viewVideo videoSrc =
+    case videoSrc of
+        Just aVideoSrc ->
+            Html.div [ Html.Attributes.class "video-container" ]
+                [ Html.iframe
+                    [ Html.Attributes.class "video"
+                    , Html.Attributes.src aVideoSrc
+                    ]
+                    []
+                ]
+
+        Nothing ->
+            Html.text ""
