@@ -2,7 +2,7 @@ backend:
   name: github
   repo: cookiewolf/bi4c8d
   branch: main
-publish_mode: editorial_workflow
+publish_mode: simple
 media_folder: public/images/uploads
 public_folder: /images/uploads
 collections:
@@ -27,6 +27,7 @@ collections:
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "View count", name: "view-count", widget: "number" }
       - { label: "Avatar icon", name: "avatar-src", widget: "image" }
+      - { label: "Video embed src", name: "video-src", widget: "string" }
 
   - name: "message"
     label: "Message"

@@ -65,11 +65,22 @@ viewPortraitList randomIntList =
     Html.div [ Html.Attributes.class "portraits" ]
         (List.map2
             (\count randomInt ->
-                animatedImg (fadeIn ((randomInt * 100) + count * 10))
-                    [ Html.Attributes.src (jpgSrcFromInt count)
-                    , Html.Attributes.class "portrait"
+                Html.div
+                    [ if modBy 14 randomInt == 0 then
+                        Html.Attributes.style "background" "#33FF00"
+
+                      else
+                        Html.Attributes.style "background" "white"
+                    , Html.Attributes.style "margin" "2px"
+                    , Html.Attributes.style "overflow" "hidden"
                     ]
-                    []
+                    [ animatedImg (fadeIn ((randomInt * 100) + count * 10))
+                        [ Html.Attributes.src (jpgSrcFromInt count)
+                        , Html.Attributes.class "portrait"
+                        , Html.Attributes.style "object-fit" "cover"
+                        ]
+                        []
+                    ]
             )
             (List.range 1 619)
             randomIntList
@@ -95,7 +106,7 @@ fadeIn delay =
             ]
         }
         [ Simple.Animation.Property.opacity 0 ]
-        [ Simple.Animation.Property.opacity 1 ]
+        [ Simple.Animation.Property.opacity 0.8 ]
 
 
 slideInTicker : ( Float, Float ) -> Int -> Simple.Animation.Animation

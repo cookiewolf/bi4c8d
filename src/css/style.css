@@ -5,7 +5,7 @@
   --grey-dark: #a9a4a4;
   
   --default-radius: 30px;
-  --max-section-width: 1140px;
+  --max-section-width: 800px;
 }
 
 html body {
@@ -13,29 +13,30 @@ html body {
   font-family: Inter, sans-serif;
 }
 
+h1 {
+  padding: 2rem 0 0 0;
+}
+
 p {
   margin-bottom: 1rem;
 }
 
 .page-wrapper {
+  text-align: center;
 }
 
 .section {
   margin: 0 auto;
-  max-width: var(--max-section-width);
-  padding: 2rem 1rem;
+  padding: 4.5rem 1rem;
   width: 100%;
 }
 
+#section-2,
+#section-3 .graph-container,
 #section-4,
-#section-5 {
+#section-5,
+#section-7 {
   background: var(--black);
-  margin: 0 auto;
-  padding: 0;
-}
-
-#section-4 {
-  padding: 4rem 0 0 0;
 }
 
 #section-8,
@@ -57,23 +58,25 @@ p {
 .main-texts {
   margin: 0 auto;
   max-width: var(--max-section-width);
-  padding: 2rem 0;
-  width: 100%;
 }
 
 .main-text {
+  background: var(--white);
   border: solid var(--black) 1px;
   border-radius: var(--default-radius);
   padding: 30px 30px 20px 30px;
+  text-align: left
 }
 
 .main-text-title {
+  font-size: 1.375rem;
   padding: 0 0 20px 0;
 }
 
 .main-text-body {
   background: url(/images/main-text-icons.svg) bottom right no-repeat;
   background-size: 70px;
+  font-size: 1.25rem;
   padding-bottom: 40px;
 }
 
@@ -89,7 +92,8 @@ p {
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin: 20px 0;
+  margin: 20px 55px;
+  max-width: 420px;
   text-align: center;
 }
 
@@ -97,7 +101,11 @@ p {
   border: solid var(--black) 1px;
   border-radius: var(--default-radius);
   padding: 10px 20px;
-  width: 360px;
+}
+
+#section-7 .post-inner {
+  border: solid var(--white) 1px;
+  color: var(--white);
 }
 
 .post-avatar {
@@ -144,9 +152,27 @@ p {
   padding-left: 10px;
 }
 
+/* Video */
+.video-container {
+  height: 0px;
+  margin-bottom: 2em;
+  padding-top: 56.25%;
+  position: relative;
+}
+
+.video {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
 /** Message **/
 .messages {
   border: solid 1px var(--grey-dark);
+  margin: 0 auto;
+  max-width: 1040px;
 }
 
 .messages h3 {
@@ -202,8 +228,24 @@ p {
   margin: 0 auto;
 }
 
+#section-4 .image img {
+  max-width: 80%;
+  opacity: 50%;
+}
+
+#section-4 .image img[alt="Image Recognition 1"] {
+  opacity: 90%;
+}
+
 /** Chart **/
+.graph-container {
+  color: var(--grey-light);
+  margin: 2rem auto;
+  padding: 4rem 0 2rem 0;
+}
+
 .chart {
+  font-size: 0.75rem;
   margin: 4rem auto;
   max-width: 750px;
 }
@@ -219,7 +261,7 @@ p {
   flex-direction: row;
   flex-wrap: wrap;
   height: 500px;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
 }
 
@@ -249,14 +291,13 @@ p {
 .portraits {
   display: flex;
   flex-flow: wrap;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .portrait {
   height: 100%;
   justify-content: center;
   opacity: 2%;
-  padding: 4px;
   width: 80px;
 }
 
