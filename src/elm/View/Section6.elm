@@ -22,11 +22,15 @@ view model =
 viewTerminal : List Data.Terminal -> Html.Html Msg
 viewTerminal terminals =
     let
-        welcomeMessage =
-            "New msg"
+        { welcomeMessage, prompt } =
+            case List.head terminals of
+                Just aTerminal ->
+                    aTerminal
 
-        prompt =
-            "new prompt$"
+                Nothing ->
+                    { welcomeMessage = "Welcome!"
+                    , prompt = "$"
+                    }
     in
     Html.node "ttty-terminal"
         [ Html.Attributes.id "ttty-terminal"
