@@ -3,6 +3,7 @@ import "../css/style.css";
 import "@fontsource/inter";
 
 import { Elm } from "../elm/Main.elm";
+import Terminal from "./terminal";
 
 import mainText from "../../data/main-text.json"
 import posts from "../../data/posts.json"
@@ -12,12 +13,14 @@ import graphs from "../../data/graphs.json"
 import tickers from "../../data/tickers.json"
 
 if (process.env.NODE_ENV === "development") {
-    const ElmDebugTransform = await import("elm-debug-transformer")
+    const ElmDebugTransform = await import("elm-debug-transformer");
 
     ElmDebugTransform.register({
         simple_mode: true
-    })
+    });
 }
+
+customElements.define("ttty-terminal", Terminal);
 
 const root = document.querySelector("#app div");
 const app = Elm.Main.init({
