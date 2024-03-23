@@ -15,10 +15,22 @@ view model =
         [ Html.Attributes.class "ttty-terminal-container"
         , Html.Attributes.style "height" (String.fromFloat (Tuple.first model.viewportHeightWidth - 200) ++ "px")
         ]
-        [ Html.node "ttty-terminal"
-            [ Html.Attributes.id "ttty-terminal"
-            , Html.Attributes.attribute "command" "TODO-get commands from CMS"
-            ]
-            []
-        ]
+        [ viewTerminal model.content.terminals ]
     ]
+
+
+viewTerminal : List Data.Terminal -> Html.Html Msg
+viewTerminal terminals =
+    let
+        welcomeMessage =
+            "New msg"
+
+        prompt =
+            "new prompt$"
+    in
+    Html.node "ttty-terminal"
+        [ Html.Attributes.id "ttty-terminal"
+        , Html.Attributes.attribute "welcome-message" welcomeMessage
+        , Html.Attributes.attribute "prompt" prompt
+        ]
+        []

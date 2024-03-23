@@ -10,6 +10,7 @@ import posts from "../../data/posts.json"
 import messages from "../../data/messages.json"
 import images from "../../data/images.json"
 import graphs from "../../data/graphs.json"
+import terminals from "../../data/terminals.json"
 import tickers from "../../data/tickers.json"
 
 if (process.env.NODE_ENV === "development") {
@@ -31,6 +32,7 @@ const app = Elm.Main.init({
         "messages": messages,
         "images": images,
         "graphs": graphs,
+        "terminals": terminals,
         "tickers": tickers
     }
 });

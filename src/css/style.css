@@ -319,10 +319,10 @@ p {
 }
 
 #ttty-terminal.terminal {
-  --terminal-bg-color: var(--grey-dark);
-  --terminal-fg-color: var(--black);
+  --terminal-bg-color: var(--black);
+  --terminal-fg-color: var(--white);
   /* --terminal-font: */
-  --terminal-accent-color: var(--black);
+  --terminal-accent-color: var(--white);
   --terminal-error-color: var(--red);
 }
 

@@ -40,7 +40,6 @@ collections:
       - { label: "Date & time", name: "datetime", widget: "datetime" }
       - { label: "Body", name: "body", widget: "markdown" }
 
-
   - name: "image"
     label: "Image"
     folder: "content/image"
@@ -88,6 +87,15 @@ collections:
               - { label: "Tooltip6", name: "tooltip6", widget: "string", required: false }
               - { label: "Count7", name: "count7", widget: "number", required: false }
               - { label: "Tooltip7", name: "tooltip7", widget: "string", required: false }
+
+  - name: "terminal"
+    label: "Terminal"
+    folder: "content/terminal"
+    create: true
+    identifier_field: welcome-message
+    fields:
+      - { label: "Welcome message", name: "welcome-message", widget: "string" }
+      - { label: "Prompt", name: "prompt", widget: "string" }
 
   - name: "ticker"
     label: "Ticker"
