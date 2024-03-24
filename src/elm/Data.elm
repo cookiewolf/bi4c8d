@@ -90,7 +90,10 @@ type alias YPoint =
 
 
 type alias Terminal =
-    { welcomeMessage : String, prompt : String }
+    { terminalId : String
+    , welcomeMessage : String
+    , prompt : String
+    }
 
 
 type alias Ticker =
@@ -299,7 +302,10 @@ terminalDictDecoder =
 
 terminalDecoder : Json.Decode.Decoder Terminal
 terminalDecoder =
-    Json.Decode.map2 Terminal
+    Json.Decode.map3 Terminal
+        (Json.Decode.field "title" Json.Decode.string
+            |> Json.Decode.andThen slugFromString
+        )
         (Json.Decode.field "welcome-message" Json.Decode.string)
         (Json.Decode.field "prompt" Json.Decode.string)
 
@@ -352,6 +358,11 @@ floatFromIsoStringDecoder dateString =
 
         Err _ ->
             Json.Decode.succeed 0
+
+
+slugFromString : String -> Json.Decode.Decoder String
+slugFromString rawString =
+    Json.Decode.succeed (String.toLower (String.replace " " "-" rawString))
 
 
 sectionIdFromString : String -> Json.Decode.Decoder SectionId

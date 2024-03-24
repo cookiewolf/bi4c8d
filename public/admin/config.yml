@@ -92,8 +92,8 @@ collections:
     label: "Terminal"
     folder: "content/terminal"
     create: true
-    identifier_field: welcome-message
     fields:
+      - { label: "Title", name: "title", widget: "string" }
       - { label: "Welcome message", name: "welcome-message", widget: "string" }
       - { label: "Prompt", name: "prompt", widget: "string" }
 

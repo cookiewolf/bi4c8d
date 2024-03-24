@@ -1,15 +1,13 @@
 import { initTerminal } from 'ttty';
 
 
-
-
 class Terminal extends HTMLElement {
     constructor() {
         super();
     }
     connectedCallback() {
         const settings = {
-            host: document.querySelector("#ttty-terminal"),
+            host: document.querySelector('#terminal-1'),
             commands: {
                 echo: {
                     name: "echo",
@@ -30,7 +28,7 @@ class Terminal extends HTMLElement {
                 }
             }
         }
-        const terminalSettings = this.getCommands(); 
+        const terminalSettings = this.getTerminalSettings();
         initTerminal({ ...settings,
             welcomeMessage: terminalSettings.welcomeMessage,
             prompt: terminalSettings.prompt
@@ -38,15 +36,16 @@ class Terminal extends HTMLElement {
     }
     attributeChangedCallback() {}
     static getObservedAttributes() {
-        return ['welcome-message', 'prompt']; 
+        return ['host-id', 'welcome-message', 'prompt']; 
     }
 
-    // Our function to set the textContent based on attributes.
-    getCommands()
+    // Get terminal settings from attributes.
+    getTerminalSettings()
     {
+        const hostId = this.getAttribute('host-id');
         const welcomeMessage = this.getAttribute('welcome-message');
         const prompt = this.getAttribute('prompt');
-        return { welcomeMessage, prompt };
+        return { hostId, welcomeMessage, prompt };
     }
 }
 
