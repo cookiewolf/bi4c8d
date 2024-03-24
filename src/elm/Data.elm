@@ -1,4 +1,4 @@
-module Data exposing (Content, Flags, Image, LineChartDatum, MainText, Message, Post, SectionId(..), TickerState, decodedContent, filterBySection, initialTickerState, lineChartData, sideToString, trackableIdFromItem, trackableIdListFromFlags, updateTickerState)
+module Data exposing (Content, Flags, Image, LineChartDatum, MainText, Message, Post, SectionId(..), Terminal, TickerState, decodedContent, filterBySection, initialTickerState, lineChartData, sideToString, trackableIdFromItem, trackableIdListFromFlags, updateTickerState)
 
 import Dict
 import Iso8601
@@ -12,6 +12,7 @@ type alias Content =
     , messages : List Message
     , images : List Image
     , graphs : List Graph
+    , terminals : List Terminal
     , tickers : List Ticker
     }
 
@@ -88,6 +89,10 @@ type alias YPoint =
     { tooltip : String, count : Maybe Float }
 
 
+type alias Terminal =
+    { welcomeMessage : String, prompt : String }
+
+
 type alias Ticker =
     { id : Int, label : String, total : Int }
 
@@ -120,12 +125,13 @@ decodedContent flags =
                 , images = orderByDisplayPosition goodContent.images
             }
 
-        Err _ ->
+        Err error ->
             { mainText = []
             , posts = []
             , messages = []
             , images = []
             , graphs = []
+            , terminals = []
             , tickers = []
             }
 
@@ -142,13 +148,14 @@ orderByDisplayPosition items =
 
 flagsDecoder : Json.Decode.Decoder Content
 flagsDecoder =
-    Json.Decode.map6
+    Json.Decode.map7
         Content
         (Json.Decode.field "main-text" mainTextDictDecoder)
         (Json.Decode.field "posts" postDictDecoder)
         (Json.Decode.field "messages" messageDictDecoder)
         (Json.Decode.field "images" imageDictDecoder)
         (Json.Decode.field "graphs" graphDictDecoder)
+        (Json.Decode.field "terminals" terminalDictDecoder)
         (Json.Decode.field "tickers" tickerDictDecoder)
 
 
@@ -281,6 +288,20 @@ yPointDecoder ( countField, tooltipField ) =
 emptyStringFromMaybe : Maybe String -> Json.Decode.Decoder String
 emptyStringFromMaybe maybeTooltip =
     Json.Decode.succeed (Maybe.withDefault "" maybeTooltip)
+
+
+terminalDictDecoder : Json.Decode.Decoder (List Terminal)
+terminalDictDecoder =
+    Json.Decode.dict terminalDecoder
+        |> Json.Decode.map Dict.toList
+        |> Json.Decode.map (\keyedItems -> List.map (\( _, terminal ) -> terminal) keyedItems)
+
+
+terminalDecoder : Json.Decode.Decoder Terminal
+terminalDecoder =
+    Json.Decode.map2 Terminal
+        (Json.Decode.field "welcome-message" Json.Decode.string)
+        (Json.Decode.field "prompt" Json.Decode.string)
 
 
 tickerDictDecoder : Json.Decode.Decoder (List Ticker)

@@ -5,12 +5,13 @@
     "dev": "vite",
     "prebuild": "elm-tooling install",
     "build": "npm run generate && vite build",
-    "generate": "npm run generate_main-text && npm run generate_messages && npm run generate_posts && npm run generate_images && npm run generate_graphs && npm run generate_tickers",
+    "generate": "npm run generate_main-text && npm run generate_messages && npm run generate_posts && npm run generate_images && npm run generate_graphs && npm run generate_terminals && npm run generate_tickers",
     "generate_main-text": "mkdir -p ./data && m2j -o ./data/main-text.json -c ./content/main-text/*.md",
     "generate_posts": "m2j -o ./data/posts.json -c ./content/post/*.md",
     "generate_messages": "m2j -o ./data/messages.json -c ./content/message/*.md",
     "generate_images": "m2j -o ./data/images.json -c ./content/image/*.md",
     "generate_graphs": "m2j -o ./data/graphs.json -c ./content/graph/*.md",
+    "generate_terminals": "m2j -o ./data/terminals.json -c ./content/terminal/*.md",
     "generate_tickers": "m2j -o ./data/tickers.json -c ./content/ticker/*.md",
     "serve": "vite preview",
     "format": "elm-format",
@@ -26,6 +27,7 @@
   },
   "dependencies": {
     "@fontsource/inter": "^5.0.15",
-    "elm-debug-transformer": "^1.1.2"
+    "elm-debug-transformer": "^1.1.2",
+    "ttty": "^1.6.0"
   }
 }

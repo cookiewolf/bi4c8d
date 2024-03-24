@@ -3,6 +3,10 @@
   --white: #ffffff;
   --grey-light: #d9d9d9;
   --grey-dark: #a9a4a4;
+
+  --red: #E4003B;
+  --blue: #0087DC;
+  --green: #33FF00;
   
   --default-radius: 30px;
   --max-section-width: 800px;
@@ -299,6 +303,33 @@ p {
   justify-content: center;
   opacity: 2%;
   width: 80px;
+}
+
+/** TTTY Terminal **/
+.ttty-terminal-container {
+  margin: 2rem auto;
+  max-width: var(--max-section-width);
+}
+
+#ttty-terminal {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+#ttty-terminal.terminal {
+  --terminal-bg-color: var(--black);
+  --terminal-fg-color: var(--white);
+  /* --terminal-font: */
+  --terminal-accent-color: var(--white);
+  --terminal-error-color: var(--red);
+}
+
+#ttty-terminal .terminal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
 }
 
 /** Ticker **/
