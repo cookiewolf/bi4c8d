@@ -1,7 +1,5 @@
 import { initTerminal } from 'ttty';
-
-
-
+import { terminal1 } from './terminal1';
 
 class Terminal extends HTMLElement {
     constructor() {
@@ -9,28 +7,10 @@ class Terminal extends HTMLElement {
     }
     connectedCallback() {
         const settings = {
-            host: document.querySelector("#ttty-terminal"),
-            commands: {
-                echo: {
-                    name: "echo",
-                    description: "a test command with one echo arg",
-                    argDescriptions: ["a string to be echoed in console"],
-                    func: ({ print }, argument) => { print(argument) }
-                },
-                test: {
-                    name: "test",
-                    description: "a test command with no args",
-                    func: ({ print }) => { print("foo") }
-                },
-                multiply: {
-                    name: "multiply",
-                    description: "Multiply two numbers",
-                    argDescriptions: ["number one", "number two"],
-                    func: ({ print }, one, two) => { print(Number(one) * Number(two)) }
-                }
-            }
+            host: document.querySelector('#terminal-1'),
+            commands: terminal1,
         }
-        const terminalSettings = this.getCommands(); 
+        const terminalSettings = this.getTerminalSettings();
         initTerminal({ ...settings,
             welcomeMessage: terminalSettings.welcomeMessage,
             prompt: terminalSettings.prompt
@@ -38,15 +18,17 @@ class Terminal extends HTMLElement {
     }
     attributeChangedCallback() {}
     static getObservedAttributes() {
-        return ['welcome-message', 'prompt']; 
+        return ['host-id', 'welcome-message', 'prompt', 'command-src']; 
     }
 
-    // Our function to set the textContent based on attributes.
-    getCommands()
+    // Get terminal settings from attributes.
+    getTerminalSettings()
     {
+        const hostId = this.getAttribute('host-id');
         const welcomeMessage = this.getAttribute('welcome-message');
         const prompt = this.getAttribute('prompt');
-        return { welcomeMessage, prompt };
+        const commandSrc = this.getAttribute('commands');
+        return { hostId, welcomeMessage, prompt, commandSrc };
     }
 }
 
