@@ -309,6 +309,7 @@ p {
 .ttty-terminal-container {
   margin: 2rem auto;
   max-width: var(--max-section-width);
+  text-align:left;
 }
 
 ttty-terminal {
