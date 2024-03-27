@@ -3,6 +3,7 @@ module View.Section6 exposing (view)
 import Data
 import Html
 import Html.Attributes
+import Json.Encode
 import Model exposing (Model)
 import Msg exposing (Msg)
 import View.MainText
@@ -22,7 +23,7 @@ view model =
 viewTerminal : List Data.Terminal -> Html.Html Msg
 viewTerminal terminals =
     let
-        { terminalId, welcomeMessage, prompt } =
+        { terminalId, welcomeMessage, prompt, commandSrc } =
             case List.head terminals of
                 Just aTerminal ->
                     aTerminal
@@ -31,6 +32,7 @@ viewTerminal terminals =
                     { terminalId = "ttty-terminal"
                     , welcomeMessage = "Welcome!"
                     , prompt = "$"
+                    , commandSrc = "defaultCommands.json"
                     }
     in
     Html.node "ttty-terminal"
@@ -38,5 +40,6 @@ viewTerminal terminals =
         , Html.Attributes.attribute "host-id" terminalId
         , Html.Attributes.attribute "welcome-message" welcomeMessage
         , Html.Attributes.attribute "prompt" prompt
+        , Html.Attributes.attribute "commands" commandSrc
         ]
         []

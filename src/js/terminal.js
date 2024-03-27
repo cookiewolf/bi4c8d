@@ -1,5 +1,5 @@
 import { initTerminal } from 'ttty';
-
+import { terminal1 } from './terminal1';
 
 class Terminal extends HTMLElement {
     constructor() {
@@ -8,25 +8,7 @@ class Terminal extends HTMLElement {
     connectedCallback() {
         const settings = {
             host: document.querySelector('#terminal-1'),
-            commands: {
-                echo: {
-                    name: "echo",
-                    description: "a test command with one echo arg",
-                    argDescriptions: ["a string to be echoed in console"],
-                    func: ({ print }, argument) => { print(argument) }
-                },
-                test: {
-                    name: "test",
-                    description: "a test command with no args",
-                    func: ({ print }) => { print("foo") }
-                },
-                multiply: {
-                    name: "multiply",
-                    description: "Multiply two numbers",
-                    argDescriptions: ["number one", "number two"],
-                    func: ({ print }, one, two) => { print(Number(one) * Number(two)) }
-                }
-            }
+            commands: terminal1,
         }
         const terminalSettings = this.getTerminalSettings();
         initTerminal({ ...settings,
@@ -36,7 +18,7 @@ class Terminal extends HTMLElement {
     }
     attributeChangedCallback() {}
     static getObservedAttributes() {
-        return ['host-id', 'welcome-message', 'prompt']; 
+        return ['host-id', 'welcome-message', 'prompt', 'command-src']; 
     }
 
     // Get terminal settings from attributes.
@@ -45,7 +27,8 @@ class Terminal extends HTMLElement {
         const hostId = this.getAttribute('host-id');
         const welcomeMessage = this.getAttribute('welcome-message');
         const prompt = this.getAttribute('prompt');
-        return { hostId, welcomeMessage, prompt };
+        const commandSrc = this.getAttribute('commands');
+        return { hostId, welcomeMessage, prompt, commandSrc };
     }
 }
 
