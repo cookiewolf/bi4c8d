@@ -313,10 +313,8 @@ p {
 }
 
 ttty-terminal {
-  display: flex;
-  flex-direction: column;
+  display: block;
   height: 100%;
-  width: 100%;
 }
 
 ttty-terminal.terminal {
@@ -327,11 +325,6 @@ ttty-terminal.terminal {
   --terminal-error-color: var(--red);
 }
 
-ttty-terminal .terminal-container {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-}
 
 /** Ticker **/
 .tickers {
