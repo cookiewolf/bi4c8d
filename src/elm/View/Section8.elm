@@ -115,8 +115,15 @@ slideInTicker ( height, width ) id =
         idFloat =
             toFloat (id + 1)
 
+        imagesPerRow =
+            -- width of image + padding
+            floor (width / (80 + 4))
+
+        heightOfAllRows =
+            floor (620 / toFloat imagesPerRow) * 80
+
         endY =
-            idFloat * (height / 8)
+            idFloat * (toFloat heightOfAllRows / 15)
 
         ( ( startX, startY ), endX ) =
             case id of
@@ -136,22 +143,22 @@ slideInTicker ( height, width ) id =
                     ( ( 0, 100 ), 200 )
 
                 5 ->
-                    ( ( 0, 120 ), width / 2 )
+                    ( ( 0, 120 ), 100 )
 
                 6 ->
-                    ( ( width, 140 ), 600 )
+                    ( ( width, 140 ), width / 2 )
 
                 7 ->
-                    ( ( 0, 160 ), 800 )
+                    ( ( 0, 160 ), width - 600 )
 
                 8 ->
                     ( ( width, 180 ), 400 )
 
                 9 ->
-                    ( ( width, 200 ), 600 )
+                    ( ( width, 200 ), width - 400 )
 
                 10 ->
-                    ( ( width, 220 ), 800 )
+                    ( ( width, 220 ), width - 600 )
 
                 11 ->
                     ( ( 0, 240 ), width / 2 )
