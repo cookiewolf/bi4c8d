@@ -57,6 +57,10 @@ p {
   width: 100%;
 }
 
+#section-9 {
+  padding-top: 0;
+}
+
 /** Main Text **/
 
 .main-texts {
@@ -349,7 +353,9 @@ ttty-terminal .terminal-container {
 
 /** Final ticker **/
 h2.final-ticker {
-  font-size: 6rem;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin: 10px auto;
-  padding: 1rem 6rem;
 }
