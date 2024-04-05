@@ -55,6 +55,7 @@ init flags =
       , inView = inViewModel
       , viewportHeightWidth = ( 800, 800 )
       , chartHovering = []
+      , terminalState = { input = "", history = [] }
       }
     , Cmd.batch
         [ Random.generate NewRandomIntList generateRandomIntList
@@ -133,6 +134,9 @@ update msg model =
 
         OnChartHover hovering ->
             ( { model | chartHovering = hovering }, Cmd.none )
+
+        SubmitCommand command ->
+            ( { model | terminalState = { input = command, history = [] } }, Cmd.none )
 
 
 viewDocument : Model -> Browser.Document Msg

@@ -6,7 +6,7 @@ import Html.Attributes
 import Html.Events
 import Json.Encode
 import Model exposing (Model)
-import Msg exposing (Msg)
+import Msg exposing (Msg(..))
 import View.MainText
 
 
@@ -24,7 +24,7 @@ view model =
 viewTerminal : Model -> Html.Html Msg
 viewTerminal model =
     let
-        { terminalId, welcomeMessage, prompt, commands } =
+        { terminalId, welcomeMessage, prompt, commandList } =
             case List.head model.content.terminals of
                 Just aTerminal ->
                     aTerminal
@@ -33,10 +33,14 @@ viewTerminal model =
                     { terminalId = "default-terminal"
                     , welcomeMessage = "Welcome!"
                     , prompt = "$"
-                    , commands = "defaultCommands.json"
+                    , commandList = []
                     }
     in
     Html.div [ Html.Attributes.class "terminal" ]
         [ Html.h3 [] [ Html.text welcomeMessage ]
-        , Html.span [] [ Html.text prompt, Html.input [] [] ]
+        , Html.span []
+            [ Html.text prompt
+            , Html.input [ Html.Attributes.value model.terminalState.input, Html.Events.onInput SubmitCommand ] []
+            ]
+        , Html.div [] [ Html.text model.terminalState.input ]
         ]

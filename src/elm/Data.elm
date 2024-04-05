@@ -93,8 +93,12 @@ type alias Terminal =
     { terminalId : String
     , welcomeMessage : String
     , prompt : String
-    , commands : String
+    , commandList : List Command
     }
+
+
+type alias Command =
+    { name : String, helpText : String, ouput : String }
 
 
 type alias Ticker =
@@ -309,7 +313,15 @@ terminalDecoder =
         )
         (Json.Decode.field "welcome-message" Json.Decode.string)
         (Json.Decode.field "prompt" Json.Decode.string)
-        (Json.Decode.field "commands" Json.Decode.string)
+        (Json.Decode.field "commands" (Json.Decode.list commandDecoder))
+
+
+commandDecoder : Json.Decode.Decoder Command
+commandDecoder =
+    Json.Decode.map3 Command
+        (Json.Decode.field "name" Json.Decode.string)
+        (Json.Decode.field "help-text" Json.Decode.string)
+        (Json.Decode.field "output" Json.Decode.string)
 
 
 tickerDictDecoder : Json.Decode.Decoder (List Ticker)
