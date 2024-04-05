@@ -15,4 +15,5 @@ type alias Model =
     , inView : InView.State
     , viewportHeightWidth : ( Float, Float )
     , chartHovering : List (Chart.Item.One Data.LineChartDatum Chart.Item.Dot)
+    , terminalState : { input : String, history : List String }
     }

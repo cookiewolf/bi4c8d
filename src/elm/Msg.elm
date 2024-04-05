@@ -15,3 +15,4 @@ type Msg
     | GotViewport Browser.Dom.Viewport
     | OnElementLoad String
     | OnChartHover (List (Chart.Item.One Data.LineChartDatum Chart.Item.Dot))
+    | SubmitCommand String

@@ -309,32 +309,32 @@ p {
   width: 80px;
 }
 
-/** TTTY Terminal **/
-.ttty-terminal-container {
+/** Terminal **/
+.terminal-container {
   margin: 2rem auto;
   max-width: var(--max-section-width);
   text-align:left;
 }
 
-ttty-terminal {
-  display: flex;
-  flex-direction: column;
+.terminal{
   height: 100%;
-  width: 100%;
+  padding: 1rem 2rem;
 }
 
-ttty-terminal.terminal {
-  --terminal-bg-color: var(--black);
-  --terminal-fg-color: var(--white);
-  /* --terminal-font: */
-  --terminal-accent-color: var(--white);
-  --terminal-error-color: var(--red);
+.terminal input,
+.terminal {
+  background: var(--black);
+  color: var(--white);
 }
 
-ttty-terminal .terminal-container {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
+.terminal input {
+  margin-left: 0.5rem;
+}
+
+.terminal input:focus-visible,
+.terminal input {
+  border: none;
+  outline: none;
 }
 
 /** Ticker **/
