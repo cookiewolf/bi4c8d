@@ -3,7 +3,6 @@ import "../css/style.css";
 import "@fontsource/inter";
 
 import { Elm } from "../elm/Main.elm";
-import Terminal from "./terminal";
 
 import mainText from "../../data/main-text.json"
 import posts from "../../data/posts.json"
@@ -20,8 +19,6 @@ if (process.env.NODE_ENV === "development") {
         simple_mode: true
     });
 }
-
-customElements.define("ttty-terminal", Terminal);
 
 const root = document.querySelector("#app div");
 const app = Elm.Main.init({

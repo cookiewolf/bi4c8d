@@ -3,6 +3,7 @@ module View.Section6 exposing (view)
 import Data
 import Html
 import Html.Attributes
+import Html.Events
 import Json.Encode
 import Model exposing (Model)
 import Msg exposing (Msg)
@@ -13,33 +14,29 @@ view : Model -> List (Html.Html Msg)
 view model =
     [ View.MainText.viewTop Data.Section6 model.content.mainText
     , Html.div
-        [ Html.Attributes.class "ttty-terminal-container"
+        [ Html.Attributes.class "terminal-container"
         , Html.Attributes.style "height" (String.fromFloat (Tuple.first model.viewportHeightWidth - 200) ++ "px")
         ]
-        [ viewTerminal model.content.terminals ]
+        [ viewTerminal model ]
     ]
 
 
-viewTerminal : List Data.Terminal -> Html.Html Msg
-viewTerminal terminals =
+viewTerminal : Model -> Html.Html Msg
+viewTerminal model =
     let
-        { terminalId, welcomeMessage, prompt, commandSrc } =
-            case List.head terminals of
+        { terminalId, welcomeMessage, prompt, commands } =
+            case List.head model.content.terminals of
                 Just aTerminal ->
                     aTerminal
 
                 Nothing ->
-                    { terminalId = "ttty-terminal"
+                    { terminalId = "default-terminal"
                     , welcomeMessage = "Welcome!"
                     , prompt = "$"
-                    , commandSrc = "defaultCommands.json"
+                    , commands = "defaultCommands.json"
                     }
     in
-    Html.node "ttty-terminal"
-        [ Html.Attributes.id terminalId
-        , Html.Attributes.attribute "host-id" terminalId
-        , Html.Attributes.attribute "welcome-message" welcomeMessage
-        , Html.Attributes.attribute "prompt" prompt
-        , Html.Attributes.attribute "commands" commandSrc
+    Html.div [ Html.Attributes.class "terminal" ]
+        [ Html.h3 [] [ Html.text welcomeMessage ]
+        , Html.span [] [ Html.text prompt, Html.input [] [] ]
         ]
-        []
