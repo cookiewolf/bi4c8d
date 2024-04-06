@@ -4,6 +4,7 @@ import Data
 import Html
 import Html.Attributes
 import Html.Events
+import Html.Events.Extra
 import Json.Encode
 import Model exposing (Model)
 import Msg exposing (Msg(..))
@@ -40,7 +41,12 @@ viewTerminal model =
         [ Html.h3 [] [ Html.text welcomeMessage ]
         , Html.span []
             [ Html.text prompt
-            , Html.input [ Html.Attributes.value model.terminalState.input, Html.Events.onInput SubmitCommand ] []
+            , Html.input
+                [ Html.Attributes.value model.terminalState.input
+                , Html.Events.onInput ChangeCommand
+                , Html.Events.Extra.onEnter (SubmitCommand model.terminalState.input)
+                ]
+                []
             ]
         , Html.div [] [ Html.text model.terminalState.input ]
         ]

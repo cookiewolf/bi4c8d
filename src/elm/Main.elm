@@ -135,8 +135,18 @@ update msg model =
         OnChartHover hovering ->
             ( { model | chartHovering = hovering }, Cmd.none )
 
+        ChangeCommand command ->
+            ( { model | terminalState = { input = command, history = model.terminalState.history } }, Cmd.none )
+
         SubmitCommand command ->
-            ( { model | terminalState = { input = command, history = [] } }, Cmd.none )
+            ( { model
+                | terminalState =
+                    { input = ""
+                    , history = model.terminalState.history ++ [ command ]
+                    }
+              }
+            , Cmd.none
+            )
 
 
 viewDocument : Model -> Browser.Document Msg
