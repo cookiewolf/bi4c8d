@@ -9,4 +9,8 @@ type Key
     | Section8Heading
     | Section10MessageHeading
     | Section11MessageHeading
+      -- Breaches
     | TotalBreachesSinceView Int
+      -- Terminal
+    | HelpText
+    | ErrorText String

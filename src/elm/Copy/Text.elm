@@ -33,6 +33,12 @@ t key =
                 , "people have had their personal data compromised..."
                 ]
 
+        HelpText ->
+            "These shell commands are defined internally. Type `help` to see this list."
+
+        ErrorText command ->
+            "bash: " ++ command ++ ": command not found"
+
 
 monthToString : Time.Month -> String
 monthToString month =

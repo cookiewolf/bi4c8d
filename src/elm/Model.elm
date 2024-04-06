@@ -1,4 +1,4 @@
-module Model exposing (Model)
+module Model exposing (Model, TerminalState)
 
 import Chart.Item
 import Data
@@ -15,5 +15,9 @@ type alias Model =
     , inView : InView.State
     , viewportHeightWidth : ( Float, Float )
     , chartHovering : List (Chart.Item.One Data.LineChartDatum Chart.Item.Dot)
-    , terminalState : { input : String, history : List String }
+    , terminalState : TerminalState
     }
+
+
+type alias TerminalState =
+    { input : String, history : List String }
