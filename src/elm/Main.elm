@@ -136,13 +136,25 @@ update msg model =
             ( { model | chartHovering = hovering }, Cmd.none )
 
         ChangeCommand command ->
-            ( { model | terminalState = { input = command, history = model.terminalState.history } }, Cmd.none )
+            ( { model
+                | terminalState =
+                    { input = command
+                    , history = model.terminalState.history
+                    }
+              }
+            , Cmd.none
+            )
 
         SubmitCommand command ->
             ( { model
                 | terminalState =
                     { input = ""
-                    , history = model.terminalState.history ++ [ command ]
+                    , history =
+                        if command == "clear" then
+                            []
+
+                        else
+                            model.terminalState.history ++ [ command ]
                     }
               }
             , Cmd.none

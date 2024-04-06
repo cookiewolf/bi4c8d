@@ -1,4 +1,4 @@
-module Data exposing (Content, Flags, Image, LineChartDatum, MainText, Message, Post, SectionId(..), Terminal, TickerState, decodedContent, filterBySection, initialTickerState, lineChartData, sideToString, trackableIdFromItem, trackableIdListFromFlags, updateTickerState)
+module Data exposing (Command, Content, Flags, Image, LineChartDatum, MainText, Message, Post, SectionId(..), Terminal, TickerState, decodedContent, filterBySection, initialTickerState, lineChartData, sideToString, trackableIdFromItem, trackableIdListFromFlags, updateTickerState)
 
 import Dict
 import Iso8601
@@ -98,7 +98,7 @@ type alias Terminal =
 
 
 type alias Command =
-    { name : String, helpText : String, ouput : String }
+    { name : String, helpText : String, output : String }
 
 
 type alias Ticker =
