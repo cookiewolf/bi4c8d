@@ -70,4 +70,34 @@ commands:
 
 
       To this date, the discs have not been found.
+  - name: contents
+    help-text: Prints information about the content of the discs
+    output: >-
+      The 25 million records contained the names, addresses, dates of birth,
+      National Insurance numbers and (in the case of claimants and payees) bank
+      details of:
+
+
+      * 7.25 million claimants
+
+      * 15.5 million children, including some who no longer qualify but whose family is claiming for a younger child
+
+      * 2.25 million 'alternative payees' such as partners or carers
+
+      * 3,000 'appointees' who claim the benefit under court instructions
+
+      * 12,500 agents who claim the benefit on behalf of a third party.
+  - name: media
+    help-text: "Prints links to information "
+    output: >-
+      <http://news.bbc.co.uk/1/hi/uk_politics/7104945.stm>
+
+
+      <https://www.theguardian.com/politics/2007/nov/20/economy.personalfinancenews>
+
+
+      <https://web.archive.org/web/20080319123519/http://www.kablenet.com/kd.nsf/FrontpageRSS/702533E1FF0993F88025740F0042FB9B!OpenDocument>
+
+
+      <https://news.bbc.co.uk/2/hi/uk_news/politics/7472814.stm>
 ---
