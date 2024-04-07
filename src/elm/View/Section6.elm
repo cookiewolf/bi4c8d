@@ -41,10 +41,11 @@ viewTerminal model =
                     }
     in
     Html.div [ Html.Attributes.class "terminal" ]
-        [ Html.h3 [] [ Html.text welcomeMessage ]
+        [ Html.h3 [] [ Html.text (String.replace "-" " " terminalId) ]
+        , Html.p [] [ Html.text welcomeMessage ]
         , viewOutput prompt model.terminalState.history commandList
-        , Html.span []
-            [ Html.text prompt
+        , Html.span [ Html.Attributes.class "input-span" ]
+            [ viewPrompt prompt
             , Html.input
                 [ Html.Attributes.value model.terminalState.input
                 , Html.Events.onInput ChangeCommand
@@ -55,13 +56,36 @@ viewTerminal model =
         ]
 
 
+viewPrompt : String -> Html.Html Msg
+viewPrompt prompt =
+    let
+        promptParts =
+            String.split "@" prompt
+
+        userName =
+            Maybe.withDefault "" (List.head promptParts)
+
+        machineName =
+            Maybe.withDefault "bi4c8d" (List.head (List.reverse promptParts)) |> String.replace "$" ""
+    in
+    Html.span [ Html.Attributes.class "prompt" ]
+        [ Html.span [ Html.Attributes.class "user-name" ] [ Html.text userName ]
+        , Html.text "@"
+        , Html.span [ Html.Attributes.class "machine-name" ] [ Html.text machineName ]
+        , Html.text "$"
+        ]
+
+
 viewOutput : String -> List String -> List Data.Command -> Html.Html Msg
 viewOutput prompt commandHistory commandList =
     Html.div [ Html.Attributes.class "output-container" ]
         (List.map
             (\command ->
                 Html.div [ Html.Attributes.class "output" ]
-                    [ Html.span [] [ Html.text prompt, Html.span [ Html.Attributes.class "command" ] [ Html.text command ] ]
+                    [ Html.span []
+                        [ viewPrompt prompt
+                        , Html.span [ Html.Attributes.class "command" ] [ Html.text command ]
+                        ]
                     , viewResponse command commandList
                     ]
             )

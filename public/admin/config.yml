@@ -93,8 +93,8 @@ collections:
     folder: "content/terminal"
     create: true
     fields:
-      - { label: "Title", name: "title", widget: "string", hint: "Not displayed - used as ID in markup and CMS"  }
-      - { label: "Welcome message", name: "welcome-message", widget: "string" }
+      - { label: "Title", name: "title", widget: "string", hint: "Displayed in terminal title bar"  }
+      - { label: "Welcome message", name: "welcome-message", widget: "string", hint: "Displayed above initial prompt"}
       - { label: "Prompt", name: "prompt", widget: "string" }
       - label: Commands
         name: commands
