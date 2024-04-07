@@ -311,19 +311,44 @@ p {
 
 /** Terminal **/
 .terminal-container {
-  margin: 2rem auto;
-  max-width: var(--max-section-width);
-  text-align:left;
+  font-family: "Source Code Pro", sans-serif;
+  padding: 2rem 0;
 }
 
 .terminal{
+  border: 2px solid var(--grey-dark);
   height: 100%;
+  margin: 0 auto;
+  max-width: var(--max-section-width);
   overflow: auto;
-  padding: 1rem 2rem;
+  text-align:left;
+}
+
+.terminal h3 {
+  background: var(--grey-dark);
+  color: var(--black);
+  padding: 0 1rem;
+}
+
+.terminal h3 + p,
+.terminal .output-container {
+  padding: 0 1rem;
+}
+
+.terminal .input-span .prompt {
+  padding-left: 1rem;
+}
+
+.terminal .user-name {
+  color: var(--green);
+}
+
+.terminal .machine-name {
+  color: var(--blue);
 }
 
 .terminal input,
-.terminal {
+.terminal-container {
   background: var(--black);
   color: var(--white);
 }
