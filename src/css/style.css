@@ -311,6 +311,7 @@ p {
 
 /** Terminal **/
 .terminal-container {
+  font-family: "Source Code Pro", sans-serif;
   margin: 2rem auto;
   max-width: var(--max-section-width);
   text-align:left;
