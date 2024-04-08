@@ -197,4 +197,10 @@ commands:
       sorry:
 
       references:
+  - name: paul-gray
+    output: "[https://web.archive.org/web/20081118223337/http://www.channel4.com/ne\
+      ws/articles/politics/domestic_politics/paul+gray+back+at+work/1136847](ht\
+      tps://web.archive.org/web/20081118223337/http://www.channel4.com/news/art\
+      icles/politics/domestic_politics/paul+gray+back+at+work/1136847)"
+    help-text: Provides a link to information about Paul Gray
 ---
