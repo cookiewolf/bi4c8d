@@ -102,6 +102,7 @@ collections:
         fields:
           - { label: "Name", name: "name", widget: "string" }
           - { label: "Help text", name: "help-text", widget: "string" }
+          - { label: "Arguments", name: "args", widget: "list", allow_add: true, hint: "Type name of sub-command followed by comma. Sub-commands need to be added as commands.", required: false }
           - { label: "Output", name: "output", widget: "markdown" }
 
   - name: "ticker"

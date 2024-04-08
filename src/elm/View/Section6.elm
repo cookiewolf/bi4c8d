@@ -112,18 +112,40 @@ viewResponse command commandList =
 
 outputFromCommand : String -> List Data.Command -> String
 outputFromCommand command commandList =
-    (List.head
-        (List.filter
-            (\aCommand -> command == aCommand.name)
-            commandList
-        )
-        |> Maybe.withDefault { helpText = "", name = "", output = "" }
-    ).output
+    let
+        theCommand =
+            List.head
+                (List.filter
+                    (\aCommand -> command == aCommand.name)
+                    commandList
+                )
+                |> Maybe.withDefault { helpText = "", name = "", output = "", subCommands = [] }
+    in
+    if List.member theCommand (hasSubCommands commandList) then
+        theCommand.helpText
+
+    else
+        theCommand.output
 
 
 terminalCommandNames : List Data.Command -> List String
 terminalCommandNames commands =
     List.map .name commands
+
+
+hasSubCommands : List Data.Command -> List Data.Command
+hasSubCommands commands =
+    List.filter (\command -> List.length command.subCommands > 0) commands
+
+
+isNotSubCommand : List Data.Command -> List Data.Command
+isNotSubCommand commands =
+    let
+        subCommands =
+            List.map (\command -> command.subCommands) commands
+                |> List.concat
+    in
+    List.filter (\command -> not (List.member command.name subCommands)) commands
 
 
 viewCommandList : List Data.Command -> Html.Html Msg
@@ -133,5 +155,5 @@ viewCommandList commandList =
             (\command ->
                 Html.li [] [ Html.text (command.name ++ ": " ++ command.helpText) ]
             )
-            commandList
+            (isNotSubCommand commandList)
         )
