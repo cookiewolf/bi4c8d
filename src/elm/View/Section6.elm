@@ -103,11 +103,11 @@ viewResponse command commandList =
                 ]
             ]
 
-    else if not (List.member command (terminalCommandNames commandList)) then
+    else if not (List.member (stripToSubCommand command) (terminalCommandNames commandList)) then
         Html.div [ Html.Attributes.class "error" ] [ Html.text (t (ErrorText command)) ]
 
     else
-        Html.div [] (Markdown.markdownToHtml (outputFromCommand command commandList))
+        Html.div [] (Markdown.markdownToHtml (outputFromCommand (stripToSubCommand command) commandList))
 
 
 outputFromCommand : String -> List Data.Command -> String
@@ -116,7 +116,10 @@ outputFromCommand command commandList =
         theCommand =
             List.head
                 (List.filter
-                    (\aCommand -> command == aCommand.name)
+                    (\aCommand ->
+                        command
+                            == stripToSubCommand aCommand.name
+                    )
                     commandList
                 )
                 |> Maybe.withDefault { helpText = "", name = "", output = "", subCommands = [] }
@@ -146,6 +149,12 @@ isNotSubCommand commands =
                 |> List.concat
     in
     List.filter (\command -> not (List.member command.name subCommands)) commands
+
+
+stripToSubCommand : String -> String
+stripToSubCommand commandName =
+    List.head (List.reverse (String.split " " commandName))
+        |> Maybe.withDefault commandName
 
 
 viewCommandList : List Data.Command -> Html.Html Msg
