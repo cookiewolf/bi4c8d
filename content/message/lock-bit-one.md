@@ -1,11 +1,7 @@
 ---
 section: section-ten
-title: mesage one
-datetime: 2021-12-15T21:21:29.472Z
+title: Lockbit 1
 side: left
+datetime: 2023-01-12T13:44:00.000Z
 ---
-If people are not awake to the fact this is all about imposing digital identification and apartheid by now then there’s no helping them at all.
-
-This isn’t about health, it’s about CONTROL!!!
-
-It always has been.
+Hi. Did this work?
