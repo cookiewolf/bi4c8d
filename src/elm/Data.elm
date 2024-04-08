@@ -98,7 +98,7 @@ type alias Terminal =
 
 
 type alias Command =
-    { name : String, helpText : String, output : String }
+    { name : String, helpText : String, output : String, subCommands : List String }
 
 
 type alias Ticker =
@@ -318,10 +318,18 @@ terminalDecoder =
 
 commandDecoder : Json.Decode.Decoder Command
 commandDecoder =
-    Json.Decode.map3 Command
+    Json.Decode.map4 Command
         (Json.Decode.field "name" Json.Decode.string)
         (Json.Decode.field "help-text" Json.Decode.string)
         (Json.Decode.field "output" Json.Decode.string)
+        (Json.Decode.maybe (Json.Decode.field "args" (Json.Decode.list Json.Decode.string))
+            |> Json.Decode.andThen emptyListFromMaybe
+        )
+
+
+emptyListFromMaybe : Maybe (List String) -> Json.Decode.Decoder (List String)
+emptyListFromMaybe maybeArguments =
+    Json.Decode.succeed (Maybe.withDefault [] maybeArguments)
 
 
 tickerDictDecoder : Json.Decode.Decoder (List Ticker)
