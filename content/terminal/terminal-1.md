@@ -174,4 +174,21 @@ commands:
 
 
       https://publications.parliament.uk/pa/cm200708/cmhansrd/cm071120/debtext/71120-0004.htm
+  - name: accountability
+    help-text: Additional argument required e.g. type `accountability handling`
+    args: []
+    output: |-
+      Valid arguments:
+
+      paul-gray: 
+
+      handling:
+
+      review:
+
+      ico:
+
+      sorry:
+
+      references:
 ---
