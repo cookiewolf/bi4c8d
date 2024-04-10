@@ -6,9 +6,9 @@ datapoints:
   - date: 1999-06-15T00:00:00.000Z
     data:
       count1: 31.1
-  - date: 16 Jun 2000
+  - date: 2000-06-15T00:00:00.000Z
     data:
-      count1: 34,1
+      count1: 34.1
   - date: 2001-06-15T00:00:00.000Z
     data:
       count1: 37.8
