@@ -130,6 +130,7 @@ decodedContent flags =
         Ok goodContent ->
             { goodContent
                 | posts = orderPostsByDatetime goodContent.posts
+                , messages = orderMessagesByDatetime goodContent.messages
                 , images = orderByDisplayPosition goodContent.images
             }
 
@@ -147,6 +148,11 @@ decodedContent flags =
 orderPostsByDatetime : List Post -> List Post
 orderPostsByDatetime posts =
     List.sortBy (\post -> Time.posixToMillis post.datetime) posts
+
+
+orderMessagesByDatetime : List Message -> List Message
+orderMessagesByDatetime messages =
+    List.sortBy (\message -> Time.posixToMillis message.datetime) messages
 
 
 orderByDisplayPosition : List { a | displayPosition : Int } -> List { a | displayPosition : Int }
