@@ -83,7 +83,7 @@ p {
 
 .main-text-body {
   background: url(/images/main-text-icons.svg) bottom right no-repeat;
-  background-size: 70px;
+  background-size: 100px;
   font-size: 1.25rem;
   padding-bottom: 40px;
 }
@@ -247,7 +247,7 @@ p {
 
 /** Chart **/
 .graph-container {
-  color: var(--grey-light);
+  color: var(--white);
   margin: 2rem auto;
   padding: 4rem 0 2rem 0;
 }

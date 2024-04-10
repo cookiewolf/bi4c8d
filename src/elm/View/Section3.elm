@@ -54,16 +54,23 @@ viewChart model =
             (Chart.Events.getNearest Chart.Item.dots)
         , Chart.Events.onMouseLeave (Msg.OnChartHover [])
         ]
-        [ Chart.labelAt (Chart.Attributes.percent 50) (Chart.Attributes.percent 115) [ Chart.Attributes.fontSize 20 ] [ Svg.text graph.title ]
-        , Chart.xAxis []
+        [ Chart.labelAt (Chart.Attributes.percent 50)
+            (Chart.Attributes.percent 115)
+            [ Chart.Attributes.fontSize 20
+            , Chart.Attributes.color "#FFFFFF"
+            ]
+            [ Svg.text graph.title ]
+        , Chart.xAxis [ Chart.Attributes.color "#FFFFFF" ]
         , Chart.yLabels
             [ Chart.Attributes.format (\yLabel -> "£" ++ String.fromFloat yLabel ++ " mil")
+            , Chart.Attributes.color "#FFFFFF"
             ]
         , Chart.generate 20 (Chart.Svg.times Time.utc) .x [] <|
             \_ info ->
                 [ Chart.xLabel
                     [ Chart.Attributes.x (toFloat <| Time.posixToMillis info.timestamp)
                     , Chart.Attributes.withGrid
+                    , Chart.Attributes.color "#FFFFFF"
                     ]
                     [ Svg.text (formatFullTime Time.utc info.timestamp) ]
                 ]
