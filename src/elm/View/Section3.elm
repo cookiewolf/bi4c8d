@@ -19,7 +19,10 @@ import View.MainText
 view : Model -> List (Html.Html Msg)
 view model =
     [ View.MainText.viewTop Data.Section3 model.content.mainText
-    , Html.div [ Html.Attributes.class "graph-container" ]
+    , Html.div
+        [ Html.Attributes.class "graph-container"
+        , Html.Attributes.style "min-height" (String.fromFloat (Tuple.first model.viewportHeightWidth) ++ "px")
+        ]
         [ Html.div [ Html.Attributes.class "chart" ] [ viewChart model ]
         ]
     , View.MainText.viewBottom Data.Section3 model.content.mainText
@@ -54,16 +57,23 @@ viewChart model =
             (Chart.Events.getNearest Chart.Item.dots)
         , Chart.Events.onMouseLeave (Msg.OnChartHover [])
         ]
-        [ Chart.labelAt (Chart.Attributes.percent 50) (Chart.Attributes.percent 115) [ Chart.Attributes.fontSize 20 ] [ Svg.text graph.title ]
-        , Chart.xAxis []
+        [ Chart.labelAt (Chart.Attributes.percent 50)
+            (Chart.Attributes.percent 115)
+            [ Chart.Attributes.fontSize 20
+            , Chart.Attributes.color "#FFFFFF"
+            ]
+            [ Svg.text graph.title ]
+        , Chart.xAxis [ Chart.Attributes.color "#FFFFFF" ]
         , Chart.yLabels
             [ Chart.Attributes.format (\yLabel -> "£" ++ String.fromFloat yLabel ++ " mil")
+            , Chart.Attributes.color "#FFFFFF"
             ]
         , Chart.generate 20 (Chart.Svg.times Time.utc) .x [] <|
             \_ info ->
                 [ Chart.xLabel
                     [ Chart.Attributes.x (toFloat <| Time.posixToMillis info.timestamp)
                     , Chart.Attributes.withGrid
+                    , Chart.Attributes.color "#FFFFFF"
                     ]
                     [ Svg.text (formatFullTime Time.utc info.timestamp) ]
                 ]

@@ -19,7 +19,7 @@ view model =
     [ View.MainText.viewTop Data.Section6 model.content.mainText
     , Html.div
         [ Html.Attributes.class "terminal-container"
-        , Html.Attributes.style "height" (String.fromFloat (Tuple.first model.viewportHeightWidth - 200) ++ "px")
+        , Html.Attributes.style "height" (String.fromFloat (Tuple.first model.viewportHeightWidth) ++ "px")
         ]
         [ viewTerminal model ]
     ]
