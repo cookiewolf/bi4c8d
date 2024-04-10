@@ -312,7 +312,8 @@ p {
 /** Terminal **/
 .terminal-container {
   font-family: "Source Code Pro", sans-serif;
-  padding: 2rem 0;
+  margin-top: 4.5rem;
+  padding: 4.5rem 0;
 }
 
 .terminal{
