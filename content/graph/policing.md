@@ -6,7 +6,7 @@ datapoints:
   - date: 1999-06-15T00:00:00.000Z
     data:
       count1: 31.1
-  - date: 2000-06-15T00:00:00.000Z
+  - date: 16 Jun 2000
     data:
       count1: 34,1
   - date: 2001-06-15T00:00:00.000Z
@@ -60,7 +60,7 @@ datapoints:
       count2: 35.9
   - date: 2017-06-15T00:00:00.000Z
     data:
-      count2: 37.0
+      count2: 37
   - date: 2018-06-15T00:00:00.000Z
     data:
       count2: 37.4
@@ -76,5 +76,4 @@ datapoints:
   - date: 2022-06-15T00:00:00.000Z
     data:
       count2: 43.9
-
 ---
