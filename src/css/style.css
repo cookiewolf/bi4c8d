@@ -249,13 +249,13 @@ p {
 .graph-container {
   color: var(--white);
   margin: 2rem auto;
-  padding: 4rem 0 2rem 0;
+  padding: 6rem 0 2rem 0;
 }
 
 .chart {
   font-size: 0.75rem;
   margin: 4rem auto;
-  max-width: 750px;
+  max-width: 80%;
 }
 
 /** Faces with information **/
