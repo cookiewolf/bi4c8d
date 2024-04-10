@@ -176,7 +176,7 @@ commands:
       https://publications.parliament.uk/pa/cm200708/cmhansrd/cm071120/debtext/71120-0004.htm
   - name: accountability
     help-text: Additional argument required [paul-gray, handling, review, ico,
-      sorry. referecnes] e.g. type `accountability handling`
+      sorry. references] e.g. type `accountability handling`
     args:
       - paul-gray
       - handling
@@ -184,20 +184,7 @@ commands:
       - ico
       - sorry
       - references
-    output: |-
-      Valid arguments:
-
-      paul-gray: 
-
-      handling:
-
-      review:
-
-      ico:
-
-      sorry:
-
-      references:
+    output: Not displayed - because requires sub command
   - name: paul-gray
     output: "[https://web.archive.org/web/20081118223337/http://www.channel4.com/ne\
       ws/articles/politics/domestic_politics/paul+gray+back+at+work/1136847](ht\
