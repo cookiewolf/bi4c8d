@@ -370,9 +370,32 @@ p {
 }
 
 .terminal .help ul {
+  display: flex;
+  flex-direction: column;
   list-style: none;
   margin: 0;
-  padding-left: 0;
+  padding-left: 1rem;
+}
+
+.terminal .help ul ul {
+  padding: 0;
+}
+
+.terminal .help .sub-command-list li:not(.requires-sub-commands) {
+  padding-left: 1rem;
+}
+
+.terminal .help li {
+  display: flex;
+}
+
+.terminal .help li .command-name {
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.terminal .help li .command-name::after {
+  content: ":"
 }
 
 .terminal .error {
