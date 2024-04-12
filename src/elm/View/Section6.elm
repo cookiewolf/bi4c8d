@@ -107,10 +107,10 @@ viewResponse command commandList =
         Html.div [ Html.Attributes.class "error" ] [ Html.text (t (ErrorText command)) ]
 
     else
-        Html.div [] (Markdown.markdownToHtml (outputFromCommand (stripToSubCommand command) commandList))
+        outputFromCommand (stripToSubCommand command) commandList
 
 
-outputFromCommand : String -> List Data.Command -> String
+outputFromCommand : String -> List Data.Command -> Html.Html Msg
 outputFromCommand command commandList =
     let
         theCommand =
@@ -125,10 +125,10 @@ outputFromCommand command commandList =
                 |> Maybe.withDefault Data.defaultCommand
     in
     if List.member theCommand (hasSubCommands commandList) then
-        theCommand.helpText
+        Html.div [ Html.Attributes.class "help" ] [ Html.ul [] (viewSubCommandHelp theCommand commandList) ]
 
     else
-        theCommand.output
+        Html.div [] (Markdown.markdownToHtml theCommand.output)
 
 
 terminalCommandNames : List Data.Command -> List String
