@@ -122,7 +122,7 @@ outputFromCommand command commandList =
                     )
                     commandList
                 )
-                |> Maybe.withDefault { helpText = "", name = "", output = "", subCommands = [] }
+                |> Maybe.withDefault Data.defaultCommand
     in
     if List.member theCommand (hasSubCommands commandList) then
         theCommand.helpText
@@ -151,6 +151,16 @@ isNotSubCommand commands =
     List.filter (\command -> not (List.member command.name subCommands)) commands
 
 
+isSubCommand : List Data.Command -> List Data.Command
+isSubCommand commands =
+    let
+        subCommands =
+            List.map (\command -> command.subCommands) commands
+                |> List.concat
+    in
+    List.filter (\command -> List.member command.name subCommands) commands
+
+
 stripToSubCommand : String -> String
 stripToSubCommand commandName =
     List.head (List.reverse (String.split " " commandName))
@@ -162,7 +172,40 @@ viewCommandList commandList =
     Html.ul []
         (List.map
             (\command ->
-                Html.li [] [ Html.text (command.name ++ ": " ++ command.helpText) ]
+                viewCommandHelp command commandList
             )
             (isNotSubCommand commandList)
         )
+
+
+viewCommandHelp : Data.Command -> List Data.Command -> Html.Html Msg
+viewCommandHelp command commandList =
+    if List.length command.subCommands > 0 then
+        Html.ul [ Html.Attributes.class "sub-command-list" ] (viewSubCommandHelp command commandList)
+
+    else
+        Html.li [] (viewCommandHelpText command)
+
+
+viewCommandHelpText : Data.Command -> List (Html.Html Msg)
+viewCommandHelpText command =
+    [ Html.span [ Html.Attributes.class "command-name" ] [ Html.text command.name ]
+    , Html.span [] [ Html.text command.helpText ]
+    ]
+
+
+viewSubCommandHelp : Data.Command -> List Data.Command -> List (Html.Html Msg)
+viewSubCommandHelp command commandList =
+    [ Html.li [ Html.Attributes.class "requires-sub-commands" ] (viewCommandHelpText command) ]
+        ++ List.map
+            (\commandName ->
+                viewCommandHelp (commandFromName commandName commandList) commandList
+            )
+            command.subCommands
+
+
+commandFromName : String -> List Data.Command -> Data.Command
+commandFromName commandName commandList =
+    List.filter (\command -> command.name == commandName) commandList
+        |> List.head
+        |> Maybe.withDefault Data.defaultCommand
