@@ -236,4 +236,13 @@ commands:
       * The Ministry of Justice (MoJ) is continuing to make progress on all the actions identified in its December report. This includes ongoing communications to all staff about information management and security, launching a new Data Protection and Freedom of Information network, accompanied by new guidance about those Acts provisions and requirements, and work to review central induction and training programmes. Training delivery will reflect local solutions and included the roll-out from May 2008 of an on-line training package on security awareness and procedures in the National Offender Management Service (NOMS). A Ministry-wide information assurance programme is now in place to take forward implementation of the recommendations of this report.
 
       * The Northern Ireland Office (NIO) have completed a detailed review of their Data Handling and Information Assurance Policies and are satisfied that they comply with HMG policies/standards and ISO 27001. Policies will be continuously monitored to ensure compliance with any changes proposed or "lessons learnt" centrally. The Department has introduced new governance arrangements; an Accreditation Panel of key users and a Senior Risk Owners Council under the chairmanship of the SIRO have been established. The Department is complying with central guidance vis-à-vis removable media unencrypted laptops holding personal or protectively marked material. All staff in the NIO and satellite bodies are receiving refresher training for Data Handling and Information Assurance.
+  - name: review
+    help-text: Review help
+    output: Review output
+  - name: ico
+    help-text: Ico help
+    output: Ico output
+  - name: sorry
+    help-text: Sorry help
+    output: Sorry output
 ---
