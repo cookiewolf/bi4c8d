@@ -8,7 +8,8 @@ import Time
 
 
 type Msg
-    = Tick Time.Posix
+    = NoOp
+    | Tick Time.Posix
     | NewRandomIntList (List Int)
     | OnScroll { x : Float, y : Float }
     | InViewMsg InView.Msg
@@ -17,3 +18,4 @@ type Msg
     | OnChartHover (List (Chart.Item.One Data.LineChartDatum Chart.Item.Dot))
     | ChangeCommand String
     | SubmitCommand String
+    | ScrollResult (Result Browser.Dom.Error ())

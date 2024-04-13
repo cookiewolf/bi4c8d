@@ -76,6 +76,9 @@ subscriptions model =
 
 update msg model =
     case msg of
+        NoOp ->
+            ( model, Cmd.none )
+
         Tick newTime ->
             ( { model
                 | time = newTime
@@ -146,19 +149,41 @@ update msg model =
             )
 
         SubmitCommand command ->
-            ( { model
-                | terminalState =
-                    { input = ""
-                    , history =
-                        if command == "clear" then
-                            []
+            -- Improved but wrong positioning if terminal container is scrolled past and then typed into.
+            if command == "clear" then
+                ( { model
+                    | terminalState =
+                        { input = "", history = [] }
+                  }
+                  -- maybe playing with this will help
+                , scrollToElement "terminal-output"
+                )
 
-                        else
-                            model.terminalState.history ++ [ command ]
-                    }
-              }
-            , Cmd.none
+            else
+                ( { model
+                    | terminalState =
+                        { input = ""
+                        , history = model.terminalState.history ++ [ command ]
+                        }
+                  }
+                , scrollToElement "terminal-output"
+                )
+
+        ScrollResult _ ->
+            ( model, Cmd.none )
+
+
+scrollToElement : String -> Cmd Msg
+scrollToElement id =
+    Browser.Dom.getViewportOf id
+        |> Task.andThen
+            (\info ->
+                Browser.Dom.setViewportOf id
+                    0
+                    -- or maybe playing with this will help
+                    info.scene.height
             )
+        |> Task.attempt ScrollResult
 
 
 viewDocument : Model -> Browser.Document Msg
