@@ -40,7 +40,10 @@ viewTerminal model =
                     , commandList = []
                     }
     in
-    Html.div [ Html.Attributes.class "terminal" ]
+    Html.div
+        [ Html.Attributes.id "terminal-output"
+        , Html.Attributes.class "terminal"
+        ]
         [ Html.h3 [] [ Html.text (String.replace "-" " " terminalId) ]
         , Html.p [] [ Html.text welcomeMessage ]
         , viewOutput prompt model.terminalState.history commandList
@@ -68,7 +71,9 @@ viewPrompt prompt =
         machineName =
             Maybe.withDefault "bi4c8d" (List.head (List.reverse promptParts)) |> String.replace "$" ""
     in
-    Html.span [ Html.Attributes.class "prompt" ]
+    Html.span
+        [ Html.Attributes.class "prompt"
+        ]
         [ Html.span [ Html.Attributes.class "user-name" ] [ Html.text userName ]
         , Html.text "@"
         , Html.span [ Html.Attributes.class "machine-name" ] [ Html.text machineName ]
