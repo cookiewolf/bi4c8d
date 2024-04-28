@@ -36,7 +36,9 @@ init flags =
             Data.initialTickerState flags
 
         trackableSections =
-            [ "section-8"
+            [ "section-eight"
+            , "section-ten"
+            , "section-eleven"
             , "fade-image-1"
             , "fade-image-2"
             , "fade-image-3"

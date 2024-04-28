@@ -14,6 +14,6 @@ import View.Posts
 view : Model -> List (Html.Html Msg)
 view model =
     [ View.MainText.viewTop Data.Section11 model.content.mainText
-    , View.Messages.view Data.Section11 model.content.messages (t Section11MessageHeading)
+    , View.Messages.view model.inView Data.Section11 model.content.messages (t Section11MessageHeading)
     , View.Posts.view Data.Section11 model.content.posts
     ]

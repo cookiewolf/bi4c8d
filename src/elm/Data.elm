@@ -1,4 +1,4 @@
-module Data exposing (Command, Content, Flags, Image, LineChartDatum, MainText, Message, Post, SectionId(..), Terminal, TickerState, decodedContent, defaultCommand, filterBySection, initialTickerState, lineChartData, sideToString, trackableIdFromItem, trackableIdListFromFlags, updateTickerState)
+module Data exposing (Command, Content, Flags, Image, LineChartDatum, MainText, Message, Post, SectionId(..), Terminal, TickerState, decodedContent, defaultCommand, filterBySection, initialTickerState, lineChartData, sectionIdToString, sideToString, trackableIdFromItem, trackableIdListFromFlags, updateTickerState)
 
 import Dict
 import Iso8601
