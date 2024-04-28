@@ -8,8 +8,8 @@ import Msg exposing (Msg)
 import Time
 
 
-view : Data.SectionId -> List Data.Message -> String -> Html.Html Msg
-view sectionId messageList title =
+view : Data.SectionId -> List Data.Message -> String -> String -> Html.Html Msg
+view sectionId messageList title transcriptLinkMarkdown =
     if List.length messageList > 0 then
         Html.div [ Html.Attributes.class "messages" ]
             [ Html.h3 [] [ Html.text title ]
@@ -22,6 +22,7 @@ view sectionId messageList title =
                     (Data.filterBySection sectionId messageList)
                     |> List.concat
                 )
+            , Html.p [] (Markdown.markdownToHtml transcriptLinkMarkdown)
             ]
 
     else

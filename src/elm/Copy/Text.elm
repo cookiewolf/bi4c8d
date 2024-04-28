@@ -23,8 +23,14 @@ t key =
         Section10MessageHeading ->
             "LockBit"
 
+        Section10MessageTranscriptLink ->
+            "[LockBit message transcripts](https://lockbittranscripturi)"
+
         Section11MessageHeading ->
-            ""
+            "Hackney"
+
+        Section11MessageTranscriptLink ->
+            "[Hackney message transcripts](https://hackneytranscripturi)"
 
         TotalBreachesSinceView count ->
             String.join " "
