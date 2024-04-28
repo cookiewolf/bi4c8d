@@ -244,11 +244,15 @@ p {
   border-color: var(--black);
 }
 .message-time {
-  margin: 10px 0;
+  margin: 20px 0;
 }
 
 .right .message .message-time {
   text-align: right;
+}
+
+.left .message .message-time {
+  text-align: left;
 }
 
 /** Image **/
