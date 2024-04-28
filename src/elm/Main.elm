@@ -87,7 +87,7 @@ update msg model =
                 , tickerState =
                     let
                         section8InView =
-                            InView.isInOrAboveView "section-8" model.inView |> Maybe.withDefault False
+                            InView.isInOrAboveView "section-eight" model.inView |> Maybe.withDefault False
                     in
                     if section8InView then
                         List.map (\tickerState -> Data.updateTickerState tickerState) model.tickerState

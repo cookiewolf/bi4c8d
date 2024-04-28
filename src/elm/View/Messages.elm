@@ -12,8 +12,8 @@ import Simple.Animation.Property
 import Time
 
 
-view : InView.State -> Data.SectionId -> List Data.Message -> String -> Html.Html Msg
-view inViewState sectionId messageList title =
+view : InView.State -> Data.SectionId -> List Data.Message -> String -> String -> Html.Html Msg
+view inViewState sectionId messageList title transcriptLinkMarkdown =
     if List.length messageList > 0 then
         Html.div [ Html.Attributes.class "messages" ]
             [ Html.h3 [] [ Html.text title ]
@@ -31,6 +31,7 @@ view inViewState sectionId messageList title =
                  else
                     []
                 )
+            , Html.p [] (Markdown.markdownToHtml transcriptLinkMarkdown)
             ]
 
     else
