@@ -3,29 +3,40 @@ module View.Messages exposing (view)
 import Data
 import Html
 import Html.Attributes
+import InView
 import Markdown
 import Msg exposing (Msg)
 import Time
 
 
-view : Data.SectionId -> List Data.Message -> String -> Html.Html Msg
-view sectionId messageList title =
+view : InView.State -> Data.SectionId -> List Data.Message -> String -> Html.Html Msg
+view inViewState sectionId messageList title =
     if List.length messageList > 0 then
         Html.div [ Html.Attributes.class "messages" ]
             [ Html.h3 [] [ Html.text title ]
             , Html.div [ Html.Attributes.class "messages-inner" ]
-                (List.map
-                    (\message ->
-                        viewMessage message
-                            (isLastAtTime message messageList)
-                    )
-                    (Data.filterBySection sectionId messageList)
-                    |> List.concat
+                (if sectionInView inViewState sectionId then
+                    List.map
+                        (\message ->
+                            viewMessage message
+                                (isLastAtTime message messageList)
+                        )
+                        (Data.filterBySection sectionId messageList)
+                        |> List.concat
+
+                 else
+                    []
                 )
             ]
 
     else
         Html.text ""
+
+
+sectionInView : InView.State -> Data.SectionId -> Bool
+sectionInView inViewState sectionId =
+    InView.isInOrAboveView (Data.sectionIdToString sectionId) inViewState
+        |> Maybe.withDefault False
 
 
 isLastAtTime : Data.Message -> List Data.Message -> Bool
