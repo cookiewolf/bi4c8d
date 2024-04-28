@@ -194,6 +194,32 @@ p {
   padding: 20px;
 }
 
+.message-bubble {
+ position: relative;
+}
+
+.typing-dots {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 20px;
+}
+
+.right .typing-dots {
+  right: 20px;
+}
+
+.left .typing-dots {
+  left: 20px;
+}
+
+.typing-dots .dot {
+  background-color: var(--black);
+  border-radius: 100%;
+  height: 8px;
+  width: 8px;
+}
+
 .message-body {
   border: solid 1px var(--grey-dark);
   border-radius: 2rem;
@@ -201,22 +227,27 @@ p {
   padding: 20px;
 }
 
-.message.left {
+.left .message {
   margin-right: 30%;
 }
 
-.message.right {
+.right .message {
   margin-left: 30%;
 }
-.message.left .message-body {
+
+.left .message .message-body {
   background-color: var(--grey-light);
 }
 
+.right .message .message-body {
+  background-color: var(--grey-dark);
+  border-color: var(--black);
+}
 .message-time {
   margin: 10px 0;
 }
 
-.message.right .message-time {
+.right .message .message-time {
   text-align: right;
 }
 
