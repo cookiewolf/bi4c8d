@@ -18,7 +18,7 @@ view : Model -> List (Html.Html Msg)
 view model =
     let
         sectionInView =
-            InView.isInOrAboveView "section-8" model.inView
+            InView.isInOrAboveView "section-eight" model.inView
                 |> Maybe.withDefault False
     in
     [ Html.div []

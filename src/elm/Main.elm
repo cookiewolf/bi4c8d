@@ -36,7 +36,9 @@ init flags =
             Data.initialTickerState flags
 
         trackableSections =
-            [ "section-8"
+            [ "section-eight"
+            , "section-ten"
+            , "section-eleven"
             , "fade-image-1"
             , "fade-image-2"
             , "fade-image-3"
@@ -85,7 +87,7 @@ update msg model =
                 , tickerState =
                     let
                         section8InView =
-                            InView.isInOrAboveView "section-8" model.inView |> Maybe.withDefault False
+                            InView.isInOrAboveView "section-eight" model.inView |> Maybe.withDefault False
                     in
                     if section8InView then
                         List.map (\tickerState -> Data.updateTickerState tickerState) model.tickerState
