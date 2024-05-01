@@ -131,6 +131,7 @@ type SectionId
     | Section9
     | Section10
     | Section11
+    | Section12
 
 
 decodedContent : Json.Decode.Value -> Content
@@ -438,6 +439,9 @@ sectionIdFromString sectionString =
         "section-eleven" ->
             Json.Decode.succeed Section11
 
+        "section-twelve" ->
+            Json.Decode.succeed Section12
+
         _ ->
             Json.Decode.succeed SectionInvalid
 
@@ -477,6 +481,9 @@ sectionIdToString sectionId =
 
         Section11 ->
             "section-eleven"
+
+        Section12 ->
+            "section-twelve"
 
         SectionInvalid ->
             "section-invalid"
