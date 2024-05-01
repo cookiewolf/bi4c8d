@@ -29,9 +29,6 @@ t key =
         Section11MessageHeading ->
             "Hackney"
 
-        Section11MessageTranscriptLink ->
-            "[Hackney message transcripts](https://hackneytranscripturi)"
-
         TotalBreachesSinceView count ->
             String.join " "
                 [ "Since you’ve been on this webpage"

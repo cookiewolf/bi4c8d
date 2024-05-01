@@ -10,7 +10,6 @@ type Key
     | Section10MessageHeading
     | Section10MessageTranscriptLink
     | Section11MessageHeading
-    | Section11MessageTranscriptLink
       -- Breaches
     | TotalBreachesSinceView Int
       -- Terminal
