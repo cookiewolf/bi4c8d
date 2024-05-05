@@ -8,6 +8,7 @@ import Msg exposing (Msg)
 import View.Section1
 import View.Section10
 import View.Section11
+import View.Section12
 import View.Section2
 import View.Section3
 import View.Section4
@@ -31,6 +32,7 @@ sectionViews model =
     , ( Data.Section9, View.Section9.view model )
     , ( Data.Section10, View.Section10.view model )
     , ( Data.Section11, View.Section11.view model )
+    , ( Data.Section12, View.Section12.view model )
     ]
 
 
