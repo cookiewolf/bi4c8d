@@ -2,6 +2,6 @@
 section: section-ten
 title: Lockbit 16
 side: right
-datetime: 2023-01-12T13:52:00.000Z
+datetime: 2023-02-01T23:24:00.000Z
 ---
-Yes, don't delay. time is not playing in your favor. so far we have not reported the attack on our blog
+Thank you for this. I appreciate you coming forward like this. I will bring this to my management and get back to you.
