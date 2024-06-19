@@ -1,7 +1,7 @@
 ---
 section: section-ten
 title: Lockbit 4
-side: right
-datetime: 2023-01-12T13:46:00.000Z
+side: left
+datetime: 2023-01-25T17:56:00.000Z
 ---
-http://\[REDACTED]
+How much your revenue?
