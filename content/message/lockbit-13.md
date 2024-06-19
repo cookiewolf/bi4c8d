@@ -2,6 +2,6 @@
 section: section-ten
 title: Lockbit 13
 side: left
-datetime: 2023-01-12T13:50:00.000Z
+datetime: 2023-01-30T21:12:00.000Z
 ---
-I did open it and download a file from it. Is that the data?
+If I did not want to make a deal with you, your data would have already been published and the decryptor deleted. I am not forcing you to prove anything, I just kindly asked, refusing to give me such simple information says that you do not intend to cooperate with me honestly and tell me the truth. We are not attacking critical infrastructure, your commercial mail company with dozens of similar competitors is not. If you believe the news that your management is releasing, your mail services are fully restored and you are functioning as you are, humanitarian and medical supplies will be successfully delivered by your competitors, you will just get a little less profit, because you are very greedy and don't want to pay for my services. I'm sure you could easily pay $80 million, your income allows you to do so. If you want a discount, then make a counter offer, we are here to have constructive negotiations, not for me to give you a discount after every bluff you make until you say I'm fine with getting a free decryptor and free removal of stolen information. Any specific offer you make will be considered. You have a chance to make me an adequate payment offer by consulting with your board of directors, whose salaries are in the hundreds of thousands of pounds, but that does not stop them from being very greedy and not making concrete proposals to save the reputation of your commercial company which has more reasonable competitors who have already paid us money and successfully continue to earn new excess profits billions of pounds. Good day gentlemen.
