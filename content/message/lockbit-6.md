@@ -2,6 +2,6 @@
 section: section-ten
 title: Lockbit 6
 side: left
-datetime: 2023-01-12T13:47:00.000Z
+datetime: 2023-01-23T17:58:00.000Z
 ---
-Now I am worried about the other link with data in the other chat. Is that link gone now? so no one sees it
+We understand you very well, we are all suffering from the global crisis and our income has fallen as much as yours, anyway you are hundreds of times richer than us. 0.5% of annual global turnover is much less than a 4% fine from your government.
