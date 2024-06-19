@@ -4,7 +4,7 @@ welcome-message: Welcome to my terminal. This one is about.... type `help` to ge
 prompt: user@bi4c8d$
 commands:
   - name: info
-    help-text: prints info
+    help-text: What happened?
     output: >-
       In October 2007, a junior official at His Majesty’s Revenue and Customs
       (HMRC) popped two unencrypted discs into an envelope and posted it to its
@@ -18,7 +18,7 @@ commands:
 
       The loss of the discs was a national scandal that gained widespread public and media attention. An internal and Metropolitan Police investigation followed, as did several reports, including a government-commissioned report by PWC which labelled the loss as ‘avoidable’ and found ‘institutional deficiencies’ at HMRC. The loss was a wake-up call to implement more rigorous data security and handling measures in government, and raised serious questions about whether the public could trust the government to keep their data safe. It remains the largest known loss of data by any UK public institution.
   - name: search
-    help-text: Prints timeline detailing lost discs
+    help-text: Timeline of lost data
     output: >-
       18 October 2007: Shipment of discs collected from Washington, Tyne and
       Wear.
@@ -71,22 +71,26 @@ commands:
 
       To this date, the discs have not been found.
   - name: contents
-    help-text: Prints information about the content of the discs
+    help-text: What was on the discs?
     output: >-
       The 25 million records contained the names, addresses, dates of birth,
       National Insurance numbers and (in the case of claimants and payees) bank
       details of:
 
 
-      * 7.25 million claimants
+      7.25 million claimants
 
-      * 15.5 million children, including some who no longer qualify but whose family is claiming for a younger child
 
-      * 2.25 million 'alternative payees' such as partners or carers
+      15.5 million children, including some who no longer qualify but whose family is claiming for a younger child
 
-      * 3,000 'appointees' who claim the benefit under court instructions
 
-      * 12,500 agents who claim the benefit on behalf of a third party.
+      2.25 million 'alternative payees' such as partners or carers
+
+
+      3,000 'appointees' who claim the benefit under court instructions
+
+
+      12,500 agents who claim the benefit on behalf of a third party.
   - name: media
     help-text: "Prints links to information "
     output: >-
@@ -101,7 +105,7 @@ commands:
 
       <https://news.bbc.co.uk/2/hi/uk_news/politics/7472814.stm>
   - name: gov
-    help-text: prints gov
+    help-text: The Government response
     output: >-
       **3.31 pm, 20 November 2007 – House of Commons statement**
 
@@ -161,21 +165,8 @@ commands:
 
 
       But let me reiterate: there is no evidence that these data have reached the wrong hands and no evidence of fraud or criminal activity; banks and building societies are putting in place safeguards to protect people’s accounts; banks and building societies will continue to monitor those accounts; and no one will suffer any loss if they are innocent victims of fraud. I will, of course, keep the House updated of any further developments. I commend the statement to the House.
-  - name: references
-    help-text: prints references
-    output: >-
-      http://news.bbc.co.uk/1/hi/uk_politics/7128851.stm
-
-
-      https://wiki.openrightsgroup.org/wiki/Discgate
-
-
-      http://news.bbc.co.uk/2/hi/business/7105592.stm
-
-
-      https://publications.parliament.uk/pa/cm200708/cmhansrd/cm071120/debtext/71120-0004.htm
   - name: accountability
-    help-text: Additional argument required (e.g. type `accountability handling`)
+    help-text: Please had a secondary argument such as "Accountability paul-gray"
     args:
       - paul-gray
       - handling
@@ -191,57 +182,173 @@ commands:
       icles/politics/domestic_politics/paul+gray+back+at+work/1136847)"
     help-text: Provides a link to information about Paul Gray
   - name: handling
-    help-text: Prints information about handling of the incident by various
-      government departments
+    help-text: Was anything put in place to stop this happening again?
     output: >-
       The loss of two discs by HM Revenue and Customs (HMRC) started an
       intensive process as all Departments re-examined their practices:
 
 
-      * The Cabinet Office (CO) has reviewed its internal security policies and procedures including those which specifically deal with the secure handling of information and protected personal data. The CO has ensured that these policies are compliant with the requirements of this report, specifically regarding limiting the use of removable media to the minimum necessary for business operation and providing encryption on any necessary non-encrypted media devices. A programme of encryption of all non-encrypted stand alone PCs used within the CO will be completed by the end of July 2008. Heads of business units in the Department have been asked to ensure and confirm that all their staff are aware of the existing policies and procedures which have been included in the Department’s own security manual. CO departmental data copying continues to be audited by an automated software product. The CO continues to monitor that its procedures and systems remain compliant with the Manual of Protective Security and any other centrally provided advice. An additional exercise is being undertaken immediately (the Omand Review) to ensure that the CO’s procedures, particularly concerning hard copy classified material, and the disposal of classified waste, are as effective as possible.
+      The Cabinet Office (CO) has reviewed its internal security policies and procedures including those which specifically deal with the secure handling of information and protected personal data. The CO has ensured that these policies are compliant with the requirements of this report, specifically regarding limiting the use of removable media to the minimum necessary for business operation and providing encryption on any necessary non-encrypted media devices. A programme of encryption of all non-encrypted stand alone PCs used within the CO will be completed by the end of July 2008. Heads of business units in the Department have been asked to ensure and confirm that all their staff are aware of the existing policies and procedures which have been included in the Department’s own security manual. CO departmental data copying continues to be audited by an automated software product. The CO continues to monitor that its procedures and systems remain compliant with the Manual of Protective Security and any other centrally provided advice. An additional exercise is being undertaken immediately (the Omand Review) to ensure that the CO’s procedures, particularly concerning hard copy classified material, and the disposal of classified waste, are as effective as possible.
 
-      * The Crown Prosecution Service (CPS) has reviewed and significantly changed write access to portable media. It is now only permissible to download data from the CPS system to portable media with the explicit permission of the IT Security Officer. An encryption programme for the hard drives of laptops containing personal data was completed by the end of May 2008. A review of back up tape procedures has taken place and written assurances that they are secure in transit and when stored has been provided by local managers. A Data and Information Integrity Audit has been completed with no significant issues being identified. Further work is on-going to assess and reduce risk and strengthen information risk governance, covering both personal data and other sensitive information. This will be completed during the next financial year utilising the ISO 27001 compliance programme.
 
-      *  The Department for Business Enterprise and Regulatory Reform (BERR) has undertaken an internal review to ensure best practice is understood across the BERR family and with delivery partners to ensure consistency and best practice in data handling security and management. Data governance arrangements have been strengthened with the appointment of senior civil service data owners. A network of Group Data Champions has also been established for liaison between the business, the data owners and BERR’s delivery partners (including NDPBs).
+      The Crown Prosecution Service (CPS) has reviewed and significantly changed write access to portable media. It is now only permissible to download data from the CPS system to portable media with the explicit permission of the IT Security Officer. An encryption programme for the hard drives of laptops containing personal data was completed by the end of May 2008. A review of back up tape procedures has taken place and written assurances that they are secure in transit and when stored has been provided by local managers. A Data and Information Integrity Audit has been completed with no significant issues being identified. Further work is on-going to assess and reduce risk and strengthen information risk governance, covering both personal data and other sensitive information. This will be completed during the next financial year utilising the ISO 27001 compliance programme.
 
-      * The Department for Children, Schools and Families (DCSF) has completed a wide ranging review of security covering technology, culture, governance, data sharing procedures (including those of its delivery partners) and physical security. Deloitte has completed an independent review of the DCSF ContactPoint system. Both review reports show no obvious flaws in current systems and procedures, but have identified a number of opportunities for improvement. The new actions in this report are being implemented quickly in the Department. Strong controls remain in place covering the use of laptops and removable media. DCSF staff and partner organisations’ security responsibilities continue to be reinforced by the Permanent Secretary and through management action, stronger guidance, and training. DCSF’s governance framework is monitoring and ensuring progress and pace.
 
-      * The Department for Communities and Local Government (CLG) has reviewed its processes and put in place a range of additional measures to further improve its data handling processes. Of particular note CLG has recently rolled out an updated Knowledge Management Strategy, including guidance on responsible data handling, to staff. Contractors and partners have been reminded of their responsibility in this area and the CIO has written to all his senior civil service colleagues. A new laptop solution has also been recently rolled out which is fully encrypted. Access policies to key systems with personal data on them have been reviewed and a code of conduct issued to all staff that have access to systems containing personal data. The wider Communities Group are carrying out similar activities with their staff and delivery partners. CLG will continue to lead and monitor this activity across the group to ensure that minimum requirements are always met or exceeded. Where potential risks have been identified either in the Group or with delivery partners remedial measures are being put in place. Communities and Local Government is working with the Local Government Association and the Cabinet Office to ensure local authorities have access to expert information assurance advice and best practice guidance is issued.
+      The Department for Business Enterprise and Regulatory Reform (BERR) has undertaken an internal review to ensure best practice is understood across the BERR family and with delivery partners to ensure consistency and best practice in data handling security and management. Data governance arrangements have been strengthened with the appointment of senior civil service data owners. A network of Group Data Champions has also been established for liaison between the business, the data owners and BERR’s delivery partners (including NDPBs).
 
-      * The Department for Culture, Media and Sport’s (DCMS) information management strategy is still under review. The area will shortly be considered by both the Audit Committee and the Department’s Board. Draft principles for ensuring that information assurance and business risk form part of the Department’s leadership culture have been published. Staff have been reminded of guidance and policies and an independent IT security audit has examined compliance. Encryption of laptops is underway, and completed for those that may be used for holding personal data. NDPBs have been informed of the new policy on the protection of data – DCMS will run a related seminar for NDPBs and delivery partners.
 
-      * The Department for Environment, Food and Rural Affairs (DEFRA) has raised awareness of existing policies, procedures and good practice relevant to the use and storage of protected personal and other sensitive information. Staff across the DEFRA network have been reminded about their personal obligation to observe the existing guidance on handling information. This is being embedded through new information management accountabilities now being put in place, including a Board- level Senior Information Risk Owner and a network of Information Asset Owners. A Project on data handling procedures has been set up to deliver enhanced information assurance in DEFRA and its delivery network. A Project Board (consisting of representative key delivery bodies, business areas holding significant personal data and information risk experts) has been established to support the work to implement the requirements in the Data Handling Review. This includes ensuring appropriate accountabilities and responsibilities for information assurance; putting in place technical and other measures to ensure that protected personal and other sensitive information is adequately secured (including the roll out of a new fully encrypted laptop solution which will be completed by the end of 2008); and will also continue to review and improve, where necessary, existing security policies and procedures to ensure staff understand how data should be classified, stored, and handled.
+      The Department for Children, Schools and Families (DCSF) has completed a wide ranging review of security covering technology, culture, governance, data sharing procedures (including those of its delivery partners) and physical security. Deloitte has completed an independent review of the DCSF ContactPoint system. Both review reports show no obvious flaws in current systems and procedures, but have identified a number of opportunities for improvement. The new actions in this report are being implemented quickly in the Department. Strong controls remain in place covering the use of laptops and removable media. DCSF staff and partner organisations’ security responsibilities continue to be reinforced by the Permanent Secretary and through management action, stronger guidance, and training. DCSF’s governance framework is monitoring and ensuring progress and pace.
 
-      * The Department of Health (DH) has started implementation of the new actions in this report. Progress across the Department and its delivery bodies is being secured and monitored by a dedicated Programme Board. Reports on progress have been made to the Departmental Board and to the Audit Committee. Where the protections developed for use inside Government are not practicable for patient facing services within the NHS, work is in progress to ensure that equivalent safeguards are put in place. Full compliance will take some time, and must be achieved in a way that does not place patients at risk. For example the transmission of personal data to receiving A&amp;E units by ambulance crews needs to be made more secure but prevention of transmission in the interim would have been detrimental to patient care. Individual NHS Trusts have been asked to make a local judgement on the balance of risk to patient care against risk to personal data security in determining whether existing data sharing for particular purposes should continue whilst the steps required to secure data transfers are taken.
 
-      * The Department for Innovation, Universities and Skills (DIUS) adopted procedures from its two predecessor departments whilst developing its own approach. DIUS’s IT policy is standardised on laptops with full disc encryption, which places the Department in a strong position regarding information security. But DIUS commissioned an independent review in support of its data handling procedures. An implementation plan has been formulated allowing the development of Department- wide policies and procedures to meet the outcomes for this report, and good progress is being made. The DIUS Audit and Risk Committee has met to discuss information assurance issues, and will continue to take an active interest in this area. Furthermore, DIUS has held the first in a series of information assurance forums to enable its delivery partners to hear and share best practice from each other and from other experts. This is part of an ongoing dialogue with delivery partners to ensure an appropriate level of information assurance throughout the DIUS delivery chain.
+      The Department for Communities and Local Government (CLG) has reviewed its processes and put in place a range of additional measures to further improve its data handling processes. Of particular note CLG has recently rolled out an updated Knowledge Management Strategy, including guidance on responsible data handling, to staff. Contractors and partners have been reminded of their responsibility in this area and the CIO has written to all his senior civil service colleagues. A new laptop solution has also been recently rolled out which is fully encrypted. Access policies to key systems with personal data on them have been reviewed and a code of conduct issued to all staff that have access to systems containing personal data. The wider Communities Group are carrying out similar activities with their staff and delivery partners. CLG will continue to lead and monitor this activity across the group to ensure that minimum requirements are always met or exceeded. Where potential risks have been identified either in the Group or with delivery partners remedial measures are being put in place. Communities and Local Government is working with the Local Government Association and the Cabinet Office to ensure local authorities have access to expert information assurance advice and best practice guidance is issued.
 
-      * The Department for International Development (DfID) achieved accreditation to ISO 27001 in March 2008. The Department does not hold large amounts of personal data relating to members of the public, it does hold significant volumes of commercial and security data. It takes a risk- based approach to information security and is reviewing its decisions on the controls over the storage, retrieval and transmission of all sensitive data.
 
-      * The Department for Transport (DfT) announced in December a series of measures to improve the security of the personal information it holds. Since then, further progress has been made, including encryption of laptops, further replacement of discs with electronic transfer, new procedures on bulk transfer of forms and letters containing personal data, and work with IT suppliers to ensure systems and processes are robust and secure. Existing procedures have continued to be reviewed and improved, reflecting both internal lessons and the conclusions of this report.
+      The Department for Culture, Media and Sport’s (DCMS) information management strategy is still under review. The area will shortly be considered by both the Audit Committee and the Department’s Board. Draft principles for ensuring that information assurance and business risk form part of the Department’s leadership culture have been published. Staff have been reminded of guidance and policies and an independent IT security audit has examined compliance. Encryption of laptops is underway, and completed for those that may be used for holding personal data. NDPBs have been informed of the new policy on the protection of data – DCMS will run a related seminar for NDPBs and delivery partners.
 
-      * The Department for Work and Pensions (DWP) has introduced improved controls over the physical transfer of data on removable media. These include the introduction of new more stringent procedures for Departmental staff and Service Providers, including refreshed guidance and a secure same-day courier service. All laptops in the Department have been replaced with fully encrypted laptops and non-encrypted devices are electronically barred from connecting to the network. DWP has introduced a fast-track project for the encryption of data transfers that cannot be done electronically. The Department has set up a dedicated project, led by a senior executive, to implement a number of other actions to improve data handling.
 
-      * The Foreign and Commonwealth Office (FCO) issued reinforced instructions on data security and data protection issues to UKvisas staff in December 2007. New instructions on data handling and data security, in particular laptops and drives containing personal data, were issued in January and have been updated since. A centralised system for reporting incidents involving personal data has now been put in place. Additional guidance on the Data Protection Act, to emphasise and advise on its practical implications, has been circulated to the key units. As part of the FCO role in providing a global network for Government, FCO are undertaking a review of its worldwide mail services and will be acting on its recommendations.
+      The Department for Environment, Food and Rural Affairs (DEFRA) has raised awareness of existing policies, procedures and good practice relevant to the use and storage of protected personal and other sensitive information. Staff across the DEFRA network have been reminded about their personal obligation to observe the existing guidance on handling information. This is being embedded through new information management accountabilities now being put in place, including a Board- level Senior Information Risk Owner and a network of Information Asset Owners. A Project on data handling procedures has been set up to deliver enhanced information assurance in DEFRA and its delivery network. A Project Board (consisting of representative key delivery bodies, business areas holding significant personal data and information risk experts) has been established to support the work to implement the requirements in the Data Handling Review. This includes ensuring appropriate accountabilities and responsibilities for information assurance; putting in place technical and other measures to ensure that protected personal and other sensitive information is adequately secured (including the roll out of a new fully encrypted laptop solution which will be completed by the end of 2008); and will also continue to review and improve, where necessary, existing security policies and procedures to ensure staff understand how data should be classified, stored, and handled.
 
-      * The Home Office (HO), before the HMRC data loss, had already begun a review of its data security. This is being extended to take account of the issues arising from this report work. In parallel the HO has taken five further steps to tighten arrangements. New guidance has been issued to staff on the protective marking of documents and on their responsibilities under the Data Protection Act. Key data exchanges have been re-examined, with a view to increasing security. Data handling has been included in the compliance audit programme, to check that managers are following guidance. A new senior post has been created to support the SIRO and CIO on information management issues, including data handling procedures. Finally, the HO has established a new information assurance programme to ensure the implementation of the new mandatory minimum standards for the protection of personal data.
 
-      * HM Revenue and Customs (HMRC) has continued to strengthen its data security arrangements since the Child Benefit data loss incident. It is co-operating fully with the external reviews, including the review by Kieran Poynter, and other investigations looking at the specifics of the incident, as well as wider data security issues. HMRC has taken significant steps to strengthen its data security arrangements in the short term and has now established and introduced a wide-ranging Departmental Data Security Programme to identify and drive forward delivery of further improvements in a structured way. This programme will incorporate any further work that may be required following receipt of the final Poynter Review report which is expected to be received in the first half of 2008 increased emphasis on compliance.
+      The Department of Health (DH) has started implementation of the new actions in this report. Progress across the Department and its delivery bodies is being secured and monitored by a dedicated Programme Board. Reports on progress have been made to the Departmental Board and to the Audit Committee. Where the protections developed for use inside Government are not practicable for patient facing services within the NHS, work is in progress to ensure that equivalent safeguards are put in place. Full compliance will take some time, and must be achieved in a way that does not place patients at risk. For example the transmission of personal data to receiving A&E units by ambulance crews needs to be made more secure but prevention of transmission in the interim would have been detrimental to patient care. Individual NHS Trusts have been asked to make a local judgement on the balance of risk to patient care against risk to personal data security in determining whether existing data sharing for particular purposes should continue whilst the steps required to secure data transfers are taken.
 
-      * HM Treasury (HMT) is enhancing its staff education and training in security backed by senior management leadership and increased emphasis on compliance. In the light of the recent incident in which documents were lost, HMT has undertaken an immediate investigation and updated policies and procedures in light of the lessons learnt. The documents have been assessed to ensure that there was no breach of the Data Protection Act and there was no personal data associated with this incident.
 
-      * The Ministry of Defence (MoD), following a loss of a laptop on 9 January 2008, commissioned an independent review by Sir Edmund Burton into the incident and lessons to be learned. Notwithstanding this review, the Chief of the Defence Staff and the Permanent Secretary have initiated a campaign across the Department to raise awareness as well as appointing a Departmental Head of Information Assurance and Data Protection. Further action has included: assigning responsibility for ensuring rigorous information assurance standards for systems outside the central accreditation and assurance system to the Departmental Security Officer; briefing information risk management to Integrated Project Team leaders; engaging with industry partners over the implications of this report; and putting in train the full-disc encryption of some 20,000 laptops across the Department. The Department is producing a consolidated programme to implement the recommendations of the Burton and Data Handling reviews.
+      The Department for Innovation, Universities and Skills (DIUS) adopted procedures from its two predecessor departments whilst developing its own approach. DIUS’s IT policy is standardised on laptops with full disc encryption, which places the Department in a strong position regarding information security. But DIUS commissioned an independent review in support of its data handling procedures. An implementation plan has been formulated allowing the development of Department- wide policies and procedures to meet the outcomes for this report, and good progress is being made. The DIUS Audit and Risk Committee has met to discuss information assurance issues, and will continue to take an active interest in this area. Furthermore, DIUS has held the first in a series of information assurance forums to enable its delivery partners to hear and share best practice from each other and from other experts. This is part of an ongoing dialogue with delivery partners to ensure an appropriate level of information assurance throughout the DIUS delivery chain.
 
-      * The Ministry of Justice (MoJ) is continuing to make progress on all the actions identified in its December report. This includes ongoing communications to all staff about information management and security, launching a new Data Protection and Freedom of Information network, accompanied by new guidance about those Acts provisions and requirements, and work to review central induction and training programmes. Training delivery will reflect local solutions and included the roll-out from May 2008 of an on-line training package on security awareness and procedures in the National Offender Management Service (NOMS). A Ministry-wide information assurance programme is now in place to take forward implementation of the recommendations of this report.
 
-      * The Northern Ireland Office (NIO) have completed a detailed review of their Data Handling and Information Assurance Policies and are satisfied that they comply with HMG policies/standards and ISO 27001. Policies will be continuously monitored to ensure compliance with any changes proposed or "lessons learnt" centrally. The Department has introduced new governance arrangements; an Accreditation Panel of key users and a Senior Risk Owners Council under the chairmanship of the SIRO have been established. The Department is complying with central guidance vis-à-vis removable media unencrypted laptops holding personal or protectively marked material. All staff in the NIO and satellite bodies are receiving refresher training for Data Handling and Information Assurance.
+      The Department for International Development (DfID) achieved accreditation to ISO 27001 in March 2008. The Department does not hold large amounts of personal data relating to members of the public, it does hold significant volumes of commercial and security data. It takes a risk- based approach to information security and is reviewing its decisions on the controls over the storage, retrieval and transmission of all sensitive data.
+
+
+      The Department for Transport (DfT) announced in December a series of measures to improve the security of the personal information it holds. Since then, further progress has been made, including encryption of laptops, further replacement of discs with electronic transfer, new procedures on bulk transfer of forms and letters containing personal data, and work with IT suppliers to ensure systems and processes are robust and secure. Existing procedures have continued to be reviewed and improved, reflecting both internal lessons and the conclusions of this report.
+
+
+      The Department for Work and Pensions (DWP) has introduced improved controls over the physical transfer of data on removable media. These include the introduction of new more stringent procedures for Departmental staff and Service Providers, including refreshed guidance and a secure same-day courier service. All laptops in the Department have been replaced with fully encrypted laptops and non-encrypted devices are electronically barred from connecting to the network. DWP has introduced a fast-track project for the encryption of data transfers that cannot be done electronically. The Department has set up a dedicated project, led by a senior executive, to implement a number of other actions to improve data handling.
+
+
+      The Foreign and Commonwealth Office (FCO) issued reinforced instructions on data security and data protection issues to UKvisas staff in December 2007. New instructions on data handling and data security, in particular laptops and drives containing personal data, were issued in January and have been updated since. A centralised system for reporting incidents involving personal data has now been put in place. Additional guidance on the Data Protection Act, to emphasise and advise on its practical implications, has been circulated to the key units. As part of the FCO role in providing a global network for Government, FCO are undertaking a review of its worldwide mail services and will be acting on its recommendations.
+
+
+      The Home Office (HO), before the HMRC data loss, had already begun a review of its data security. This is being extended to take account of the issues arising from this report work. In parallel the HO has taken five further steps to tighten arrangements. New guidance has been issued to staff on the protective marking of documents and on their responsibilities under the Data Protection Act. Key data exchanges have been re-examined, with a view to increasing security. Data handling has been included in the compliance audit programme, to check that managers are following guidance. A new senior post has been created to support the SIRO and CIO on information management issues, including data handling procedures. Finally, the HO has established a new information assurance programme to ensure the implementation of the new mandatory minimum standards for the protection of personal data.
+
+
+      HM Revenue and Customs (HMRC) has continued to strengthen its data security arrangements since the Child Benefit data loss incident. It is co-operating fully with the external reviews, including the review by Kieran Poynter, and other investigations looking at the specifics of the incident, as well as wider data security issues. HMRC has taken significant steps to strengthen its data security arrangements in the short term and has now established and introduced a wide-ranging Departmental Data Security Programme to identify and drive forward delivery of further improvements in a structured way. This programme will incorporate any further work that may be required following receipt of the final Poynter Review report which is expected to be received in the first half of 2008 increased emphasis on compliance.
+
+
+      HM Treasury (HMT) is enhancing its staff education and training in security backed by senior management leadership and increased emphasis on compliance. In the light of the recent incident in which documents were lost, HMT has undertaken an immediate investigation and updated policies and procedures in light of the lessons learnt. The documents have been assessed to ensure that there was no breach of the Data Protection Act and there was no personal data associated with this incident.
+
+
+      The Ministry of Defence (MoD), following a loss of a laptop on 9 January 2008, commissioned an independent review by Sir Edmund Burton into the incident and lessons to be learned. Notwithstanding this review, the Chief of the Defence Staff and the Permanent Secretary have initiated a campaign across the Department to raise awareness as well as appointing a Departmental Head of Information Assurance and Data Protection. Further action has included: assigning responsibility for ensuring rigorous information assurance standards for systems outside the central accreditation and assurance system to the Departmental Security Officer; briefing information risk management to Integrated Project Team leaders; engaging with industry partners over the implications of this report; and putting in train the full-disc encryption of some 20,000 laptops across the Department. The Department is producing a consolidated programme to implement the recommendations of the Burton and Data Handling reviews.
+
+
+      The Ministry of Justice (MoJ) is continuing to make progress on all the actions identified in its December report. This includes ongoing communications to all staff about information management and security, launching a new Data Protection and Freedom of Information network, accompanied by new guidance about those Acts provisions and requirements, and work to review central induction and training programmes. Training delivery will reflect local solutions and included the roll-out from May 2008 of an on-line training package on security awareness and procedures in the National Offender Management Service (NOMS). A Ministry-wide information assurance programme is now in place to take forward implementation of the recommendations of this report.
+
+
+      The Northern Ireland Office (NIO) have completed a detailed review of their Data Handling and Information Assurance Policies and are satisfied that they comply with HMG policies/standards and ISO 27001. Policies will be continuously monitored to ensure compliance with any changes proposed or "lessons learnt" centrally. The Department has introduced new governance arrangements; an Accreditation Panel of key users and a Senior Risk Owners Council under the chairmanship of the SIRO have been established. The Department is complying with central guidance vis-à-vis removable media unencrypted laptops holding personal or protectively marked material. All staff in the NIO and satellite bodies are receiving refresher training for Data Handling and Information Assurance.
   - name: review
-    help-text: Review help
-    output: Review output
+    help-text: Information about the Poynter Review
+    output: >-
+      The Poynter Review (PricewaterhouseCoopers review) included
+      recommendations to:
+
+
+      Information security should be added as an objective into HMRC’s Departmental Objectives.
+
+
+      We recommend that HMRC sets out in detail the road map towards a direction of travel, outlining what the business and its supporting IT will look like year by year in order to drive immediate change.
+
+
+      HMRC should initiate an exercise to formalise its information security strategy that articulates its goals, and how it intends to achieve them.
+
+
+      HMRC should identify ‘quick wins’ to set it off on the right direction of travel, such as ceasing to hold paper records in storage, digitising them instead, Banning the use of physical media for moving information within and without HMRC, and migrating customers away from paper-based to email-based communication.
+
+
+      The HMRC Data Security Programme should start to coordinate and manage current security activities and initiatives as a coordinated, integrated body of work.
+
+
+      The Data Security Programme Board should be sponsored by an Executive Commmittee member and have members who are senior enough to ensure effective coordination and implementation.
+
+
+      HMRC should appoint a Chief Risk Officer.
+
+
+      HMRC should appoint a Chief Information Security Officer (CISO) at senior level.
+
+
+      HMRC needs deep professional expertise in risk management.
+
+
+      HMRC should commence the alignment of HR, Communications, Learning and change activities to ensure that information security policies and processes are embedded into day-to-day working life and behaviours.
+
+
+      HMRC should ensure that staff, at all levels, understand their responsibilities and accountabilities for information security and apply information security policies and principles in their day-to-day roles.
+
+
+      HMRC should develop and implement an information security awareness programme that includes regular refresher training to remind and update staff of the risks and of their responsibilities.
+
+
+      Information security guidance should be simplified, shortened and made more accessible.
+
+
+      HMRC should take a more proactive stance on incident management.
+
+
+      HMRC should make its access control consistent across all of its systems and estate.
   - name: ico
-    help-text: Ico help
-    output: Ico output
+    help-text: Statement to the House of Lords
+    output: >-
+      3.46 pm, 1 March 2010 – House of Lords statement
+
+
+      The Parliamentary Under-Secretary of State, Ministry of Justice (Lord Bach):
+
+
+      My Lords, this order relates to the power of the Information Commissioner to impose a civil monetary penalty on a data controller that seriously contravenes the data protection principles.
+
+
+      The order supplements the provisions of Sections 55A and 55E, which were inserted into the Data Protection Act 1998 by Section 144 of the Criminal Justice and Immigration Act 2008. These amendments provided the Information Commissioner with the power to impose civil monetary penalties.
+
+
+      This order, alongside the Data Protection (Monetary Penalties) (Maximum Penalty and Notices) Regulations 2010, which are subject to negative resolution, will bring the provisions on civil monetary penalties into force. The Government’s proposal is for these provisions to commence on 6 April 2010, along with other amendments to the Data Protection Act. The order was debated and approved in the other place last month.
+
+
+      The order contains provisions on data controllers’ written representations, cancellation, variation, enforcement and appeals against monetary penalty notices. The other statutory instrument provides details on the maximum penalty amount, which has been set at £500,000, and sets out information that a notice of intent and a monetary penalty notice must contain.
+
+
+      A civil monetary penalty may be served if the commissioner is satisfied that a data controller has committed a serious contravention of the data protection principles that is likely to cause substantial damage or substantial distress, and which was either deliberate or committed by a data controller that knew or ought to have known that there was a risk of this type of contravention occurring, but failed to take reasonable steps to prevent the contravention.
+
+
+      It is important to note that a number of conditions must be fulfilled before the commissioner can impose a civil monetary penalty. These conditions, which are explained in the guidance issued by the Information Toggle showing location of Column 322GCCommissioner, will ensure that only those contraventions that are sufficiently serious and deliberate or reckless warrant the issuing of a civil monetary penalty, and will ensure that the penalties are administered fairly.
+
+
+      The Government know how important it is to safeguard personal data. The ICO’s Annual Track survey 2009, recently published, shows that protecting people’s personal data is considered a top concern, only behind preventing crime. Only a small amount of data need to be misused for damage and distress to be caused.
+
+
+      There is widespread support for the introduction of this power. In particular, your Lordships will remember that the Data Sharing Review Report, the Thomas-Walport report, published in July 2008, specifically called for stronger penalties and sanctions and for the Information Commissioner to be given increased powers and resources to carry out his duties more effectively.
+
+
+      More recently, in November and December last year, we held a public consultation on the Government’s proposal to set the maximum amount for civil monetary penalties at £500,000. The large majority of respondents agreed that there was a need for such a power and supported its immediate introduction. In addition, there was cross-party support in another place for the introduction of this power.
+
+
+      Additionally, we have worked closely with the Information Commissioner’s Office and involved other stakeholders in the development of this policy. We held two stakeholder events to discuss the new regulations and the commissioner’s guidance on civil monetary penalties. The Information Commissioner’s guidance was also available for comment on the ICO website.
+
+
+      I stress that the majority of data controllers of course comply with the data protection principles, but a small number do not, and it is the irresponsible actions of those organisations that we are trying to address. We believe that civil monetary penalties will act as an effective sanction and deterrent against serious and careless or deliberate non-compliance. We estimate that the likely number of cases in which the Information Commissioner will use this power will be around eight a year.
+
+
+      It is clear that appropriate action must be taken where a data controller deliberately or recklessly contravenes the data protection principles—for example, when a data breach occurred because the data controller processed personal data in a completely unsecure environment, and knew that there was a high risk of a data breach but did not act to address that risk, such as by using unencrypted laptops which contained personal data.
+
+
+      To ensure that the ICO has the resources necessary for this new power and other new responsibilities under the DPA, the Government in October 2009 introduced a new fee structure for notification purposes. It consists of two tiers and will lead to greater funding for the ICO’s data protection work. The new fee structure reflects more accurately the costs to the ICO of regulating data controllers.
+
+
+      I will say a few words about how this power will operate. The commissioner will need to be satisfied that there has been a serious contravention of the data Toggle showing location of Column 323GCprotection principles of the kind liable to a civil monetary penalty. The commissioner will consider each possible contravention on a case-by-case basis. The commissioner laid statutory guidance before Parliament on 12 January this year which sets out his interpretation of the power and how his office will assess the meaning of “substantial”, “serious contravention”, and “damage and distress”.
+
+
+      A number of safeguards are in place to ensure the fairness of this power. First, once the Information Commissioner is satisfied that a serious contravention has been committed, he must issue a notice of intent setting out the details of the contravention, the proposed penalty, next steps and how the data controller can make representations to the Information Commissioner. Next, a penalty notice would be issued only after representations had been received and considered by the commissioner, or after the deadline for representations to be received had elapsed. In addition, data controllers have the right to appeal to the General Regulatory Chamber against any penalty notice received. On points of law, those appeals can reach the upper tribunal and, further, the Court of Appeal. Finally, the IC’s guidance must set out how the power will be used. The Government therefore believe that sufficient safeguards are in place to ensure that the Information Commissioner is not the policeman, prosecutor, judge and jury, as was said in the other place.
+
+
+      As I have tried to explain, this order sets out some of the provisions required to ensure that the monetary penalty framework for serious contraventions of the data protection principles is robust and fair to data controllers and the Information Commissioner. Although the Data Protection Act already gives the Information Commissioner an effective framework with which to regulate the Act, the power to impose monetary penalties of up to £500,000 will provide the commissioner with an important additional tool. It will act as an effective sanction and a deterrent against non-compliance. The commissioner will have no financial incentive to issue monetary penalties because any money recovered as a result of the issue of these penalties will go to the Consolidated Fund, managed by the Treasury. The new powers will contribute to increased compliance with data protection principles and strengthen public confidence that data protection safeguards are observed. I beg to move.
   - name: sorry
-    help-text: Sorry help
-    output: Sorry output
+    help-text: Apology letter
+    output: https://www.whatdotheyknow.com/cy/request/23313/response/57549/attach/html/4/Data%20Loss%20Apology%20Letter.pdf.html
 ---
