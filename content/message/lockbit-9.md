@@ -1,7 +1,7 @@
 ---
 section: section-ten
 title: Lockbit 9
-side: left
-datetime: 2023-01-12T13:49:00.000Z
+side: right
+datetime: 2023-01-25T18:17:00.000Z
 ---
-Is this showing all the data you have taken from us?
+Do you really think the government doesn't already know about this? Even if they were to fine us, paying you or not does not change this.
