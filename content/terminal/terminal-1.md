@@ -4,7 +4,7 @@ welcome-message: Welcome to my terminal. This one is about.... type `help` to ge
 prompt: user@bi4c8d$
 commands:
   - name: info
-    help-text: What happened?
+    help-text: "&nbsp;"
     output: >-
       In October 2007, a junior official at His Majesty’s Revenue and Customs
       (HMRC) popped two unencrypted discs into an envelope and posted it to its
@@ -18,7 +18,7 @@ commands:
 
       The loss of the discs was a national scandal that gained widespread public and media attention. An internal and Metropolitan Police investigation followed, as did several reports, including a government-commissioned report by PWC which labelled the loss as ‘avoidable’ and found ‘institutional deficiencies’ at HMRC. The loss was a wake-up call to implement more rigorous data security and handling measures in government, and raised serious questions about whether the public could trust the government to keep their data safe. It remains the largest known loss of data by any UK public institution.
   - name: search
-    help-text: Timeline of lost data
+    help-text: "&nbsp;"
     output: >-
       18 October 2007: Shipment of discs collected from Washington, Tyne and
       Wear.
@@ -71,7 +71,7 @@ commands:
 
       To this date, the discs have not been found.
   - name: contents
-    help-text: What was on the discs?
+    help-text: "&nbsp;"
     output: >-
       The 25 million records contained the names, addresses, dates of birth,
       National Insurance numbers and (in the case of claimants and payees) bank
@@ -92,7 +92,7 @@ commands:
 
       12,500 agents who claim the benefit on behalf of a third party.
   - name: media
-    help-text: "Prints links to information "
+    help-text: "&nbsp;"
     output: >-
       <http://news.bbc.co.uk/1/hi/uk_politics/7104945.stm>
 
@@ -105,7 +105,7 @@ commands:
 
       <https://news.bbc.co.uk/2/hi/uk_news/politics/7472814.stm>
   - name: gov
-    help-text: The Government response
+    help-text: "&nbsp;"
     output: >-
       **3.31 pm, 20 November 2007 – House of Commons statement**
 
