@@ -166,7 +166,7 @@ commands:
 
       But let me reiterate: there is no evidence that these data have reached the wrong hands and no evidence of fraud or criminal activity; banks and building societies are putting in place safeguards to protect people’s accounts; banks and building societies will continue to monitor those accounts; and no one will suffer any loss if they are innocent victims of fraud. I will, of course, keep the House updated of any further developments. I commend the statement to the House.
   - name: accountability
-    help-text: Please had a secondary argument such as "Accountability paul-gray"
+    help-text: Please add a secondary argument such as "Accountability paul-gray"
     args:
       - paul-gray
       - handling
