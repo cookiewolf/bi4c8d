@@ -13,7 +13,10 @@ commands:
       went missing.
 
 
-      On those unencrypted discs were information about 25 million legal UK residents, about 40% of the then population. Unless your parents were high earners, this means that if you lived in the UK and were under the age of 16 in 2007, or you were a parent of such a person, it’s likely that your data were on those discs.
+      On those unencrypted discs 
+
+
+      were information about 25 million legal UK residents, about 40% of the then population. Unless your parents were high earners, this means that if you lived in the UK and were under the age of 16 in 2007, or you were a parent of such a person, it’s likely that your data were on those discs.
 
 
       The loss of the discs was a national scandal that gained widespread public and media attention. An internal and Metropolitan Police investigation followed, as did several reports, including a government-commissioned report by PWC which labelled the loss as ‘avoidable’ and found ‘institutional deficiencies’ at HMRC. The loss was a wake-up call to implement more rigorous data security and handling measures in government, and raised serious questions about whether the public could trust the government to keep their data safe. It remains the largest known loss of data by any UK public institution.
@@ -351,4 +354,12 @@ commands:
   - name: sorry
     help-text: Apology letter
     output: https://www.whatdotheyknow.com/cy/request/23313/response/57549/attach/html/4/Data%20Loss%20Apology%20Letter.pdf.html
+  - name: Table
+    help-text: help
+    output: |-
+      |   |   |   |   |   |
+      |---|---|---|---|---|
+      |   |   |   |   |   |
+      |   |   |   |   |   |
+      |   |   |   |   |   |
 ---
