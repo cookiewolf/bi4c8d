@@ -62,7 +62,12 @@ viewPost post isFirst =
             , Html.div [ Html.Attributes.class "post-body" ]
                 (viewVideo post.maybeVideo :: Markdown.markdownToHtml post.body)
             , Html.div [ Html.Attributes.class "post-meta-info" ]
-                [ Html.span [ Html.Attributes.class "post-view-count" ] [ viewPostViewCount post.viewCount ]
+                [ case post.maybeViewCount of
+                    Just aViewCount ->
+                        Html.span [ Html.Attributes.class "post-view-count" ] [ viewPostViewCount aViewCount ]
+
+                    Nothing ->
+                        Html.text ""
                 , Html.span [ Html.Attributes.class "post-time" ] [ viewPostTime post.datetime ]
                 ]
             ]

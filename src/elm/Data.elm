@@ -32,7 +32,7 @@ type alias Post =
     { section : SectionId
     , datetime : Time.Posix
     , forwardedFrom : String
-    , viewCount : Int
+    , maybeViewCount : Maybe Int
     , avatarSrc : String
     , maybeVideo : Maybe String
     , body : String
@@ -240,7 +240,7 @@ postDecoder =
             |> Json.Decode.andThen posixFromStringDecoder
         )
         (Json.Decode.field "forwarded-from" Json.Decode.string)
-        (Json.Decode.field "view-count" Json.Decode.int)
+        (Json.Decode.maybe (Json.Decode.field "view-count" Json.Decode.int))
         (Json.Decode.field "avatar-src" Json.Decode.string)
         (Json.Decode.maybe (Json.Decode.field "video-src" Json.Decode.string))
         (Json.Decode.field "content" Json.Decode.string)
