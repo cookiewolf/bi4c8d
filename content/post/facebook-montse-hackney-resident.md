@@ -2,9 +2,9 @@
 section: section-eleven
 datetime: 2024-06-21T14:46:00.000Z
 forwarded-from: "Reddit User: fflaco"
-view-count: 0
+view-count: ""
 avatar-src: /images/uploads/generic-avatar.png
-video-src: "0"
+video-src: ""
 ---
 I am currently in the process of purchasing a flat in the council of Hackney, my offer was accepted back in August, as I imagine is common these days some things were delayed due to the pandemic but I have my mortgage offer and most of the solicitor's work is ready other than the local authority search.
 
