@@ -11,7 +11,7 @@ collections:
     folder: "content/main-text" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     fields:
-      - { label: "Section", name: "section", widget: "select", options: ["section-one", "section-two", "section-three", "section-six", "section-nine", "section-eleven", "section-twelve"] }
+      - { label: "Section", name: "section", widget: "select", options: ["section-one", "section-four", "section-five", "section-nine", "section-thirteen", "section-sixteen", "section-seventeen"] }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
 
@@ -21,7 +21,7 @@ collections:
     create: true
     identifier_field: "forwarded-from"
     fields:
-      - { label: "Section", name: "section", widget: "select", options: ["section-one", "section-seven", "section-eleven"] }
+      - { label: "Section", name: "section", widget: "select", options: ["section-one", "section-ten", "section-sixteen"] }
       - { label: "Date & time", name: "datetime", widget: "datetime" }
       - { label: "Forwarded from", name: "forwarded-from", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
@@ -34,7 +34,7 @@ collections:
     folder: "content/message"
     create: true
     fields:
-      - { label: "Section", name: "section", widget: "select", options: ["section-ten", "section-eleven"] }
+      - { label: "Section", name: "section", widget: "select", options: ["section-fifteen", "section-sixteen"] }
       - { label: "Message Title", name: "title", widget: "string", hint: "Not displayed - for id in CMS" }
       - { label: "Side", name: "side", widget: "select", options: ["left", "right"] }
       - { label: "Date & time", name: "datetime", widget: "datetime" }
@@ -46,7 +46,7 @@ collections:
     create: true
     identifier_field: alt
     fields:
-      - { label: "Section", name: "section", widget: "select", options: ["section-two", "section-four"] }
+      - { label: "Section", name: "section", widget: "select", options: ["section-four", "section-six"] }
       - { label: "Image", name: "source", widget: "image" }
       - { label: "Alt Description", name: "alt", widget: "string" }
       - { label: "Display position", name: "display-position", widget: "number" }
