@@ -6,10 +6,10 @@ type Key
       -- Post
     | ForwardedLabel
       -- Message
-    | Section8Heading
-    | Section10MessageHeading
-    | Section10MessageTranscriptLink
-    | Section11MessageHeading
+    | Section11Heading
+    | Section15MessageHeading
+    | Section15MessageTranscriptLink
+    | Section16MessageHeading
       -- Breaches
     | TotalBreachesSinceView Int
       -- Terminal

@@ -9,6 +9,11 @@ import View.Section1
 import View.Section10
 import View.Section11
 import View.Section12
+import View.Section13
+import View.Section14
+import View.Section15
+import View.Section16
+import View.Section17
 import View.Section2
 import View.Section3
 import View.Section4
@@ -33,6 +38,11 @@ sectionViews model =
     , ( Data.Section10, View.Section10.view model )
     , ( Data.Section11, View.Section11.view model )
     , ( Data.Section12, View.Section12.view model )
+    , ( Data.Section12, View.Section13.view model )
+    , ( Data.Section12, View.Section14.view model )
+    , ( Data.Section12, View.Section15.view model )
+    , ( Data.Section12, View.Section16.view model )
+    , ( Data.Section12, View.Section17.view model )
     ]
 
 
