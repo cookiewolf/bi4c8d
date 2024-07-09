@@ -11,7 +11,7 @@ collections:
     folder: "content/main-text" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     fields:
-      - { label: "Section", name: "section", widget: "select", options: ["section-one", "section-four", "section-five", "section-nine", "section-thirteen", "section-sixteen", "section-seventeen"] }
+      - { label: "Section", name: "section", widget: "select", options: ["section-one", "section-four", "section-five", "section-nine", "section-thirteen", "section-fourteen", "section-sixteen", "section-seventeen"] }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
 
