@@ -1,16 +1,13 @@
 module View.Section10 exposing (view)
 
-import Copy.Keys exposing (Key(..))
-import Copy.Text exposing (t)
 import Data
 import Html
-import Html.Attributes
 import Model exposing (Model)
 import Msg exposing (Msg)
-import View.Messages
+import View.Posts
 
 
 view : Model -> List (Html.Html Msg)
 view model =
-    [ View.Messages.view model.inView Data.Section10 model.content.messages (t Section10MessageHeading) (Just (t Section10MessageTranscriptLink))
+    [ View.Posts.view Data.Section10 model.content.posts
     ]

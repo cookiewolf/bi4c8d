@@ -119,13 +119,17 @@ viewVideo : Maybe String -> Html.Html Msg
 viewVideo videoSrc =
     case videoSrc of
         Just aVideoSrc ->
-            Html.div [ Html.Attributes.class "video-container" ]
-                [ Html.iframe
-                    [ Html.Attributes.class "video"
-                    , Html.Attributes.src aVideoSrc
+            if String.length aVideoSrc > 0 then
+                Html.div [ Html.Attributes.class "video-container" ]
+                    [ Html.iframe
+                        [ Html.Attributes.class "video"
+                        , Html.Attributes.src aVideoSrc
+                        ]
+                        []
                     ]
-                    []
-                ]
+
+            else
+                Html.text ""
 
         Nothing ->
             Html.text ""

@@ -18,14 +18,14 @@ import View.MainText
 
 view : Model -> List (Html.Html Msg)
 view model =
-    [ View.MainText.viewTop Data.Section3 model.content.mainText
+    [ View.MainText.viewTop Data.Section5 model.content.mainText
     , Html.div
         [ Html.Attributes.class "graph-container"
         , Html.Attributes.style "min-height" (String.fromFloat (Tuple.first model.viewportHeightWidth) ++ "px")
         ]
         [ Html.div [ Html.Attributes.class "chart" ] [ viewChart model ]
         ]
-    , View.MainText.viewBottom Data.Section3 model.content.mainText
+    , View.MainText.viewBottom Data.Section5 model.content.mainText
     ]
 
 

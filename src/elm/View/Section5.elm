@@ -1,113 +1,212 @@
 module View.Section5 exposing (view)
 
+import Chart
+import Chart.Attributes
+import Chart.Events
+import Chart.Item
+import Chart.Svg
+import Copy.Text
+import Data
 import Html
 import Html.Attributes
-import Html.Events
-import InView
-import Json.Decode
 import Model exposing (Model)
-import Msg exposing (Msg(..))
-
-
-type alias FadeImage =
-    { id : String
-    , srcId : Int
-    , isBlank : Bool
-    , scale : Float
-    }
+import Msg exposing (Msg)
+import Svg
+import Time
+import View.MainText
 
 
 view : Model -> List (Html.Html Msg)
 view model =
-    [ Html.div [ Html.Attributes.class "faces-with-info" ]
-        (List.map
-            (\imageSrcId ->
-                let
-                    itemId =
-                        "fade-image-" ++ String.fromInt imageSrcId
-
-                    isBlank =
-                        case InView.isInOrAboveViewWithMargin itemId (InView.Margin 200 0 (toFloat imageSrcId * 150) 0) model.inView of
-                            Just True ->
-                                False
-
-                            _ ->
-                                True
-                in
-                viewImage model.inView
-                    { id = itemId
-                    , srcId = imageSrcId
-                    , isBlank = isBlank
-                    , scale =
-                        if isBlank then
-                            0.25
-
-                        else
-                            1
-                    }
-            )
-            (List.range 1 3)
-        )
+    [ View.MainText.viewTop Data.Section5 model.content.mainText
+    , Html.div
+        [ Html.Attributes.class "graph-container"
+        , Html.Attributes.style "min-height" (String.fromFloat (Tuple.first model.viewportHeightWidth) ++ "px")
+        ]
+        [ Html.div [ Html.Attributes.class "chart" ] [ viewChart model ]
+        ]
+    , View.MainText.viewBottom Data.Section5 model.content.mainText
     ]
 
 
-viewImage : InView.State -> FadeImage -> Html.Html Msg
-viewImage state fadeImage =
-    Html.div
-        [ Html.Attributes.id ("profile-" ++ fadeImage.id)
-        , Html.Attributes.style "display" "flex"
-        , Html.Attributes.style "flex-direction" "row"
+viewChart : Model -> Html.Html Msg
+viewChart model =
+    let
+        dateRangeStart =
+            toFloat 883612800000
+
+        dateRangeEnd =
+            toFloat 1672531200000
+
+        graph =
+            List.head model.content.graphs
+                |> Maybe.withDefault Data.lineChartData
+    in
+    Chart.chart
+        [ Chart.Attributes.height 300
+        , Chart.Attributes.width 600
+        , Chart.Attributes.range
+            [ Chart.Attributes.lowest dateRangeStart Chart.Attributes.exactly
+            , Chart.Attributes.highest dateRangeEnd Chart.Attributes.exactly
+            ]
+        , Chart.Attributes.domain
+            [ Chart.Attributes.lowest 25 Chart.Attributes.exactly
+            , Chart.Attributes.highest 55 Chart.Attributes.exactly
+            ]
+        , Chart.Events.onMouseMove Msg.OnChartHover
+            (Chart.Events.getNearest Chart.Item.dots)
+        , Chart.Events.onMouseLeave (Msg.OnChartHover [])
         ]
-        [ Html.img
-            [ Html.Attributes.id fadeImage.id
-            , Html.Attributes.src (imageSrcFromId fadeImage.isBlank fadeImage.srcId)
-            , Html.Events.on "load" (Json.Decode.succeed (OnElementLoad fadeImage.id))
-            , Html.Attributes.style "max-width" "100%"
-            , Html.Attributes.style "opacity" "1"
-            , Html.Attributes.style "transition" (imageTransformFromId fadeImage.isBlank fadeImage.srcId)
-            , Html.Attributes.style "transform" ("scale(" ++ String.fromFloat fadeImage.scale ++ ")")
+        [ Chart.labelAt (Chart.Attributes.percent 50)
+            (Chart.Attributes.percent 115)
+            [ Chart.Attributes.fontSize 20
+            , Chart.Attributes.color "#FFFFFF"
+            ]
+            [ Svg.text graph.title ]
+        , Chart.xAxis [ Chart.Attributes.color "#FFFFFF" ]
+        , Chart.yLabels
+            [ Chart.Attributes.format (\yLabel -> "£" ++ String.fromFloat yLabel ++ " mil")
+            , Chart.Attributes.color "#FFFFFF"
+            ]
+        , Chart.generate 20 (Chart.Svg.times Time.utc) .x [] <|
+            \_ info ->
+                [ Chart.xLabel
+                    [ Chart.Attributes.x (toFloat <| Time.posixToMillis info.timestamp)
+                    , Chart.Attributes.withGrid
+                    , Chart.Attributes.color "#FFFFFF"
+                    ]
+                    [ Svg.text (formatFullTime Time.utc info.timestamp) ]
+                ]
+        , Chart.series .x
+            ([ Chart.interpolatedMaybe (\item -> item.y1.count)
+                [ Chart.Attributes.color "#E4003B" ]
+                [ Chart.Attributes.color "#E40038"
+                , Chart.Attributes.circle
+                , Chart.Attributes.size 4
+                ]
+                |> Chart.named (Maybe.withDefault "" graph.set1Label)
+             ]
+                ++ (case graph.set2Label of
+                        Just aLabel ->
+                            [ Chart.interpolatedMaybe (\item -> item.y2.count)
+                                [ Chart.Attributes.color "#0087DC" ]
+                                [ Chart.Attributes.color "#0087DC"
+                                , Chart.Attributes.circle
+                                , Chart.Attributes.size 4
+                                ]
+                                |> Chart.named aLabel
+                            ]
+
+                        Nothing ->
+                            []
+                   )
+                ++ (case graph.set3Label of
+                        Just aLabel ->
+                            [ Chart.interpolatedMaybe (\item -> item.y3.count)
+                                []
+                                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                                |> Chart.named aLabel
+                            ]
+
+                        Nothing ->
+                            []
+                   )
+                ++ (case graph.set4Label of
+                        Just aLabel ->
+                            [ Chart.interpolatedMaybe (\item -> item.y4.count)
+                                []
+                                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                                |> Chart.named aLabel
+                            ]
+
+                        Nothing ->
+                            []
+                   )
+                ++ (case graph.set5Label of
+                        Just aLabel ->
+                            [ Chart.interpolatedMaybe (\item -> item.y5.count)
+                                []
+                                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                                |> Chart.named aLabel
+                            ]
+
+                        Nothing ->
+                            []
+                   )
+                ++ (case graph.set6Label of
+                        Just aLabel ->
+                            [ Chart.interpolatedMaybe (\item -> item.y6.count)
+                                []
+                                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                                |> Chart.named aLabel
+                            ]
+
+                        Nothing ->
+                            []
+                   )
+                ++ (case graph.set7Label of
+                        Just aLabel ->
+                            [ Chart.interpolatedMaybe (\item -> item.y7.count)
+                                []
+                                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                                |> Chart.named aLabel
+                            ]
+
+                        Nothing ->
+                            []
+                   )
+            )
+            graph.dataPoints
+        , Chart.legendsAt .min
+            .max
+            [ Chart.Attributes.row
+            , Chart.Attributes.moveRight 50
+            , Chart.Attributes.spacing 15
+            , Chart.Attributes.moveUp 25
             ]
             []
-        , Html.div
-            [ Html.Attributes.class "profile-info"
-            , Html.Attributes.style "opacity"
-                (String.fromFloat (fadeImage.scale - 0.25))
-            , Html.Attributes.style "transition" (imageOpacityFromId fadeImage.isBlank fadeImage.srcId)
-            ]
-            [ Html.p [] [ Html.text "_________ Name" ]
-            , Html.p [] [ Html.text "_________ Age" ]
-            , Html.p [] [ Html.text "_________ Location" ]
-            , Html.p [] [ Html.text "_________ Place of work" ]
-            ]
+        , Chart.each model.chartHovering <|
+            \_ item ->
+                let
+                    data =
+                        Chart.Item.getData item
+
+                    y =
+                        Chart.Item.getY item
+
+                    tooltip =
+                        if data.y1.count == Just y then
+                            data.y1.tooltip
+
+                        else if data.y2.count == Just y then
+                            data.y2.tooltip
+
+                        else if data.y3.count == Just y then
+                            data.y3.tooltip
+
+                        else if data.y4.count == Just y then
+                            data.y4.tooltip
+
+                        else if data.y5.count == Just y then
+                            data.y5.tooltip
+
+                        else if data.y6.count == Just y then
+                            data.y6.tooltip
+
+                        else if data.y7.count == Just y then
+                            data.y7.tooltip
+
+                        else
+                            ""
+                in
+                if String.length tooltip > 0 then
+                    [ Chart.tooltip item [] [] [ Html.text tooltip ] ]
+
+                else
+                    []
         ]
 
 
-imageTransformFromId : Bool -> Int -> String
-imageTransformFromId isBlank srcId =
-    if isBlank then
-        "transform 0s"
-
-    else
-        "transform " ++ String.fromInt (srcId * 8) ++ "s"
-
-
-imageOpacityFromId : Bool -> Int -> String
-imageOpacityFromId isBlank srcId =
-    if isBlank then
-        "opacity 0s"
-
-    else
-        "opacity " ++ String.fromInt (srcId * 10) ++ "s"
-
-
-imageSrcFromId : Bool -> Int -> String
-imageSrcFromId isBlank srcId =
-    "/images/info-faces/00"
-        ++ String.fromInt srcId
-        ++ (if isBlank then
-                "-white.jpg"
-
-            else
-                ""
-                    ++ ".jpg"
-           )
+formatFullTime : Time.Zone -> Time.Posix -> String
+formatFullTime timezone posix =
+    String.fromInt (Time.toYear timezone posix)
