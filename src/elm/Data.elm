@@ -448,19 +448,19 @@ sectionIdFromString sectionString =
             Json.Decode.succeed Section12
 
         "section-thirteen" ->
-            Json.Decode.succeed Section12
+            Json.Decode.succeed Section13
 
         "section-fourteen" ->
-            Json.Decode.succeed Section12
+            Json.Decode.succeed Section14
 
         "section-fifteen" ->
-            Json.Decode.succeed Section12
+            Json.Decode.succeed Section15
 
         "section-sixteen" ->
-            Json.Decode.succeed Section12
+            Json.Decode.succeed Section16
 
         "section-seventeen" ->
-            Json.Decode.succeed Section12
+            Json.Decode.succeed Section17
 
         _ ->
             Json.Decode.succeed SectionInvalid

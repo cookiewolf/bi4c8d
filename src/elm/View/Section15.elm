@@ -12,5 +12,5 @@ import View.Messages
 
 view : Model -> List (Html.Html Msg)
 view model =
-    [ View.Messages.view model.inView Data.Section10 model.content.messages (t Section15MessageHeading) (Just (t Section15MessageTranscriptLink))
+    [ View.Messages.view model.inView Data.Section15 model.content.messages (t Section15MessageHeading) (Just (t Section15MessageTranscriptLink))
     ]

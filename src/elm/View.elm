@@ -38,11 +38,11 @@ sectionViews model =
     , ( Data.Section10, View.Section10.view model )
     , ( Data.Section11, View.Section11.view model )
     , ( Data.Section12, View.Section12.view model )
-    , ( Data.Section12, View.Section13.view model )
-    , ( Data.Section12, View.Section14.view model )
-    , ( Data.Section12, View.Section15.view model )
-    , ( Data.Section12, View.Section16.view model )
-    , ( Data.Section12, View.Section17.view model )
+    , ( Data.Section13, View.Section13.view model )
+    , ( Data.Section14, View.Section14.view model )
+    , ( Data.Section15, View.Section15.view model )
+    , ( Data.Section16, View.Section16.view model )
+    , ( Data.Section17, View.Section17.view model )
     ]
 
 
