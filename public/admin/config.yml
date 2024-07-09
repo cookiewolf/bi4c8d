@@ -46,7 +46,7 @@ collections:
     create: true
     identifier_field: alt
     fields:
-      - { label: "Section", name: "section", widget: "select", options: ["section-four", "section-six"] }
+      - { label: "Section", name: "section", widget: "select", options: ["section-four", "section-six", "section-eight"] }
       - { label: "Image", name: "source", widget: "image" }
       - { label: "Alt Description", name: "alt", widget: "string" }
       - { label: "Display position", name: "display-position", widget: "number" }
