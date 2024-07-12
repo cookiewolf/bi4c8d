@@ -6,7 +6,7 @@ welcome-message: In 2007, HMRC suffered the largest loss of data in UK history.
 prompt: user@bi4c8d$
 commands:
   - name: info
-    help-text: "&nbsp;"
+    help-text: " "
     output: >-
       In October 2007, a junior official at His Majesty’s Revenue and Customs
       (HMRC) popped two unencrypted discs into an envelope and posted it to its
