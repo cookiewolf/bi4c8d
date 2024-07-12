@@ -1,6 +1,8 @@
 ---
 title: HMRC data breach terminal
-welcome-message: Welcome to my terminal. This one is about.... type `help` to get started!
+welcome-message: In 2007, HMRC suffered the largest loss of data in UK history.
+  Explore this terminal to find out what was lost, who was affected and the
+  political, media and public response. Type ‘help’ to get started…
 prompt: user@bi4c8d$
 commands:
   - name: info
