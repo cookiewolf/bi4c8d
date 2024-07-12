@@ -23,7 +23,7 @@ commands:
 
       The loss of the discs was a national scandal that gained widespread public and media attention. An internal and Metropolitan Police investigation followed, as did several reports, including a government-commissioned report by PWC which labelled the loss as ‘avoidable’ and found ‘institutional deficiencies’ at HMRC. The loss was a wake-up call to implement more rigorous data security and handling measures in government, and raised serious questions about whether the public could trust the government to keep their data safe. It remains the largest known loss of data by any UK public institution.
   - name: search
-    help-text: "&nbsp;"
+    help-text: " "
     output: >-
       18 October 2007: Shipment of discs collected from Washington, Tyne and
       Wear.
