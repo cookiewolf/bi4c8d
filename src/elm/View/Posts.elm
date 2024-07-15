@@ -1,4 +1,4 @@
-module View.Posts exposing (view)
+module View.Posts exposing (posts, view)
 
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
@@ -10,7 +10,7 @@ import Msg exposing (Msg)
 import Time
 
 
-view : Data.SectionId -> List Data.Post -> Html.Html Msg
+view : Data.SectionId -> List Data.Post -> Html.Html msg
 view sectionId postList =
     if List.length postList > 0 then
         Html.div [ Html.Attributes.class "posts" ]
@@ -25,6 +25,21 @@ view sectionId postList =
 
     else
         Html.text ""
+
+
+posts : Data.SectionId -> List Data.Post -> List (Html.Html msg)
+posts sectionId postList =
+    if List.length postList > 0 then
+        List.map
+            (\post ->
+                viewPost post
+                    (isFirstOnDate post postList)
+            )
+            (Data.filterBySection sectionId postList)
+            |> List.concat
+
+    else
+        []
 
 
 isFirstOnDate : Data.Post -> List Data.Post -> Bool
@@ -47,7 +62,7 @@ isFirstOnDate post allPosts =
             False
 
 
-viewPost : Data.Post -> Bool -> List (Html.Html Msg)
+viewPost : Data.Post -> Bool -> List (Html.Html msg)
 viewPost post isFirst =
     [ Html.div [ Html.Attributes.class "post" ]
         [ if isFirst then
@@ -80,7 +95,7 @@ viewPost post isFirst =
     ]
 
 
-viewPostDate : Time.Posix -> Html.Html Msg
+viewPostDate : Time.Posix -> Html.Html msg
 viewPostDate posix =
     Html.text
         (String.join ""
@@ -93,7 +108,7 @@ viewPostDate posix =
         )
 
 
-viewPostTime : Time.Posix -> Html.Html Msg
+viewPostTime : Time.Posix -> Html.Html msg
 viewPostTime posix =
     Html.text
         ([ String.fromInt (Time.toHour Time.utc posix)
@@ -104,7 +119,7 @@ viewPostTime posix =
         )
 
 
-viewPostViewCount : Int -> Html.Html Msg
+viewPostViewCount : Int -> Html.Html msg
 viewPostViewCount viewCount =
     Html.text
         (if toFloat viewCount / 1000 > 1 then
@@ -115,7 +130,7 @@ viewPostViewCount viewCount =
         )
 
 
-viewVideo : Maybe String -> Html.Html Msg
+viewVideo : Maybe String -> Html.Html msg
 viewVideo videoSrc =
     case videoSrc of
         Just aVideoSrc ->

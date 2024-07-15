@@ -15,6 +15,7 @@ import Random
 import Task
 import Time
 import View
+import View.Posts
 
 
 port onScroll : ({ x : Float, y : Float } -> msg) -> Sub msg
@@ -59,7 +60,7 @@ init flags =
       , viewportHeightWidth = ( 800, 800 )
       , chartHovering = []
       , terminalState = { input = "", history = [] }
-      , pile1 = Pile.init (List.range 0 10 |> List.map (\n -> Html.div [] [ Html.text <| String.fromInt n ]))
+      , pile1 = Pile.init (View.Posts.posts Data.Section1 (Data.decodedContent flags |> (\c -> c.posts)))
       }
     , Cmd.batch
         [ Random.generate NewRandomIntList generateRandomIntList
