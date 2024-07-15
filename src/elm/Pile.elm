@@ -57,12 +57,12 @@ allCards { activeCard, idleCards } =
 
 
 startDragging : Id -> CardPile -> CardPile
-startDragging id pack =
+startDragging id pile =
     let
         ( targetAsList, others ) =
-            List.partition (.id >> (==) id) (allCards pack)
+            List.partition (.id >> (==) id) pile.idleCards
     in
-    { pack
+    { pile
         | idleCards = others
         , activeCard = targetAsList |> List.head
     }
