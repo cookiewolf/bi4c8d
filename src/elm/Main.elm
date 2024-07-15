@@ -63,6 +63,7 @@ init flags =
       , terminalState = { input = "", history = [] }
       , pile1 = Pile.init (View.Posts.posts Data.Section1 (Data.decodedContent flags |> (\c -> c.posts)))
       , pile2 = Pile.init (View.StackingImage.viewImageListDraggable Data.Section4 (Data.decodedContent flags |> (\c -> c.images)))
+      , pile3 = Pile.init (View.Posts.posts Data.Section10 (Data.decodedContent flags |> (\c -> c.posts)))
       }
     , Cmd.batch
         [ Random.generate NewRandomIntList generateRandomIntList
@@ -80,6 +81,7 @@ subscriptions model =
         , onScroll OnScroll
         , Pile.subscriptions Pile1 model.pile1
         , Pile.subscriptions Pile2 model.pile2
+        , Pile.subscriptions Pile3 model.pile3
         ]
 
 
@@ -194,6 +196,13 @@ update msg model =
                     Pile.update Pile2 msg_ model.pile2
             in
             ( { model | pile2 = pile2 }, cmd )
+
+        Pile3 msg_ ->
+            let
+                ( pile3, cmd ) =
+                    Pile.update Pile3 msg_ model.pile3
+            in
+            ( { model | pile3 = pile3 }, cmd )
 
 
 scrollToElement : String -> Cmd Msg

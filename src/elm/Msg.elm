@@ -22,3 +22,4 @@ type Msg
     | ScrollResult (Result Browser.Dom.Error ())
     | Pile1 Pile.Msg
     | Pile2 Pile.Msg
+    | Pile3 Pile.Msg

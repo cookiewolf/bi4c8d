@@ -19,6 +19,7 @@ type alias Model =
     , terminalState : TerminalState
     , pile1 : Pile.Model
     , pile2 : Pile.Model
+    , pile3 : Pile.Model
     }
 
 
