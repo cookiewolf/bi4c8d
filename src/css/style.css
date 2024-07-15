@@ -270,6 +270,12 @@ p {
   position: relative;
 }
 
+.images-mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .image {
   position: sticky;
   top: 3rem;
@@ -477,7 +483,11 @@ h2.final-ticker {
   overflow: hidden;
 }
 
-/* debugging styles */
 .card {
   position: absolute;
+}
+
+.image-constraint {
+  max-width: 40vw;
+  max-height: 60vh;
 }

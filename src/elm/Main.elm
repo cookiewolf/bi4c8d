@@ -16,6 +16,7 @@ import Task
 import Time
 import View
 import View.Posts
+import View.StackingImage
 
 
 port onScroll : ({ x : Float, y : Float } -> msg) -> Sub msg
@@ -61,6 +62,7 @@ init flags =
       , chartHovering = []
       , terminalState = { input = "", history = [] }
       , pile1 = Pile.init (View.Posts.posts Data.Section1 (Data.decodedContent flags |> (\c -> c.posts)))
+      , pile2 = Pile.init (View.StackingImage.viewImageListDraggable Data.Section4 (Data.decodedContent flags |> (\c -> c.images)))
       }
     , Cmd.batch
         [ Random.generate NewRandomIntList generateRandomIntList
@@ -77,6 +79,7 @@ subscriptions model =
         , InView.subscriptions InViewMsg model.inView
         , onScroll OnScroll
         , Pile.subscriptions Pile1 model.pile1
+        , Pile.subscriptions Pile2 model.pile2
         ]
 
 
@@ -184,6 +187,13 @@ update msg model =
                     Pile.update Pile1 msg_ model.pile1
             in
             ( { model | pile1 = pile1 }, cmd )
+
+        Pile2 msg_ ->
+            let
+                ( pile2, cmd ) =
+                    Pile.update Pile2 msg_ model.pile2
+            in
+            ( { model | pile2 = pile2 }, cmd )
 
 
 scrollToElement : String -> Cmd Msg

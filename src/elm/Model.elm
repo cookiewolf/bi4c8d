@@ -18,6 +18,7 @@ type alias Model =
     , chartHovering : List (Chart.Item.One Data.LineChartDatum Chart.Item.Dot)
     , terminalState : TerminalState
     , pile1 : Pile.Model
+    , pile2 : Pile.Model
     }
 
 
