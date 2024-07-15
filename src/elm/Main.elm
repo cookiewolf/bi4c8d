@@ -10,6 +10,7 @@ import Html.Attributes
 import InView
 import Model exposing (Model)
 import Msg exposing (Msg(..))
+import Pile
 import Random
 import Task
 import Time
@@ -58,6 +59,7 @@ init flags =
       , viewportHeightWidth = ( 800, 800 )
       , chartHovering = []
       , terminalState = { input = "", history = [] }
+      , pile1 = Pile.init (List.range 0 10 |> List.map (\n -> Html.div [] [ Html.text <| String.fromInt n ]))
       }
     , Cmd.batch
         [ Random.generate NewRandomIntList generateRandomIntList
@@ -73,6 +75,7 @@ subscriptions model =
         [ Time.every 100 Tick -- 10 times per second
         , InView.subscriptions InViewMsg model.inView
         , onScroll OnScroll
+        , Pile.subscriptions Pile1 model.pile1
         ]
 
 
@@ -173,6 +176,13 @@ update msg model =
 
         ScrollResult _ ->
             ( model, Cmd.none )
+
+        Pile1 msg_ ->
+            let
+                ( pile1, cmd ) =
+                    Pile.update Pile1 msg_ model.pile1
+            in
+            ( { model | pile1 = pile1 }, cmd )
 
 
 scrollToElement : String -> Cmd Msg

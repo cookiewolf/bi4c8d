@@ -4,10 +4,10 @@
   --grey-light: #d9d9d9;
   --grey-dark: #a9a4a4;
 
-  --red: #E4003B;
-  --blue: #0087DC;
-  --green: #33FF00;
-  
+  --red: #e4003b;
+  --blue: #0087dc;
+  --green: #33ff00;
+
   --default-radius: 30px;
   --max-section-width: 800px;
 }
@@ -46,8 +46,8 @@ p {
 #section-eleven,
 #section-twelve,
 #section-fourteen {
- max-width: 100%;
- width: 100%;
+  max-width: 100%;
+  width: 100%;
 }
 
 #section-eleven h2.heading {
@@ -75,7 +75,7 @@ p {
   border: solid var(--black) 1px;
   border-radius: var(--default-radius);
   padding: 30px 30px 20px 30px;
-  text-align: left
+  text-align: left;
 }
 
 .main-text-title {
@@ -197,7 +197,7 @@ p {
 }
 
 .message-bubble {
- position: relative;
+  position: relative;
 }
 
 .typing-dots {
@@ -353,13 +353,13 @@ p {
   padding: 4.5rem 0;
 }
 
-.terminal{
+.terminal {
   border: 2px solid var(--grey-dark);
   height: 100%;
   margin: 0 auto;
   max-width: var(--max-section-width);
   overflow: auto;
-  text-align:left;
+  text-align: left;
 }
 
 .terminal h3 {
@@ -432,7 +432,7 @@ p {
 }
 
 .terminal .help li .command-name::after {
-  content: ":"
+  content: ":";
 }
 
 .terminal .error {
@@ -460,4 +460,25 @@ h2.final-ticker {
   flex-direction: column;
   justify-content: center;
   margin: 10px auto;
+}
+
+/** Draggable Pile **/
+
+.pile {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* debugging styles */
+.card {
+  position: absolute;
+  background-color: yellow;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  font-weight: bold;
+  border: 5px solid black;
 }

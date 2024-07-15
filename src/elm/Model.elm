@@ -3,6 +3,7 @@ module Model exposing (Model, TerminalState)
 import Chart.Item
 import Data
 import InView
+import Pile
 import Time
 
 
@@ -16,6 +17,7 @@ type alias Model =
     , viewportHeightWidth : ( Float, Float )
     , chartHovering : List (Chart.Item.One Data.LineChartDatum Chart.Item.Dot)
     , terminalState : TerminalState
+    , pile1 : Pile.Model
     }
 
 
