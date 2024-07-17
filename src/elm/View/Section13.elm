@@ -34,7 +34,8 @@ viewTerminal model =
                     aTerminal
 
                 Nothing ->
-                    { terminalId = "default-terminal"
+                    { section = Data.Section13
+                    , terminalId = "default-terminal"
                     , welcomeMessage = "Welcome!"
                     , prompt = "$"
                     , commandList = []

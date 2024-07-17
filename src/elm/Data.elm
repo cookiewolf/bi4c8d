@@ -61,7 +61,8 @@ type alias Image =
 
 
 type alias Graph =
-    { title : String
+    { section : SectionId
+    , title : String
     , set1Label : Maybe String
     , set2Label : Maybe String
     , set3Label : Maybe String
@@ -90,7 +91,8 @@ type alias YPoint =
 
 
 type alias Terminal =
-    { terminalId : String
+    { section : SectionId
+    , terminalId : String
     , welcomeMessage : String
     , prompt : String
     , commandList : List Command
@@ -279,6 +281,10 @@ graphDictDecoder =
 graphDecoder : Json.Decode.Decoder Graph
 graphDecoder =
     Json.Decode.succeed Graph
+        |> andMap
+            (Json.Decode.field "section" Json.Decode.string
+                |> Json.Decode.andThen sectionIdFromString
+            )
         |> andMap (Json.Decode.field "title" Json.Decode.string)
         |> andMap (Json.Decode.maybe (Json.Decode.field "label1" Json.Decode.string))
         |> andMap (Json.Decode.maybe (Json.Decode.field "label2" Json.Decode.string))
@@ -328,7 +334,10 @@ terminalDictDecoder =
 
 terminalDecoder : Json.Decode.Decoder Terminal
 terminalDecoder =
-    Json.Decode.map4 Terminal
+    Json.Decode.map5 Terminal
+        (Json.Decode.field "section" Json.Decode.string
+            |> Json.Decode.andThen sectionIdFromString
+        )
         (Json.Decode.field "title" Json.Decode.string
             |> Json.Decode.andThen slugFromString
         )
@@ -573,7 +582,8 @@ trackableIdFromItem item =
 
 lineChartData : Graph
 lineChartData =
-    { title = "Empty test data"
+    { section = Section1
+    , title = "Empty test data"
     , set1Label = Nothing
     , set2Label = Nothing
     , set3Label = Nothing
