@@ -51,9 +51,21 @@ init flags =
 
         ( inViewModel, inViewCmds ) =
             InView.init InViewMsg trackableSections
+
+        content =
+            Data.decodedContent flags
+
+        section1draggableContent =
+            ( Data.Section1, View.Posts.posts Data.Section1 content.posts )
+
+        section4draggableContent =
+            ( Data.Section4, View.StackingImage.viewImageListDraggable Data.Section4 content.images )
+
+        section10draggableContent =
+            ( Data.Section10, View.Posts.posts Data.Section10 content.posts )
     in
     ( { time = Time.millisToPosix 0
-      , content = Data.decodedContent flags
+      , content = content
       , tickerState = initialTickerState
       , breachCount = 0
       , randomIntList = []
@@ -61,9 +73,11 @@ init flags =
       , viewportHeightWidth = ( 800, 800 )
       , chartHovering = []
       , terminalState = { input = "", history = [] }
-      , pile1 = Pile.init (View.Posts.posts Data.Section1 (Data.decodedContent flags |> (\c -> c.posts)))
-      , pile2 = Pile.init (View.StackingImage.viewImageListDraggable Data.Section4 (Data.decodedContent flags |> (\c -> c.images)))
-      , pile3 = Pile.init (View.Posts.posts Data.Section10 (Data.decodedContent flags |> (\c -> c.posts)))
+      , piles = Pile.init [ section1draggableContent, section4draggableContent, section10draggableContent ]
+
+      -- , pile1 = Pile.init (View.Posts.posts Data.Section1 (Data.decodedContent flags |> (\c -> c.posts)))
+      -- , pile2 = Pile.init (View.StackingImage.viewImageListDraggable Data.Section4 (Data.decodedContent flags |> (\c -> c.images)))
+      -- , pile3 = Pile.init (View.Posts.posts Data.Section10 (Data.decodedContent flags |> (\c -> c.posts)))
       }
     , Cmd.batch
         [ Random.generate NewRandomIntList generateRandomIntList
@@ -79,9 +93,7 @@ subscriptions model =
         [ Time.every 100 Tick -- 10 times per second
         , InView.subscriptions InViewMsg model.inView
         , onScroll OnScroll
-        , Pile.subscriptions Pile1 model.pile1
-        , Pile.subscriptions Pile2 model.pile2
-        , Pile.subscriptions Pile3 model.pile3
+        , Pile.subscriptions Piles model.piles
         ]
 
 
@@ -183,26 +195,12 @@ update msg model =
         ScrollResult _ ->
             ( model, Cmd.none )
 
-        Pile1 msg_ ->
+        Piles pileMsg ->
             let
-                ( pile1, cmd ) =
-                    Pile.update Pile1 msg_ model.pile1
+                ( piles, cmd ) =
+                    Pile.update Piles pileMsg model.piles
             in
-            ( { model | pile1 = pile1 }, cmd )
-
-        Pile2 msg_ ->
-            let
-                ( pile2, cmd ) =
-                    Pile.update Pile2 msg_ model.pile2
-            in
-            ( { model | pile2 = pile2 }, cmd )
-
-        Pile3 msg_ ->
-            let
-                ( pile3, cmd ) =
-                    Pile.update Pile3 msg_ model.pile3
-            in
-            ( { model | pile3 = pile3 }, cmd )
+            ( { model | piles = piles }, cmd )
 
 
 scrollToElement : String -> Cmd Msg

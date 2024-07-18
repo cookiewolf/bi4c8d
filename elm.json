@@ -17,6 +17,7 @@
             "elm/time": "1.0.0",
             "elm-community/html-extra": "3.4.0",
             "elm-explorations/linear-algebra": "1.0.3",
+            "pzp1997/assoc-list": "1.0.0",
             "rl-king/elm-inview": "2.0.1",
             "rtfeldman/elm-iso8601-date-strings": "1.1.4",
             "terezka/elm-charts": "4.0.0",

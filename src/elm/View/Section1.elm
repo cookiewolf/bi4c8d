@@ -16,5 +16,5 @@ view model =
         View.Posts.view Data.Section1 model.content.posts
 
       else
-        Pile.view model.pile1.pile |> Html.map Pile1
+        Pile.view Data.Section1 model.piles |> Html.map Piles
     ]

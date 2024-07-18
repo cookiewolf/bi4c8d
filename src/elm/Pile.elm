@@ -1,5 +1,7 @@
 module Pile exposing (..)
 
+import AssocList
+import Data exposing (SectionId)
 import Draggable
 import Draggable.Events
 import Html exposing (Html)
@@ -79,51 +81,64 @@ dragActiveBy delta ({ activeCard } as pack) =
 
 
 type alias Model =
-    { pile : CardPile
-    , drag : Draggable.State Id
+    { activePile : Maybe SectionId
+    , piles : AssocList.Dict SectionId CardPile
+    , drag : Draggable.State DragState
+    }
+
+
+type alias DragState =
+    { dictKey : SectionId
+    , cardId : Id
     }
 
 
 type Msg
-    = DragMsg (Draggable.Msg Id)
+    = DragMsg (Draggable.Msg DragState)
     | OnDragBy Vec2
-    | StartDragging Id
+    | StartDragging DragState
     | StopDragging
 
 
-init : List (Html Msg) -> Model
-init cardsContent =
+init : List ( SectionId, List (Html Msg) ) -> Model
+init prePiles =
     -- will probably either radomly generate these vectors within bounds or
     -- have some hand crafted numbers for initial layout
-    let
-        xs =
-            List.range 0 (List.length cardsContent)
-                |> List.map
-                    (\n ->
-                        if modBy 2 n == 0 then
-                            n * 120
+    prePiles
+        |> List.map
+            (\( key, cardsContent ) ->
+                let
+                    xs =
+                        List.range 0 (List.length cardsContent)
+                            |> List.map
+                                (\n ->
+                                    if modBy 2 n == 0 then
+                                        n * 120
 
-                        else
-                            n * 85
-                    )
-                |> List.map toFloat
+                                    else
+                                        n * 85
+                                )
+                            |> List.map toFloat
 
-        ys =
-            List.range 0 (List.length cardsContent)
-                |> List.map
-                    (\n ->
-                        if modBy 2 n == 0 then
-                            n * 60
+                    ys =
+                        List.range 0 (List.length cardsContent)
+                            |> List.map
+                                (\n ->
+                                    if modBy 2 n == 0 then
+                                        n * 60
 
-                        else
-                            n * 75
-                    )
-                |> List.map toFloat
-    in
-    cardsContent
-        |> List.map3 (\x y cont -> ( Math.Vector2.vec2 x y, cont )) xs ys
-        |> makeCardPile
-        |> (\pile -> Model pile Draggable.init)
+                                    else
+                                        n * 75
+                                )
+                            |> List.map toFloat
+                in
+                cardsContent
+                    |> List.map3 (\x y cont -> ( Math.Vector2.vec2 x y, cont )) xs ys
+                    |> makeCardPile
+                    |> (\newPile -> ( key, newPile ))
+            )
+        |> AssocList.fromList
+        |> (\pileDict -> Model Nothing pileDict Draggable.init)
 
 
 
@@ -131,7 +146,7 @@ init cardsContent =
 -- in order to be compatible
 
 
-dragConfig : (Msg -> msg) -> Draggable.Config Id msg
+dragConfig : (Msg -> msg) -> Draggable.Config DragState msg
 dragConfig mainMsg =
     Draggable.customConfig
         [ Draggable.Events.onDragBy (\( dx, dy ) -> Math.Vector2.vec2 dx dy |> OnDragBy |> mainMsg)
@@ -140,16 +155,41 @@ dragConfig mainMsg =
 
 
 update : (Msg -> msg) -> Msg -> Model -> ( Model, Cmd msg )
-update mainMsg msg ({ pile } as model) =
+update mainMsg msg ({ piles, activePile } as model) =
     case msg of
         OnDragBy delta ->
-            ( { model | pile = pile |> dragActiveBy delta }, Cmd.none )
+            ( { model
+                | piles =
+                    activePile
+                        |> Maybe.map (\key -> AssocList.update key (Maybe.map (dragActiveBy delta)) piles)
+                        |> Maybe.withDefault piles
+              }
+            , Cmd.none
+            )
 
-        StartDragging id ->
-            ( { model | pile = pile |> startDragging id }, Cmd.none )
+        StartDragging dragState ->
+            ( { model
+                | piles = AssocList.update dragState.dictKey (Maybe.map (startDragging dragState.cardId)) piles
+                , activePile =
+                    if AssocList.member dragState.dictKey piles then
+                        Just dragState.dictKey
+
+                    else
+                        Nothing
+              }
+            , Cmd.none
+            )
 
         StopDragging ->
-            ( { model | pile = pile |> stopDragging }, Cmd.none )
+            ( { model
+                | activePile = Nothing
+                , piles =
+                    activePile
+                        |> Maybe.map (\key -> AssocList.update key (Maybe.map stopDragging) piles)
+                        |> Maybe.withDefault piles
+              }
+            , Cmd.none
+            )
 
         DragMsg dragMsg ->
             Draggable.update (dragConfig mainMsg) dragMsg model
@@ -161,8 +201,8 @@ subscriptions mainMsg { drag } =
         |> Sub.map mainMsg
 
 
-cardView : Card -> Html Msg
-cardView { id, position, cont } =
+cardView : SectionId -> Card -> Html Msg
+cardView key { id, position, cont } =
     let
         x =
             String.fromFloat (Math.Vector2.getX position) ++ "px"
@@ -175,16 +215,21 @@ cardView { id, position, cont } =
         , Html.Attributes.style "left" x
         , Html.Attributes.style "top" y
         , Html.Attributes.style "cursor" "move"
-        , Draggable.mouseTrigger id DragMsg
+        , Draggable.mouseTrigger (DragState key id) DragMsg
         , Html.Events.onMouseUp StopDragging
         ]
         [ cont ]
 
 
-view : CardPile -> Html Msg
-view pile =
-    pile
-        |> allCards
-        |> List.map cardView
-        |> List.reverse
-        |> Html.div [ Html.Attributes.class "pile" ]
+view : SectionId -> Model -> Html Msg
+view key model =
+    AssocList.get key model.piles
+        |> Maybe.map
+            (\pile ->
+                pile
+                    |> allCards
+                    |> List.map (cardView key)
+                    |> List.reverse
+                    |> Html.div [ Html.Attributes.class "pile" ]
+            )
+        |> Maybe.withDefault (Html.text "")

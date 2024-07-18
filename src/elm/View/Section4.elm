@@ -16,5 +16,5 @@ view model =
         View.StackingImage.viewImageListStatic Data.Section4 model.content.images
 
       else
-        Pile.view model.pile2.pile |> Html.map Pile2
+        Pile.view Data.Section4 model.piles |> Html.map Piles
     ]

@@ -20,6 +20,4 @@ type Msg
     | ChangeCommand String
     | SubmitCommand String
     | ScrollResult (Result Browser.Dom.Error ())
-    | Pile1 Pile.Msg
-    | Pile2 Pile.Msg
-    | Pile3 Pile.Msg
+    | Piles Pile.Msg
