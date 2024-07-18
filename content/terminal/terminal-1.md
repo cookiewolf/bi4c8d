@@ -1,11 +1,13 @@
 ---
 section: section-nine
-title: 2007 HMRC Data loss
-welcome-message: Welcome to my terminal. This one is about.... type `help` to get started!
+title: HMRC data breach terminal
+welcome-message: In 2007, HMRC suffered the largest loss of data in UK history.
+  Explore this terminal to find out what was lost, who was affected and the
+  political, media and public response. Type ‘help’ to get started…
 prompt: user@bi4c8d$
 commands:
   - name: info
-    help-text: "&nbsp;"
+    help-text: " "
     output: >-
       In October 2007, a junior official at His Majesty’s Revenue and Customs
       (HMRC) popped two unencrypted discs into an envelope and posted it to its
@@ -22,7 +24,7 @@ commands:
 
       The loss of the discs was a national scandal that gained widespread public and media attention. An internal and Metropolitan Police investigation followed, as did several reports, including a government-commissioned report by PWC which labelled the loss as ‘avoidable’ and found ‘institutional deficiencies’ at HMRC. The loss was a wake-up call to implement more rigorous data security and handling measures in government, and raised serious questions about whether the public could trust the government to keep their data safe. It remains the largest known loss of data by any UK public institution.
   - name: search
-    help-text: "&nbsp;"
+    help-text: " "
     output: >-
       18 October 2007: Shipment of discs collected from Washington, Tyne and
       Wear.
@@ -75,7 +77,7 @@ commands:
 
       To this date, the discs have not been found.
   - name: contents
-    help-text: "&nbsp;"
+    help-text: " "
     output: >-
       The 25 million records contained the names, addresses, dates of birth,
       National Insurance numbers and (in the case of claimants and payees) bank
@@ -96,7 +98,7 @@ commands:
 
       12,500 agents who claim the benefit on behalf of a third party.
   - name: media
-    help-text: "&nbsp;"
+    help-text: " "
     output: >-
       <http://news.bbc.co.uk/1/hi/uk_politics/7104945.stm>
 
@@ -109,7 +111,7 @@ commands:
 
       <https://news.bbc.co.uk/2/hi/uk_news/politics/7472814.stm>
   - name: gov
-    help-text: "&nbsp;"
+    help-text: " "
     output: >-
       **3.31 pm, 20 November 2007 – House of Commons statement**
 
@@ -184,9 +186,9 @@ commands:
       ws/articles/politics/domestic_politics/paul+gray+back+at+work/1136847](ht\
       tps://web.archive.org/web/20081118223337/http://www.channel4.com/news/art\
       icles/politics/domestic_politics/paul+gray+back+at+work/1136847)"
-    help-text: Provides a link to information about Paul Gray
+    help-text: " "
   - name: handling
-    help-text: Was anything put in place to stop this happening again?
+    help-text: " "
     output: >-
       The loss of two discs by HM Revenue and Customs (HMRC) started an
       intensive process as all Departments re-examined their practices:
@@ -248,7 +250,7 @@ commands:
 
       The Northern Ireland Office (NIO) have completed a detailed review of their Data Handling and Information Assurance Policies and are satisfied that they comply with HMG policies/standards and ISO 27001. Policies will be continuously monitored to ensure compliance with any changes proposed or "lessons learnt" centrally. The Department has introduced new governance arrangements; an Accreditation Panel of key users and a Senior Risk Owners Council under the chairmanship of the SIRO have been established. The Department is complying with central guidance vis-à-vis removable media unencrypted laptops holding personal or protectively marked material. All staff in the NIO and satellite bodies are receiving refresher training for Data Handling and Information Assurance.
   - name: review
-    help-text: Information about the Poynter Review
+    help-text: " "
     output: >-
       The Poynter Review (PricewaterhouseCoopers review) included
       recommendations to:
@@ -298,7 +300,7 @@ commands:
 
       HMRC should make its access control consistent across all of its systems and estate.
   - name: ico
-    help-text: Statement to the House of Lords
+    help-text: " "
     output: >-
       3.46 pm, 1 March 2010 – House of Lords statement
 
@@ -353,10 +355,10 @@ commands:
 
       As I have tried to explain, this order sets out some of the provisions required to ensure that the monetary penalty framework for serious contraventions of the data protection principles is robust and fair to data controllers and the Information Commissioner. Although the Data Protection Act already gives the Information Commissioner an effective framework with which to regulate the Act, the power to impose monetary penalties of up to £500,000 will provide the commissioner with an important additional tool. It will act as an effective sanction and a deterrent against non-compliance. The commissioner will have no financial incentive to issue monetary penalties because any money recovered as a result of the issue of these penalties will go to the Consolidated Fund, managed by the Treasury. The new powers will contribute to increased compliance with data protection principles and strengthen public confidence that data protection safeguards are observed. I beg to move.
   - name: sorry
-    help-text: Apology letter
+    help-text: " "
     output: https://www.whatdotheyknow.com/cy/request/23313/response/57549/attach/html/4/Data%20Loss%20Apology%20Letter.pdf.html
   - name: Table
-    help-text: help
+    help-text: " "
     output: |-
       | Header 1  |Header 2   |Header 3   | Header 4  | Header 5  |
       |---|---|---|---|---|

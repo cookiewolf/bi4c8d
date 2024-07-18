@@ -1,6 +1,6 @@
 ---
 section: section-four
-title: Ulterior Motives
+title: Private lives are public record
 ---
 Giving greater powers to authorities to reveal identities have been put forward by MPs over the years as a panacea policy solution for, amongst other issues: public safety concerns, hooliganism, terrorism, immigration and illegal work, online, electoral and financial abuse, data privacy concerns, social security fraud, and having to bring your passport to a nightclub. The skeptic may argue that if it is mooted by politicians as a solution for a profusion of issues, is it a solution in search of a problem?
 
