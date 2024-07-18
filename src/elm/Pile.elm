@@ -39,10 +39,10 @@ emptyPile =
 
 
 addCard : ( Math.Vector2.Vec2, Html Msg ) -> CardPile -> CardPile
-addCard ( pos, cont ) ({ uid, idleCards } as pile) =
+addCard ( position, content ) ({ uid, idleCards } as pile) =
     { pile
         | uid = uid + 1
-        , idleCards = Card (String.fromInt uid) pos cont :: idleCards
+        , idleCards = Card (String.fromInt uid) position content :: idleCards
     }
 
 
@@ -111,24 +111,24 @@ init prePiles =
                     xs =
                         List.range 0 (List.length cardsContent)
                             |> List.map
-                                (\n ->
-                                    if modBy 2 n == 0 then
-                                        n * 120
+                                (\number ->
+                                    if modBy 2 number == 0 then
+                                        number * 120
 
                                     else
-                                        n * 85
+                                        number * 85
                                 )
                             |> List.map toFloat
 
                     ys =
                         List.range 0 (List.length cardsContent)
                             |> List.map
-                                (\n ->
-                                    if modBy 2 n == 0 then
-                                        n * 60
+                                (\number ->
+                                    if modBy 2 number == 0 then
+                                        number * 60
 
                                     else
-                                        n * 75
+                                        number * 75
                                 )
                             |> List.map toFloat
                 in
