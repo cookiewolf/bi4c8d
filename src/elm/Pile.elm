@@ -62,7 +62,7 @@ startDragging : Id -> CardPile -> CardPile
 startDragging id pile =
     let
         ( targetAsList, others ) =
-            List.partition (.id >> (==) id) pile.idleCards
+            List.partition (\card -> card.id == id) pile.idleCards
     in
     { pile
         | idleCards = others
