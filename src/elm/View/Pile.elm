@@ -11,8 +11,27 @@ view : Pile.Data -> Html.Html msg
 view data =
     case data of
         Pile.Post post ->
-            Html.div [] (View.Posts.viewPost post False)
+            View.Posts.viewPostDraggable post
 
+        -- Html.div [] (View.Posts.viewPost post False)
+        -- Html.div [ Html.Attributes.class "post-draggable" ]
+        --     [ Html.h4 [ Html.Attributes.class "post-forwarded-from" ] [ Html.text (t ForwardedLabel ++ post.forwardedFrom) ]
+        --     , Html.img
+        --         [ Html.Attributes.class "post-avatar-draggable"
+        --         , Html.Attributes.src post.avatarSrc
+        --         ]
+        --     , Html.div [ Html.Attributes.class "post-content-draggable" ]
+        --         (View.Posts.viewVideo post.maybeVideo :: Markdown.markdownToHtml post.body)
+        --     , Html.div [ Html.Attributes.class "post-meta-info" ]
+        --         [ case post.maybeViewCount of
+        --             Just aViewCount ->
+        --                 Html.span [ Html.Attributes.class "post-view-count" ] [ viewPostViewCount aViewCount ]
+        --             Nothing ->
+        --                 Html.text ""
+        --         , Html.span [ Html.Attributes.class "post-time" ] [ viewPostTime post.datetime ]
+        --         ]
+        --         []
+        --     ]
         Pile.Image image ->
             viewImage image
 

@@ -170,6 +170,7 @@ p {
 
 /* Video */
 .video-container {
+  background-color: black;
   height: 0px;
   margin-bottom: 2em;
   padding-top: 56.25%;
@@ -477,8 +478,13 @@ h2.final-ticker {
 /** Draggable Pile **/
 
 .pile {
+  margin-top: 5rem;
+  border-top: 1px solid var(--black);
+  border-bottom: 1px solid var(--black);
   height: 100vh;
-  margin-left: calc(50% - 50vw);
+  /* https://piccalil.li/blog/creating-a-full-bleed-css-utility */
+  margin-left: calc(50% - 50vw); /* getting overflow on chrome */
+  margin-right: calc(50% - 50vw); /* getting overflow on chrome */
   overflow: hidden;
   position: relative;
   width: 100vw;
@@ -491,4 +497,59 @@ h2.final-ticker {
 .image-constraint {
   height: 60vh;
   width: 40vw;
+}
+
+.post-draggable {
+  background-color: var(--white);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
+  display: grid;
+  font-family: monospace;
+  font-size: 1rem;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  grid-template-columns: max-content 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "avatar forwardedFrom"
+    "empty content"
+    "empty meta";
+  width: 520px;
+}
+
+.post-avatar-draggable {
+  grid-area: avatar;
+}
+
+.post-forwarded-from-draggable {
+  grid-area: forwardedFrom;
+  padding-top: 0.25rem;
+}
+
+.post-content-draggable {
+  grid-area: content;
+  text-align: left;
+}
+
+.post-meta-draggable {
+  display: flex;
+  flex-direction: row-reverse;
+  grid-area: meta;
+  justify-content: space-between;
+}
+
+.post-view-count-draggable {
+  position: relative;
+  margin-left: 2rem;
+}
+.post-view-count-draggable::before {
+  display: inline-block;
+  position: absolute;
+  content: url(/images/eye.svg);
+  left: -2rem;
+  top: -0.35rem;
+}
+
+.post-date-time-draggable {
+  display: flex;
+  gap: 0.5rem;
 }
