@@ -11,7 +11,7 @@ collections:
     folder: "content/main-text" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     fields:
-      - { label: "Section", name: "section", widget: "select", options: ["section-one", "section-four", "section-five", "section-nine", "section-thirteen", "section-fourteen", "section-sixteen", "section-seventeen"] }
+      - { label: "Section", name: "section", widget: "select", options: ["section-one", "section-two", "section-three", "section-four", "section-five", "section-nine", "section-thirteen", "section-fourteen", "section-sixteen", "section-seventeen"] }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
 
@@ -56,6 +56,7 @@ collections:
     folder: "content/graph"
     create: true
     fields:
+      - { label: "Section", name: "section", widget: "select", options: ["section-two", "section-three", "section-five"] }
       - { label: "Graph Title", name: "title", widget: "string" }
       - { label: "Dataset 1 Label", name: "label1", widget: "string", required: false }
       - { label: "Dataset 2 Label", name: "label2", widget: "string", required: false }
@@ -93,6 +94,7 @@ collections:
     folder: "content/terminal"
     create: true
     fields:
+      - { label: "Section", name: "section", widget: "select", options: ["section-nine", "section-thirteen"] }
       - { label: "Title", name: "title", widget: "string", hint: "Displayed in terminal title bar"  }
       - { label: "Welcome message", name: "welcome-message", widget: "string", hint: "Displayed above initial prompt"}
       - { label: "Prompt", name: "prompt", widget: "string" }
