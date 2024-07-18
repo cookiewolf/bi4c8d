@@ -1,4 +1,4 @@
-module View.Posts exposing (posts, view)
+module View.Posts exposing (view, viewPost)
 
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)

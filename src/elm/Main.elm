@@ -56,13 +56,16 @@ init flags =
             Data.decodedContent flags
 
         section1draggableContent =
-            ( Data.Section1, View.Posts.posts Data.Section1 content.posts )
+            -- ( Data.Section1, View.Posts.posts Data.Section1 content.posts )
+            ( Data.Section1, content.posts |> Data.filterBySection Data.Section1 |> List.map Pile.Post )
 
         section4draggableContent =
-            ( Data.Section4, View.StackingImage.viewImageListDraggable Data.Section4 content.images )
+            -- ( Data.Section4, View.StackingImage.viewImageListDraggable Data.Section4 content.images )
+            ( Data.Section4, content.images |> Data.filterBySection Data.Section4 |> List.map Pile.Image )
 
         section10draggableContent =
-            ( Data.Section10, View.Posts.posts Data.Section10 content.posts )
+            -- ( Data.Section10, View.Posts.posts Data.Section10 content.posts )
+            ( Data.Section10, content.posts |> Data.filterBySection Data.Section10 |> List.map Pile.Post )
     in
     ( { time = Time.millisToPosix 0
       , content = content
@@ -75,6 +78,7 @@ init flags =
       , terminalState = { input = "", history = [] }
       , piles = Pile.init [ section1draggableContent, section4draggableContent, section10draggableContent ]
 
+      -- , piles = Pile.init [ section1draggableContent, section4draggableContent, section10draggableContent ]
       -- , pile1 = Pile.init (View.Posts.posts Data.Section1 (Data.decodedContent flags |> (\c -> c.posts)))
       -- , pile2 = Pile.init (View.StackingImage.viewImageListDraggable Data.Section4 (Data.decodedContent flags |> (\c -> c.images)))
       -- , pile3 = Pile.init (View.Posts.posts Data.Section10 (Data.decodedContent flags |> (\c -> c.posts)))

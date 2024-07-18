@@ -6,6 +6,7 @@ import Model exposing (Model)
 import Msg exposing (Msg(..))
 import Pile
 import View.MainText
+import View.Pile
 import View.StackingImage
 
 
@@ -16,5 +17,5 @@ view model =
         View.StackingImage.viewImageListStatic Data.Section4 model.content.images
 
       else
-        Pile.view Data.Section4 model.piles |> Html.map Piles
+        Pile.view Data.Section4 View.Pile.view model.piles |> Html.map Piles
     ]

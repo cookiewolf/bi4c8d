@@ -5,6 +5,7 @@ import Html
 import Model exposing (Model)
 import Msg exposing (Msg(..))
 import Pile
+import View.Pile
 import View.Posts
 
 
@@ -14,5 +15,5 @@ view model =
         View.Posts.view Data.Section10 model.content.posts
 
       else
-        Pile.view Data.Section10 model.piles |> Html.map Piles
+        Pile.view Data.Section10 View.Pile.view model.piles |> Html.map Piles
     ]

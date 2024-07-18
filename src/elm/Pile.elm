@@ -1,13 +1,18 @@
 module Pile exposing (..)
 
 import AssocList
-import Data exposing (SectionId)
+import Data
 import Draggable
 import Draggable.Events
-import Html exposing (Html)
+import Html
 import Html.Attributes
 import Html.Events
 import Math.Vector2
+
+
+type Data
+    = Post Data.Post
+    | Image Data.Image
 
 
 type alias Id =
@@ -17,7 +22,7 @@ type alias Id =
 type alias Card =
     { id : Id
     , position : Math.Vector2.Vec2
-    , cont : Html Msg
+    , cont : Data
     }
 
 
@@ -38,7 +43,7 @@ emptyPile =
     CardPile 0 Nothing []
 
 
-addCard : ( Math.Vector2.Vec2, Html Msg ) -> CardPile -> CardPile
+addCard : ( Math.Vector2.Vec2, Data ) -> CardPile -> CardPile
 addCard ( position, content ) ({ uid, idleCards } as pile) =
     { pile
         | uid = uid + 1
@@ -46,7 +51,7 @@ addCard ( position, content ) ({ uid, idleCards } as pile) =
     }
 
 
-makeCardPile : List ( Math.Vector2.Vec2, Html Msg ) -> CardPile
+makeCardPile : List ( Math.Vector2.Vec2, Data ) -> CardPile
 makeCardPile elements =
     List.foldl addCard emptyPile elements
 
@@ -81,14 +86,14 @@ dragActiveBy delta ({ activeCard } as pack) =
 
 
 type alias Model =
-    { activePile : Maybe SectionId
-    , piles : AssocList.Dict SectionId CardPile
+    { activePile : Maybe Data.SectionId
+    , piles : AssocList.Dict Data.SectionId CardPile
     , drag : Draggable.State DragState
     }
 
 
 type alias DragState =
-    { dictKey : SectionId
+    { dictKey : Data.SectionId
     , cardId : Id
     }
 
@@ -100,7 +105,7 @@ type Msg
     | StopDragging
 
 
-init : List ( SectionId, List (Html Msg) ) -> Model
+init : List ( Data.SectionId, List Data ) -> Model
 init prePiles =
     -- will probably either radomly generate these vectors within bounds or
     -- have some hand crafted numbers for initial layout
@@ -201,8 +206,8 @@ subscriptions mainMsg { drag } =
         |> Sub.map mainMsg
 
 
-cardView : SectionId -> Card -> Html Msg
-cardView key { id, position, cont } =
+cardView : Data.SectionId -> (Data -> Html.Html Msg) -> Card -> Html.Html Msg
+cardView key toView { id, position, cont } =
     let
         x =
             String.fromFloat (Math.Vector2.getX position) ++ "px"
@@ -218,17 +223,17 @@ cardView key { id, position, cont } =
         , Draggable.mouseTrigger (DragState key id) DragMsg
         , Html.Events.onMouseUp StopDragging
         ]
-        [ cont ]
+        [ toView cont ]
 
 
-view : SectionId -> Model -> Html Msg
-view key model =
+view : Data.SectionId -> (Data -> Html.Html Msg) -> Model -> Html.Html Msg
+view key toView model =
     AssocList.get key model.piles
         |> Maybe.map
             (\pile ->
                 pile
                     |> allCards
-                    |> List.map (cardView key)
+                    |> List.map (cardView key toView)
                     |> List.reverse
                     |> Html.div [ Html.Attributes.class "pile" ]
             )
