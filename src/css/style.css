@@ -489,6 +489,6 @@ h2.final-ticker {
 }
 
 .image-constraint {
-  max-width: 40vw;
-  max-height: 60vh;
+  height: 60vh;
+  width: 40vw;
 }
