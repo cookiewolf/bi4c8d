@@ -7,7 +7,7 @@ import Draggable.Events
 import Html exposing (Html)
 import Html.Attributes
 import Html.Events
-import Math.Vector2 exposing (Vec2)
+import Math.Vector2
 
 
 type alias Id =
@@ -16,12 +16,12 @@ type alias Id =
 
 type alias Card =
     { id : Id
-    , position : Vec2
+    , position : Math.Vector2.Vec2
     , cont : Html Msg
     }
 
 
-dragCardBy : Vec2 -> Card -> Card
+dragCardBy : Math.Vector2.Vec2 -> Card -> Card
 dragCardBy delta card =
     { card | position = card.position |> Math.Vector2.add delta }
 
@@ -38,7 +38,7 @@ emptyPile =
     CardPile 0 Nothing []
 
 
-addCard : ( Vec2, Html Msg ) -> CardPile -> CardPile
+addCard : ( Math.Vector2.Vec2, Html Msg ) -> CardPile -> CardPile
 addCard ( pos, cont ) ({ uid, idleCards } as pile) =
     { pile
         | uid = uid + 1
@@ -46,7 +46,7 @@ addCard ( pos, cont ) ({ uid, idleCards } as pile) =
     }
 
 
-makeCardPile : List ( Vec2, Html Msg ) -> CardPile
+makeCardPile : List ( Math.Vector2.Vec2, Html Msg ) -> CardPile
 makeCardPile elements =
     List.foldl addCard emptyPile elements
 
@@ -75,7 +75,7 @@ stopDragging pack =
     { pack | idleCards = allCards pack, activeCard = Nothing }
 
 
-dragActiveBy : Vec2 -> CardPile -> CardPile
+dragActiveBy : Math.Vector2.Vec2 -> CardPile -> CardPile
 dragActiveBy delta ({ activeCard } as pack) =
     { pack | activeCard = activeCard |> Maybe.map (dragCardBy delta) }
 
@@ -95,7 +95,7 @@ type alias DragState =
 
 type Msg
     = DragMsg (Draggable.Msg DragState)
-    | OnDragBy Vec2
+    | OnDragBy Math.Vector2.Vec2
     | StartDragging DragState
     | StopDragging
 
