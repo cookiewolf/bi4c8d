@@ -13,6 +13,7 @@
 }
 
 html body {
+  overflow-x: hidden; /* needed to allow full-bleed elements within sections on chrome */
   color: var(--black);
   font-family: Inter, sans-serif;
 }
@@ -478,13 +479,13 @@ h2.final-ticker {
 /** Draggable Pile **/
 
 .pile {
-  margin-top: 5rem;
-  border-top: 1px solid var(--black);
   border-bottom: 1px solid var(--black);
+  border-top: 1px solid var(--black);
   height: 100vh;
-  /* https://piccalil.li/blog/creating-a-full-bleed-css-utility */
-  margin-left: calc(50% - 50vw); /* getting overflow on chrome */
-  margin-right: calc(50% - 50vw); /* getting overflow on chrome */
+  /* needed to make element use whole width of screen */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-top: 5rem;
   overflow: hidden;
   position: relative;
   width: 100vw;
@@ -506,13 +507,13 @@ h2.final-ticker {
   font-family: monospace;
   font-size: 1rem;
   gap: 1rem;
-  padding: 1rem 2rem;
-  grid-template-columns: max-content 1fr;
-  grid-template-rows: auto;
   grid-template-areas:
     "avatar forwardedFrom"
     "empty content"
     "empty meta";
+  grid-template-columns: max-content 1fr;
+  grid-template-rows: auto;
+  padding: 1rem 2rem;
   width: 520px;
 }
 
@@ -538,14 +539,14 @@ h2.final-ticker {
 }
 
 .post-view-count-draggable {
-  position: relative;
   margin-left: 2rem;
+  position: relative;
 }
 .post-view-count-draggable::before {
-  display: inline-block;
-  position: absolute;
   content: url(/images/eye.svg);
+  display: inline-block;
   left: -2rem;
+  position: absolute;
   top: -0.35rem;
 }
 
