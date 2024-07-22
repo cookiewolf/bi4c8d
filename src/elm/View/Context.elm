@@ -1,5 +1,7 @@
 module View.Context exposing (view)
 
+import Copy.Keys exposing (Key(..))
+import Copy.Text exposing (t)
 import Data
 import Html
 import Html.Attributes
@@ -15,17 +17,22 @@ view contextList =
 viewContext : Data.Context -> Html.Html Msg
 viewContext context =
     Html.li [ Html.Attributes.id (sectionIdStringFromSection context.section) ]
-        [ Html.ul []
-            [ Html.li [] [ Html.text context.title ]
-            , Html.li [] (Markdown.markdownToHtml context.context)
-            , Html.li [] (Markdown.markdownToHtml context.factCheck)
-            , Html.ul []
-                (List.map
-                    (\reference ->
-                        Html.li [] [ Html.text reference ]
+        [ Html.h2 [] [ Html.text context.title ]
+        , Html.dl []
+            [ Html.dt [] [ Html.text (t ContextLabel) ]
+            , Html.dd [] (Markdown.markdownToHtml context.context)
+            , Html.dt [] [ Html.text (t FactCheckLabel) ]
+            , Html.dd [] (Markdown.markdownToHtml context.factCheck)
+            , Html.dt [] [ Html.text (t ReferencesLabel) ]
+            , Html.dd []
+                [ Html.ol []
+                    (List.map
+                        (\reference ->
+                            Html.li [] [ Html.text reference ]
+                        )
+                        context.references
                     )
-                    context.references
-                )
+                ]
             ]
         ]
 

@@ -3,6 +3,10 @@ module Copy.Keys exposing (Key(..))
 
 type Key
     = SiteTitle
+      -- Context
+    | ContextLabel
+    | FactCheckLabel
+    | ReferencesLabel
       -- Post
     | ForwardedLabel
       -- Message
