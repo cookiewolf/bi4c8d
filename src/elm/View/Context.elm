@@ -19,24 +19,46 @@ viewContext context =
     Html.li [ Html.Attributes.id (sectionIdStringFromSection context.section) ]
         [ Html.h2 [] [ Html.text context.title ]
         , Html.dl []
-            [ Html.dt [] [ Html.text (t ContextLabel) ]
-            , Html.dd [] (Markdown.markdownToHtml context.context)
-            , Html.dt [] [ Html.text (t FactCheckLabel) ]
-            , Html.dd [] (Markdown.markdownToHtml context.factCheck)
-            , Html.dt [] [ Html.text (t ReferencesLabel) ]
-            , Html.dd []
-                [ Html.ol []
-                    (List.map
-                        (\reference ->
-                            Html.li [] [ Html.text reference ]
-                        )
-                        context.references
-                    )
-                ]
-            ]
+            ([ Html.dt [] [ Html.text (t ContextLabel) ]
+             , Html.dd [] (Markdown.markdownToHtml context.context)
+             ]
+                ++ viewFactCheck context.maybeFactCheck
+                ++ viewReferences context.references
+            )
         ]
 
 
 sectionIdStringFromSection : Data.SectionId -> String
 sectionIdStringFromSection sectionId =
     "context-" ++ Data.sectionIdToString sectionId
+
+
+viewFactCheck : Maybe String -> List (Html.Html Msg)
+viewFactCheck maybeFactCheck =
+    case maybeFactCheck of
+        Just factCheck ->
+            [ Html.dt [] [ Html.text (t FactCheckLabel) ]
+            , Html.dd [] (Markdown.markdownToHtml factCheck)
+            ]
+
+        Nothing ->
+            []
+
+
+viewReferences : List String -> List (Html.Html Msg)
+viewReferences referenceList =
+    if List.length referenceList > 0 then
+        [ Html.dt [] [ Html.text (t ReferencesLabel) ]
+        , Html.dd []
+            [ Html.ol []
+                (List.map
+                    (\reference ->
+                        Html.li [] [ Html.text reference ]
+                    )
+                    referenceList
+                )
+            ]
+        ]
+
+    else
+        []

@@ -1,8 +1,8 @@
 ---
 section: section-one
 title: Section one
-context: nothing context
-fact-check: nothing fact check
+context: Section 1 context
+fact-check: "section 1 fact check"
 references:
   - reference 1
 ---

@@ -26,7 +26,7 @@ type alias Context =
     { section : SectionId
     , title : String
     , context : String
-    , factCheck : String
+    , maybeFactCheck : Maybe String
     , references : List String
     }
 
@@ -223,7 +223,7 @@ contextDecoder =
         )
         (Json.Decode.field "title" Json.Decode.string)
         (Json.Decode.field "context" Json.Decode.string)
-        (Json.Decode.field "fact-check" Json.Decode.string)
+        (Json.Decode.maybe (Json.Decode.field "fact-check" Json.Decode.string))
         (Json.Decode.maybe (Json.Decode.field "references" (Json.Decode.list Json.Decode.string))
             |> Json.Decode.andThen emptyListFromMaybe
         )
