@@ -13,6 +13,13 @@ collections:
     fields:
       - { label: "Section", name: "section", widget: "select", options: ["section-one", "secion-two", "section-three", "section-four", "section-five", "section-six", "section-seven", "section-eight", "section-nine", "section-ten", "section-eleven", "section-twelve", "section-thirteen", "section-fourteen", "section-fifteen", "section-sixteen", "section-seventeen"] }
       - { label: "Title", name: "title", widget: "string" }
+      - { label: "Context", name: "context", widget: "markdown" }
+      - { label: "Fact check", name: "fact-check", widget: "markdown" }
+      - label: "References"
+        name: "references"
+        widget: "list"
+        fields:
+          - { label: "Citation", name: "citation", widget: "string" }
 
   - name: "main-text"
     label: "Main text"

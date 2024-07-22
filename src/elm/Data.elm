@@ -25,6 +25,9 @@ type alias Flags =
 type alias Context =
     { section : SectionId
     , title : String
+    , context : String
+    , factCheck : String
+    , references : List String
     }
 
 
@@ -213,12 +216,17 @@ mainTextDictDecoder =
 
 contextDecoder : Json.Decode.Decoder Context
 contextDecoder =
-    Json.Decode.map2
+    Json.Decode.map5
         Context
         (Json.Decode.field "section" Json.Decode.string
             |> Json.Decode.andThen sectionIdFromString
         )
         (Json.Decode.field "title" Json.Decode.string)
+        (Json.Decode.field "context" Json.Decode.string)
+        (Json.Decode.field "fact-check" Json.Decode.string)
+        (Json.Decode.maybe (Json.Decode.field "references" (Json.Decode.list Json.Decode.string))
+            |> Json.Decode.andThen emptyListFromMaybe
+        )
 
 
 mainTextDecoder : Json.Decode.Decoder MainText
