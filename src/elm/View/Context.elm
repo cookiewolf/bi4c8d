@@ -13,4 +13,9 @@ view contextList =
 
 viewContext : Data.Context -> Html.Html Msg
 viewContext context =
-    Html.div [] [ Html.text context.title ]
+    Html.div [ Html.Attributes.id (sectionIdStringFromSection context.section) ] [ Html.text context.title ]
+
+
+sectionIdStringFromSection : Data.SectionId -> String
+sectionIdStringFromSection sectionId =
+    "context-" ++ Data.sectionIdToString sectionId
