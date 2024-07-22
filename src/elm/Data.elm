@@ -1,4 +1,4 @@
-module Data exposing (Command, Content, Flags, Image, LineChartDatum, MainText, Message, Post, SectionId(..), Terminal, TickerState, decodedContent, defaultCommand, filterBySection, initialTickerState, lineChartData, sectionIdToString, sideToString, trackableIdFromItem, trackableIdListFromFlags, updateTickerState)
+module Data exposing (Command, Content, Context, Flags, Image, LineChartDatum, MainText, Message, Post, SectionId(..), Terminal, TickerState, decodedContent, defaultCommand, filterBySection, initialTickerState, lineChartData, sectionIdToString, sideToString, trackableIdFromItem, trackableIdListFromFlags, updateTickerState)
 
 import Dict
 import Iso8601
@@ -7,7 +7,8 @@ import Time
 
 
 type alias Content =
-    { mainText : List MainText
+    { context : List Context
+    , mainText : List MainText
     , posts : List Post
     , messages : List Message
     , images : List Image
@@ -19,6 +20,12 @@ type alias Content =
 
 type alias Flags =
     Json.Decode.Value
+
+
+type alias Context =
+    { section : SectionId
+    , title : String
+    }
 
 
 type alias MainText =
@@ -150,7 +157,8 @@ decodedContent flags =
             }
 
         Err error ->
-            { mainText = []
+            { context = []
+            , mainText = []
             , posts = []
             , messages = []
             , images = []
@@ -177,8 +185,9 @@ orderByDisplayPosition items =
 
 flagsDecoder : Json.Decode.Decoder Content
 flagsDecoder =
-    Json.Decode.map7
+    Json.Decode.map8
         Content
+        (Json.Decode.field "context" contextDictDecoder)
         (Json.Decode.field "main-text" mainTextDictDecoder)
         (Json.Decode.field "posts" postDictDecoder)
         (Json.Decode.field "messages" messageDictDecoder)
@@ -188,11 +197,28 @@ flagsDecoder =
         (Json.Decode.field "tickers" tickerDictDecoder)
 
 
+contextDictDecoder : Json.Decode.Decoder (List Context)
+contextDictDecoder =
+    Json.Decode.dict contextDecoder
+        |> Json.Decode.map Dict.toList
+        |> Json.Decode.map (\keyedItems -> List.map (\( _, context ) -> context) keyedItems)
+
+
 mainTextDictDecoder : Json.Decode.Decoder (List MainText)
 mainTextDictDecoder =
     Json.Decode.dict mainTextDecoder
         |> Json.Decode.map Dict.toList
         |> Json.Decode.map (\keyedItems -> List.map (\( _, mainText ) -> mainText) keyedItems)
+
+
+contextDecoder : Json.Decode.Decoder Context
+contextDecoder =
+    Json.Decode.map2
+        Context
+        (Json.Decode.field "section" Json.Decode.string
+            |> Json.Decode.andThen sectionIdFromString
+        )
+        (Json.Decode.field "title" Json.Decode.string)
 
 
 mainTextDecoder : Json.Decode.Decoder MainText

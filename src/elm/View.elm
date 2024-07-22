@@ -5,6 +5,7 @@ import Html
 import Html.Attributes
 import Model exposing (Model)
 import Msg exposing (Msg)
+import View.Context
 import View.Section1
 import View.Section10
 import View.Section11
@@ -48,16 +49,17 @@ sectionViews model =
 
 viewSections : Model -> List (Html.Html Msg)
 viewSections model =
-    List.map
-        (\( sectionId, sectionView ) ->
-            Html.div
-                [ Html.Attributes.id (Data.sectionIdToString sectionId)
-                , Html.Attributes.class "section"
-                , Html.Attributes.style "min-height" (sectionHeightFromViewport model.viewportHeightWidth)
-                ]
-                sectionView
-        )
-        (sectionViews model)
+    View.Context.view model.content.context
+        :: List.map
+            (\( sectionId, sectionView ) ->
+                Html.div
+                    [ Html.Attributes.id (Data.sectionIdToString sectionId)
+                    , Html.Attributes.class "section"
+                    , Html.Attributes.style "min-height" (sectionHeightFromViewport model.viewportHeightWidth)
+                    ]
+                    sectionView
+            )
+            (sectionViews model)
 
 
 sectionHeightFromViewport : ( Float, Float ) -> String

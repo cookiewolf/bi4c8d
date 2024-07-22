@@ -6,10 +6,18 @@ publish_mode: simple
 media_folder: public/images/uploads
 public_folder: /images/uploads
 collections:
-  - name: "main-text" # Used in routes, e.g., /admin/collections/blog
-    label: "Main text" # Used in the UI
-    folder: "content/main-text" # The path to the folder where the documents are stored
-    create: true # Allow users to create new documents in this collection
+  - name: "context" # Used in routes, e.g., /admin/collections/blog
+    label: "Context" # Used in the UI
+    folder: "content/context" # The path to the folder where the documents are stored
+    create: false # Allow users to create new documents in this collection
+    fields:
+      - { label: "Section", name: "section", widget: "select", options: ["section-one", "secion-two", "section-three", "section-four", "section-five", "section-six", "section-seven", "section-eight", "section-nine", "section-ten", "section-eleven", "section-twelve", "section-thirteen", "section-fourteen", "section-fifteen", "section-sixteen", "section-seventeen"] }
+      - { label: "Title", name: "title", widget: "string" }
+
+  - name: "main-text"
+    label: "Main text"
+    folder: "content/main-text"
+    create: true
     fields:
       - { label: "Section", name: "section", widget: "select", options: ["section-one", "section-four", "section-five", "section-nine", "section-thirteen", "section-fourteen", "section-sixteen", "section-seventeen"] }
       - { label: "Title", name: "title", widget: "string" }
