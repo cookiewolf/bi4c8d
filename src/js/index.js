@@ -5,6 +5,7 @@ import "@fontsource/source-code-pro";
 
 import { Elm } from "../elm/Main.elm";
 
+import context from "../../data/context.json"
 import mainText from "../../data/main-text.json"
 import posts from "../../data/posts.json"
 import messages from "../../data/messages.json"
@@ -25,6 +26,7 @@ const root = document.querySelector("#app div");
 const app = Elm.Main.init({
     node: root,
     flags: {
+        "context": context,
         "main-text": mainText,
         "posts": posts,
         "messages": messages,

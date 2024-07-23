@@ -14,6 +14,15 @@ t key =
         SiteTitle ->
             "Bifurcated"
 
+        ContextLabel ->
+            "Context"
+
+        FactCheckLabel ->
+            "Fact check"
+
+        ReferencesLabel ->
+            "References"
+
         ForwardedLabel ->
             "Forwarded from: "
 
