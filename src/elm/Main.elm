@@ -33,22 +33,42 @@ main =
 init : Data.Flags -> ( Model, Cmd Msg )
 init flags =
     let
+        initialTickerState : List Data.TickerState
         initialTickerState =
             Data.initialTickerState flags
 
-        trackableSections =
-            [ "section-eleven"
-            , "section-fifteen"
-            , "section-sixteen"
-            , "fade-image-1"
+        trackableImages : List String
+        trackableImages =
+            [ "fade-image-1"
             , "fade-image-2"
             , "fade-image-3"
             , "fade-image-4"
             , "fade-image-5"
             ]
 
+        trackableSections : List String
+        trackableSections =
+            [ "section-one"
+            , "section-two"
+            , "section-three"
+            , "section-four"
+            , "section-five"
+            , "section-six"
+            , "section-seven"
+            , "section-eight"
+            , "section-nine"
+            , "section-ten"
+            , "section-eleven"
+            , "section-twelve"
+            , "section-thirteen"
+            , "section-fourteen"
+            , "section-fifteen"
+            , "section-sixteen"
+            , "section-seventeen"
+            ]
+
         ( inViewModel, inViewCmds ) =
-            InView.init InViewMsg trackableSections
+            InView.init InViewMsg (trackableSections ++ trackableImages)
 
         content : Data.Content
         content =

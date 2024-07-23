@@ -64,6 +64,18 @@ p {
   padding-top: 0;
 }
 
+/** Context **/
+#context {
+  background: var(--white);
+  position: fixed;
+  width: 25%;
+  z-index: 99999;
+}
+
+#context .section-offscreen {
+  display: none;
+}
+
 /** Main Text **/
 
 .main-texts {
