@@ -22,8 +22,9 @@ view inViewState sectionId messageList title maybeTranscriptLinkMarkdown =
                 |> (\listCharLengths -> ( List.minimum listCharLengths, List.maximum listCharLengths ))
                 |> Tuple.mapBoth (Maybe.withDefault 0) (Maybe.withDefault 0)
 
+        fadeInBy : Int -> Int
         fadeInBy =
-            fadeInDelayBasedOnMessageLength minChars maxChars
+            fadeInDelayBasedOnMessageLength { minChars = minChars, maxChars = maxChars }
     in
     if List.length messageList > 0 then
         Html.div [ Html.Attributes.class "messages" ]
@@ -119,9 +120,10 @@ viewMessage message isLast fadeInDelayTyping fadeInDelayMessage =
     ]
 
 
-fadeInDelayBasedOnMessageLength : Int -> Int -> Int -> Int
-fadeInDelayBasedOnMessageLength minChars maxChars messageLength =
+fadeInDelayBasedOnMessageLength : { minChars : Int, maxChars : Int } -> Int -> Int
+fadeInDelayBasedOnMessageLength { minChars, maxChars } messageLength =
     let
+        scale : Int -> Int -> Int -> Float
         scale min max chars =
             let
                 ( minF, maxF, charsF ) =
@@ -129,6 +131,7 @@ fadeInDelayBasedOnMessageLength minChars maxChars messageLength =
             in
             (charsF - minF) / (maxF - minF)
 
+        delays : Int -> Int
         delays number =
             case number of
                 0 ->
@@ -146,6 +149,7 @@ fadeInDelayBasedOnMessageLength minChars maxChars messageLength =
                 _ ->
                     1000
 
+        delay : Int
         delay =
             scale minChars maxChars messageLength
                 |> (*) 3
