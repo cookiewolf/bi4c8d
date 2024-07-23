@@ -50,15 +50,19 @@ init flags =
         ( inViewModel, inViewCmds ) =
             InView.init InViewMsg trackableSections
 
+        content : Data.Content
         content =
             Data.decodedContent flags
 
+        section1draggableContent : ( Data.SectionId, List Pile.Data )
         section1draggableContent =
             ( Data.Section1, content.posts |> Data.filterBySection Data.Section1 |> List.map Pile.Post )
 
+        section4draggableContent : ( Data.SectionId, List Pile.Data )
         section4draggableContent =
             ( Data.Section4, content.images |> Data.filterBySection Data.Section4 |> List.map Pile.Image )
 
+        section10draggableContent : ( Data.SectionId, List Pile.Data )
         section10draggableContent =
             ( Data.Section10, content.posts |> Data.filterBySection Data.Section10 |> List.map Pile.Post )
     in
@@ -91,6 +95,7 @@ subscriptions model =
         ]
 
 
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         NoOp ->
