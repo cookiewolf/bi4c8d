@@ -11,17 +11,15 @@ import Msg exposing (Msg)
 
 view : List Data.Context -> Html.Html Msg
 view contextList =
-    Html.ul [ Html.Attributes.id "context" ] (List.map (\context -> viewContext context) contextList)
+    Html.ul [ Html.Attributes.id "context" ] (List.map (\context -> viewContextSection context) contextList)
 
 
-viewContext : Data.Context -> Html.Html Msg
-viewContext context =
+viewContextSection : Data.Context -> Html.Html Msg
+viewContextSection context =
     Html.li [ Html.Attributes.id (sectionIdStringFromSection context.section) ]
-        [ Html.h2 [] [ Html.text context.title ]
+        [ viewContextSectionHeader context.section
         , Html.dl []
-            ([ Html.dt [] [ Html.text (t ContextLabel) ]
-             , Html.dd [] (Markdown.markdownToHtml context.context)
-             ]
+            (viewContext context.maybeContext
                 ++ viewFactCheck context.maybeFactCheck
                 ++ viewReferences context.references
             )
@@ -31,6 +29,25 @@ viewContext context =
 sectionIdStringFromSection : Data.SectionId -> String
 sectionIdStringFromSection sectionId =
     "context-" ++ Data.sectionIdToString sectionId
+
+
+viewContextSectionHeader : Data.SectionId -> Html.Html Msg
+viewContextSectionHeader sectionId =
+    Html.h2 [ Html.Attributes.class "context-section-title" ]
+        [ Html.text ("Section " ++ String.fromInt (Data.sectionIdToInt sectionId) ++ " of 17")
+        ]
+
+
+viewContext : Maybe String -> List (Html.Html Msg)
+viewContext maybeContext =
+    case maybeContext of
+        Just context ->
+            [ Html.dt [] [ Html.text (t ContextLabel) ]
+            , Html.dd [] (Markdown.markdownToHtml context)
+            ]
+
+        Nothing ->
+            []
 
 
 viewFactCheck : Maybe String -> List (Html.Html Msg)

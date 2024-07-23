@@ -10,17 +10,17 @@ collections:
     label: "Context" # Used in the UI
     folder: "content/context" # The path to the folder where the documents are stored
     create: false # Allow users to create new documents in this collection
+    identifier_field: section
     fields:
       - { label: "Section", name: "section", widget: "select", options: ["section-one", "secion-two", "section-three", "section-four", "section-five", "section-six", "section-seven", "section-eight", "section-nine", "section-ten", "section-eleven", "section-twelve", "section-thirteen", "section-fourteen", "section-fifteen", "section-sixteen", "section-seventeen"] }
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Context", name: "context", widget: "markdown" }
+      - { label: "Context", name: "context", widget: "markdown", required: false }
       - { label: "Fact check", name: "fact-check", widget: "markdown", required: false }
       - label: "References"
         name: "references"
         widget: "list"
         required: false
         fields:
-          - { label: "Citation", name: "citation", widget: "string" }
+          - { label: "Reference", name: "reference", widget: "string" }
 
   - name: "main-text"
     label: "Main text"

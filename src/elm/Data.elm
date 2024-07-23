@@ -1,4 +1,4 @@
-module Data exposing (Command, Content, Context, Flags, Image, LineChartDatum, MainText, Message, Post, SectionId(..), Terminal, TickerState, decodedContent, defaultCommand, filterBySection, initialTickerState, lineChartData, sectionIdToString, sideToString, trackableIdFromItem, trackableIdListFromFlags, updateTickerState)
+module Data exposing (Command, Content, Context, Flags, Image, LineChartDatum, MainText, Message, Post, SectionId(..), Terminal, TickerState, decodedContent, defaultCommand, filterBySection, initialTickerState, lineChartData, sectionIdToInt, sectionIdToString, sideToString, trackableIdFromItem, trackableIdListFromFlags, updateTickerState)
 
 import Dict
 import Iso8601
@@ -24,8 +24,7 @@ type alias Flags =
 
 type alias Context =
     { section : SectionId
-    , title : String
-    , context : String
+    , maybeContext : Maybe String
     , maybeFactCheck : Maybe String
     , references : List String
     }
@@ -154,7 +153,8 @@ decodedContent flags =
     case Json.Decode.decodeValue flagsDecoder flags of
         Ok goodContent ->
             { goodContent
-                | posts = orderPostsByDatetime goodContent.posts
+                | context = orderBySectionId goodContent.context
+                , posts = orderPostsByDatetime goodContent.posts
                 , messages = orderMessagesByDatetime goodContent.messages
                 , images = orderByDisplayPosition goodContent.images
             }
@@ -169,6 +169,11 @@ decodedContent flags =
             , terminals = []
             , tickers = []
             }
+
+
+orderBySectionId : List { a | section : SectionId } -> List { a | section : SectionId }
+orderBySectionId items =
+    List.sortBy (\item -> sectionIdToInt item.section) items
 
 
 orderPostsByDatetime : List Post -> List Post
@@ -216,13 +221,12 @@ mainTextDictDecoder =
 
 contextDecoder : Json.Decode.Decoder Context
 contextDecoder =
-    Json.Decode.map5
+    Json.Decode.map4
         Context
         (Json.Decode.field "section" Json.Decode.string
             |> Json.Decode.andThen sectionIdFromString
         )
-        (Json.Decode.field "title" Json.Decode.string)
-        (Json.Decode.field "context" Json.Decode.string)
+        (Json.Decode.maybe (Json.Decode.field "context" Json.Decode.string))
         (Json.Decode.maybe (Json.Decode.field "fact-check" Json.Decode.string))
         (Json.Decode.maybe (Json.Decode.field "references" (Json.Decode.list Json.Decode.string))
             |> Json.Decode.andThen emptyListFromMaybe
@@ -556,6 +560,64 @@ sectionIdToString sectionId =
 
         SectionInvalid ->
             "section-invalid"
+
+
+sectionIdToInt : SectionId -> Int
+sectionIdToInt sectionId =
+    case sectionId of
+        Section1 ->
+            1
+
+        Section2 ->
+            2
+
+        Section3 ->
+            3
+
+        Section4 ->
+            4
+
+        Section5 ->
+            5
+
+        Section6 ->
+            6
+
+        Section7 ->
+            7
+
+        Section8 ->
+            8
+
+        Section9 ->
+            9
+
+        Section10 ->
+            10
+
+        Section11 ->
+            11
+
+        Section12 ->
+            12
+
+        Section13 ->
+            13
+
+        Section14 ->
+            14
+
+        Section15 ->
+            15
+
+        Section16 ->
+            16
+
+        Section17 ->
+            17
+
+        SectionInvalid ->
+            0
 
 
 filterBySection :
