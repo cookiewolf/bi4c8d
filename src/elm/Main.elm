@@ -87,7 +87,7 @@ subscriptions model =
         [ Time.every 100 Tick -- 10 times per second
         , InView.subscriptions InViewMsg model.inView
         , onScroll OnScroll
-        , Pile.subscriptions Piles model.piles
+        , Pile.subscriptions model.piles |> Sub.map Piles
         ]
 
 
@@ -192,9 +192,9 @@ update msg model =
         Piles pileMsg ->
             let
                 ( piles, cmd ) =
-                    Pile.update Piles pileMsg model.piles
+                    Pile.update pileMsg model.piles
             in
-            ( { model | piles = piles }, cmd )
+            ( { model | piles = piles }, cmd |> Cmd.map Piles )
 
 
 scrollToElement : String -> Cmd Msg

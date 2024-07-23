@@ -151,16 +151,16 @@ init prePiles =
 -- in order to be compatible
 
 
-dragConfig : (Msg -> msg) -> Draggable.Config DragState msg
-dragConfig mainMsg =
+dragConfig : Draggable.Config DragState Msg
+dragConfig =
     Draggable.customConfig
-        [ Draggable.Events.onDragBy (\( dx, dy ) -> Math.Vector2.vec2 dx dy |> OnDragBy |> mainMsg)
-        , Draggable.Events.onDragStart (\a -> a |> StartDragging |> mainMsg)
+        [ Draggable.Events.onDragBy (\( dx, dy ) -> Math.Vector2.vec2 dx dy |> OnDragBy)
+        , Draggable.Events.onDragStart (\a -> a |> StartDragging)
         ]
 
 
-update : (Msg -> msg) -> Msg -> Model -> ( Model, Cmd msg )
-update mainMsg msg ({ piles, activePile } as model) =
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg ({ piles, activePile } as model) =
     case msg of
         OnDragBy delta ->
             ( { model
@@ -197,13 +197,12 @@ update mainMsg msg ({ piles, activePile } as model) =
             )
 
         DragMsg dragMsg ->
-            Draggable.update (dragConfig mainMsg) dragMsg model
+            Draggable.update dragConfig dragMsg model
 
 
-subscriptions : (Msg -> msg) -> Model -> Sub msg
-subscriptions mainMsg { drag } =
+subscriptions : Model -> Sub Msg
+subscriptions { drag } =
     Draggable.subscriptions DragMsg drag
-        |> Sub.map mainMsg
 
 
 cardView : Data.SectionId -> (Data -> Html.Html Msg) -> Card -> Html.Html Msg
