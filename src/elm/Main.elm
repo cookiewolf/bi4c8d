@@ -10,6 +10,7 @@ import Html.Attributes
 import InView
 import Model exposing (Model)
 import Msg exposing (Msg(..))
+import Pile
 import Random
 import Task
 import Time
@@ -48,9 +49,25 @@ init flags =
 
         ( inViewModel, inViewCmds ) =
             InView.init InViewMsg trackableSections
+
+        content : Data.Content
+        content =
+            Data.decodedContent flags
+
+        section1draggableContent : ( Data.SectionId, List Pile.Data )
+        section1draggableContent =
+            ( Data.Section1, content.posts |> Data.filterBySection Data.Section1 |> List.map Pile.Post )
+
+        section4draggableContent : ( Data.SectionId, List Pile.Data )
+        section4draggableContent =
+            ( Data.Section4, content.images |> Data.filterBySection Data.Section4 |> List.map Pile.Image )
+
+        section10draggableContent : ( Data.SectionId, List Pile.Data )
+        section10draggableContent =
+            ( Data.Section10, content.posts |> Data.filterBySection Data.Section10 |> List.map Pile.Post )
     in
     ( { time = Time.millisToPosix 0
-      , content = Data.decodedContent flags
+      , content = content
       , tickerState = initialTickerState
       , breachCount = 0
       , randomIntList = []
@@ -58,6 +75,7 @@ init flags =
       , viewportHeightWidth = ( 800, 800 )
       , chartHovering = []
       , terminalState = { input = "", history = [] }
+      , piles = Pile.init [ section1draggableContent, section4draggableContent, section10draggableContent ]
       }
     , Cmd.batch
         [ Random.generate NewRandomIntList generateRandomIntList
@@ -73,9 +91,11 @@ subscriptions model =
         [ Time.every 100 Tick -- 10 times per second
         , InView.subscriptions InViewMsg model.inView
         , onScroll OnScroll
+        , Pile.subscriptions model.piles |> Sub.map Piles
         ]
 
 
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         NoOp ->
@@ -173,6 +193,13 @@ update msg model =
 
         ScrollResult _ ->
             ( model, Cmd.none )
+
+        Piles pileMsg ->
+            let
+                ( piles, cmd ) =
+                    Pile.update pileMsg model.piles
+            in
+            ( { model | piles = piles }, cmd |> Cmd.map Piles )
 
 
 scrollToElement : String -> Cmd Msg

@@ -4,15 +4,16 @@
   --grey-light: #d9d9d9;
   --grey-dark: #a9a4a4;
 
-  --red: #E4003B;
-  --blue: #0087DC;
-  --green: #33FF00;
-  
+  --red: #e4003b;
+  --blue: #0087dc;
+  --green: #33ff00;
+
   --default-radius: 30px;
   --max-section-width: 800px;
 }
 
 html body {
+  overflow-x: hidden; /* needed to allow full-bleed elements within sections on chrome */
   color: var(--black);
   font-family: Inter, sans-serif;
 }
@@ -46,8 +47,8 @@ p {
 #section-eleven,
 #section-twelve,
 #section-fourteen {
- max-width: 100%;
- width: 100%;
+  max-width: 100%;
+  width: 100%;
 }
 
 #section-eleven h2.heading {
@@ -75,7 +76,7 @@ p {
   border: solid var(--black) 1px;
   border-radius: var(--default-radius);
   padding: 30px 30px 20px 30px;
-  text-align: left
+  text-align: left;
 }
 
 .main-text-title {
@@ -99,6 +100,7 @@ p {
 }
 
 .post {
+  background: var(--white);
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -113,7 +115,12 @@ p {
   padding: 10px 20px;
 }
 
+#section-ten .post {
+  background: var(--black);
+}
+
 #section-ten .post-inner {
+  background: var(--black);
   border: solid var(--white) 1px;
   color: var(--white);
 }
@@ -164,6 +171,7 @@ p {
 
 /* Video */
 .video-container {
+  background-color: black;
   height: 0px;
   margin-bottom: 2em;
   padding-top: 56.25%;
@@ -197,7 +205,7 @@ p {
 }
 
 .message-bubble {
- position: relative;
+  position: relative;
 }
 
 .typing-dots {
@@ -262,6 +270,12 @@ p {
 .images {
   margin-top: 3rem;
   position: relative;
+}
+
+.images-mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .image {
@@ -353,13 +367,13 @@ p {
   padding: 4.5rem 0;
 }
 
-.terminal{
+.terminal {
   border: 2px solid var(--grey-dark);
   height: 100%;
   margin: 0 auto;
   max-width: var(--max-section-width);
   overflow: auto;
-  text-align:left;
+  text-align: left;
 }
 
 .terminal h3 {
@@ -432,7 +446,7 @@ p {
 }
 
 .terminal .help li .command-name::after {
-  content: ":"
+  content: ":";
 }
 
 .terminal .error {
@@ -460,4 +474,83 @@ h2.final-ticker {
   flex-direction: column;
   justify-content: center;
   margin: 10px auto;
+}
+
+/** Draggable Pile **/
+
+.pile {
+  border-bottom: 1px solid var(--black);
+  border-top: 1px solid var(--black);
+  height: 100vh;
+  /* needed to make element use whole width of screen */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-top: 5rem;
+  overflow: hidden;
+  position: relative;
+  width: 100vw;
+}
+
+.card {
+  position: absolute;
+}
+
+.image-constraint {
+  height: 60vh;
+  width: 40vw;
+}
+
+.post-draggable {
+  background-color: var(--white);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
+  display: grid;
+  font-family: monospace;
+  font-size: 1rem;
+  gap: 1rem;
+  grid-template-areas:
+    "avatar forwardedFrom"
+    "empty content"
+    "empty meta";
+  grid-template-columns: max-content 1fr;
+  grid-template-rows: auto;
+  padding: 1rem 2rem;
+  width: 520px;
+}
+
+.post-avatar-draggable {
+  grid-area: avatar;
+}
+
+.post-forwarded-from-draggable {
+  grid-area: forwardedFrom;
+  padding-top: 0.25rem;
+}
+
+.post-content-draggable {
+  grid-area: content;
+  text-align: left;
+}
+
+.post-meta-draggable {
+  display: flex;
+  flex-direction: row-reverse;
+  grid-area: meta;
+  justify-content: space-between;
+}
+
+.post-view-count-draggable {
+  margin-left: 2rem;
+  position: relative;
+}
+.post-view-count-draggable::before {
+  content: url(/images/eye.svg);
+  display: inline-block;
+  left: -2rem;
+  position: absolute;
+  top: -0.35rem;
+}
+
+.post-date-time-draggable {
+  display: flex;
+  gap: 0.5rem;
 }

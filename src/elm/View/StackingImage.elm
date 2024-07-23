@@ -1,4 +1,4 @@
-module View.StackingImage exposing (viewImageList)
+module View.StackingImage exposing (viewImageList, viewImageListDraggable, viewImageListStatic)
 
 import Data
 import Html
@@ -10,7 +10,7 @@ import Model exposing (Model)
 import Msg exposing (Msg)
 
 
-viewImageList : Data.SectionId -> Model -> Html.Html Msg
+viewImageList : Data.SectionId -> Model -> Html.Html msg
 viewImageList section model =
     if List.length model.content.images > 0 then
         Html.div
@@ -25,7 +25,7 @@ viewImageList section model =
         Html.text ""
 
 
-viewImage : Float -> InView.State -> Data.Image -> Html.Html Msg
+viewImage : Float -> InView.State -> Data.Image -> Html.Html msg
 viewImage viewportHeight inViewState image =
     Html.div
         [ Html.Attributes.class "image" ]
@@ -34,6 +34,56 @@ viewImage viewportHeight inViewState image =
             , Html.Attributes.alt image.alt
             , Html.Attributes.style "z-index" (String.fromInt image.displayPosition)
             , Html.Attributes.style "max-height" (imageHeightFromViewport viewportHeight)
+            ]
+            []
+        ]
+
+
+viewImageListDraggable : Data.SectionId -> List Data.Image -> List (Html.Html msg)
+viewImageListDraggable section images =
+    if List.length images > 0 then
+        List.map
+            (\image -> viewImageDraggable image)
+            (Data.filterBySection section images)
+
+    else
+        []
+
+
+viewImageDraggable : Data.Image -> Html.Html msg
+viewImageDraggable image =
+    Html.div
+        [ Html.Attributes.class "image-constraint" ]
+        [ Html.img
+            [ Html.Attributes.src image.source
+            , Html.Attributes.alt image.alt
+            ]
+            []
+        ]
+
+
+viewImageListStatic : Data.SectionId -> List Data.Image -> Html.Html msg
+viewImageListStatic section images =
+    if List.length images > 0 then
+        Html.div
+            [ Html.Attributes.class "images-mobile"
+            ]
+            (List.map
+                (\image -> viewImageStatic image)
+                (Data.filterBySection section images)
+            )
+
+    else
+        Html.text ""
+
+
+viewImageStatic : Data.Image -> Html.Html msg
+viewImageStatic image =
+    Html.div
+        []
+        [ Html.img
+            [ Html.Attributes.src image.source
+            , Html.Attributes.alt image.alt
             ]
             []
         ]

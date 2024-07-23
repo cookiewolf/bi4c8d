@@ -4,6 +4,7 @@ import Browser.Dom
 import Chart.Item
 import Data
 import InView
+import Pile
 import Time
 
 
@@ -19,3 +20,4 @@ type Msg
     | ChangeCommand String
     | SubmitCommand String
     | ScrollResult (Result Browser.Dom.Error ())
+    | Piles Pile.Msg
