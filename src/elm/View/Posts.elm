@@ -98,7 +98,10 @@ viewPost post isFirst =
 viewPostDraggable : Data.Post -> Html.Html msg
 viewPostDraggable post =
     Html.div [ Html.Attributes.class "post-draggable" ]
-        [ Html.h4 [ Html.Attributes.class "post-forwarded-from-draggable" ] [ Html.div [ Html.Attributes.class "post-forwarded-from" ] [ Html.text (t ForwardedLabel ++ post.forwardedFrom) ] ]
+        [ Html.h4 [ Html.Attributes.class "post-forwarded-from-draggable" ]
+            [ Html.div [ Html.Attributes.class "post-forwarded-from" ]
+                [ Html.text (t ForwardedLabel ++ post.forwardedFrom) ]
+            ]
         , Html.img
             [ Html.Attributes.class "post-avatar-draggable"
             , Html.Attributes.src post.avatarSrc
@@ -108,10 +111,14 @@ viewPostDraggable post =
             (viewVideo post.maybeVideo :: Markdown.markdownToHtml post.body)
         , Html.div [ Html.Attributes.class "post-meta-draggable" ]
             [ Html.span [ Html.Attributes.class "post-date-time-draggable" ]
-                [ Html.span [] [ viewPostDate post.datetime ], Html.span [] [ viewPostTime post.datetime ] ]
+                [ Html.span [] [ viewPostDate post.datetime ]
+                , Html.span [] [ viewPostTime post.datetime ]
+                ]
             , case post.maybeViewCount of
                 Just aViewCount ->
-                    Html.span [ Html.Attributes.class "post-view-count-draggable" ] [ viewPostViewCount aViewCount ]
+                    Html.span
+                        [ Html.Attributes.class "post-view-count-draggable" ]
+                        [ viewPostViewCount aViewCount ]
 
                 Nothing ->
                     Html.text ""
