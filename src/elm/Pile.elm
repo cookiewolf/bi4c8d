@@ -174,7 +174,10 @@ update msg ({ piles, activePile } as model) =
 
         StartDragging dragState ->
             ( { model
-                | piles = AssocList.update dragState.dictKey (Maybe.map (startDragging dragState.cardId)) piles
+                | piles =
+                    AssocList.update dragState.dictKey
+                        (Maybe.map (\cardPile -> cardPile |> stopDragging |> startDragging dragState.cardId))
+                        piles
                 , activePile =
                     if AssocList.member dragState.dictKey piles then
                         Just dragState.dictKey
