@@ -14,19 +14,39 @@ import Time
 
 view : InView.State -> Data.SectionId -> List Data.Message -> String -> Maybe String -> Html.Html Msg
 view inViewState sectionId messageList title maybeTranscriptLinkMarkdown =
+    let
+        ( minChars, maxChars ) =
+            messageList
+                |> List.map .body
+                |> List.map String.length
+                |> (\listCharLengths -> ( List.minimum listCharLengths, List.maximum listCharLengths ))
+                |> Tuple.mapBoth (Maybe.withDefault 0) (Maybe.withDefault 0)
+
+        fadeInBy : Int -> Int
+        fadeInBy =
+            fadeInDelayBasedOnMessageLength { minChars = minChars, maxChars = maxChars }
+    in
     if List.length messageList > 0 then
         Html.div [ Html.Attributes.class "messages" ]
             [ Html.h3 [] [ Html.text title ]
             , Html.div [ Html.Attributes.class "messages-inner" ]
                 (if sectionInView inViewState sectionId then
-                    List.indexedMap
-                        (\index message ->
-                            viewMessage index
-                                message
-                                (isLastAtTime message messageList)
-                        )
-                        (Data.filterBySection sectionId messageList)
+                    Data.filterBySection sectionId messageList
+                        |> List.foldl
+                            (\message ( delayAccumulator, messageViewsAccumulator ) ->
+                                let
+                                    delay =
+                                        delayAccumulator + fadeInBy (String.length message.body)
+
+                                    newView =
+                                        viewMessage message (isLastAtTime message messageList) (delayAccumulator + 1000) delay
+                                in
+                                ( delay, newView :: messageViewsAccumulator )
+                            )
+                            ( 0, [] )
+                        |> Tuple.second
                         |> List.concat
+                        |> List.reverse
 
                  else
                     []
@@ -69,21 +89,21 @@ isLastAtTime message allMessages =
             False
 
 
-viewMessage : Int -> Data.Message -> Bool -> List (Html.Html Msg)
-viewMessage messageIndex message isLast =
+viewMessage : Data.Message -> Bool -> Int -> Int -> List (Html.Html Msg)
+viewMessage message isLast fadeInDelayTyping fadeInDelayMessage =
     [ Html.div
         [ Html.Attributes.class "message-bubble"
         , Html.Attributes.class (Data.sideToString message.side)
         ]
         [ Simple.Animation.Animated.div
-            (fadeIn (fadeInDelay messageIndex - 1200))
+            (fadeIn fadeInDelayTyping)
             [ Html.Attributes.class "typing-dots" ]
             [ viewTypingDot 1
             , viewTypingDot 2
             , viewTypingDot 3
             ]
         , Simple.Animation.Animated.div
-            (fadeIn (fadeInDelay messageIndex))
+            (fadeIn fadeInDelayMessage)
             [ Html.Attributes.class "message"
             ]
             [ Html.div
@@ -100,9 +120,43 @@ viewMessage messageIndex message isLast =
     ]
 
 
-fadeInDelay : Int -> Int
-fadeInDelay messageIndex =
-    3000 * messageIndex
+fadeInDelayBasedOnMessageLength : { minChars : Int, maxChars : Int } -> Int -> Int
+fadeInDelayBasedOnMessageLength { minChars, maxChars } messageLength =
+    let
+        scale : Int -> Int -> Int -> Float
+        scale min max chars =
+            let
+                ( minF, maxF, charsF ) =
+                    ( toFloat min, toFloat max, toFloat chars )
+            in
+            (charsF - minF) / (maxF - minF)
+
+        delays : Int -> Int
+        delays number =
+            case number of
+                0 ->
+                    3000
+
+                1 ->
+                    4000
+
+                2 ->
+                    6000
+
+                3 ->
+                    6000
+
+                _ ->
+                    1000
+
+        delay : Int
+        delay =
+            scale minChars maxChars messageLength
+                |> (*) 3
+                |> floor
+                |> delays
+    in
+    delay
 
 
 expandFade : Int -> Simple.Animation.Animation
