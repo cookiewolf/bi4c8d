@@ -1,5 +1,3 @@
 ---
-section: section-one
-references:
-  - reference 1
+section: section-nine
 ---
