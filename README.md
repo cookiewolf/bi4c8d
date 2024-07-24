@@ -88,4 +88,4 @@ Deploys to Netlify
 
 -  check the acceptance criteria have been met
 -  add comments & questions
--  once approved, leave for the author to merge
+-  once approved, leave for the author to merge 
