@@ -15,10 +15,12 @@
 html body {
   overflow-x: hidden; /* needed to allow full-bleed elements within sections on chrome */
   color: var(--black);
-  font-family: Inter, sans-serif;
+  font-family: "Courier Prime", "Nimbus Mono PS", "Courier New", monospace;
 }
 
 h1 {
+  font-family: "TT Firs Neue Var Roman", Inter, Roboto, "Helvetica Neue",
+    "Arial Nova", "Nimbus Sans", Arial, sans-serif;
   padding: 2rem 0 0 0;
 }
 
@@ -80,6 +82,8 @@ p {
 }
 
 .main-text-title {
+  font-family: "TT Firs Neue Var Roman", Inter, Roboto, "Helvetica Neue",
+    "Arial Nova", "Nimbus Sans", Arial, sans-serif;
   font-size: 1.375rem;
   padding: 0 0 20px 0;
 }
@@ -89,6 +93,13 @@ p {
   background-size: 100px;
   font-size: 1.25rem;
   padding-bottom: 40px;
+}
+
+/** Context **/
+
+.context-section-title {
+  font-family: "TT Firs Neue Var Roman", Inter, Roboto, "Helvetica Neue",
+    "Arial Nova", "Nimbus Sans", Arial, sans-serif;
 }
 
 /** Post **/
