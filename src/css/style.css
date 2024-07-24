@@ -13,9 +13,9 @@
 }
 
 html body {
-  overflow-x: hidden; /* needed to allow full-bleed elements within sections on chrome */
   color: var(--black);
   font-family: Inter, sans-serif;
+  overflow-x: hidden; /* needed to allow full-bleed elements within sections on chrome */
 }
 
 h1 {
@@ -73,8 +73,8 @@ p {
 
 .main-text {
   background: var(--white);
-  border: solid var(--black) 1px;
   border-radius: var(--default-radius);
+  border: solid var(--black) 1px;
   padding: 30px 30px 20px 30px;
   text-align: left;
 }
@@ -100,8 +100,8 @@ p {
 }
 
 .post {
-  background: var(--white);
   align-items: center;
+  background: var(--white);
   display: flex;
   flex-direction: column;
   margin: 20px 55px;
@@ -126,8 +126,8 @@ p {
 }
 
 .post-avatar {
-  margin: -55px 0 0 -55px;
   align-self: start;
+  margin: -55px 0 0 -55px;
 }
 
 .post-date {
@@ -313,8 +313,8 @@ p {
 .faces-with-info {
   align-items: flex-start;
   background-image: url(/images/info-faces/background.png);
-  background-size: cover;
   background-repeat: no-repeat;
+  background-size: cover;
   color: var(--white);
   display: flex;
   flex-direction: row;
