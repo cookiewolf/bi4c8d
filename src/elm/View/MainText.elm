@@ -1,6 +1,6 @@
 module View.MainText exposing (viewBottom, viewTop)
 
-import Data
+import Data exposing (SectionId(..))
 import Html
 import Html.Attributes
 import Markdown
@@ -19,8 +19,16 @@ viewTop sectionId mainTextList =
     in
     case maybeMainTextList of
         Just mainTextHead ->
-            Html.div [ Html.Attributes.class "main-texts" ]
-                [ mainTextHead ]
+            case sectionId of
+                Section1 ->
+                    Html.div [ Html.Attributes.class "introduction" ]
+                        [ Html.div [ Html.Attributes.class "main-texts" ]
+                            [ mainTextHead ]
+                        ]
+
+                _ ->
+                    Html.div [ Html.Attributes.class "main-texts" ]
+                        [ mainTextHead ]
 
         Nothing ->
             Html.text ""
