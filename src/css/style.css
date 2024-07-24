@@ -91,8 +91,9 @@ p {
 }
 
 .main-text {
-  border-radius: var(--default-radius);
-  border: solid var(--white) 1px;
+  border-image: url(images/borders/border.svg) 10 10 10 10 stretch stretch;
+  border-style: solid;
+  border-width: 10px 10px 10px 10px;
   padding: 30px 30px 20px 30px;
   text-align: left;
 }
