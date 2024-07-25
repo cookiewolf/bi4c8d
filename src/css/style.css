@@ -13,9 +13,10 @@
 }
 
 html body {
-  overflow-x: hidden; /* needed to allow full-bleed elements within sections on chrome */
-  color: var(--black);
+  background-color: var(--black);
+  color: var(--white);
   font-family: "Courier Prime", "Nimbus Mono PS", "Courier New", monospace;
+  overflow-x: hidden; /* needed to allow full-bleed elements within sections on chrome */
 }
 
 h1 {
@@ -87,6 +88,7 @@ p {
 /** Context **/
 #context {
   background: var(--white);
+  color: var(--black);
   position: fixed;
   width: 25%;
   z-index: 99999;
@@ -109,8 +111,6 @@ p {
 }
 
 .main-text {
-  border-radius: var(--default-radius);
-  border: solid var(--white) 1px;
   padding: 30px 30px 20px 30px;
   text-align: left;
 }
@@ -118,15 +118,62 @@ p {
 .main-text-title {
   font-family: "TT Firs Neue Var Roman", Inter, Roboto, "Helvetica Neue",
     "Arial Nova", "Nimbus Sans", Arial, sans-serif;
+  text-align: center;
   font-size: 1.375rem;
   padding: 0 0 20px 0;
 }
 
 .main-text-body {
-  background: url(/images/main-text-icons.svg) bottom right no-repeat;
-  background-size: 100px;
+  padding: 30px 30px 20px 30px;
   font-size: 1.25rem;
   padding-bottom: 40px;
+}
+
+.hand-drawn-border {
+  border-image: url(images/borders/border.svg) 10 10 10 10 stretch stretch;
+  border-style: solid;
+  border-width: 10px 10px 10px 10px;
+}
+
+#section-eight .hand-drawn-border,
+#section-eleven .hand-drawn-border,
+#section-fifteen .hand-drawn-border,
+#section-five .hand-drawn-border {
+  border-image: url(images/borders/hand-drawn-border-1.svg) 25 25 50 25 stretch
+    stretch;
+  border-style: solid;
+  border-width: 25px 25px 50px 25px;
+}
+
+#section-four .hand-drawn-border,
+#section-fourteen .hand-drawn-border,
+#section-nine .hand-drawn-border,
+#section-one .hand-drawn-border {
+  border-image: url(images/borders/hand-drawn-border-2.svg) 25 25 50 25 stretch
+    stretch;
+  border-style: solid;
+  border-width: 25px 25px 50px 25px;
+}
+
+#section-seven .hand-drawn-border,
+#section-seventeen .hand-drawn-border,
+#section-six .hand-drawn-border,
+#section-sixteen .hand-drawn-border {
+  border-image: url(images/borders/hand-drawn-border-3.svg) 25 25 100 25 stretch
+    stretch;
+  border-style: solid;
+  border-width: 25px 25px 100px 25px;
+}
+
+#section-ten .hand-drawn-border,
+#section-thirteen .hand-drawn-border,
+#section-three .hand-drawn-border,
+#section-twelve .hand-drawn-border,
+#section-two .hand-drawn-border {
+  border-image: url(images/borders/hand-drawn-border-4.svg) 25 25 95 25 stretch
+    stretch;
+  border-style: solid;
+  border-width: 25px 25px 95px 25px;
 }
 
 /** Post **/
