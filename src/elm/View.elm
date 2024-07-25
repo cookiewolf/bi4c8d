@@ -49,7 +49,7 @@ sectionViews model =
 
 viewSections : Model -> List (Html.Html Msg)
 viewSections model =
-    View.Context.view model.content.context
+    View.Context.view model.inView model.content.context
         :: List.map
             (\( sectionId, sectionView ) ->
                 Html.div

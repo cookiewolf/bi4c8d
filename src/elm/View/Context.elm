@@ -5,18 +5,36 @@ import Copy.Text exposing (t)
 import Data
 import Html
 import Html.Attributes
+import InView
 import Markdown
 import Msg exposing (Msg)
 
 
-view : List Data.Context -> Html.Html Msg
-view contextList =
-    Html.ul [ Html.Attributes.id "context" ] (List.map (\context -> viewContextSection context) contextList)
+view : InView.State -> List Data.Context -> Html.Html Msg
+view inViewState contextList =
+    Html.ul [ Html.Attributes.id "context" ] (List.map (\context -> viewContextSection inViewState context) contextList)
 
 
-viewContextSection : Data.Context -> Html.Html Msg
-viewContextSection context =
-    Html.li [ Html.Attributes.id (sectionIdStringFromSection context.section) ]
+viewContextSection : InView.State -> Data.Context -> Html.Html Msg
+viewContextSection inViewState context =
+    let
+        sectionInView : Bool
+        sectionInView =
+            InView.isInView (Data.sectionIdToString context.section) inViewState
+                |> Maybe.withDefault False
+
+        sectionViewStatus : String
+        sectionViewStatus =
+            if sectionInView then
+                "section-active"
+
+            else
+                "section-offscreen"
+    in
+    Html.li
+        [ Html.Attributes.id (sectionIdStringFromSection context.section)
+        , Html.Attributes.class sectionViewStatus
+        ]
         [ viewContextSectionHeader context.section
         , Html.dl []
             (viewContext context.maybeContext

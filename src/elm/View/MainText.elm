@@ -19,8 +19,15 @@ viewTop sectionId mainTextList =
     in
     case maybeMainTextList of
         Just mainTextHead ->
-            Html.div [ Html.Attributes.class "main-texts" ]
-                [ mainTextHead ]
+            if sectionId == Data.Section1 then
+                Html.div [ Html.Attributes.class "introduction" ]
+                    [ Html.div [ Html.Attributes.class "main-texts" ]
+                        [ mainTextHead ]
+                    ]
+
+            else
+                Html.div [ Html.Attributes.class "main-texts" ]
+                    [ mainTextHead ]
 
         Nothing ->
             Html.text ""

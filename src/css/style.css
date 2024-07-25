@@ -21,6 +21,8 @@ html body {
 h1 {
   font-family: "TT Firs Neue Var Roman", Inter, Roboto, "Helvetica Neue",
     "Arial Nova", "Nimbus Sans", Arial, sans-serif;
+  background-color: var(--white);
+  color: var(--black);
   padding: 2rem 0 0 0;
 }
 
@@ -36,6 +38,22 @@ p {
   margin: 0 auto;
   padding: 4.5rem 1rem;
   width: 100%;
+}
+
+#section-one {
+  padding-top: 0;
+}
+
+#section-one .introduction {
+  background-color: var(--white);
+  color: var(--black);
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 4.5rem 1rem;
+}
+
+#section-one .main-text-body {
+  background: none;
 }
 
 #section-four,
@@ -66,6 +84,23 @@ p {
   padding-top: 0;
 }
 
+/** Context **/
+#context {
+  background: var(--white);
+  position: fixed;
+  width: 25%;
+  z-index: 99999;
+}
+
+#context .section-offscreen {
+  display: none;
+}
+
+.context-section-title {
+  font-family: "TT Firs Neue Var Roman", Inter, Roboto, "Helvetica Neue",
+    "Arial Nova", "Nimbus Sans", Arial, sans-serif;
+}
+
 /** Main Text **/
 
 .main-texts {
@@ -74,9 +109,8 @@ p {
 }
 
 .main-text {
-  background: var(--white);
-  border: solid var(--black) 1px;
   border-radius: var(--default-radius);
+  border: solid var(--white) 1px;
   padding: 30px 30px 20px 30px;
   text-align: left;
 }
@@ -95,13 +129,6 @@ p {
   padding-bottom: 40px;
 }
 
-/** Context **/
-
-.context-section-title {
-  font-family: "TT Firs Neue Var Roman", Inter, Roboto, "Helvetica Neue",
-    "Arial Nova", "Nimbus Sans", Arial, sans-serif;
-}
-
 /** Post **/
 
 .posts {
@@ -111,8 +138,10 @@ p {
 }
 
 .post {
-  background: var(--white);
   align-items: center;
+  background: var(--white);
+  border-radius: var(--default-radius);
+  color: var(--black);
   display: flex;
   flex-direction: column;
   margin: 20px 55px;
@@ -121,8 +150,6 @@ p {
 }
 
 .post-inner {
-  border: solid var(--black) 1px;
-  border-radius: var(--default-radius);
   padding: 10px 20px;
 }
 
@@ -137,8 +164,8 @@ p {
 }
 
 .post-avatar {
-  margin: -55px 0 0 -55px;
   align-self: start;
+  margin: -55px 0 0 -55px;
 }
 
 .post-date {
@@ -182,7 +209,7 @@ p {
 
 /* Video */
 .video-container {
-  background-color: black;
+  background-color: var(--black);
   height: 0px;
   margin-bottom: 2em;
   padding-top: 56.25%;
@@ -199,13 +226,26 @@ p {
 
 /** Message **/
 .messages {
-  border: solid 1px var(--grey-dark);
+  border: solid 1px var(--white);
   margin: 0 auto;
   max-width: 1040px;
 }
 
+.messages a {
+  color: var(--white);
+}
+
+.messages a:hover {
+  background-color: var(--white);
+  color: var(--black);
+  padding-inline: 1rem;
+  padding-block: 0.75rem;
+  border-radius: 100vw;
+}
+
 .messages h3 {
-  background-color: var(--grey-light);
+  background-color: var(--white);
+  color: var(--black);
   padding: 10px 20px;
 }
 
@@ -235,14 +275,14 @@ p {
 }
 
 .typing-dots .dot {
-  background-color: var(--black);
+  background-color: var(--white);
   border-radius: 100%;
   height: 8px;
   width: 8px;
 }
 
 .message-body {
-  border: solid 1px var(--grey-dark);
+  border: solid 1px var(--white);
   border-radius: 2rem;
   margin: 10px 0;
   padding: 20px;
@@ -257,12 +297,12 @@ p {
 }
 
 .left .message .message-body {
-  background-color: var(--grey-light);
+  background-color: var(--black);
 }
 
 .right .message .message-body {
-  background-color: var(--grey-dark);
-  border-color: var(--black);
+  background-color: var(--white);
+  color: var(--black);
 }
 .message-time {
   margin: 20px 0;
@@ -324,8 +364,8 @@ p {
 .faces-with-info {
   align-items: flex-start;
   background-image: url(/images/info-faces/background.png);
-  background-size: cover;
   background-repeat: no-repeat;
+  background-size: cover;
   color: var(--white);
   display: flex;
   flex-direction: row;
@@ -379,7 +419,7 @@ p {
 }
 
 .terminal {
-  border: 2px solid var(--grey-dark);
+  border: 2px solid var(--white);
   height: 100%;
   margin: 0 auto;
   max-width: var(--max-section-width);
@@ -388,7 +428,7 @@ p {
 }
 
 .terminal h3 {
-  background: var(--grey-dark);
+  background: var(--white);
   color: var(--black);
   padding: 0 1rem;
 }
@@ -490,8 +530,8 @@ h2.final-ticker {
 /** Draggable Pile **/
 
 .pile {
-  border-bottom: 1px solid var(--black);
-  border-top: 1px solid var(--black);
+  border-bottom: 1px solid var(--white);
+  border-top: 1px solid var(--white);
   height: 100vh;
   /* needed to make element use whole width of screen */
   margin-left: calc(50% - 50vw);
@@ -514,6 +554,7 @@ h2.final-ticker {
 .post-draggable {
   background-color: var(--white);
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
+  color: var(--black);
   display: grid;
   font-family: monospace;
   font-size: 1rem;
