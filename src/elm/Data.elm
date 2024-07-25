@@ -1,4 +1,4 @@
-module Data exposing (Command, Content, Context, ContextState, Flags, Image, LineChartDatum, MainText, Message, Post, SectionId(..), Terminal, TickerState, decodedContent, defaultCommand, filterBySection, initialTickerState, lineChartData, sectionIdToInt, sectionIdToString, sideToString, trackableIdFromItem, trackableIdListFromFlags, updateTickerState)
+module Data exposing (Command, Content, Context, ContextSection(..), ContextState, Flags, Image, LineChartDatum, MainText, Message, Post, SectionId(..), Terminal, TickerState, decodedContent, defaultCommand, filterBySection, initialTickerState, lineChartData, sectionIdToInt, sectionIdToString, sideToString, trackableIdFromItem, trackableIdListFromFlags, updateTickerState)
 
 import Dict
 import Iso8601
@@ -28,6 +28,12 @@ type alias Context =
     , maybeFactCheck : Maybe (ContextState String)
     , references : ContextState (List String)
     }
+
+
+type ContextSection
+    = ContextTxt
+    | FactCheck
+    | Reference
 
 
 type alias ContextState a =

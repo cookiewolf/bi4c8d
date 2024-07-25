@@ -5,6 +5,7 @@ import Copy.Text exposing (t)
 import Data
 import Html
 import Html.Attributes
+import Html.Events
 import InView
 import Markdown
 import Msg exposing (Msg)
@@ -30,6 +31,9 @@ viewContextSection inViewState context =
 
             else
                 "section-offscreen"
+
+        toggleMsg =
+            Msg.ToggleContext context.section
     in
     Html.li
         [ Html.Attributes.id (sectionIdStringFromSection context.section)
@@ -37,9 +41,9 @@ viewContextSection inViewState context =
         ]
         [ viewContextSectionHeader context.section
         , Html.dl []
-            (viewContext context.maybeContext
-                ++ viewFactCheck context.maybeFactCheck
-                ++ viewReferences context.references
+            (viewContext toggleMsg context.maybeContext
+                ++ viewFactCheck toggleMsg context.maybeFactCheck
+                ++ viewReferences toggleMsg context.references
             )
         ]
 
@@ -56,43 +60,55 @@ viewContextSectionHeader sectionId =
         ]
 
 
-viewContext : Maybe (Data.ContextState String) -> List (Html.Html Msg)
-viewContext maybeContext =
+viewContext : (Data.ContextSection -> Msg) -> Maybe (Data.ContextState String) -> List (Html.Html Msg)
+viewContext toggle maybeContext =
     case maybeContext of
         Just { content, open } ->
-            [ Html.dt [] [ Html.text (t ContextLabel) ]
-            , Html.dd [] (Markdown.markdownToHtml content)
+            [ Html.dt [] [ Html.button [ Html.Events.onClick (toggle Data.ContextTxt) ] [ Html.text (t ContextLabel) ] ]
+            , if open then
+                Html.dd [] (Markdown.markdownToHtml content)
+
+              else
+                Html.text ""
             ]
 
         Nothing ->
             []
 
 
-viewFactCheck : Maybe (Data.ContextState String) -> List (Html.Html Msg)
-viewFactCheck maybeFactCheck =
+viewFactCheck : (Data.ContextSection -> Msg) -> Maybe (Data.ContextState String) -> List (Html.Html Msg)
+viewFactCheck toggle maybeFactCheck =
     case maybeFactCheck of
         Just { content, open } ->
-            [ Html.dt [] [ Html.text (t FactCheckLabel) ]
-            , Html.dd [] (Markdown.markdownToHtml content)
+            [ Html.dt [] [ Html.button [ Html.Events.onClick (toggle Data.FactCheck) ] [ Html.text (t FactCheckLabel) ] ]
+            , if open then
+                Html.dd [] (Markdown.markdownToHtml content)
+
+              else
+                Html.text ""
             ]
 
         Nothing ->
             []
 
 
-viewReferences : Data.ContextState (List String) -> List (Html.Html Msg)
-viewReferences referenceList =
+viewReferences : (Data.ContextSection -> Msg) -> Data.ContextState (List String) -> List (Html.Html Msg)
+viewReferences toggle referenceList =
     if List.length referenceList.content > 0 then
-        [ Html.dt [] [ Html.text (t ReferencesLabel) ]
-        , Html.dd []
-            [ Html.ol []
-                (List.map
-                    (\reference ->
-                        Html.li [] [ Html.text reference ]
+        [ Html.dt [] [ Html.button [ Html.Events.onClick (toggle Data.Reference) ] [ Html.text (t ReferencesLabel) ] ]
+        , if referenceList.open then
+            Html.dd []
+                [ Html.ol []
+                    (List.map
+                        (\reference ->
+                            Html.li [] [ Html.text reference ]
+                        )
+                        referenceList.content
                     )
-                    referenceList.content
-                )
-            ]
+                ]
+
+          else
+            Html.text ""
         ]
 
     else
