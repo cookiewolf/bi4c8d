@@ -56,33 +56,33 @@ viewContextSectionHeader sectionId =
         ]
 
 
-viewContext : Maybe String -> List (Html.Html Msg)
+viewContext : Maybe (Data.ContextState String) -> List (Html.Html Msg)
 viewContext maybeContext =
     case maybeContext of
-        Just context ->
+        Just { content, open } ->
             [ Html.dt [] [ Html.text (t ContextLabel) ]
-            , Html.dd [] (Markdown.markdownToHtml context)
+            , Html.dd [] (Markdown.markdownToHtml content)
             ]
 
         Nothing ->
             []
 
 
-viewFactCheck : Maybe String -> List (Html.Html Msg)
+viewFactCheck : Maybe (Data.ContextState String) -> List (Html.Html Msg)
 viewFactCheck maybeFactCheck =
     case maybeFactCheck of
-        Just factCheck ->
+        Just { content, open } ->
             [ Html.dt [] [ Html.text (t FactCheckLabel) ]
-            , Html.dd [] (Markdown.markdownToHtml factCheck)
+            , Html.dd [] (Markdown.markdownToHtml content)
             ]
 
         Nothing ->
             []
 
 
-viewReferences : List String -> List (Html.Html Msg)
+viewReferences : Data.ContextState (List String) -> List (Html.Html Msg)
 viewReferences referenceList =
-    if List.length referenceList > 0 then
+    if List.length referenceList.content > 0 then
         [ Html.dt [] [ Html.text (t ReferencesLabel) ]
         , Html.dd []
             [ Html.ol []
@@ -90,7 +90,7 @@ viewReferences referenceList =
                     (\reference ->
                         Html.li [] [ Html.text reference ]
                     )
-                    referenceList
+                    referenceList.content
                 )
             ]
         ]
