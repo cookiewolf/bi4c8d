@@ -51,8 +51,8 @@ p {
   padding: 4.5rem 1rem;
 }
 
-#section-one .main-text {
-  border: solid var(--black) 1px;
+#section-one .main-text-body {
+  background: none;
 }
 
 #section-four,
