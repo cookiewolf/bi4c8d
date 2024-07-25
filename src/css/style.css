@@ -67,6 +67,8 @@ p {
 /** Context **/
 #context {
   background: var(--white);
+  max-height: 80vh;
+  overflow-y: auto;
   position: fixed;
   width: 25%;
   z-index: 99999;
