@@ -33,6 +33,7 @@ viewContextSection inViewState context =
             else
                 "section-offscreen"
 
+        toggleMsg : Data.ContextSection -> Msg
         toggleMsg =
             Msg.ToggleContext context.section
     in
