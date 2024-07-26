@@ -106,6 +106,12 @@ p {
   bottom: 50px;
 }
 
+#context:focus-visible {
+  /* this section has a tabindex of 0 so keyboard users can access the floating content
+	 * without this set the default outline overrides the browsers focus indication*/
+  outline: var(--blue) solid 5px;
+}
+
 #context .section-offscreen {
   display: none;
 }
