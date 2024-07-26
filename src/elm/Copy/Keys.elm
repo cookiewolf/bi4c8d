@@ -5,6 +5,8 @@ type Key
     = SiteTitle
       -- Context
     | ContextLabel
+    | ContextLabelClosed
+    | ContextLabelOpen
     | ContextNewSectionMessage
     | FactCheckLabel
     | ReferencesLabel

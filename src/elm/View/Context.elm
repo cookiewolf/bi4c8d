@@ -135,15 +135,30 @@ viewReferences toggle referenceList =
 viewDropdownButton : Msg -> String -> Bool -> Html.Html Msg
 viewDropdownButton onclick text open =
     let
-        symbol =
+        src =
             if open then
-                "🔥"
+                "/images/chevron-down.svg"
 
             else
-                "🎊"
+                "/images/chevron-up.svg"
+
+        screenReaderText =
+            if open then
+                t ContextLabelOpen
+
+            else
+                t ContextLabelClosed
     in
     Html.button
         [ Html.Attributes.class "context-button", Html.Events.onClick onclick ]
         [ Html.span [] [ Html.text text ]
-        , Html.span [] [ Html.text symbol ]
+        , Html.span
+            [ Html.Attributes.class "screen-reader-only" ]
+            [ Html.text screenReaderText ]
+        , Html.img
+            [ Html.Attributes.attribute "aria-hidden" "true"
+            , Html.Attributes.class "context-button-icon"
+            , Html.Attributes.src src
+            ]
+            []
         ]
