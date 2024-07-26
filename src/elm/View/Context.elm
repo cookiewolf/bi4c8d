@@ -62,7 +62,7 @@ viewContext : (Data.ContextSection -> Msg) -> Maybe (Data.ContextState String) -
 viewContext toggle maybeContext =
     case maybeContext of
         Just { content, open } ->
-            [ Html.dt [] [ Html.button [ Html.Attributes.class "context-button", Html.Events.onClick (toggle Data.ContextTxt) ] [ Html.text (t ContextLabel) ] ]
+            [ Html.dt [] [ viewDropdownButton (toggle Data.ContextTxt) (t ContextLabel) open ]
             , if open then
                 Html.dd [ Html.Attributes.class "context-content" ] (Markdown.markdownToHtml content)
 
@@ -78,7 +78,7 @@ viewFactCheck : (Data.ContextSection -> Msg) -> Maybe (Data.ContextState String)
 viewFactCheck toggle maybeFactCheck =
     case maybeFactCheck of
         Just { content, open } ->
-            [ Html.dt [] [ Html.button [ Html.Attributes.class "context-button", Html.Events.onClick (toggle Data.FactCheck) ] [ Html.text (t FactCheckLabel) ] ]
+            [ Html.dt [] [ viewDropdownButton (toggle Data.FactCheck) (t FactCheckLabel) open ]
             , if open then
                 Html.dd [ Html.Attributes.class "context-content" ] (Markdown.markdownToHtml content)
 
@@ -93,7 +93,7 @@ viewFactCheck toggle maybeFactCheck =
 viewReferences : (Data.ContextSection -> Msg) -> Data.ContextState (List String) -> List (Html.Html Msg)
 viewReferences toggle referenceList =
     if List.length referenceList.content > 0 then
-        [ Html.dt [] [ Html.button [ Html.Attributes.class "context-button", Html.Events.onClick (toggle Data.Reference) ] [ Html.text (t ReferencesLabel) ] ]
+        [ Html.dt [] [ viewDropdownButton (toggle Data.Reference) (t ReferencesLabel) referenceList.open ]
         , if referenceList.open then
             Html.dd [ Html.Attributes.class "context-content" ]
                 [ Html.ol []
@@ -111,3 +111,20 @@ viewReferences toggle referenceList =
 
     else
         []
+
+
+viewDropdownButton : Msg -> String -> Bool -> Html.Html Msg
+viewDropdownButton onclick text open =
+    let
+        symbol =
+            if open then
+                "🔥"
+
+            else
+                "🎊"
+    in
+    Html.button
+        [ Html.Attributes.class "context-button", Html.Events.onClick onclick ]
+        [ Html.span [] [ Html.text text ]
+        , Html.span [] [ Html.text symbol ]
+        ]

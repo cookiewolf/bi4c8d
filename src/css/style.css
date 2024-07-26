@@ -131,8 +131,10 @@ p {
   background-color: var(--black);
   border: none;
   color: var(--white);
+  display: flex;
   font-size: 1.25rem;
   font-weight: bold;
+  justify-content: space-between;
   padding: 0.2rem 1.5rem;
   width: 100%;
 }
