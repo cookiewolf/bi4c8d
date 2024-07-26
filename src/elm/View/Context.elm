@@ -13,7 +13,8 @@ import Msg exposing (Msg)
 
 view : InView.State -> List Data.Context -> Html.Html Msg
 view inViewState contextList =
-    Html.ul [ Html.Attributes.id "context" ] (List.map (\context -> viewContextSection inViewState context) contextList)
+    Html.ul [ Html.Attributes.id "context", Html.Attributes.attribute "role" "list" ]
+        (List.map (\context -> viewContextSection inViewState context) contextList)
 
 
 viewContextSection : InView.State -> Data.Context -> Html.Html Msg
