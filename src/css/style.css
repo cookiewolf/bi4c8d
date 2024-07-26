@@ -98,6 +98,11 @@ p {
   font-family: "TT Firs Neue Var Roman", Inter, Roboto, "Helvetica Neue",
     "Arial Nova", "Nimbus Sans", Arial, sans-serif;
   text-align: left;
+  margin: 1rem;
+  right: 0px;
+  bottom: 0px;
+  /* clear the elm debugger thingy while working */
+  bottom: 50px;
 }
 
 #context .section-offscreen {
