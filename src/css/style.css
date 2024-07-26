@@ -102,8 +102,6 @@ p {
   text-align: left;
   width: 25%;
   z-index: 99999;
-  /* clear the elm debugger thingy while working */
-  bottom: 50px;
 }
 
 #context:focus-visible {
