@@ -44,7 +44,6 @@ viewContextSection context =
         [ Html.Attributes.id (sectionIdStringFromSection context.section)
         , Html.Attributes.id "context"
         , Html.Attributes.class "section-active"
-        , Html.Attributes.tabindex 0
         ]
         [ viewContextSectionHeader context.section
         , Html.dl [ Html.Attributes.class "context-list" ]
