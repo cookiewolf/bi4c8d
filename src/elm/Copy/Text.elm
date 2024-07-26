@@ -17,6 +17,9 @@ t key =
         ContextLabel ->
             "Context"
 
+        ContextNewSectionMessage ->
+            "Context available for "
+
         FactCheckLabel ->
             "Fact check"
 

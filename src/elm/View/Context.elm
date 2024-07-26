@@ -36,6 +36,7 @@ viewContextSection context =
         [ Html.Attributes.id (sectionIdStringFromSection context.section)
         , Html.Attributes.id "context"
         , Html.Attributes.class "section-active"
+        , Html.Attributes.tabindex 0
         ]
         [ viewContextSectionHeader context.section
         , Html.dl [ Html.Attributes.class "context-list" ]
@@ -53,8 +54,15 @@ sectionIdStringFromSection sectionId =
 
 viewContextSectionHeader : Data.SectionId -> Html.Html Msg
 viewContextSectionHeader sectionId =
-    Html.h2 [ Html.Attributes.class "context-section-title" ]
-        [ Html.text ("Section " ++ String.fromInt (Data.sectionIdToInt sectionId) ++ " of 17")
+    Html.h2
+        [ Html.Attributes.class "context-section-title"
+        , Html.Attributes.attribute "aria-live" "polite"
+        ]
+        [ Html.span
+            [ Html.Attributes.class "screen-reader-only"
+            ]
+            [ Html.text (t ContextNewSectionMessage) ]
+        , Html.text ("Section " ++ String.fromInt (Data.sectionIdToInt sectionId) ++ " of 17")
         ]
 
 
@@ -64,7 +72,11 @@ viewContext toggle maybeContext =
         Just { content, open } ->
             [ Html.dt [] [ viewDropdownButton (toggle Data.ContextTxt) (t ContextLabel) open ]
             , if open then
-                Html.dd [ Html.Attributes.class "context-content" ] (Markdown.markdownToHtml content)
+                Html.dd
+                    [ Html.Attributes.class "context-content"
+                    , Html.Attributes.attribute "aria-live" "polite"
+                    ]
+                    (Markdown.markdownToHtml content)
 
               else
                 Html.text ""
@@ -80,7 +92,11 @@ viewFactCheck toggle maybeFactCheck =
         Just { content, open } ->
             [ Html.dt [] [ viewDropdownButton (toggle Data.FactCheck) (t FactCheckLabel) open ]
             , if open then
-                Html.dd [ Html.Attributes.class "context-content" ] (Markdown.markdownToHtml content)
+                Html.dd
+                    [ Html.Attributes.class "context-content"
+                    , Html.Attributes.attribute "aria-live" "polite"
+                    ]
+                    (Markdown.markdownToHtml content)
 
               else
                 Html.text ""
@@ -95,7 +111,10 @@ viewReferences toggle referenceList =
     if List.length referenceList.content > 0 then
         [ Html.dt [] [ viewDropdownButton (toggle Data.Reference) (t ReferencesLabel) referenceList.open ]
         , if referenceList.open then
-            Html.dd [ Html.Attributes.class "context-content" ]
+            Html.dd
+                [ Html.Attributes.class "context-content"
+                , Html.Attributes.attribute "aria-live" "polite"
+                ]
                 [ Html.ol []
                     (List.map
                         (\reference ->
