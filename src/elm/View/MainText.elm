@@ -1,6 +1,6 @@
 module View.MainText exposing (viewBottom, viewTop)
 
-import Data
+import Data exposing (SectionId(..))
 import Html
 import Html.Attributes
 import Markdown
@@ -60,5 +60,5 @@ viewMainText mainText showTitle =
 
           else
             Html.text ""
-        , Html.div [ Html.Attributes.class "main-text-body" ] (Markdown.markdownToHtml mainText.body)
+        , Html.div [ Html.Attributes.class "main-text-body", Html.Attributes.class "hand-drawn-border" ] (Markdown.markdownToHtml mainText.body)
         ]
