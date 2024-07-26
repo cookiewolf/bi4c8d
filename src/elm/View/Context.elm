@@ -33,7 +33,6 @@ viewContextSection inViewState context =
             else
                 "section-offscreen"
 
-        toggleMsg : Data.ContextSection -> Msg
         toggleMsg =
             Msg.ToggleContext context.section
     in
@@ -42,7 +41,7 @@ viewContextSection inViewState context =
         , Html.Attributes.class sectionViewStatus
         ]
         [ viewContextSectionHeader context.section
-        , Html.dl []
+        , Html.dl [ Html.Attributes.class "context-list" ]
             (viewContext toggleMsg context.maybeContext
                 ++ viewFactCheck toggleMsg context.maybeFactCheck
                 ++ viewReferences toggleMsg context.references
@@ -66,9 +65,9 @@ viewContext : (Data.ContextSection -> Msg) -> Maybe (Data.ContextState String) -
 viewContext toggle maybeContext =
     case maybeContext of
         Just { content, open } ->
-            [ Html.dt [] [ Html.button [ Html.Events.onClick (toggle Data.ContextTxt) ] [ Html.text (t ContextLabel) ] ]
+            [ Html.dt [] [ Html.button [ Html.Attributes.class "context-button", Html.Events.onClick (toggle Data.ContextTxt) ] [ Html.text (t ContextLabel) ] ]
             , if open then
-                Html.dd [] (Markdown.markdownToHtml content)
+                Html.dd [ Html.Attributes.class "context-content" ] (Markdown.markdownToHtml content)
 
               else
                 Html.text ""
@@ -82,9 +81,9 @@ viewFactCheck : (Data.ContextSection -> Msg) -> Maybe (Data.ContextState String)
 viewFactCheck toggle maybeFactCheck =
     case maybeFactCheck of
         Just { content, open } ->
-            [ Html.dt [] [ Html.button [ Html.Events.onClick (toggle Data.FactCheck) ] [ Html.text (t FactCheckLabel) ] ]
+            [ Html.dt [] [ Html.button [ Html.Attributes.class "context-button", Html.Events.onClick (toggle Data.FactCheck) ] [ Html.text (t FactCheckLabel) ] ]
             , if open then
-                Html.dd [] (Markdown.markdownToHtml content)
+                Html.dd [ Html.Attributes.class "context-content" ] (Markdown.markdownToHtml content)
 
               else
                 Html.text ""
@@ -97,9 +96,9 @@ viewFactCheck toggle maybeFactCheck =
 viewReferences : (Data.ContextSection -> Msg) -> Data.ContextState (List String) -> List (Html.Html Msg)
 viewReferences toggle referenceList =
     if List.length referenceList.content > 0 then
-        [ Html.dt [] [ Html.button [ Html.Events.onClick (toggle Data.Reference) ] [ Html.text (t ReferencesLabel) ] ]
+        [ Html.dt [] [ Html.button [ Html.Attributes.class "context-button", Html.Events.onClick (toggle Data.Reference) ] [ Html.text (t ReferencesLabel) ] ]
         , if referenceList.open then
-            Html.dd []
+            Html.dd [ Html.Attributes.class "context-content" ]
                 [ Html.ol []
                     (List.map
                         (\reference ->

@@ -94,6 +94,10 @@ p {
   position: fixed;
   width: 25%;
   z-index: 99999;
+  border: 2px solid var(--black);
+  font-family: "TT Firs Neue Var Roman", Inter, Roboto, "Helvetica Neue",
+    "Arial Nova", "Nimbus Sans", Arial, sans-serif;
+  text-align: left;
 }
 
 #context .section-offscreen {
@@ -103,6 +107,27 @@ p {
 .context-section-title {
   font-family: "TT Firs Neue Var Roman", Inter, Roboto, "Helvetica Neue",
     "Arial Nova", "Nimbus Sans", Arial, sans-serif;
+}
+
+.context-list {
+  background-color: var(--white);
+  color: var(--white);
+  border: 2px solid var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.context-button {
+  border: none;
+  width: 100%;
+  background-color: var(--black);
+  color: var(--white);
+  font-weight: bold;
+}
+
+.context-content {
+  background-color: var(--black);
 }
 
 /** Main Text **/
