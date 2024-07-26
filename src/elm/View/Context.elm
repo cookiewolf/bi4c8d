@@ -14,6 +14,7 @@ import Msg exposing (Msg)
 view : InView.State -> List Data.Context -> Html.Html Msg
 view inViewState contextList =
     contextList
+        |> List.filter hasUsefulContext
         |> List.partition
             (\context ->
                 InView.isInView (Data.sectionIdToString context.section) inViewState
@@ -23,6 +24,13 @@ view inViewState contextList =
         |> List.head
         |> Maybe.map viewContextSection
         |> Maybe.withDefault (Html.text "")
+
+
+hasUsefulContext : Data.Context -> Bool
+hasUsefulContext context =
+    (context.maybeContext /= Nothing)
+        || (context.maybeFactCheck /= Nothing)
+        || (List.length context.references.content > 0)
 
 
 viewContextSection : Data.Context -> Html.Html Msg
