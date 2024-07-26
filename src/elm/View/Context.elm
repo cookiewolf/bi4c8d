@@ -13,7 +13,7 @@ import Msg exposing (Msg)
 
 view : InView.State -> List Data.Context -> Html.Html Msg
 view inViewState contextList =
-    Html.ul [ Html.Attributes.id "context", Html.Attributes.attribute "role" "list" ]
+    Html.div [ Html.Attributes.id "context" ]
         (List.map (\context -> viewContextSection inViewState context) contextList)
 
 
@@ -36,7 +36,7 @@ viewContextSection inViewState context =
         toggleMsg =
             Msg.ToggleContext context.section
     in
-    Html.li
+    Html.div
         [ Html.Attributes.id (sectionIdStringFromSection context.section)
         , Html.Attributes.class sectionViewStatus
         ]
