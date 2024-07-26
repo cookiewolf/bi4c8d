@@ -88,13 +88,14 @@ p {
 /** Context **/
 #context {
   background: var(--white);
-  border: 2px solid var(--black);
+  border: 2px solid var(--white);
   bottom: 0px;
   color: var(--black);
   font-family: "TT Firs Neue Var Roman", Inter, Roboto, "Helvetica Neue",
     "Arial Nova", "Nimbus Sans", Arial, sans-serif;
   margin: 1rem;
   max-height: 80vh;
+  outline: var(--black) solid 3px;
   overflow-y: auto;
   position: fixed;
   right: 0px;
