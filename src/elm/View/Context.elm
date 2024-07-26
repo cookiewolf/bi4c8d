@@ -13,32 +13,29 @@ import Msg exposing (Msg)
 
 view : InView.State -> List Data.Context -> Html.Html Msg
 view inViewState contextList =
-    Html.div [ Html.Attributes.id "context" ]
-        (List.map (\context -> viewContextSection inViewState context) contextList)
+    contextList
+        |> List.partition
+            (\context ->
+                InView.isInView (Data.sectionIdToString context.section) inViewState
+                    |> Maybe.withDefault False
+            )
+        |> Tuple.first
+        |> List.head
+        |> Maybe.map viewContextSection
+        |> Maybe.withDefault (Html.text "")
 
 
-viewContextSection : InView.State -> Data.Context -> Html.Html Msg
-viewContextSection inViewState context =
+viewContextSection : Data.Context -> Html.Html Msg
+viewContextSection context =
     let
-        sectionInView : Bool
-        sectionInView =
-            InView.isInView (Data.sectionIdToString context.section) inViewState
-                |> Maybe.withDefault False
-
-        sectionViewStatus : String
-        sectionViewStatus =
-            if sectionInView then
-                "section-active"
-
-            else
-                "section-offscreen"
-
+        toggleMsg : Data.ContextSection -> Msg
         toggleMsg =
             Msg.ToggleContext context.section
     in
     Html.div
         [ Html.Attributes.id (sectionIdStringFromSection context.section)
-        , Html.Attributes.class sectionViewStatus
+        , Html.Attributes.id "context"
+        , Html.Attributes.class "section-active"
         ]
         [ viewContextSectionHeader context.section
         , Html.dl [ Html.Attributes.class "context-list" ]
