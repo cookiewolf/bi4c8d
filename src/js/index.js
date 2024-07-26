@@ -1,4 +1,5 @@
 import "../css/reset.css";
+import "../css/fonts.css";
 import "../css/style.css";
 import "@fontsource/inter";
 import "@fontsource/source-code-pro";
