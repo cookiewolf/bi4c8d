@@ -95,6 +95,7 @@ p {
     "Arial Nova", "Nimbus Sans", Arial, sans-serif;
   margin: 1rem;
   max-height: 80vh;
+  min-width: 300px;
   outline: var(--black) solid 3px;
   overflow-y: auto;
   position: fixed;
