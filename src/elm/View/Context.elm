@@ -30,16 +30,11 @@ hasUsefulContext : Data.Context -> Bool
 hasUsefulContext context =
     (context.maybeContext /= Nothing)
         || (context.maybeFactCheck /= Nothing)
-        || (List.length context.references.content > 0)
+        || (List.length context.references > 0)
 
 
 viewContextSection : Data.Context -> Html.Html Msg
 viewContextSection context =
-    let
-        toggleMsg : Data.ContextSection -> Msg
-        toggleMsg =
-            Msg.ToggleContext context.section
-    in
     Html.div
         [ Html.Attributes.id (sectionIdStringFromSection context.section)
         , Html.Attributes.id "context"
@@ -53,9 +48,9 @@ viewContextSection context =
                 ]
                 [ Html.p [] [ Html.text "THIS WILL BE CONTENT FROM CONTEXT" ]
                 , Html.dl [ Html.Attributes.class "context-list" ]
-                    (viewContext toggleMsg context.maybeContext
-                        ++ viewFactCheck toggleMsg context.maybeFactCheck
-                        ++ viewReferences toggleMsg context.references
+                    (viewContext context.maybeContext
+                        ++ viewFactCheck context.maybeFactCheck
+                        ++ viewReferences context.references
                     )
                 ]
             ]
@@ -81,52 +76,45 @@ viewContextSectionHeader sectionId =
         ]
 
 
-viewContext : (Data.ContextSection -> Msg) -> Maybe (Data.ContextState String) -> List (Html.Html Msg)
-viewContext toggle maybeContext =
+viewContext : Maybe String -> List (Html.Html Msg)
+viewContext maybeContext =
     case maybeContext of
-        Just { content, open } ->
-            [ Html.dt [] [ viewDropdownButton (toggle Data.ContextTxt) (t ContextLabel) open ]
-            , if open then
-                Html.dd
+        Just content ->
+            [ Html.dt [] [ Html.text (t ContextLabel) ]
+               , Html.dd
                     [ Html.Attributes.class "context-content"
                     , Html.Attributes.attribute "aria-live" "polite"
                     ]
                     (Markdown.markdownToHtml content)
 
-              else
-                Html.text ""
             ]
 
         Nothing ->
             []
 
 
-viewFactCheck : (Data.ContextSection -> Msg) -> Maybe (Data.ContextState String) -> List (Html.Html Msg)
-viewFactCheck toggle maybeFactCheck =
+viewFactCheck : Maybe String -> List (Html.Html Msg)
+viewFactCheck  maybeFactCheck =
     case maybeFactCheck of
-        Just { content, open } ->
-            [ Html.dt [] [ viewDropdownButton (toggle Data.FactCheck) (t FactCheckLabel) open ]
-            , if open then
-                Html.dd
+        Just content ->
+            [ Html.dt [] [ Html.text (t FactCheckLabel) ]
+                ,Html.dd
                     [ Html.Attributes.class "context-content"
                     , Html.Attributes.attribute "aria-live" "polite"
                     ]
                     (Markdown.markdownToHtml content)
 
-              else
-                Html.text ""
             ]
 
         Nothing ->
             []
 
 
-viewReferences : (Data.ContextSection -> Msg) -> Data.ContextState (List String) -> List (Html.Html Msg)
-viewReferences toggle referenceList =
-    if List.length referenceList.content > 0 then
-        [ Html.dt [] [ viewDropdownButton (toggle Data.Reference) (t ReferencesLabel) referenceList.open ]
-        , if referenceList.open then
-            Html.dd
+viewReferences : List String -> List (Html.Html Msg)
+viewReferences  referenceList =
+    if List.length referenceList> 0 then
+        [ Html.dt [] [ Html.text (t ReferencesLabel)  ]
+            ,Html.dd
                 [ Html.Attributes.class "context-content"
                 , Html.Attributes.attribute "aria-live" "polite"
                 ]
@@ -135,12 +123,10 @@ viewReferences toggle referenceList =
                         (\reference ->
                             Html.li [] [ Html.text reference ]
                         )
-                        referenceList.content
+                        referenceList
                     )
                 ]
 
-          else
-            Html.text ""
         ]
 
     else

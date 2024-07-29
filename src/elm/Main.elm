@@ -221,47 +221,6 @@ update msg model =
             in
             ( { model | piles = piles }, cmd |> Cmd.map Piles )
 
-        ToggleContext section contextSection ->
-            let
-                content =
-                    model.content
-
-                context =
-                    content.context
-                        |> List.map
-                            (\contextItem ->
-                                if contextItem.section == section then
-                                    case contextSection of
-                                        Data.ContextTxt ->
-                                            let
-                                                maybeContext =
-                                                    contextItem.maybeContext
-                                                        |> Maybe.map (\contextTxt -> { contextTxt | open = not contextTxt.open })
-                                            in
-                                            { contextItem | maybeContext = maybeContext }
-
-                                        Data.FactCheck ->
-                                            let
-                                                maybeFactCheck =
-                                                    contextItem.maybeFactCheck
-                                                        |> Maybe.map (\facts -> { facts | open = not facts.open })
-                                            in
-                                            { contextItem | maybeFactCheck = maybeFactCheck }
-
-                                        Data.Reference ->
-                                            let
-                                                references =
-                                                    contextItem.references
-                                                        |> (\refs -> { refs | open = not refs.open })
-                                            in
-                                            { contextItem | references = references }
-
-                                else
-                                    contextItem
-                            )
-            in
-            ( { model | content = { content | context = context } }, Cmd.none )
-
 
 scrollToElement : String -> Cmd Msg
 scrollToElement id =

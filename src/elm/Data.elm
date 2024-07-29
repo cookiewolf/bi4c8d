@@ -1,4 +1,4 @@
-module Data exposing (Command, Content, Context, ContextSection(..), ContextState, Flags, Image, LineChartDatum, MainText, Message, Post, SectionId(..), Terminal, TickerState, decodedContent, defaultCommand, filterBySection, initialTickerState, lineChartData, sectionIdToInt, sectionIdToString, sideToString, trackableIdFromItem, trackableIdListFromFlags, updateTickerState)
+module Data exposing (Command, Content, Context, Flags, Image, LineChartDatum, MainText, Message, Post, SectionId(..), Terminal, TickerState, decodedContent, defaultCommand, filterBySection, initialTickerState, lineChartData, sectionIdToInt, sectionIdToString, sideToString, trackableIdFromItem, trackableIdListFromFlags, updateTickerState)
 
 import Dict
 import Iso8601
@@ -24,21 +24,9 @@ type alias Flags =
 
 type alias Context =
     { section : SectionId
-    , maybeContext : Maybe (ContextState String)
-    , maybeFactCheck : Maybe (ContextState String)
-    , references : ContextState (List String)
-    }
-
-
-type ContextSection
-    = ContextTxt
-    | FactCheck
-    | Reference
-
-
-type alias ContextState a =
-    { content : a
-    , open : Bool
+    , maybeContext : Maybe String
+    , maybeFactCheck : Maybe String
+    , references : List String
     }
 
 
@@ -241,16 +229,13 @@ contextDecoder =
             |> Json.Decode.andThen sectionIdFromString
         )
         (Json.Decode.field "context" Json.Decode.string
-            |> Json.Decode.map (\contextContent -> ContextState contextContent True)
             |> Json.Decode.maybe
         )
         (Json.Decode.field "fact-check" Json.Decode.string
-            |> Json.Decode.map (\factCheckContent -> ContextState factCheckContent True)
             |> Json.Decode.maybe
         )
         (Json.Decode.maybe (Json.Decode.field "references" (Json.Decode.list Json.Decode.string))
             |> Json.Decode.andThen emptyListFromMaybe
-            |> Json.Decode.map (\emptyList -> ContextState emptyList True)
         )
 
 

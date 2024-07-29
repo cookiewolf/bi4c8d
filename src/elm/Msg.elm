@@ -21,4 +21,3 @@ type Msg
     | SubmitCommand String
     | ScrollResult (Result Browser.Dom.Error ())
     | Piles Pile.Msg
-    | ToggleContext Data.SectionId Data.ContextSection
