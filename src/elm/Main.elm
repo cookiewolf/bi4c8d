@@ -82,9 +82,17 @@ init flags =
         section4draggableContent =
             ( Data.Section4, content.images |> Data.filterBySection Data.Section4 |> List.map Pile.Image )
 
+        section8draggableContent : ( Data.SectionId, List Pile.Data )
+        section8draggableContent =
+            ( Data.Section8, content.images |> Data.filterBySection Data.Section8 |> List.map Pile.Image )
+
         section10draggableContent : ( Data.SectionId, List Pile.Data )
         section10draggableContent =
             ( Data.Section10, content.posts |> Data.filterBySection Data.Section10 |> List.map Pile.Post )
+
+        section16draggableContent : ( Data.SectionId, List Pile.Data )
+        section16draggableContent =
+            ( Data.Section16, content.posts |> Data.filterBySection Data.Section16 |> List.map Pile.Post )
     in
     ( { time = Time.millisToPosix 0
       , content = content
@@ -95,7 +103,14 @@ init flags =
       , viewportHeightWidth = ( 800, 800 )
       , chartHovering = []
       , terminalState = { input = "", history = [] }
-      , piles = Pile.init [ section1draggableContent, section4draggableContent, section10draggableContent ]
+      , piles =
+            Pile.init
+                [ section1draggableContent
+                , section4draggableContent
+                , section8draggableContent
+                , section10draggableContent
+                , section16draggableContent
+                ]
       }
     , Cmd.batch
         [ Random.generate NewRandomIntList generateRandomIntList
