@@ -110,10 +110,6 @@ p {
   outline: var(--blue) solid 5px;
 }
 
-#context .section-offscreen {
-  display: none;
-}
-
 .context-section-title {
   font-family: "TT Firs Neue Var Roman", Inter, Roboto, "Helvetica Neue",
     "Arial Nova", "Nimbus Sans", Arial, sans-serif;
@@ -123,7 +119,35 @@ p {
   text-align: right;
 }
 
-.context-list {
+.context-summary {
+  align-items: center;
+  border-inline: 2px solid;
+  display: flex;
+  font-size: 1.25rem;
+  font-weight: bold;
+  justify-content: space-between;
+  position: relative;
+}
+
+.context-summary::marker {
+  content: none;
+}
+
+.context-summary::after {
+  background-image: url(/images/chevron-up.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  content: "";
+  height: 1em;
+  width: 1em;
+}
+
+[open] .context-summary::after {
+  background-image: url(/images/chevron-down.svg);
+}
+
+.context-body {
   background-color: var(--white);
   border: 2px solid var(--white);
   color: var(--white);
@@ -132,21 +156,21 @@ p {
   gap: 2px;
 }
 
-.context-button {
-  background-color: var(--black);
-  border: none;
+.context-list {
+  background-color: var(--white);
   color: var(--white);
   display: flex;
-  font-size: 1.25rem;
-  font-weight: bold;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.2rem 1.5rem;
-  width: 100%;
+  flex-direction: column;
+  gap: 2px;
 }
 
-.context-button-icon {
-  max-height: 1ex;
+.context-subtitle {
+  background-color: var(--black);
+  color: var(--white);
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 0.2rem 1.5rem;
+  width: 100%;
 }
 
 .context-content {

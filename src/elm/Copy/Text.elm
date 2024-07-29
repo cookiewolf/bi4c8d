@@ -20,12 +20,6 @@ t key =
         ContextNewSectionMessage ->
             "Context available for "
 
-        ContextLabelOpen ->
-            " close"
-
-        ContextLabelClosed ->
-            " open"
-
         FactCheckLabel ->
             "Fact check"
 

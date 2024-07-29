@@ -42,14 +42,13 @@ viewContextSection context =
         ]
         [ viewContextSectionHeader context.section
         , Html.details []
-            [ Html.summary [] [ Html.text "Context" ]
+            [ Html.summary [ Html.Attributes.class "context-subtitle", Html.Attributes.class "context-summary" ] [ Html.text (t ContextLabel) ]
             , Html.div
                 [ Html.Attributes.class "context-body"
                 ]
-                [ Html.p [] [ Html.text "THIS WILL BE CONTENT FROM CONTEXT" ]
+                [ viewContext context.maybeContext
                 , Html.dl [ Html.Attributes.class "context-list" ]
-                    (viewContext context.maybeContext
-                        ++ viewFactCheck context.maybeFactCheck
+                    (viewFactCheck context.maybeFactCheck
                         ++ viewReferences context.references
                     )
                 ]
@@ -76,34 +75,25 @@ viewContextSectionHeader sectionId =
         ]
 
 
-viewContext : Maybe String -> List (Html.Html Msg)
+viewContext : Maybe String -> Html.Html Msg
 viewContext maybeContext =
     case maybeContext of
         Just content ->
-            [ Html.dt [] [ Html.text (t ContextLabel) ]
-               , Html.dd
-                    [ Html.Attributes.class "context-content"
-                    , Html.Attributes.attribute "aria-live" "polite"
-                    ]
-                    (Markdown.markdownToHtml content)
-
-            ]
+            Html.div [ Html.Attributes.class "context-content" ] (Markdown.markdownToHtml content)
 
         Nothing ->
-            []
+            Html.text ""
 
 
 viewFactCheck : Maybe String -> List (Html.Html Msg)
-viewFactCheck  maybeFactCheck =
+viewFactCheck maybeFactCheck =
     case maybeFactCheck of
         Just content ->
-            [ Html.dt [] [ Html.text (t FactCheckLabel) ]
-                ,Html.dd
-                    [ Html.Attributes.class "context-content"
-                    , Html.Attributes.attribute "aria-live" "polite"
-                    ]
-                    (Markdown.markdownToHtml content)
-
+            [ Html.dt [ Html.Attributes.class "context-subtitle" ] [ Html.text (t FactCheckLabel) ]
+            , Html.dd
+                [ Html.Attributes.class "context-content"
+                ]
+                (Markdown.markdownToHtml content)
             ]
 
         Nothing ->
@@ -111,55 +101,21 @@ viewFactCheck  maybeFactCheck =
 
 
 viewReferences : List String -> List (Html.Html Msg)
-viewReferences  referenceList =
-    if List.length referenceList> 0 then
-        [ Html.dt [] [ Html.text (t ReferencesLabel)  ]
-            ,Html.dd
-                [ Html.Attributes.class "context-content"
-                , Html.Attributes.attribute "aria-live" "polite"
-                ]
-                [ Html.ol []
-                    (List.map
-                        (\reference ->
-                            Html.li [] [ Html.text reference ]
-                        )
-                        referenceList
+viewReferences referenceList =
+    if List.length referenceList > 0 then
+        [ Html.dt [ Html.Attributes.class "context-subtitle" ] [ Html.text (t ReferencesLabel) ]
+        , Html.dd
+            [ Html.Attributes.class "context-content"
+            ]
+            [ Html.ol []
+                (List.map
+                    (\reference ->
+                        Html.li [] [ Html.text reference ]
                     )
-                ]
-
+                    referenceList
+                )
+            ]
         ]
 
     else
         []
-
-
-viewDropdownButton : Msg -> String -> Bool -> Html.Html Msg
-viewDropdownButton onclick text open =
-    let
-        src =
-            if open then
-                "/images/chevron-down.svg"
-
-            else
-                "/images/chevron-up.svg"
-
-        screenReaderText =
-            if open then
-                t ContextLabelOpen
-
-            else
-                t ContextLabelClosed
-    in
-    Html.button
-        [ Html.Attributes.class "context-button", Html.Events.onClick onclick ]
-        [ Html.span [] [ Html.text text ]
-        , Html.span
-            [ Html.Attributes.class "screen-reader-only" ]
-            [ Html.text screenReaderText ]
-        , Html.img
-            [ Html.Attributes.attribute "aria-hidden" "true"
-            , Html.Attributes.class "context-button-icon"
-            , Html.Attributes.src src
-            ]
-            []
-        ]
