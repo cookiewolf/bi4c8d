@@ -241,16 +241,16 @@ contextDecoder =
             |> Json.Decode.andThen sectionIdFromString
         )
         (Json.Decode.field "context" Json.Decode.string
-            |> Json.Decode.map (\contextContent -> ContextState contextContent False)
+            |> Json.Decode.map (\contextContent -> ContextState contextContent True)
             |> Json.Decode.maybe
         )
         (Json.Decode.field "fact-check" Json.Decode.string
-            |> Json.Decode.map (\factCheckContent -> ContextState factCheckContent False)
+            |> Json.Decode.map (\factCheckContent -> ContextState factCheckContent True)
             |> Json.Decode.maybe
         )
         (Json.Decode.maybe (Json.Decode.field "references" (Json.Decode.list Json.Decode.string))
             |> Json.Decode.andThen emptyListFromMaybe
-            |> Json.Decode.map (\emptyList -> ContextState emptyList False)
+            |> Json.Decode.map (\emptyList -> ContextState emptyList True)
         )
 
 

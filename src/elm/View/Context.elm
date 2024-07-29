@@ -46,11 +46,19 @@ viewContextSection context =
         , Html.Attributes.class "section-active"
         ]
         [ viewContextSectionHeader context.section
-        , Html.dl [ Html.Attributes.class "context-list" ]
-            (viewContext toggleMsg context.maybeContext
-                ++ viewFactCheck toggleMsg context.maybeFactCheck
-                ++ viewReferences toggleMsg context.references
-            )
+        , Html.details []
+            [ Html.summary [] [ Html.text "Context" ]
+            , Html.div
+                [ Html.Attributes.class "context-body"
+                ]
+                [ Html.p [] [ Html.text "THIS WILL BE CONTENT FROM CONTEXT" ]
+                , Html.dl [ Html.Attributes.class "context-list" ]
+                    (viewContext toggleMsg context.maybeContext
+                        ++ viewFactCheck toggleMsg context.maybeFactCheck
+                        ++ viewReferences toggleMsg context.references
+                    )
+                ]
+            ]
         ]
 
 
