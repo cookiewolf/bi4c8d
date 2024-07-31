@@ -40,19 +40,33 @@ view model =
 
 viewTickers : Model -> Html.Html Msg
 viewTickers model =
-    Html.div [ Html.Attributes.class "tickers" ]
-        (List.map
-            (\ticker -> viewTicker model.viewportHeightWidth model.time ticker)
-            model.tickerState
-        )
+    if Tuple.second model.viewportHeightWidth < 800 then
+        Html.ul [ Html.Attributes.class "tickers", Html.Attributes.attribute "role" "list" ]
+            (List.map
+                (\ticker -> viewTicker model.viewportHeightWidth model.time ticker)
+                model.tickerState
+            )
+
+    else
+        Html.div [ Html.Attributes.class "tickers" ]
+            (List.map
+                (\ticker -> viewTicker model.viewportHeightWidth model.time ticker)
+                model.tickerState
+            )
 
 
 viewTicker : ( Float, Float ) -> Time.Posix -> Data.TickerState -> Html.Html Msg
 viewTicker viewportHeightWidth now tickerState =
-    Simple.Animation.Animated.div
-        (slideInTicker viewportHeightWidth tickerState.id)
-        [ Html.Attributes.class "ticker" ]
-        [ Html.h2 [] [ Html.text (tickerState.label ++ ": " ++ viewTickerCount now tickerState) ] ]
+    if Tuple.second viewportHeightWidth < 800 then
+        Html.li
+            [ Html.Attributes.class "ticker" ]
+            [ Html.div [] [ Html.text (tickerState.label ++ ": " ++ viewTickerCount now tickerState) ] ]
+
+    else
+        Simple.Animation.Animated.div
+            (slideInTicker viewportHeightWidth tickerState.id)
+            [ Html.Attributes.class "ticker" ]
+            [ Html.h2 [] [ Html.text (tickerState.label ++ ": " ++ viewTickerCount now tickerState) ] ]
 
 
 viewTickerCount : Time.Posix -> Data.TickerState -> String
