@@ -2,6 +2,7 @@ port module Main exposing (main)
 
 import Browser
 import Browser.Dom
+import Browser.Events
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Data
@@ -112,6 +113,7 @@ subscriptions model =
         , InView.subscriptions InViewMsg model.inView
         , onScroll OnScroll
         , Pile.subscriptions model.piles |> Sub.map Piles
+        , Browser.Events.onResize (\newWidth newHeight -> OnResize ( toFloat newHeight, toFloat newHeight ))
         ]
 
 
@@ -156,6 +158,11 @@ update msg model =
 
         OnScroll offset ->
             ( { model | inView = InView.updateViewportOffset offset model.inView }
+            , Cmd.none
+            )
+
+        OnResize viewportHeightWidth ->
+            ( { model | viewportHeightWidth = viewportHeightWidth }
             , Cmd.none
             )
 
