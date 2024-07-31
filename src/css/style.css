@@ -367,6 +367,16 @@ p {
   margin-left: 30%;
 }
 
+@media (max-width: 800px) {
+  .left .message {
+    margin-right: 10%;
+  }
+
+  .right .message {
+    margin-left: 10%;
+  }
+}
+
 .left .message .message-body {
   background-color: var(--black);
 }
