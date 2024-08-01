@@ -5,7 +5,6 @@ import Copy.Text exposing (t)
 import Data
 import Html
 import Html.Attributes
-import Html.Events
 import InView
 import Markdown
 import Msg exposing (Msg)
