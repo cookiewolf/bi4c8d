@@ -95,19 +95,96 @@ p {
 /** Context **/
 #context {
   background: var(--white);
+  border: 2px solid var(--white);
+  bottom: 0px;
   color: var(--black);
+  font-family: "TT Firs Neue Var Roman", Inter, Roboto, "Helvetica Neue",
+    "Arial Nova", "Nimbus Sans", Arial, sans-serif;
+  margin: 1rem;
+  max-height: 80vh;
+  min-width: 300px;
+  outline: var(--black) solid 3px;
+  overflow-y: auto;
   position: fixed;
+  right: 0px;
+  text-align: left;
   width: 25%;
   z-index: 99999;
 }
 
-#context .section-offscreen {
-  display: none;
+#context:focus-visible {
+  /* this section can be focused on by keyboard users when content is scrollable
+	 * without this set the default outline overrides the browsers focus indication*/
+  outline: var(--blue) solid 5px;
 }
 
 .context-section-title {
   font-family: "TT Firs Neue Var Roman", Inter, Roboto, "Helvetica Neue",
     "Arial Nova", "Nimbus Sans", Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: bold;
+  padding: 1rem 1.5rem;
+  text-align: right;
+}
+
+.context-summary {
+  align-items: center;
+  border-inline: 2px solid;
+  display: flex;
+  font-size: 1.25rem;
+  font-weight: bold;
+  justify-content: space-between;
+  position: relative;
+}
+
+.context-summary::marker {
+  content: none;
+}
+
+.context-summary::after {
+  background-image: url(/images/chevron-up.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  content: "";
+  height: 1em;
+  width: 1em;
+}
+
+[open] .context-summary::after {
+  background-image: url(/images/chevron-down.svg);
+}
+
+.context-body {
+  background-color: var(--white);
+  border: 2px solid var(--white);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.context-list {
+  background-color: var(--white);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.context-subtitle {
+  background-color: var(--black);
+  color: var(--white);
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 0.2rem 1.5rem;
+  width: 100%;
+}
+
+.context-content {
+  background-color: var(--black);
+  font-size: 1rem;
+  padding: 1rem 1.5rem;
 }
 
 /** Main Text **/
@@ -694,4 +771,15 @@ h2.final-ticker {
 .post-date-time-draggable {
   display: flex;
   gap: 0.5rem;
+}
+
+/** Utils **/
+
+.screen-reader-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }

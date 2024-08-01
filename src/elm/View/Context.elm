@@ -12,35 +12,46 @@ import Msg exposing (Msg)
 
 view : InView.State -> List Data.Context -> Html.Html Msg
 view inViewState contextList =
-    Html.ul [ Html.Attributes.id "context" ] (List.map (\context -> viewContextSection inViewState context) contextList)
+    contextList
+        |> List.filter hasUsefulContext
+        |> List.partition
+            (\context ->
+                InView.isInView (Data.sectionIdToString context.section) inViewState
+                    |> Maybe.withDefault False
+            )
+        |> Tuple.first
+        |> List.head
+        |> Maybe.map viewContextSection
+        |> Maybe.withDefault (Html.text "")
 
 
-viewContextSection : InView.State -> Data.Context -> Html.Html Msg
-viewContextSection inViewState context =
-    let
-        sectionInView : Bool
-        sectionInView =
-            InView.isInView (Data.sectionIdToString context.section) inViewState
-                |> Maybe.withDefault False
+hasUsefulContext : Data.Context -> Bool
+hasUsefulContext context =
+    (context.maybeContext /= Nothing)
+        || (context.maybeFactCheck /= Nothing)
+        || (List.length context.references > 0)
 
-        sectionViewStatus : String
-        sectionViewStatus =
-            if sectionInView then
-                "section-active"
 
-            else
-                "section-offscreen"
-    in
-    Html.li
+viewContextSection : Data.Context -> Html.Html Msg
+viewContextSection context =
+    Html.div
         [ Html.Attributes.id (sectionIdStringFromSection context.section)
-        , Html.Attributes.class sectionViewStatus
+        , Html.Attributes.id "context"
+        , Html.Attributes.class "section-active"
         ]
         [ viewContextSectionHeader context.section
-        , Html.dl []
-            (viewContext context.maybeContext
-                ++ viewFactCheck context.maybeFactCheck
-                ++ viewReferences context.references
-            )
+        , Html.details []
+            [ Html.summary [ Html.Attributes.class "context-subtitle", Html.Attributes.class "context-summary" ] [ Html.text (t ContextLabel) ]
+            , Html.div
+                [ Html.Attributes.class "context-body"
+                ]
+                [ viewContext context.maybeContext
+                , Html.dl [ Html.Attributes.class "context-list" ]
+                    (viewFactCheck context.maybeFactCheck
+                        ++ viewReferences context.references
+                    )
+                ]
+            ]
         ]
 
 
@@ -51,29 +62,37 @@ sectionIdStringFromSection sectionId =
 
 viewContextSectionHeader : Data.SectionId -> Html.Html Msg
 viewContextSectionHeader sectionId =
-    Html.h2 [ Html.Attributes.class "context-section-title" ]
-        [ Html.text ("Section " ++ String.fromInt (Data.sectionIdToInt sectionId) ++ " of 17")
+    Html.h2
+        [ Html.Attributes.class "context-section-title"
+        , Html.Attributes.attribute "aria-live" "polite"
+        ]
+        [ Html.span
+            [ Html.Attributes.class "screen-reader-only"
+            ]
+            [ Html.text (t ContextNewSectionMessage) ]
+        , Html.text ("Section " ++ String.fromInt (Data.sectionIdToInt sectionId) ++ " of 17")
         ]
 
 
-viewContext : Maybe String -> List (Html.Html Msg)
+viewContext : Maybe String -> Html.Html Msg
 viewContext maybeContext =
     case maybeContext of
-        Just context ->
-            [ Html.dt [] [ Html.text (t ContextLabel) ]
-            , Html.dd [] (Markdown.markdownToHtml context)
-            ]
+        Just content ->
+            Html.div [ Html.Attributes.class "context-content" ] (Markdown.markdownToHtml content)
 
         Nothing ->
-            []
+            Html.text ""
 
 
 viewFactCheck : Maybe String -> List (Html.Html Msg)
 viewFactCheck maybeFactCheck =
     case maybeFactCheck of
-        Just factCheck ->
-            [ Html.dt [] [ Html.text (t FactCheckLabel) ]
-            , Html.dd [] (Markdown.markdownToHtml factCheck)
+        Just content ->
+            [ Html.dt [ Html.Attributes.class "context-subtitle" ] [ Html.text (t FactCheckLabel) ]
+            , Html.dd
+                [ Html.Attributes.class "context-content"
+                ]
+                (Markdown.markdownToHtml content)
             ]
 
         Nothing ->
@@ -83,8 +102,10 @@ viewFactCheck maybeFactCheck =
 viewReferences : List String -> List (Html.Html Msg)
 viewReferences referenceList =
     if List.length referenceList > 0 then
-        [ Html.dt [] [ Html.text (t ReferencesLabel) ]
-        , Html.dd []
+        [ Html.dt [ Html.Attributes.class "context-subtitle" ] [ Html.text (t ReferencesLabel) ]
+        , Html.dd
+            [ Html.Attributes.class "context-content"
+            ]
             [ Html.ol []
                 (List.map
                     (\reference ->

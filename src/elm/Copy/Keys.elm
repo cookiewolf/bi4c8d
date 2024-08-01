@@ -5,6 +5,7 @@ type Key
     = SiteTitle
       -- Context
     | ContextLabel
+    | ContextNewSectionMessage
     | FactCheckLabel
     | ReferencesLabel
       -- Post
