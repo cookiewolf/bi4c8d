@@ -228,7 +228,19 @@ contextDecoder =
         (Json.Decode.field "section" Json.Decode.string
             |> Json.Decode.andThen sectionIdFromString
         )
-        (Json.Decode.maybe (Json.Decode.field "context" Json.Decode.string))
+        (Json.Decode.field "context" Json.Decode.string
+            |> Json.Decode.maybe
+            |> Json.Decode.map
+                (Maybe.andThen
+                    (\context ->
+                        if context == "" then
+                            Nothing
+
+                        else
+                            Just context
+                    )
+                )
+        )
         (Json.Decode.maybe (Json.Decode.field "fact-check" Json.Decode.string))
         (Json.Decode.maybe (Json.Decode.field "references" (Json.Decode.list Json.Decode.string))
             |> Json.Decode.andThen emptyListFromMaybe
