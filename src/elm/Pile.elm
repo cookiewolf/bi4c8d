@@ -105,6 +105,13 @@ type Msg
     | StopDragging
 
 
+clamp : { minVal : Int, maxVal : Int } -> Int -> Int
+clamp { minVal, maxVal } value =
+    value
+        |> min maxVal
+        |> max minVal
+
+
 init : List ( Data.SectionId, List Data ) -> Model
 init prePiles =
     -- will probably either radomly generate these vectors within bounds or
@@ -113,6 +120,12 @@ init prePiles =
         |> List.map
             (\( key, cardsContent ) ->
                 let
+                    clampX =
+                        clamp { minVal = 0, maxVal = 800 }
+
+                    clampY =
+                        clamp { minVal = 0, maxVal = 800 }
+
                     xs =
                         List.range 0 (List.length cardsContent)
                             |> List.map
@@ -123,6 +136,7 @@ init prePiles =
                                     else
                                         number * 85
                                 )
+                            |> List.map clampX
                             |> List.map toFloat
 
                     ys =
@@ -135,6 +149,7 @@ init prePiles =
                                     else
                                         number * 75
                                 )
+                            |> List.map clampY
                             |> List.map toFloat
                 in
                 cardsContent
