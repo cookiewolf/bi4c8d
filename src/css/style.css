@@ -41,6 +41,13 @@ p {
   width: 100%;
 }
 
+@media (max-width: 800px) {
+  .section {
+    padding: 4.5rem 10px;
+    width: 100%;
+  }
+}
+
 #section-one {
   padding-top: 0;
 }
@@ -115,6 +122,14 @@ p {
   text-align: left;
 }
 
+@media (max-width: 800px) {
+  .main-text {
+    padding: 10px 10px 10px 10px;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+}
+
 .main-text-title {
   font-family: "TT Firs Neue Var Roman", Inter, Roboto, "Helvetica Neue",
     "Arial Nova", "Nimbus Sans", Arial, sans-serif;
@@ -129,51 +144,59 @@ p {
   padding-bottom: 40px;
 }
 
+@media (max-width: 800px) {
+  .main-text-body {
+    padding: 10px 10px 20px 10px;
+  }
+}
+
 .hand-drawn-border {
   border-image: url(/images/borders/border.svg) 10 10 10 10 stretch stretch;
   border-style: solid;
   border-width: 10px 10px 10px 10px;
 }
 
-#section-eight .hand-drawn-border,
-#section-eleven .hand-drawn-border,
-#section-fifteen .hand-drawn-border,
-#section-five .hand-drawn-border {
-  border-image: url(/images/borders/hand-drawn-border-1.svg) 25 25 50 25 stretch
-    stretch;
-  border-style: solid;
-  border-width: 25px 25px 50px 25px;
-}
+@media (min-width: 800px) {
+  #section-eight .hand-drawn-border,
+  #section-eleven .hand-drawn-border,
+  #section-fifteen .hand-drawn-border,
+  #section-five .hand-drawn-border {
+    border-image: url(/images/borders/hand-drawn-border-1.svg) 25 25 50 25
+      stretch stretch;
+    border-style: solid;
+    border-width: 25px 25px 50px 25px;
+  }
 
-#section-four .hand-drawn-border,
-#section-fourteen .hand-drawn-border,
-#section-nine .hand-drawn-border,
-#section-one .hand-drawn-border {
-  border-image: url(/images/borders/hand-drawn-border-2.svg) 25 25 50 25 stretch
-    stretch;
-  border-style: solid;
-  border-width: 25px 25px 50px 25px;
-}
+  #section-four .hand-drawn-border,
+  #section-fourteen .hand-drawn-border,
+  #section-nine .hand-drawn-border,
+  #section-one .hand-drawn-border {
+    border-image: url(/images/borders/hand-drawn-border-2.svg) 25 25 50 25
+      stretch stretch;
+    border-style: solid;
+    border-width: 25px 25px 50px 25px;
+  }
 
-#section-seven .hand-drawn-border,
-#section-seventeen .hand-drawn-border,
-#section-six .hand-drawn-border,
-#section-sixteen .hand-drawn-border {
-  border-image: url(/images/borders/hand-drawn-border-3.svg) 25 25 100 25
-    stretch stretch;
-  border-style: solid;
-  border-width: 25px 25px 100px 25px;
-}
+  #section-seven .hand-drawn-border,
+  #section-seventeen .hand-drawn-border,
+  #section-six .hand-drawn-border,
+  #section-sixteen .hand-drawn-border {
+    border-image: url(/images/borders/hand-drawn-border-3.svg) 25 25 100 25
+      stretch stretch;
+    border-style: solid;
+    border-width: 25px 25px 100px 25px;
+  }
 
-#section-ten .hand-drawn-border,
-#section-thirteen .hand-drawn-border,
-#section-three .hand-drawn-border,
-#section-twelve .hand-drawn-border,
-#section-two .hand-drawn-border {
-  border-image: url(/images/borders/hand-drawn-border-4.svg) 25 25 95 25 stretch
-    stretch;
-  border-style: solid;
-  border-width: 25px 25px 95px 25px;
+  #section-ten .hand-drawn-border,
+  #section-thirteen .hand-drawn-border,
+  #section-three .hand-drawn-border,
+  #section-twelve .hand-drawn-border,
+  #section-two .hand-drawn-border {
+    border-image: url(/images/borders/hand-drawn-border-4.svg) 25 25 95 25
+      stretch stretch;
+    border-style: solid;
+    border-width: 25px 25px 95px 25px;
+  }
 }
 
 /** Post **/
@@ -276,6 +299,7 @@ p {
   border: solid 1px var(--white);
   margin: 0 auto;
   max-width: 1040px;
+  word-wrap: break-word;
 }
 
 .messages a {
@@ -341,6 +365,16 @@ p {
 
 .right .message {
   margin-left: 30%;
+}
+
+@media (max-width: 800px) {
+  .left .message {
+    margin-right: 10%;
+  }
+
+  .right .message {
+    margin-left: 10%;
+  }
 }
 
 .left .message .message-body {
@@ -554,6 +588,14 @@ p {
 /** Ticker **/
 .tickers {
   height: 0;
+}
+
+@media (max-width: 800px) {
+  .tickers {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
 }
 
 .ticker {

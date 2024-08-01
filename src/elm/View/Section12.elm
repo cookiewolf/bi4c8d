@@ -27,5 +27,8 @@ sectionHeightStringFromViewport ( height, _ ) =
 
 
 fontSizeStringFromViewport : ( Float, Float ) -> String
-fontSizeStringFromViewport ( _, width ) =
-    String.fromFloat (width / 18) ++ "px"
+fontSizeStringFromViewport ( height, width ) =
+    if width < 800 then
+        String.fromFloat (height / 24) ++ "px"
+    else
+        String.fromFloat (width / 18) ++ "px"
