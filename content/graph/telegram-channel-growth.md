@@ -9,52 +9,52 @@ label5: Official Voice
 label6: ULM
 label7: UK Anti Lockdown
 datapoints:
-  - date: 17 Feb 2021
+  - date: 2021-02-17T00:00:00Z
     data:
       count1: 4473
       count2: 2139
       count3: 14374
       count4: 2306
-  - date: 24 Feb 2021
+  - date: 2021-02-24T00:00:00Z
     data:
       count1: 4555
       count2: 2263
       count3: 14704
       count4: 2971
-  - date: 11 Mar 2021
+  - date: 2021-03-11T00:00:00Z
     data:
       count1: 4747
       count2: 2798
       count3: 14686
       count4: 4189
-  - date: 17 Mar 2021
+  - date: 2021-03-17T00:00:00Z
     data:
       count1: 4827
       count2: 3033
       count3: 14760
       count4: 4886
-  - date: 06 Apr 2021
+  - date: 2021-04-06T00:00:00Z
     data:
       count1: 5469
       count2: 4422
       count3: 15756
       count4: 7684
       count5: 9126
-  - date: 13 Apr 2021
+  - date: 2021-04-13T00:00:00Z
     data:
       count1: 5615
       count2: 4620
       count3: 15858
       count4: 8210
       count5: 9282
-  - date: 27 Apr 2021
+  - date: 2021-04-27T00:00:00Z
     data:
       count1: 6070
       count2: 5534
       count3: 16551
       count4: 10737
       count5: 10659
-  - date: 05 May 2021
+  - date: 2021-05-05T00:00:00Z
     data:
       count1: 6294
       count2: 5816
@@ -63,7 +63,7 @@ datapoints:
       count5: 10868
       count6: 4498
       count7: 868
-  - date: 20 May 2021
+  - date: 2021-05-20T00:00:00Z
     data:
       count1: 6521
       count2: 6140
@@ -72,7 +72,7 @@ datapoints:
       count5: 11257
       count6: 5072
       count7: 1043
-  - date: 05 Jun 2021
+  - date: 2021-06-05T00:00:00Z
     data:
       count1: 6768
       count2: 6287
@@ -81,7 +81,7 @@ datapoints:
       count5: 11963
       count6: 6605
       count7: 1421
-  - date: 01 Jul 2021
+  - date: 2021-07-01T00:00:00Z
     data:
       count1: 7633
       count2: 6513
@@ -90,7 +90,7 @@ datapoints:
       count5: 12650
       count6: 6568
       count7: 1354
-  - date: 30 Jul 2024
+  - date: 2024-07-30T00:00:00Z
     data:
       count1: 8093
       count2: 6689
@@ -99,7 +99,7 @@ datapoints:
       count5: 12848
       count6: 6730
       count7: 1568
-  - date: 27 Jul 2021
+  - date: 2021-07-27T00:00:00Z
     data:
       count1: 8838
       count2: 6936
