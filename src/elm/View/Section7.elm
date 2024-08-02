@@ -31,7 +31,7 @@ view model =
                             "fade-image-" ++ String.fromInt imageSrcId
 
                         isBlank =
-                            case InView.isInView itemId model.inView of
+                            case InView.isInOrAboveView itemId model.inView of
                                 Just True ->
                                     False
 
