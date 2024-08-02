@@ -27,7 +27,7 @@ view model =
                         "fade-image-" ++ String.fromInt imageSrcId
 
                     isBlank =
-                        case InView.isInOrAboveViewWithMargin itemId (InView.Margin 200 0 (toFloat imageSrcId * 150) 0) model.inView of
+                        case InView.isInOrAboveView itemId model.inView of
                             Just True ->
                                 False
 
@@ -55,8 +55,7 @@ viewImage : InView.State -> FadeImage -> Html.Html Msg
 viewImage state fadeImage =
     Html.div
         [ Html.Attributes.id ("profile-" ++ fadeImage.id)
-        , Html.Attributes.style "display" "flex"
-        , Html.Attributes.style "flex-direction" "row"
+        , Html.Attributes.class "profile"
         ]
         [ Html.img
             [ Html.Attributes.id fadeImage.id
