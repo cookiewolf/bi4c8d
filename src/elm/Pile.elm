@@ -136,7 +136,7 @@ init prePiles =
                                 (\number ->
                                     let
                                         offsetX =
-                                            -- guestimate for top left of item from it's centre
+                                            -- guestimate for top left of item from it's center
                                             -- could plumb in real values if we ever retrieve that data
                                             200
 
@@ -159,7 +159,7 @@ init prePiles =
                                 (\number ->
                                     let
                                         offsetY =
-                                            -- guestimate for top left of item from it's centre
+                                            -- guestimate for top left of item from it's center
                                             -- could plumb in real values if we ever retrieve that data
                                             200
 
