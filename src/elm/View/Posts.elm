@@ -1,4 +1,4 @@
-module View.Posts exposing (view, viewPostDraggable)
+module View.Posts exposing (view, viewPost, viewPostDraggable)
 
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)

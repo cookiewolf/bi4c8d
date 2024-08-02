@@ -773,6 +773,32 @@ h2.final-ticker {
   gap: 0.5rem;
 }
 
+/** Horizontal Scroller **/
+
+.horizontal-scroller {
+  align-items: center;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  max-height: 90vh;
+  display: grid;
+  gap: 1rem;
+  grid-auto-columns: 90%;
+  grid-auto-flow: column;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  padding: 0 1rem 1rem;
+  scroll-snap-type: inline mandatory;
+  scroll-padding-inline: 1rem;
+}
+
+.horizontal-scroller > * {
+  scroll-snap-align: start;
+}
+
+.horizontal-scroller > .horizontal-scroller__post {
+  overflow-y: scroll;
+}
+
 /** Utils **/
 
 .screen-reader-only {
