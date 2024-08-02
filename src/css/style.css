@@ -528,7 +528,7 @@ p {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  height: 500px;
+  min-height: 500px;
   justify-content: center;
   width: 100%;
 }
@@ -543,6 +543,17 @@ p {
 
 #profile-fade-image-3 {
   padding: 2rem 1rem 0 0;
+}
+
+.profile {
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 400px) {
+  .profile {
+    flex-direction: column;
+  }
 }
 
 .profile-info {
