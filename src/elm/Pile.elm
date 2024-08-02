@@ -151,6 +151,7 @@ init prePiles =
                                 )
                             |> List.map clampX
                             |> List.map toFloat
+                            |> List.reverse
 
                     ys =
                         List.range 0 (List.length cardsContent)
@@ -173,6 +174,7 @@ init prePiles =
                                 )
                             |> List.map clampY
                             |> List.map toFloat
+                            |> List.reverse
                 in
                 cardsContent
                     |> List.map3 (\x y cont -> ( Math.Vector2.vec2 x y, cont )) xs ys
