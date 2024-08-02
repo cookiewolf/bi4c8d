@@ -74,7 +74,7 @@ viewImage delay state fadeImage =
             , Html.Attributes.style "max-width" "100%"
             , Html.Attributes.style "opacity"
                 (String.fromInt (floor fadeImage.scale))
-            , Html.Attributes.style "transition" (imageTransform fadeImage.isBlank delay)
+            , Html.Attributes.style "transition" (imageTransition fadeImage.isBlank delay)
             , Html.Attributes.style "transform" ("scale(" ++ String.fromFloat fadeImage.scale ++ ")")
             ]
             []
@@ -82,7 +82,7 @@ viewImage delay state fadeImage =
             [ Html.Attributes.class "profile-info"
             , Html.Attributes.style "opacity"
                 (String.fromFloat (fadeImage.scale - 0.25))
-            , Html.Attributes.style "transition" (imageOpacity fadeImage.isBlank delay)
+            , Html.Attributes.style "transition" (infoTransition fadeImage.isBlank delay)
             ]
             [ Html.p [] [ Html.text "_________ Name" ]
             , Html.p [] [ Html.text "_________ Age" ]
@@ -92,8 +92,8 @@ viewImage delay state fadeImage =
         ]
 
 
-imageTransform : Bool -> Int -> String
-imageTransform isBlank delay =
+imageTransition : Bool -> Int -> String
+imageTransition isBlank delay =
     if isBlank then
         "transform 0s"
 
@@ -110,8 +110,8 @@ imageTransform isBlank delay =
                (String.fromInt delay ++ "s")
 
 
-imageOpacity : Bool -> Int -> String
-imageOpacity isBlank delay =
+infoTransition : Bool -> Int -> String
+infoTransition isBlank delay =
     if isBlank then
         "opacity 0s"
 
