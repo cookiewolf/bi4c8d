@@ -25,13 +25,13 @@ view model =
                 (\imageSrcId ( offset, listElements ) ->
                     let
                         delay =
-                            offset + (imageSrcId * 8)
+                            offset + 3
 
                         itemId =
                             "fade-image-" ++ String.fromInt imageSrcId
 
                         isBlank =
-                            case InView.isInOrAboveView itemId model.inView of
+                            case InView.isInView itemId model.inView of
                                 Just True ->
                                     False
 
@@ -68,11 +68,13 @@ viewImage delay state fadeImage =
         ]
         [ Html.img
             [ Html.Attributes.id fadeImage.id
+            , Html.Attributes.class "profile-image"
             , Html.Attributes.src (imageSrcFromId fadeImage.isBlank fadeImage.srcId)
             , Html.Events.on "load" (Json.Decode.succeed (OnElementLoad fadeImage.id))
             , Html.Attributes.style "max-width" "100%"
-            , Html.Attributes.style "opacity" "1"
-            , Html.Attributes.style "transition" (imageTransformFromId fadeImage.isBlank delay)
+            , Html.Attributes.style "opacity"
+                (String.fromInt (floor fadeImage.scale))
+            , Html.Attributes.style "transition" (imageTransform fadeImage.isBlank delay)
             , Html.Attributes.style "transform" ("scale(" ++ String.fromFloat fadeImage.scale ++ ")")
             ]
             []
@@ -80,7 +82,7 @@ viewImage delay state fadeImage =
             [ Html.Attributes.class "profile-info"
             , Html.Attributes.style "opacity"
                 (String.fromFloat (fadeImage.scale - 0.25))
-            , Html.Attributes.style "transition" (imageOpacityFromId fadeImage.isBlank delay)
+            , Html.Attributes.style "transition" (imageOpacity fadeImage.isBlank delay)
             ]
             [ Html.p [] [ Html.text "_________ Name" ]
             , Html.p [] [ Html.text "_________ Age" ]
@@ -90,22 +92,35 @@ viewImage delay state fadeImage =
         ]
 
 
-imageTransformFromId : Bool -> Int -> String
-imageTransformFromId isBlank delay =
+imageTransform : Bool -> Int -> String
+imageTransform isBlank delay =
     if isBlank then
         "transform 0s"
 
     else
-        "transform " ++ String.fromInt delay ++ "s"
+        "transform "
+            ++ -- duration
+               (String.fromInt 2 ++ "s ")
+            ++ -- delay
+               (String.fromInt delay ++ "s")
+            ++ ",opacity "
+            ++ -- duration
+               (String.fromInt 2 ++ "s ")
+            ++ -- delay
+               (String.fromInt delay ++ "s")
 
 
-imageOpacityFromId : Bool -> Int -> String
-imageOpacityFromId isBlank delay =
+imageOpacity : Bool -> Int -> String
+imageOpacity isBlank delay =
     if isBlank then
         "opacity 0s"
 
     else
-        "opacity " ++ String.fromInt (delay + 2) ++ "s"
+        "opacity "
+            ++ -- duration
+               (String.fromInt 2 ++ "s ")
+            ++ -- delay
+               (String.fromFloat (toFloat delay + 1.5) ++ "s")
 
 
 imageSrcFromId : Bool -> Int -> String
