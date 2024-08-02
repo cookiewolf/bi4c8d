@@ -3,7 +3,7 @@ section: section-two
 title: Public Trust Graph
 label1: Percentage thinking the government is honest
 datapoints:
-  - date: 01 Jan 1997
+  - date: 1997-01-01T00:00:00+00:00Z
     data:
       count1: 87
   - date: 01 Jan 1998
