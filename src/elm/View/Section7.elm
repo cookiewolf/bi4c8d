@@ -21,9 +21,12 @@ view : Model -> List (Html.Html Msg)
 view model =
     [ Html.div [ Html.Attributes.class "faces-with-info" ]
         (List.range 1 3
-            |> List.foldr
+            |> List.foldl
                 (\imageSrcId ( offset, listElements ) ->
                     let
+                        delay =
+                            offset + (imageSrcId * 8)
+
                         itemId =
                             "fade-image-" ++ String.fromInt imageSrcId
 
@@ -49,7 +52,7 @@ view model =
                                         1
                                 }
                     in
-                    ( offset + imageSrcId, element :: listElements )
+                    ( delay, listElements ++ [ element ] )
                 )
                 ( 0, [] )
             |> Tuple.second
@@ -58,7 +61,7 @@ view model =
 
 
 viewImage : Int -> InView.State -> FadeImage -> Html.Html Msg
-viewImage delayOffset state fadeImage =
+viewImage delay state fadeImage =
     Html.div
         [ Html.Attributes.id ("profile-" ++ fadeImage.id)
         , Html.Attributes.class "profile"
@@ -69,7 +72,7 @@ viewImage delayOffset state fadeImage =
             , Html.Events.on "load" (Json.Decode.succeed (OnElementLoad fadeImage.id))
             , Html.Attributes.style "max-width" "100%"
             , Html.Attributes.style "opacity" "1"
-            , Html.Attributes.style "transition" (imageTransformFromId delayOffset fadeImage.isBlank fadeImage.srcId)
+            , Html.Attributes.style "transition" (imageTransformFromId fadeImage.isBlank delay)
             , Html.Attributes.style "transform" ("scale(" ++ String.fromFloat fadeImage.scale ++ ")")
             ]
             []
@@ -77,7 +80,7 @@ viewImage delayOffset state fadeImage =
             [ Html.Attributes.class "profile-info"
             , Html.Attributes.style "opacity"
                 (String.fromFloat (fadeImage.scale - 0.25))
-            , Html.Attributes.style "transition" (imageOpacityFromId delayOffset fadeImage.isBlank fadeImage.srcId)
+            , Html.Attributes.style "transition" (imageOpacityFromId fadeImage.isBlank delay)
             ]
             [ Html.p [] [ Html.text "_________ Name" ]
             , Html.p [] [ Html.text "_________ Age" ]
@@ -87,12 +90,8 @@ viewImage delayOffset state fadeImage =
         ]
 
 
-imageTransformFromId : Int -> Bool -> Int -> String
-imageTransformFromId delayOffset isBlank srcId =
-    let
-        delay =
-            delayOffset + (srcId * 8)
-    in
+imageTransformFromId : Bool -> Int -> String
+imageTransformFromId isBlank delay =
     if isBlank then
         "transform 0s"
 
@@ -100,17 +99,13 @@ imageTransformFromId delayOffset isBlank srcId =
         "transform " ++ String.fromInt delay ++ "s"
 
 
-imageOpacityFromId : Int -> Bool -> Int -> String
-imageOpacityFromId delayOffset isBlank srcId =
-    let
-        delay =
-            delayOffset + (srcId * 10)
-    in
+imageOpacityFromId : Bool -> Int -> String
+imageOpacityFromId isBlank delay =
     if isBlank then
         "opacity 0s"
 
     else
-        "opacity " ++ String.fromInt delay ++ "s"
+        "opacity " ++ String.fromInt (delay + 2) ++ "s"
 
 
 imageSrcFromId : Bool -> Int -> String
