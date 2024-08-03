@@ -128,7 +128,7 @@ subscriptions model =
         , InView.subscriptions InViewMsg model.inView
         , onScroll OnScroll
         , Pile.subscriptions model.piles |> Sub.map Piles
-        , Browser.Events.onResize (\newWidth newHeight -> OnResize ( toFloat newHeight, toFloat newHeight ))
+        , Browser.Events.onResize (\newWidth newHeight -> OnResize ( toFloat newHeight, toFloat newWidth ))
         ]
 
 
