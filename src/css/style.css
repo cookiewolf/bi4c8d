@@ -187,6 +187,21 @@ p {
   padding: 1rem 1.5rem;
 }
 
+.references {
+  padding-inline-start: 1rem;
+}
+
+.reference-link {
+  color: var(--white);
+  word-wrap: break-word;
+}
+
+.reference-link:hover {
+  background-color: var(--white);
+  color: var(--black);
+  text-decoration: none;
+}
+
 /** Main Text **/
 
 .main-texts {

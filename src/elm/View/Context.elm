@@ -106,10 +106,10 @@ viewReferences referenceList =
         , Html.dd
             [ Html.Attributes.class "context-content"
             ]
-            [ Html.ol []
+            [ Html.ol [ Html.Attributes.class "references" ]
                 (List.map
                     (\reference ->
-                        Html.li [] [ Html.text reference ]
+                        Html.li [] [ Html.a [ Html.Attributes.class "reference-link", Html.Attributes.href reference ] [ Html.text reference ] ]
                     )
                     referenceList
                 )
