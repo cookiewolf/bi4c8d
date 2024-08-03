@@ -41,3 +41,9 @@ const app = Elm.Main.init({
 window.addEventListener("scroll", () => {
   app.ports.onScroll.send({ x: window.scrollX, y: window.scrollY });
 });
+
+const sizeObserver = new ResizeObserver((entries) => {
+  app.ports.onScroll.send(entries[0].borderBoxSize[0].blockSize);
+});
+
+sizeObserver.observe(document.body);

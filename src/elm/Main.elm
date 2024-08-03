@@ -21,6 +21,9 @@ import View
 port onScroll : ({ x : Float, y : Float } -> msg) -> Sub msg
 
 
+port onGrow : (Float -> msg) -> Sub msg
+
+
 main : Program Data.Flags Model Msg
 main =
     Browser.document
@@ -99,6 +102,7 @@ init flags =
       , content = content
       , tickerState = initialTickerState
       , breachCount = 0
+      , domHeight = 0.0
       , randomIntList = []
       , inView = inViewModel
       , viewportHeightWidth = ( 800, 800 )
@@ -127,6 +131,7 @@ subscriptions model =
         [ Time.every 100 Tick -- 10 times per second
         , InView.subscriptions InViewMsg model.inView
         , onScroll OnScroll
+        , onGrow OnGrow
         , Pile.subscriptions model.piles |> Sub.map Piles
         , Browser.Events.onResize (\newWidth newHeight -> OnResize ( toFloat newHeight, toFloat newWidth ))
         ]
@@ -175,6 +180,21 @@ update msg model =
             ( { model | inView = InView.updateViewportOffset offset model.inView }
             , Cmd.none
             )
+
+        OnGrow height ->
+            if model.domHeight == height then
+                ( model
+                , Cmd.none
+                )
+
+            else
+                let
+                    ( inView, inViewCmds ) =
+                        InView.addElements InViewMsg [] model.inView
+                in
+                ( { model | domHeight = height, inView = inView }
+                , inViewCmds
+                )
 
         OnResize viewportHeightWidth ->
             ( { model | viewportHeightWidth = viewportHeightWidth }
