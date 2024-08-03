@@ -16,12 +16,7 @@ import Time
 view : Model -> Data.SectionId -> Html.Html Msg
 view model sectionId =
     let
-        dateRangeStart =
-            toFloat 883612800000
-
-        dateRangeEnd =
-            toFloat 1672531200000
-
+        graph : Data.Graph
         graph =
             List.head (Data.filterBySection sectionId model.content.graphs)
                 |> Maybe.withDefault Data.lineChartData
@@ -30,12 +25,12 @@ view model sectionId =
         [ Chart.Attributes.height 300
         , Chart.Attributes.width 600
         , Chart.Attributes.range
-            [ Chart.Attributes.lowest dateRangeStart Chart.Attributes.exactly
-            , Chart.Attributes.highest dateRangeEnd Chart.Attributes.exactly
+            [ Chart.Attributes.lowest (dateRangeStart graph.dataPoints) Chart.Attributes.exactly
+            , Chart.Attributes.highest (dateRangeEnd graph.dataPoints) Chart.Attributes.exactly
             ]
         , Chart.Attributes.domain
-            [ Chart.Attributes.lowest 25 Chart.Attributes.exactly
-            , Chart.Attributes.highest 55 Chart.Attributes.exactly
+            [ Chart.Attributes.lowest (yValueLowest graph.dataPoints) Chart.Attributes.exactly
+            , Chart.Attributes.highest (yValueHighest graph.dataPoints) Chart.Attributes.exactly
             ]
         , Chart.Events.onMouseMove Msg.OnChartHover
             (Chart.Events.getNearest Chart.Item.dots)
@@ -49,7 +44,7 @@ view model sectionId =
             [ Svg.text graph.title ]
         , Chart.xAxis [ Chart.Attributes.color "#FFFFFF" ]
         , Chart.yLabels
-            [ Chart.Attributes.format (\yLabel -> "£" ++ String.fromFloat yLabel ++ " mil")
+            [ Chart.Attributes.format (\yLabel -> viewYLabel sectionId (String.fromFloat yLabel))
             , Chart.Attributes.color "#FFFFFF"
             ]
         , Chart.generate 20 (Chart.Svg.times Time.utc) .x [] <|
@@ -189,6 +184,89 @@ view model sectionId =
                 else
                     []
         ]
+
+
+viewYLabel : Data.SectionId -> String -> String
+viewYLabel section yValueString =
+    case section of
+        Data.Section2 ->
+            yValueString ++ "%"
+
+        Data.Section3 ->
+            yValueString
+
+        Data.Section5 ->
+            "£" ++ yValueString ++ " mil"
+
+        _ ->
+            yValueString
+
+
+allDates : List Data.LineChartDatum -> List Float
+allDates dataPoints =
+    List.map .x dataPoints
+        |> List.sort
+
+
+dateRangeStart : List Data.LineChartDatum -> Float
+dateRangeStart dataPoints =
+    List.head (allDates dataPoints)
+        |> Maybe.withDefault (toFloat 883612800000)
+
+
+dateRangeEnd : List Data.LineChartDatum -> Float
+dateRangeEnd dataPoints =
+    List.reverse (allDates dataPoints)
+        |> List.head
+        |> Maybe.withDefault (toFloat 1672531200000)
+
+
+allYValues : List Data.LineChartDatum -> List Float
+allYValues dataPoints =
+    List.map (\dataPoint -> countFromYPoint dataPoint.y1) dataPoints
+        ++ List.map (\dataPoint -> countFromYPoint dataPoint.y2) dataPoints
+        ++ List.map (\dataPoint -> countFromYPoint dataPoint.y3) dataPoints
+        ++ List.map (\dataPoint -> countFromYPoint dataPoint.y4) dataPoints
+        ++ List.map (\dataPoint -> countFromYPoint dataPoint.y5) dataPoints
+        ++ List.map (\dataPoint -> countFromYPoint dataPoint.y6) dataPoints
+        ++ List.map (\dataPoint -> countFromYPoint dataPoint.y7) dataPoints
+        |> List.concat
+        |> List.sort
+
+
+countFromYPoint : Data.YPoint -> List Float
+countFromYPoint yPoint =
+    case yPoint.count of
+        Just aCount ->
+            [ aCount ]
+
+        Nothing ->
+            []
+
+
+yValueLowest : List Data.LineChartDatum -> Float
+yValueLowest dataPoints =
+    List.head (allYValues dataPoints)
+        |> Maybe.withDefault (toFloat 0)
+        |> minusTenPercent
+
+
+yValueHighest : List Data.LineChartDatum -> Float
+yValueHighest dataPoints =
+    List.reverse (allYValues dataPoints)
+        |> List.head
+        |> Maybe.withDefault (toFloat 100)
+        |> plusTenPercent
+
+
+minusTenPercent : Float -> Float
+minusTenPercent count =
+    count - (count * 0.1)
+
+
+plusTenPercent : Float -> Float
+plusTenPercent count =
+    count + (count * 0.1)
 
 
 formatFullTime : Time.Zone -> Time.Posix -> String
