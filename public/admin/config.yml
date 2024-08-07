@@ -85,7 +85,7 @@ collections:
         name: datapoints
         widget: list
         fields:
-          - { label: "Date", name: "date", widget: "datetime", date_format: "DD MMM YYYY", time_format: false }
+          - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DDTHH:mm:ss[Z]", time_format: false }
           - label: Data
             name: data
             widget: object
