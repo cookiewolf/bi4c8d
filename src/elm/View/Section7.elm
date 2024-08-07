@@ -20,50 +20,61 @@ type alias FadeImage =
 view : Model -> List (Html.Html Msg)
 view model =
     [ Html.div [ Html.Attributes.class "faces-with-info" ]
-        (List.map
-            (\imageSrcId ->
-                let
-                    itemId =
-                        "fade-image-" ++ String.fromInt imageSrcId
+        (List.range 1 3
+            |> List.foldl
+                (\imageSrcId ( offset, listElements ) ->
+                    let
+                        delay =
+                            offset + 3
 
-                    isBlank =
-                        case InView.isInOrAboveView itemId model.inView of
-                            Just True ->
-                                False
+                        itemId =
+                            "fade-image-" ++ String.fromInt imageSrcId
 
-                            _ ->
-                                True
-                in
-                viewImage model.inView
-                    { id = itemId
-                    , srcId = imageSrcId
-                    , isBlank = isBlank
-                    , scale =
-                        if isBlank then
-                            0.25
+                        isBlank =
+                            case InView.isInOrAboveView itemId model.inView of
+                                Just True ->
+                                    False
 
-                        else
-                            1
-                    }
-            )
-            (List.range 1 3)
+                                _ ->
+                                    True
+
+                        element =
+                            viewImage offset
+                                model.inView
+                                { id = itemId
+                                , srcId = imageSrcId
+                                , isBlank = isBlank
+                                , scale =
+                                    if isBlank then
+                                        0.25
+
+                                    else
+                                        1
+                                }
+                    in
+                    ( delay, listElements ++ [ element ] )
+                )
+                ( 0, [] )
+            |> Tuple.second
         )
     ]
 
 
-viewImage : InView.State -> FadeImage -> Html.Html Msg
-viewImage state fadeImage =
+viewImage : Int -> InView.State -> FadeImage -> Html.Html Msg
+viewImage delay state fadeImage =
     Html.div
         [ Html.Attributes.id ("profile-" ++ fadeImage.id)
         , Html.Attributes.class "profile"
         ]
         [ Html.img
             [ Html.Attributes.id fadeImage.id
+            , Html.Attributes.class "profile-image"
             , Html.Attributes.src (imageSrcFromId fadeImage.isBlank fadeImage.srcId)
             , Html.Events.on "load" (Json.Decode.succeed (OnElementLoad fadeImage.id))
             , Html.Attributes.style "max-width" "100%"
-            , Html.Attributes.style "opacity" "1"
-            , Html.Attributes.style "transition" (imageTransformFromId fadeImage.isBlank fadeImage.srcId)
+            , Html.Attributes.style "opacity"
+                (String.fromInt (floor fadeImage.scale))
+            , Html.Attributes.style "transition" (imageTransition fadeImage.isBlank delay)
             , Html.Attributes.style "transform" ("scale(" ++ String.fromFloat fadeImage.scale ++ ")")
             ]
             []
@@ -71,7 +82,7 @@ viewImage state fadeImage =
             [ Html.Attributes.class "profile-info"
             , Html.Attributes.style "opacity"
                 (String.fromFloat (fadeImage.scale - 0.25))
-            , Html.Attributes.style "transition" (imageOpacityFromId fadeImage.isBlank fadeImage.srcId)
+            , Html.Attributes.style "transition" (infoTransition fadeImage.isBlank delay)
             ]
             [ Html.p [] [ Html.text "_________ Name" ]
             , Html.p [] [ Html.text "_________ Age" ]
@@ -81,22 +92,35 @@ viewImage state fadeImage =
         ]
 
 
-imageTransformFromId : Bool -> Int -> String
-imageTransformFromId isBlank srcId =
+imageTransition : Bool -> Int -> String
+imageTransition isBlank delay =
     if isBlank then
         "transform 0s"
 
     else
-        "transform " ++ String.fromInt (srcId * 8) ++ "s"
+        "transform "
+            ++ -- duration
+               (String.fromInt 2 ++ "s ")
+            ++ -- delay
+               (String.fromInt delay ++ "s")
+            ++ ",opacity "
+            ++ -- duration
+               (String.fromInt 2 ++ "s ")
+            ++ -- delay
+               (String.fromInt delay ++ "s")
 
 
-imageOpacityFromId : Bool -> Int -> String
-imageOpacityFromId isBlank srcId =
+infoTransition : Bool -> Int -> String
+infoTransition isBlank delay =
     if isBlank then
         "opacity 0s"
 
     else
-        "opacity " ++ String.fromInt (srcId * 10) ++ "s"
+        "opacity "
+            ++ -- duration
+               (String.fromInt 2 ++ "s ")
+            ++ -- delay
+               (String.fromFloat (toFloat delay + 1.5) ++ "s")
 
 
 imageSrcFromId : Bool -> Int -> String
