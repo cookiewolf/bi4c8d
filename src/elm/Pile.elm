@@ -114,43 +114,67 @@ clamp { minVal, maxVal } value =
 
 init : List ( Data.SectionId, List Data ) -> Model
 init prePiles =
-    -- will probably either radomly generate these vectors within bounds or
-    -- have some hand crafted numbers for initial layout
+    let
+        ( centerX, centerY ) =
+            -- stubbed out ready to recieve viewport data
+            ( 600, 400 )
+    in
     prePiles
         |> List.map
             (\( key, cardsContent ) ->
                 let
+                    -- stubbed out ready to recieve viewport data
                     clampX =
-                        clamp { minVal = 0, maxVal = 800 }
+                        clamp { minVal = 10, maxVal = 790 }
 
                     clampY =
-                        clamp { minVal = 0, maxVal = 800 }
+                        clamp { minVal = 10, maxVal = 790 }
 
                     xs =
                         List.range 0 (List.length cardsContent)
                             |> List.map
                                 (\number ->
+                                    let
+                                        offsetX =
+                                            -- guestimate for top left of item from it's center
+                                            -- could plumb in real values if we ever retrieve that data
+                                            200
+
+                                        pos =
+                                            centerX - offsetX
+                                    in
                                     if modBy 2 number == 0 then
-                                        number * 120
+                                        pos + (number * 15)
 
                                     else
-                                        number * 85
+                                        pos - (number * 20)
                                 )
                             |> List.map clampX
                             |> List.map toFloat
+                            |> List.reverse
 
                     ys =
                         List.range 0 (List.length cardsContent)
                             |> List.map
                                 (\number ->
+                                    let
+                                        offsetY =
+                                            -- guestimate for top left of item from it's center
+                                            -- could plumb in real values if we ever retrieve that data
+                                            200
+
+                                        pos =
+                                            centerY - offsetY
+                                    in
                                     if modBy 2 number == 0 then
-                                        number * 60
+                                        pos + (number * 15)
 
                                     else
-                                        number * 75
+                                        pos - (number * 25)
                                 )
                             |> List.map clampY
                             |> List.map toFloat
+                            |> List.reverse
                 in
                 cardsContent
                     |> List.map3 (\x y cont -> ( Math.Vector2.vec2 x y, cont )) xs ys
