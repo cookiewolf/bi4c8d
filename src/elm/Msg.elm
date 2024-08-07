@@ -13,6 +13,7 @@ type Msg
     | Tick Time.Posix
     | NewRandomIntList (List Int)
     | OnScroll { x : Float, y : Float }
+    | OnGrow Float
     | OnResize ( Float, Float )
     | InViewMsg InView.Msg
     | GotViewport Browser.Dom.Viewport

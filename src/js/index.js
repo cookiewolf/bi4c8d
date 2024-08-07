@@ -6,38 +6,44 @@ import "@fontsource/source-code-pro";
 
 import { Elm } from "../elm/Main.elm";
 
-import context from "../../data/context.json"
-import mainText from "../../data/main-text.json"
-import posts from "../../data/posts.json"
-import messages from "../../data/messages.json"
-import images from "../../data/images.json"
-import graphs from "../../data/graphs.json"
-import terminals from "../../data/terminals.json"
-import tickers from "../../data/tickers.json"
+import context from "../../data/context.json";
+import mainText from "../../data/main-text.json";
+import posts from "../../data/posts.json";
+import messages from "../../data/messages.json";
+import images from "../../data/images.json";
+import graphs from "../../data/graphs.json";
+import terminals from "../../data/terminals.json";
+import tickers from "../../data/tickers.json";
 
 if (process.env.NODE_ENV === "development") {
-    const ElmDebugTransform = await import("elm-debug-transformer");
+  const ElmDebugTransform = await import("elm-debug-transformer");
 
-    ElmDebugTransform.register({
-        simple_mode: true
-    });
+  ElmDebugTransform.register({
+    simple_mode: true,
+  });
 }
 
 const root = document.querySelector("#app div");
 const app = Elm.Main.init({
-    node: root,
-    flags: {
-        "context": context,
-        "main-text": mainText,
-        "posts": posts,
-        "messages": messages,
-        "images": images,
-        "graphs": graphs,
-        "terminals": terminals,
-        "tickers": tickers
-    }
+  node: root,
+  flags: {
+    context: context,
+    "main-text": mainText,
+    posts: posts,
+    messages: messages,
+    images: images,
+    graphs: graphs,
+    terminals: terminals,
+    tickers: tickers,
+  },
 });
 
 window.addEventListener("scroll", () => {
-    app.ports.onScroll.send({x: window.scrollX, y: window.scrollY});
+  app.ports.onScroll.send({ x: window.scrollX, y: window.scrollY });
 });
+
+const sizeObserver = new ResizeObserver((entries) => {
+  app.ports.onScroll.send(entries[0].borderBoxSize[0].blockSize);
+});
+
+sizeObserver.observe(document.body);
