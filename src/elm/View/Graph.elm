@@ -25,8 +25,8 @@ view model sectionId =
         [ Chart.Attributes.height 300
         , Chart.Attributes.width 600
         , Chart.Attributes.range
-            [ Chart.Attributes.lowest (dateRangeStart graph.dataPoints) Chart.Attributes.exactly
-            , Chart.Attributes.highest (dateRangeEnd graph.dataPoints) Chart.Attributes.exactly
+            [ Chart.Attributes.lowest (dateRangeStart sectionId graph.dataPoints) Chart.Attributes.exactly
+            , Chart.Attributes.highest (dateRangeEnd sectionId graph.dataPoints) Chart.Attributes.exactly
             ]
         , Chart.Attributes.domain
             [ Chart.Attributes.lowest (yValueLowest graph.dataPoints) Chart.Attributes.exactly
@@ -208,17 +208,65 @@ allDates dataPoints =
         |> List.sort
 
 
-dateRangeStart : List Data.LineChartDatum -> Float
-dateRangeStart dataPoints =
+dateRangeStart : Data.SectionId -> List Data.LineChartDatum -> Float
+dateRangeStart id dataPoints =
     List.head (allDates dataPoints)
         |> Maybe.withDefault (toFloat 883612800000)
+        |> floorDate id
 
 
-dateRangeEnd : List Data.LineChartDatum -> Float
-dateRangeEnd dataPoints =
+dateRangeEnd : Data.SectionId -> List Data.LineChartDatum -> Float
+dateRangeEnd id dataPoints =
     List.reverse (allDates dataPoints)
         |> List.head
         |> Maybe.withDefault (toFloat 1672531200000)
+        |> ceilingDate id
+
+
+oneYearInMiliseconds : Int
+oneYearInMiliseconds =
+    31556952000
+
+
+oneWeekInMiliseconds : Int
+oneWeekInMiliseconds =
+    604800000
+
+
+floorDate : Data.SectionId -> Float -> Float
+floorDate id milis =
+    let
+        unit =
+            if id == Data.Section3 then
+                oneWeekInMiliseconds
+
+            else
+                oneYearInMiliseconds
+    in
+    milis
+        |> floor
+        |> (\time -> time // unit)
+        |> (\units -> units * unit)
+        |> (\val -> val - unit)
+        |> toFloat
+
+
+ceilingDate : Data.SectionId -> Float -> Float
+ceilingDate id milis =
+    let
+        unit =
+            if id == Data.Section3 then
+                oneWeekInMiliseconds
+
+            else
+                oneYearInMiliseconds
+    in
+    milis
+        |> floor
+        |> (\time -> time // unit)
+        |> (\units -> units * unit)
+        |> (+) unit
+        |> toFloat
 
 
 allYValues : List Data.LineChartDatum -> List Float
