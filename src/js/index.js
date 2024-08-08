@@ -43,7 +43,7 @@ window.addEventListener("scroll", () => {
 });
 
 const sizeObserver = new ResizeObserver((entries) => {
-  app.ports.onScroll.send(entries[0].borderBoxSize[0].blockSize);
+  app.ports.onGrow.send(entries[0].borderBoxSize[0].blockSize);
 });
 
 sizeObserver.observe(document.body);
