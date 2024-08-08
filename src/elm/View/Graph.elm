@@ -43,6 +43,7 @@ view model sectionId =
             ]
             [ Svg.text graph.title ]
         , Chart.xAxis [ Chart.Attributes.color "#FFFFFF" ]
+        , Chart.yAxis [ Chart.Attributes.color "#FFFFFF" ]
         , Chart.yLabels
             [ Chart.Attributes.format (\yLabel -> viewYLabel sectionId (String.fromFloat yLabel))
             , Chart.Attributes.color "#FFFFFF"
