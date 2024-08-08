@@ -48,7 +48,7 @@ view model sectionId =
             [ Chart.Attributes.format (\yLabel -> viewYLabel sectionId (String.fromFloat yLabel))
             , Chart.Attributes.color "#FFFFFF"
             ]
-        , Chart.generate 20 (Chart.Svg.times Time.utc) .x [] <|
+        , Chart.generate 15 (Chart.Svg.times Time.utc) .x [] <|
             \_ info ->
                 [ Chart.xLabel
                     [ Chart.Attributes.x (toFloat <| Time.posixToMillis info.timestamp)
