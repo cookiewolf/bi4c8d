@@ -21,170 +21,183 @@ view model sectionId =
         graph =
             List.head (Data.filterBySection sectionId model.content.graphs)
                 |> Maybe.withDefault Data.lineChartData
-    in
-    Chart.chart
-        [ Chart.Attributes.height 300
-        , Chart.Attributes.width 600
-        , Chart.Attributes.range
-            [ Chart.Attributes.lowest (dateRangeStart sectionId graph.dataPoints) Chart.Attributes.exactly
-            , Chart.Attributes.highest (dateRangeEnd sectionId graph.dataPoints) Chart.Attributes.exactly
-            ]
-        , Chart.Attributes.domain
-            [ Chart.Attributes.lowest (yValueLowest graph.dataPoints) Chart.Attributes.exactly
-            , Chart.Attributes.highest (yValueHighest graph.dataPoints) Chart.Attributes.exactly
-            ]
-        , Chart.Events.onMouseMove Msg.OnChartHover
-            (Chart.Events.getNearest Chart.Item.dots)
-        , Chart.Events.onMouseLeave (Msg.OnChartHover [])
-        ]
-        [ Chart.labelAt (Chart.Attributes.percent 50)
-            (Chart.Attributes.percent 115)
-            [ Chart.Attributes.fontSize 20
-            , Chart.Attributes.color "#FFFFFF"
-            ]
-            [ Svg.text graph.title ]
-        , Chart.xAxis [ Chart.Attributes.color "#FFFFFF" ]
-        , Chart.yAxis [ Chart.Attributes.color "#FFFFFF" ]
-        , Chart.yLabels
-            [ Chart.Attributes.format (\yLabel -> viewYLabel sectionId (String.fromFloat yLabel))
-            , Chart.Attributes.color "#FFFFFF"
-            ]
-        , Chart.generate 15 (Chart.Svg.times Time.utc) .x [] <|
-            \_ info ->
-                [ Chart.xLabel
-                    [ Chart.Attributes.x (toFloat <| Time.posixToMillis info.timestamp)
-                    , Chart.Attributes.withGrid
-                    , Chart.Attributes.color "#FFFFFF"
-                    ]
-                    [ Svg.text (formatFullTime Time.utc info.timestamp) ]
-                ]
-        , Chart.series .x
-            ([ Chart.interpolatedMaybe (\item -> item.y1.count)
-                [ Chart.Attributes.color "#E4003B" ]
-                [ Chart.Attributes.color "#E40038"
-                , Chart.Attributes.circle
-                , Chart.Attributes.size 4
-                ]
-                |> Chart.named (Maybe.withDefault "" graph.set1Label)
-             ]
-                ++ (case graph.set2Label of
-                        Just aLabel ->
-                            [ Chart.interpolatedMaybe (\item -> item.y2.count)
-                                [ Chart.Attributes.color "#0087DC" ]
-                                [ Chart.Attributes.color "#0087DC"
-                                , Chart.Attributes.circle
-                                , Chart.Attributes.size 4
-                                ]
-                                |> Chart.named aLabel
-                            ]
 
-                        Nothing ->
-                            []
-                   )
-                ++ (case graph.set3Label of
-                        Just aLabel ->
-                            [ Chart.interpolatedMaybe (\item -> item.y3.count)
-                                []
-                                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
-                                |> Chart.named aLabel
-                            ]
-
-                        Nothing ->
-                            []
-                   )
-                ++ (case graph.set4Label of
-                        Just aLabel ->
-                            [ Chart.interpolatedMaybe (\item -> item.y4.count)
-                                []
-                                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
-                                |> Chart.named aLabel
-                            ]
-
-                        Nothing ->
-                            []
-                   )
-                ++ (case graph.set5Label of
-                        Just aLabel ->
-                            [ Chart.interpolatedMaybe (\item -> item.y5.count)
-                                []
-                                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
-                                |> Chart.named aLabel
-                            ]
-
-                        Nothing ->
-                            []
-                   )
-                ++ (case graph.set6Label of
-                        Just aLabel ->
-                            [ Chart.interpolatedMaybe (\item -> item.y6.count)
-                                []
-                                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
-                                |> Chart.named aLabel
-                            ]
-
-                        Nothing ->
-                            []
-                   )
-                ++ (case graph.set7Label of
-                        Just aLabel ->
-                            [ Chart.interpolatedMaybe (\item -> item.y7.count)
-                                []
-                                [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
-                                |> Chart.named aLabel
-                            ]
-
-                        Nothing ->
-                            []
-                   )
-            )
+        yAxisLabelPadding =
             graph.dataPoints
-        , Chart.legendsAt .min
-            .max
-            [ Chart.Attributes.moveRight 50
-            , Chart.Attributes.spacing 15
-            , Chart.Attributes.moveUp 25
-            , Chart.Attributes.htmlAttrs [ Html.Attributes.class "chart-legend" ]
+                |> yValueHighest
+                |> round
+                |> String.fromInt
+                |> viewYLabel sectionId
+                |> String.length
+                |> (+) 2
+                |> String.fromInt
+                |> (\width -> width ++ "ch")
+    in
+    Html.div [ Html.Attributes.class "chart", Html.Attributes.style "padding-left" yAxisLabelPadding ]
+        [ Chart.chart
+            [ Chart.Attributes.height 300
+            , Chart.Attributes.width 600
+            , Chart.Attributes.range
+                [ Chart.Attributes.lowest (dateRangeStart sectionId graph.dataPoints) Chart.Attributes.exactly
+                , Chart.Attributes.highest (dateRangeEnd sectionId graph.dataPoints) Chart.Attributes.exactly
+                ]
+            , Chart.Attributes.domain
+                [ Chart.Attributes.lowest (yValueLowest graph.dataPoints) Chart.Attributes.exactly
+                , Chart.Attributes.highest (yValueHighest graph.dataPoints) Chart.Attributes.exactly
+                ]
+            , Chart.Events.onMouseMove Msg.OnChartHover
+                (Chart.Events.getNearest Chart.Item.dots)
+            , Chart.Events.onMouseLeave (Msg.OnChartHover [])
             ]
-            []
-        , Chart.each model.chartHovering <|
-            \_ item ->
-                let
-                    data =
-                        Chart.Item.getData item
+            [ Chart.labelAt (Chart.Attributes.percent 50)
+                (Chart.Attributes.percent 115)
+                [ Chart.Attributes.fontSize 20
+                , Chart.Attributes.color "#FFFFFF"
+                ]
+                [ Svg.text graph.title ]
+            , Chart.xAxis [ Chart.Attributes.color "#FFFFFF" ]
+            , Chart.yAxis [ Chart.Attributes.color "#FFFFFF" ]
+            , Chart.yLabels
+                [ Chart.Attributes.format (\yLabel -> viewYLabel sectionId (String.fromFloat yLabel))
+                , Chart.Attributes.color "#FFFFFF"
+                ]
+            , Chart.generate 15 (Chart.Svg.times Time.utc) .x [] <|
+                \_ info ->
+                    [ Chart.xLabel
+                        [ Chart.Attributes.x (toFloat <| Time.posixToMillis info.timestamp)
+                        , Chart.Attributes.withGrid
+                        , Chart.Attributes.color "#FFFFFF"
+                        ]
+                        [ Svg.text (formatFullTime Time.utc info.timestamp) ]
+                    ]
+            , Chart.series .x
+                ([ Chart.interpolatedMaybe (\item -> item.y1.count)
+                    [ Chart.Attributes.color "#E4003B" ]
+                    [ Chart.Attributes.color "#E40038"
+                    , Chart.Attributes.circle
+                    , Chart.Attributes.size 4
+                    ]
+                    |> Chart.named (Maybe.withDefault "" graph.set1Label)
+                 ]
+                    ++ (case graph.set2Label of
+                            Just aLabel ->
+                                [ Chart.interpolatedMaybe (\item -> item.y2.count)
+                                    [ Chart.Attributes.color "#0087DC" ]
+                                    [ Chart.Attributes.color "#0087DC"
+                                    , Chart.Attributes.circle
+                                    , Chart.Attributes.size 4
+                                    ]
+                                    |> Chart.named aLabel
+                                ]
 
-                    y =
-                        Chart.Item.getY item
+                            Nothing ->
+                                []
+                       )
+                    ++ (case graph.set3Label of
+                            Just aLabel ->
+                                [ Chart.interpolatedMaybe (\item -> item.y3.count)
+                                    []
+                                    [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                                    |> Chart.named aLabel
+                                ]
 
-                    tooltip =
-                        if data.y1.count == Just y then
-                            data.y1.tooltip
+                            Nothing ->
+                                []
+                       )
+                    ++ (case graph.set4Label of
+                            Just aLabel ->
+                                [ Chart.interpolatedMaybe (\item -> item.y4.count)
+                                    []
+                                    [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                                    |> Chart.named aLabel
+                                ]
 
-                        else if data.y2.count == Just y then
-                            data.y2.tooltip
+                            Nothing ->
+                                []
+                       )
+                    ++ (case graph.set5Label of
+                            Just aLabel ->
+                                [ Chart.interpolatedMaybe (\item -> item.y5.count)
+                                    []
+                                    [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                                    |> Chart.named aLabel
+                                ]
 
-                        else if data.y3.count == Just y then
-                            data.y3.tooltip
+                            Nothing ->
+                                []
+                       )
+                    ++ (case graph.set6Label of
+                            Just aLabel ->
+                                [ Chart.interpolatedMaybe (\item -> item.y6.count)
+                                    []
+                                    [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                                    |> Chart.named aLabel
+                                ]
 
-                        else if data.y4.count == Just y then
-                            data.y4.tooltip
+                            Nothing ->
+                                []
+                       )
+                    ++ (case graph.set7Label of
+                            Just aLabel ->
+                                [ Chart.interpolatedMaybe (\item -> item.y7.count)
+                                    []
+                                    [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                                    |> Chart.named aLabel
+                                ]
 
-                        else if data.y5.count == Just y then
-                            data.y5.tooltip
+                            Nothing ->
+                                []
+                       )
+                )
+                graph.dataPoints
+            , Chart.legendsAt .min
+                .max
+                [ Chart.Attributes.moveRight 50
+                , Chart.Attributes.spacing 15
+                , Chart.Attributes.moveUp 25
+                , Chart.Attributes.htmlAttrs [ Html.Attributes.class "chart-legend" ]
+                ]
+                []
+            , Chart.each model.chartHovering <|
+                \_ item ->
+                    let
+                        data =
+                            Chart.Item.getData item
 
-                        else if data.y6.count == Just y then
-                            data.y6.tooltip
+                        y =
+                            Chart.Item.getY item
 
-                        else if data.y7.count == Just y then
-                            data.y7.tooltip
+                        tooltip =
+                            if data.y1.count == Just y then
+                                data.y1.tooltip
 
-                        else
-                            ""
-                in
-                if String.length tooltip > 0 then
-                    [ Chart.tooltip item [] [] [ Html.text tooltip ] ]
+                            else if data.y2.count == Just y then
+                                data.y2.tooltip
 
-                else
-                    []
+                            else if data.y3.count == Just y then
+                                data.y3.tooltip
+
+                            else if data.y4.count == Just y then
+                                data.y4.tooltip
+
+                            else if data.y5.count == Just y then
+                                data.y5.tooltip
+
+                            else if data.y6.count == Just y then
+                                data.y6.tooltip
+
+                            else if data.y7.count == Just y then
+                                data.y7.tooltip
+
+                            else
+                                ""
+                    in
+                    if String.length tooltip > 0 then
+                        [ Chart.tooltip item [] [] [ Html.text tooltip ] ]
+
+                    else
+                        []
+            ]
         ]
 
 
