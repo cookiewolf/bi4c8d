@@ -7,6 +7,7 @@ import Chart.Item
 import Chart.Svg
 import Data
 import Html
+import Html.Attributes
 import Model exposing (Model)
 import Msg exposing (Msg)
 import Svg
@@ -139,10 +140,10 @@ view model sectionId =
             graph.dataPoints
         , Chart.legendsAt .min
             .max
-            [ Chart.Attributes.row
-            , Chart.Attributes.moveRight 50
+            [ Chart.Attributes.moveRight 50
             , Chart.Attributes.spacing 15
             , Chart.Attributes.moveUp 25
+            , Chart.Attributes.htmlAttrs [ Html.Attributes.class "chart-legend" ]
             ]
             []
         , Chart.each model.chartHovering <|

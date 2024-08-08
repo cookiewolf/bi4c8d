@@ -531,6 +531,11 @@ p {
   font-size: 0.75rem;
   margin: 4rem auto;
   max-width: 80%;
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
 }
 
 /** Faces with information **/
