@@ -531,6 +531,9 @@ p {
   font-size: 0.75rem;
   margin: 4rem auto;
   max-width: 80%;
+  font-family: "TT Firs Neue Var Roman", Inter, Roboto, "Helvetica Neue",
+    "Arial Nova", "Nimbus Sans", Arial, sans-serif;
+}
 
 .chart-legend {
   display: flex;
