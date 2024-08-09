@@ -260,27 +260,27 @@ dateRangeEnd id dataPoints =
         |> ceilingDate id
 
 
-oneYearInMiliseconds : Int
-oneYearInMiliseconds =
+oneYearInMillis : Int
+oneYearInMillis =
     31556952000
 
 
-oneWeekInMiliseconds : Int
-oneWeekInMiliseconds =
+oneWeekInMillis : Int
+oneWeekInMillis =
     604800000
 
 
 floorDate : Data.SectionId -> Float -> Float
-floorDate id milis =
+floorDate id millis =
     let
         unit =
             if id == Data.Section3 then
-                oneWeekInMiliseconds
+                oneWeekInMillis
 
             else
-                oneYearInMiliseconds
+                oneYearInMillis
     in
-    milis
+    millis
         |> floor
         |> (\time -> time // unit)
         |> (\units -> units * unit)
@@ -289,16 +289,16 @@ floorDate id milis =
 
 
 ceilingDate : Data.SectionId -> Float -> Float
-ceilingDate id milis =
+ceilingDate id millis =
     let
         unit =
             if id == Data.Section3 then
-                oneWeekInMiliseconds
+                oneWeekInMillis
 
             else
-                oneYearInMiliseconds
+                oneYearInMillis
     in
-    milis
+    millis
         |> floor
         |> (\time -> time // unit)
         |> (\units -> units * unit)
