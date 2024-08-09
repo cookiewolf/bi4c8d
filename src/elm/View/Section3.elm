@@ -16,7 +16,7 @@ view model =
         [ Html.Attributes.class "graph-container"
         , Html.Attributes.style "min-height" (String.fromFloat (Tuple.first model.viewportHeightWidth) ++ "px")
         ]
-        [ Html.div [ Html.Attributes.class "chart" ] [ View.Graph.view model Data.Section3 ]
+        [ View.Graph.view model Data.Section3
         ]
     , View.MainText.viewBottom Data.Section3 model.content.mainText
     ]
