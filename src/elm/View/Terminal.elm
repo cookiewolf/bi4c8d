@@ -1,5 +1,6 @@
 module View.Terminal exposing (view)
 
+import AssocList
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Data
@@ -27,6 +28,17 @@ view model sectionId =
                     , prompt = "$"
                     , commandList = []
                     }
+
+        terminalState =
+            Maybe.withDefault
+                (Model.TerminalState "" [])
+                (AssocList.get sectionId model.terminalState)
+
+        submitCommand =
+            Msg.SubmitCommand sectionId
+
+        changeCommand =
+            Msg.ChangeCommand sectionId
     in
     Html.div
         [ Html.Attributes.class "terminal-container"
@@ -38,13 +50,13 @@ view model sectionId =
             ]
             [ Html.h3 [] [ Html.text (String.replace "-" " " terminalId) ]
             , Html.p [] [ Html.text welcomeMessage ]
-            , viewOutput prompt model.terminalState.history commandList
+            , viewOutput prompt terminalState.history commandList
             , Html.span [ Html.Attributes.class "input-span" ]
                 [ viewPrompt prompt
                 , Html.input
-                    [ Html.Attributes.value model.terminalState.input
-                    , Html.Events.onInput ChangeCommand
-                    , Html.Events.Extra.onEnter (SubmitCommand model.terminalState.input)
+                    [ Html.Attributes.value terminalState.input
+                    , Html.Events.onInput changeCommand
+                    , Html.Events.Extra.onEnter (submitCommand terminalState.input)
                     ]
                     []
                 ]

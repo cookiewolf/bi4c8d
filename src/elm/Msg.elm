@@ -19,7 +19,7 @@ type Msg
     | GotViewport Browser.Dom.Viewport
     | OnElementLoad String
     | OnChartHover (List (Chart.Item.One Data.LineChartDatum Chart.Item.Dot))
-    | ChangeCommand String
-    | SubmitCommand String
+    | ChangeCommand Data.SectionId String
+    | SubmitCommand Data.SectionId String
     | ScrollResult (Result Browser.Dom.Error ())
     | Piles Pile.Msg
