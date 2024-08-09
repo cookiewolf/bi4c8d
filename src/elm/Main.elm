@@ -1,5 +1,6 @@
 port module Main exposing (main)
 
+import AssocList
 import Browser
 import Browser.Dom
 import Browser.Events
@@ -107,7 +108,7 @@ init flags =
       , inView = inViewModel
       , viewportHeightWidth = ( 800, 800 )
       , chartHovering = []
-      , terminalState = { input = "", history = [] }
+      , terminalState = AssocList.fromList [ ( Data.Section13, { input = "", history = [] } ), ( Data.Section9, { input = "", history = [] } ) ]
       , piles =
             Pile.init
                 [ section1draggableContent
@@ -222,36 +223,47 @@ update msg model =
         OnChartHover hovering ->
             ( { model | chartHovering = hovering }, Cmd.none )
 
-        ChangeCommand command ->
+        ChangeCommand id command ->
             ( { model
                 | terminalState =
-                    { input = command
-                    , history = model.terminalState.history
-                    }
+                    AssocList.update id
+                        (Maybe.map
+                            (\state ->
+                                { input = command
+                                , history = state.history
+                                }
+                            )
+                        )
+                        model.terminalState
               }
             , Cmd.none
             )
 
-        SubmitCommand command ->
-            -- Improved but wrong positioning if terminal container is scrolled past and then typed into.
-            if command == "clear" then
-                ( { model
-                    | terminalState =
-                        { input = "", history = [] }
-                  }
-                  -- maybe playing with this will help
-                , scrollToElement "terminal-output"
-                )
+        SubmitCommand id command ->
+            ( { model
+                | terminalState =
+                    AssocList.update id
+                        (Maybe.map
+                            (\state ->
+                                let
+                                    history =
+                                        if command == "clear" then
+                                            -- Improved but wrong positioning if terminal container is scrolled past and then typed into.
+                                            []
 
-            else
-                ( { model
-                    | terminalState =
-                        { input = ""
-                        , history = model.terminalState.history ++ [ command ]
-                        }
-                  }
-                , scrollToElement "terminal-output"
-                )
+                                        else
+                                            state.history ++ [ command ]
+                                in
+                                { input = ""
+                                , history = history
+                                }
+                            )
+                        )
+                        model.terminalState
+              }
+              --       -- maybe playing with this will help
+            , scrollToElement "terminal-output"
+            )
 
         ScrollResult _ ->
             ( model, Cmd.none )

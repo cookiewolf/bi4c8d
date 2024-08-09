@@ -1,5 +1,6 @@
 module Model exposing (Model, TerminalState)
 
+import AssocList
 import Chart.Item
 import Data
 import InView
@@ -16,7 +17,7 @@ type alias Model =
     , inView : InView.State
     , viewportHeightWidth : ( Float, Float )
     , chartHovering : List (Chart.Item.One Data.LineChartDatum Chart.Item.Dot)
-    , terminalState : TerminalState
+    , terminalState : AssocList.Dict Data.SectionId TerminalState
     , piles : Pile.Model
     , domHeight : Float
     }
