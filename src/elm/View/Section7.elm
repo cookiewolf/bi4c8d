@@ -66,18 +66,23 @@ viewImage delay state fadeImage =
         [ Html.Attributes.id ("profile-" ++ fadeImage.id)
         , Html.Attributes.class "profile"
         ]
-        [ Html.img
-            [ Html.Attributes.id fadeImage.id
-            , Html.Attributes.class "profile-image"
-            , Html.Attributes.src (imageSrcFromId fadeImage.isBlank fadeImage.srcId)
-            , Html.Events.on "load" (Json.Decode.succeed (OnElementLoad fadeImage.id))
-            , Html.Attributes.style "max-width" "100%"
-            , Html.Attributes.style "opacity"
-                (String.fromInt (floor fadeImage.scale))
-            , Html.Attributes.style "transition" (imageTransition fadeImage.isBlank delay)
+        [ Html.div
+            [ Html.Attributes.class "profile-image-container"
             , Html.Attributes.style "transform" ("scale(" ++ String.fromFloat fadeImage.scale ++ ")")
+            , Html.Attributes.style "transition" (imageTransition fadeImage.isBlank delay)
             ]
-            []
+            [ Html.img
+                [ Html.Attributes.id fadeImage.id
+                , Html.Attributes.class "profile-image"
+                , Html.Attributes.src (imageSrcFromId fadeImage.isBlank fadeImage.srcId)
+                , Html.Events.on "load" (Json.Decode.succeed (OnElementLoad fadeImage.id))
+                , Html.Attributes.style "max-width" "100%"
+                , Html.Attributes.style "opacity"
+                    (String.fromInt (floor fadeImage.scale))
+                , Html.Attributes.style "transition" (imageTransition fadeImage.isBlank delay)
+                ]
+                []
+            ]
         , Html.div
             [ Html.Attributes.class "profile-info"
             , Html.Attributes.style "opacity"
