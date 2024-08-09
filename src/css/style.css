@@ -739,8 +739,8 @@ h2.final-ticker {
 }
 
 .image-constraint {
-  height: 60vh;
-  width: 40vw;
+  max-height: 60vh;
+  width: 30vw;
 }
 
 .post-draggable {
