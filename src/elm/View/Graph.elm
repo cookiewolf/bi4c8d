@@ -70,86 +70,108 @@ view model sectionId =
                         ]
                         [ Svg.text (formatFullTime Time.utc info.timestamp) ]
                     ]
-            , Chart.series .x
-                ([ Chart.interpolatedMaybe (\item -> item.y1.count)
-                    [ Chart.Attributes.color "#E4003B" ]
-                    [ Chart.Attributes.color "#E40038"
-                    , Chart.Attributes.circle
-                    , Chart.Attributes.size 4
-                    ]
-                    |> Chart.named (Maybe.withDefault "" graph.set1Label)
-                 ]
-                    ++ (case graph.set2Label of
-                            Just aLabel ->
-                                [ Chart.interpolatedMaybe (\item -> item.y2.count)
-                                    [ Chart.Attributes.color "#0087DC" ]
-                                    [ Chart.Attributes.color "#0087DC"
-                                    , Chart.Attributes.circle
-                                    , Chart.Attributes.size 4
+            , if sectionId == Data.Section5 || sectionId == Data.Section2 then
+                Chart.series .x
+                    ([ Chart.interpolatedMaybe (\item -> item.y1.count)
+                        [ Chart.Attributes.color "#E4003B" ]
+                        [ Chart.Attributes.color "#E40038"
+                        , Chart.Attributes.circle
+                        , Chart.Attributes.size 4
+                        ]
+                        |> Chart.named (Maybe.withDefault "" graph.set1Label)
+                     ]
+                        ++ (case graph.set2Label of
+                                Just aLabel ->
+                                    [ Chart.interpolatedMaybe (\item -> item.y2.count)
+                                        [ Chart.Attributes.color "#0087DC" ]
+                                        [ Chart.Attributes.color "#0087DC"
+                                        , Chart.Attributes.circle
+                                        , Chart.Attributes.size 4
+                                        ]
+                                        |> Chart.named aLabel
                                     ]
-                                    |> Chart.named aLabel
-                                ]
 
-                            Nothing ->
-                                []
-                       )
-                    ++ (case graph.set3Label of
-                            Just aLabel ->
-                                [ Chart.interpolatedMaybe (\item -> item.y3.count)
+                                Nothing ->
                                     []
-                                    [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
-                                    |> Chart.named aLabel
-                                ]
+                           )
+                    )
+                    graph.dataPoints
 
-                            Nothing ->
-                                []
-                       )
-                    ++ (case graph.set4Label of
-                            Just aLabel ->
-                                [ Chart.interpolatedMaybe (\item -> item.y4.count)
+              else
+                Chart.series .x
+                    ([ Chart.interpolatedMaybe (\item -> item.y1.count)
+                        []
+                        [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                        |> Chart.named (Maybe.withDefault "" graph.set1Label)
+                     ]
+                        ++ (case graph.set2Label of
+                                Just aLabel ->
+                                    [ Chart.interpolatedMaybe (\item -> item.y2.count)
+                                        []
+                                        [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                                        |> Chart.named aLabel
+                                    ]
+
+                                Nothing ->
                                     []
-                                    [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
-                                    |> Chart.named aLabel
-                                ]
+                           )
+                        ++ (case graph.set3Label of
+                                Just aLabel ->
+                                    [ Chart.interpolatedMaybe (\item -> item.y3.count)
+                                        []
+                                        [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                                        |> Chart.named aLabel
+                                    ]
 
-                            Nothing ->
-                                []
-                       )
-                    ++ (case graph.set5Label of
-                            Just aLabel ->
-                                [ Chart.interpolatedMaybe (\item -> item.y5.count)
+                                Nothing ->
                                     []
-                                    [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
-                                    |> Chart.named aLabel
-                                ]
+                           )
+                        ++ (case graph.set4Label of
+                                Just aLabel ->
+                                    [ Chart.interpolatedMaybe (\item -> item.y4.count)
+                                        []
+                                        [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                                        |> Chart.named aLabel
+                                    ]
 
-                            Nothing ->
-                                []
-                       )
-                    ++ (case graph.set6Label of
-                            Just aLabel ->
-                                [ Chart.interpolatedMaybe (\item -> item.y6.count)
+                                Nothing ->
                                     []
-                                    [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
-                                    |> Chart.named aLabel
-                                ]
+                           )
+                        ++ (case graph.set5Label of
+                                Just aLabel ->
+                                    [ Chart.interpolatedMaybe (\item -> item.y5.count)
+                                        []
+                                        [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                                        |> Chart.named aLabel
+                                    ]
 
-                            Nothing ->
-                                []
-                       )
-                    ++ (case graph.set7Label of
-                            Just aLabel ->
-                                [ Chart.interpolatedMaybe (\item -> item.y7.count)
+                                Nothing ->
                                     []
-                                    [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
-                                    |> Chart.named aLabel
-                                ]
+                           )
+                        ++ (case graph.set6Label of
+                                Just aLabel ->
+                                    [ Chart.interpolatedMaybe (\item -> item.y6.count)
+                                        []
+                                        [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                                        |> Chart.named aLabel
+                                    ]
 
-                            Nothing ->
-                                []
-                       )
-                )
-                graph.dataPoints
+                                Nothing ->
+                                    []
+                           )
+                        ++ (case graph.set7Label of
+                                Just aLabel ->
+                                    [ Chart.interpolatedMaybe (\item -> item.y7.count)
+                                        []
+                                        [ Chart.Attributes.circle, Chart.Attributes.size 3 ]
+                                        |> Chart.named aLabel
+                                    ]
+
+                                Nothing ->
+                                    []
+                           )
+                    )
+                    graph.dataPoints
             , Chart.legendsAt .min
                 .max
                 [ Chart.Attributes.moveRight 50
