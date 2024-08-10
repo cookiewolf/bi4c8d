@@ -52,6 +52,11 @@ viewContextSection context =
                     )
                 ]
             ]
+        , Html.node "hyvor-talk-comments"
+            [ Html.Attributes.attribute "website-id" "11670"
+            , Html.Attributes.attribute "page-id" (sectionIdStringFromSection context.section)
+            ]
+            []
         ]
 
 
