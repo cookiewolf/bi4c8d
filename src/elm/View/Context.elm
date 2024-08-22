@@ -57,6 +57,9 @@ viewContextSection context =
             , Html.Attributes.attribute "page-id" (sectionIdStringFromSection context.section)
             ]
             []
+        , Html.node "section-change-tracker"
+            [ Html.Attributes.attribute "section-id" (sectionIdStringFromSection context.section) ]
+            []
         ]
 
 
