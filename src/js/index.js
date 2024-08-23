@@ -49,6 +49,7 @@ customElements.define("section-change-tracker", class extends HTMLElement {
     if (name === "section-id" && oldValue !== newValue) {
       const comments = document.querySelector("hyvor-talk-comments");
       if (comments !== null) {
+        console.log(comments);
         comments.load();
       }
     }
