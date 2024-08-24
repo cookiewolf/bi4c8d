@@ -39,23 +39,20 @@ const app = Elm.Main.init({
 });
 
 
-customElements.define("section-change-tracker", class extends HTMLElement {
+customElements.define("hyvor-talk-comments-wrapper", class extends HTMLElement {
   
   constructor() { 
       super(); 
-  
-      this.hyvorComments = document.querySelector("hyvor-talk-comments");
   }
-  
-  static get observedAttributes() { return ["section-id"]; }
-  
+
+  static get observedAttributes() { return ["page-id"]; }
+
   attributeChangedCallback(name, oldValue, newValue) {
-    if (name === "section-id" && oldValue !== newValue) {
-      this.hyvorComments = document.querySelector("hyvor-talk-comments");
-      if (this.hyvorComments !== null) {
-        console.log(this.hyvorComments);
-        this.hyvorComments.api.reload();
-      }
+    if (name === "page-id" && oldValue !== newValue) {
+      const comments = document.createElement("hyvor-talk-comments");
+      comments.setAttribute('website-id', "11670");
+      comments.setAttribute('page-id', newValue);
+      this.replaceChildren(comments);
     }
   }
 });
