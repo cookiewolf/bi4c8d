@@ -13,7 +13,6 @@ type alias Model =
     , content : Data.Content
     , tickerState : List Data.TickerState
     , breachCount : Int
-    , hyvorComment : String
     , randomIntList : List Int
     , inView : InView.State
     , viewportHeightWidth : ( Float, Float )
