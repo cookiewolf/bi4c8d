@@ -41,16 +41,20 @@ const app = Elm.Main.init({
 
 customElements.define("section-change-tracker", class extends HTMLElement {
   
-  constructor() { super(); }
+  constructor() { 
+      super(); 
+  
+      this.hyvorComments = document.querySelector("hyvor-talk-comments");
+  }
   
   static get observedAttributes() { return ["section-id"]; }
   
   attributeChangedCallback(name, oldValue, newValue) {
     if (name === "section-id" && oldValue !== newValue) {
-      const comments = document.querySelector("hyvor-talk-comments");
-      if (comments !== null) {
-        console.log(comments);
-        comments.load();
+      this.hyvorComments = document.querySelector("hyvor-talk-comments");
+      if (this.hyvorComments !== null) {
+        console.log(this.hyvorComments);
+        this.hyvorComments.api.reload();
       }
     }
   }

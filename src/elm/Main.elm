@@ -103,6 +103,7 @@ init flags =
       , content = content
       , tickerState = initialTickerState
       , breachCount = 0
+      , hyvorComment = "hello"
       , domHeight = 0.0
       , randomIntList = []
       , inView = inViewModel
