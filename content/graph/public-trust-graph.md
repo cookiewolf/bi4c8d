@@ -1,5 +1,5 @@
 ---
-section: section-two
+section: public-trust
 title: Public Trust Graph
 label1: Percentage thinking the government is honest
 datapoints:

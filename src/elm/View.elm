@@ -6,7 +6,11 @@ import Html.Attributes
 import Model exposing (Model)
 import Msg exposing (Msg)
 import View.Context
-import View.Section1
+import View.Section.Introduction
+import View.Section.PublicTrust
+import View.Section.SocialMediaPosts
+import View.Section.Telegram
+import View.Section.UlteriorMotives
 import View.Section10
 import View.Section11
 import View.Section12
@@ -15,10 +19,6 @@ import View.Section14
 import View.Section15
 import View.Section16
 import View.Section17
-import View.Section2
-import View.Section3
-import View.Section4
-import View.Section5
 import View.Section6
 import View.Section7
 import View.Section8
@@ -27,11 +27,11 @@ import View.Section9
 
 sectionViews : Model -> List ( Data.SectionId, List (Html.Html Msg) )
 sectionViews model =
-    [ ( Data.Section1, View.Section1.view model )
-    , ( Data.Section2, View.Section2.view model )
-    , ( Data.Section3, View.Section3.view model )
-    , ( Data.Section4, View.Section4.view model )
-    , ( Data.Section5, View.Section5.view model )
+    [ ( Data.Introduction, View.Section.Introduction.view model )
+    , ( Data.SocialMediaPosts, View.Section.SocialMediaPosts.view model )
+    , ( Data.PublicTrust, View.Section.PublicTrust.view model )
+    , ( Data.Telegram, View.Section.Telegram.view model )
+    , ( Data.UlteriorMotives, View.Section.UlteriorMotives.view model )
     , ( Data.Section6, View.Section6.view model )
     , ( Data.Section7, View.Section7.view model )
     , ( Data.Section8, View.Section8.view model )

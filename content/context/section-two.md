@@ -1,5 +1,5 @@
 ---
-section: section-two
+section: public-trust
 context: Context is blank
 fact-check: There is no connection between a piece of legislation allowing for
   the retention of some biometrics for national security purposes and testing

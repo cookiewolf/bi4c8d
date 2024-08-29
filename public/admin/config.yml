@@ -12,7 +12,7 @@ collections:
     create: false # Allow users to create new documents in this collection
     identifier_field: section
     fields:
-      - { label: "Section", name: "section", widget: "select", options: ["section-one", "section-two", "section-three", "section-four", "section-five", "section-six", "section-seven", "section-eight", "section-nine", "section-ten", "section-eleven", "section-twelve", "section-thirteen", "section-fourteen", "section-fifteen", "section-sixteen", "section-seventeen"] }
+      - { label: "Section", name: "section", widget: "select", options: ["introduction", "social-media-posts", "public-trust", "telegram", "ulterior-motives", "panic-lit", "public-order-safety", "dispropotionate-essay-end", "facial-recognition", "incompetence-intro", "incompetence-posts-and-papers", "hmrc-terminal", "data-loss", "human-cost", "royal-mail-negotiation", "hackney-social", "outro"] }
       - { label: "Context", name: "context", widget: "markdown", required: false }
       - { label: "Fact check", name: "fact-check", widget: "markdown", required: false }
       - label: "References"
@@ -27,7 +27,7 @@ collections:
     folder: "content/main-text"
     create: true
     fields:
-      - { label: "Section", name: "section", widget: "select", options: ["section-one", "section-two", "section-three", "section-four", "section-five", "section-nine", "section-thirteen", "section-fourteen", "section-sixteen", "section-seventeen"] }
+      - { label: "Section", name: "section", widget: "select", options: ["introduction", "ulterior-motives", "public-order-safety", "dispropotionate-essay-end", "incompetence-intro", "incompetence-posts-and-papers", "human-cost", "outro"] }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
 
@@ -37,7 +37,7 @@ collections:
     create: true
     identifier_field: "forwarded-from"
     fields:
-      - { label: "Section", name: "section", widget: "select", options: ["section-one", "section-ten", "section-sixteen"] }
+      - { label: "Section", name: "section", widget: "select", options: ["social-media-posts", "ulterior-motives", "incompetence-posts-and-papers", "hackney-social"] }
       - { label: "Date & time", name: "datetime", widget: "datetime" }
       - { label: "Forwarded from", name: "forwarded-from", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
@@ -50,7 +50,7 @@ collections:
     folder: "content/message"
     create: true
     fields:
-      - { label: "Section", name: "section", widget: "select", options: ["section-fifteen", "section-sixteen"] }
+      - { label: "Section", name: "section", widget: "select", options: ["royal-mail-negotiation"] }
       - { label: "Message Title", name: "title", widget: "string", hint: "Not displayed - for id in CMS" }
       - { label: "Side", name: "side", widget: "select", options: ["left", "right"] }
       - { label: "Date & time", name: "datetime", widget: "datetime" }
@@ -62,7 +62,7 @@ collections:
     create: true
     identifier_field: alt
     fields:
-      - { label: "Section", name: "section", widget: "select", options: ["section-four", "section-six", "section-eight"] }
+      - { label: "Section", name: "section", widget: "select", options: ["ulterior-motives", "panic-lit", "incompetence-posts-and-papers"] }
       - { label: "Image", name: "source", widget: "image" }
       - { label: "Alt Description", name: "alt", widget: "string" }
       - { label: "Display position", name: "display-position", widget: "number" }
@@ -72,7 +72,7 @@ collections:
     folder: "content/graph"
     create: true
     fields:
-      - { label: "Section", name: "section", widget: "select", options: ["section-two", "section-three", "section-five"] }
+      - { label: "Section", name: "section", widget: "select", options: ["public-trust", "telegram", "public-order-safety"] }
       - { label: "Graph Title", name: "title", widget: "string" }
       - { label: "Dataset 1 Label", name: "label1", widget: "string", required: false }
       - { label: "Dataset 2 Label", name: "label2", widget: "string", required: false }
@@ -110,7 +110,7 @@ collections:
     folder: "content/terminal"
     create: true
     fields:
-      - { label: "Section", name: "section", widget: "select", options: ["section-nine", "section-thirteen"] }
+      - { label: "Section", name: "section", widget: "select", options: ["hmrc-terminal", "data-loss"] }
       - { label: "Title", name: "title", widget: "string", hint: "Displayed in terminal title bar"  }
       - { label: "Welcome message", name: "welcome-message", widget: "string", hint: "Displayed above initial prompt"}
       - { label: "Prompt", name: "prompt", widget: "string" }

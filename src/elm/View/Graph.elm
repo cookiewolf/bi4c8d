@@ -70,7 +70,7 @@ view model sectionId =
                         ]
                         [ Svg.text (formatFullTime Time.utc info.timestamp) ]
                     ]
-            , if sectionId == Data.Section5 || sectionId == Data.Section2 then
+            , if sectionId == Data.Telegram || sectionId == Data.Section7 then
                 Chart.series .x
                     ([ Chart.interpolatedMaybe (\item -> item.y1.count)
                         [ Chart.Attributes.color "#E4003B" ]
@@ -226,13 +226,13 @@ view model sectionId =
 viewYLabel : Data.SectionId -> String -> String
 viewYLabel section yValueString =
     case section of
-        Data.Section2 ->
+        Data.PublicTrust ->
             yValueString ++ "%"
 
-        Data.Section3 ->
+        Data.Telegram ->
             yValueString
 
-        Data.Section5 ->
+        Data.Section7 ->
             "£" ++ yValueString ++ " mil"
 
         _ ->
@@ -274,7 +274,7 @@ floorDate : Data.SectionId -> Float -> Float
 floorDate id millis =
     let
         unit =
-            if id == Data.Section3 then
+            if id == Data.Telegram then
                 oneWeekInMillis
 
             else
@@ -292,7 +292,7 @@ ceilingDate : Data.SectionId -> Float -> Float
 ceilingDate id millis =
     let
         unit =
-            if id == Data.Section3 then
+            if id == Data.Telegram then
                 oneWeekInMillis
 
             else

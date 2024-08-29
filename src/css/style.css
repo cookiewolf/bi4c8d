@@ -48,11 +48,11 @@ p {
   }
 }
 
-#section-one {
+#introduction {
   padding-top: 0;
 }
 
-#section-one .introduction {
+#introduction .introduction {
   background-color: var(--white);
   color: var(--black);
   margin-left: calc(50% - 50vw);
@@ -60,12 +60,12 @@ p {
   padding: 4.5rem 1rem;
 }
 
-#section-one .main-text-body {
+#introduction .main-text-body {
   background: none;
 }
 
-#section-four,
-#section-five .graph-container,
+#ulterior-motives,
+#public-order-safety .graph-container,
 #section-six,
 #section-seven,
 #section-ten {
@@ -259,10 +259,10 @@ p {
     border-width: 25px 25px 50px 25px;
   }
 
-  #section-four .hand-drawn-border,
+  #ulterior-motives .hand-drawn-border,
   #section-fourteen .hand-drawn-border,
   #section-nine .hand-drawn-border,
-  #section-one .hand-drawn-border {
+  #introduction .hand-drawn-border {
     border-image: url(/images/borders/hand-drawn-border-2.svg) 25 25 50 25
       stretch stretch;
     border-style: solid;
@@ -281,9 +281,7 @@ p {
 
   #section-ten .hand-drawn-border,
   #section-thirteen .hand-drawn-border,
-  #section-three .hand-drawn-border,
-  #section-twelve .hand-drawn-border,
-  #section-two .hand-drawn-border {
+  #section-twelve .hand-drawn-border {
     border-image: url(/images/borders/hand-drawn-border-4.svg) 25 25 95 25
       stretch stretch;
     border-style: solid;
