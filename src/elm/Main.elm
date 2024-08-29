@@ -53,11 +53,11 @@ init flags =
 
         trackableSections : List String
         trackableSections =
-            [ "section-one"
-            , "section-two"
-            , "section-three"
-            , "section-four"
-            , "section-five"
+            [ "introduction"
+            , "social-media-posts"
+            , "public-trust"
+            , "telegram"
+            , "ulterior-motives"
             , "section-six"
             , "section-seven"
             , "section-eight"
@@ -79,13 +79,13 @@ init flags =
         content =
             Data.decodedContent flags
 
-        section1draggableContent : ( Data.SectionId, List Pile.Data )
-        section1draggableContent =
-            ( Data.Section1, content.posts |> Data.filterBySection Data.Section1 |> List.map Pile.Post )
+        socialMediaPostsDraggableContent : ( Data.SectionId, List Pile.Data )
+        socialMediaPostsDraggableContent =
+            ( Data.SocialMediaPosts, content.posts |> Data.filterBySection Data.SocialMediaPosts |> List.map Pile.Post )
 
-        section4draggableContent : ( Data.SectionId, List Pile.Data )
-        section4draggableContent =
-            ( Data.Section4, content.images |> Data.filterBySection Data.Section4 |> List.map Pile.Image )
+        ulteriorMotivesDraggableContent : ( Data.SectionId, List Pile.Data )
+        ulteriorMotivesDraggableContent =
+            ( Data.UlteriorMotives, content.images |> Data.filterBySection Data.UlteriorMotives |> List.map Pile.Image )
 
         section8draggableContent : ( Data.SectionId, List Pile.Data )
         section8draggableContent =
@@ -111,8 +111,8 @@ init flags =
       , terminalState = AssocList.fromList [ ( Data.Section13, { input = "", history = [] } ), ( Data.Section9, { input = "", history = [] } ) ]
       , piles =
             Pile.init
-                [ section1draggableContent
-                , section4draggableContent
+                [ socialMediaPostsDraggableContent
+                , ulteriorMotivesDraggableContent
                 , section8draggableContent
                 , section10draggableContent
                 , section16draggableContent

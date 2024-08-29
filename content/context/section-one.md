@@ -1,5 +1,5 @@
 ---
-section: section-one
+section: social-media-posts
 fact-check: >-
   Many of the social media posts featured here are quoted directly from their
   source. Where specific false claims have been made, fact-checking information

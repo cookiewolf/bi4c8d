@@ -131,11 +131,11 @@ type alias TickerState =
 
 type SectionId
     = SectionInvalid
-    | Section1
-    | Section2
-    | Section3
-    | Section4
-    | Section5
+    | Introduction
+    | SocialMediaPosts
+    | PublicTrust
+    | Telegram
+    | UlteriorMotives
     | Section6
     | Section7
     | Section8
@@ -470,20 +470,20 @@ slugFromString rawString =
 sectionIdFromString : String -> Json.Decode.Decoder SectionId
 sectionIdFromString sectionString =
     case sectionString of
-        "section-one" ->
-            Json.Decode.succeed Section1
+        "introduction" ->
+            Json.Decode.succeed Introduction
 
-        "section-two" ->
-            Json.Decode.succeed Section2
+        "social-media-posts" ->
+            Json.Decode.succeed SocialMediaPosts
 
-        "section-three" ->
-            Json.Decode.succeed Section3
+        "public-trust" ->
+            Json.Decode.succeed PublicTrust
 
-        "section-four" ->
-            Json.Decode.succeed Section4
+        "telegram" ->
+            Json.Decode.succeed Telegram
 
-        "section-five" ->
-            Json.Decode.succeed Section5
+        "ulterior-motives" ->
+            Json.Decode.succeed UlteriorMotives
 
         "section-six" ->
             Json.Decode.succeed Section6
@@ -528,20 +528,20 @@ sectionIdFromString sectionString =
 sectionIdToString : SectionId -> String
 sectionIdToString sectionId =
     case sectionId of
-        Section1 ->
-            "section-one"
+        Introduction ->
+            "introduction"
 
-        Section2 ->
-            "section-two"
+        SocialMediaPosts ->
+            "social-media-posts"
 
-        Section3 ->
-            "section-three"
+        PublicTrust ->
+            "public-trust"
 
-        Section4 ->
-            "section-four"
+        Telegram ->
+            "telegram"
 
-        Section5 ->
-            "section-five"
+        UlteriorMotives ->
+            "ulterior-motives"
 
         Section6 ->
             "section-six"
@@ -586,19 +586,19 @@ sectionIdToString sectionId =
 sectionIdToInt : SectionId -> Int
 sectionIdToInt sectionId =
     case sectionId of
-        Section1 ->
+        Introduction ->
             1
 
-        Section2 ->
+        SocialMediaPosts ->
             2
 
-        Section3 ->
+        PublicTrust ->
             3
 
-        Section4 ->
+        Telegram ->
             4
 
-        Section5 ->
+        UlteriorMotives ->
             5
 
         Section6 ->
@@ -690,7 +690,7 @@ trackableIdFromItem item =
 
 lineChartData : Graph
 lineChartData =
-    { section = Section1
+    { section = PublicTrust
     , title = "Empty test data"
     , set1Label = Nothing
     , set2Label = Nothing

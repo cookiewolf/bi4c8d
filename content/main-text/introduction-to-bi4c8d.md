@@ -1,5 +1,5 @@
 ---
-section: section-one
+section: introduction
 title: Introduction
 ---
 In the months that followed the beginning of the COVID-19 pandemic, in the UK, and just about everywhere else, scientists and our politicians scrambled to find answers to key questions about how the virus spread and how to contain it. In that time, people’s lives underwent the kind of disruption not seen since the Second World War. As the health crisis intensified, hospitals were overwhelmed and with government scandals multiplying, many began to question those in charge. Some went further and offered their own narratives, definitively declared: “China manufactured it”, “the virus isn’t real, it’s the government trying to control us”, “the elites created this crisis AND they are profiting from it”. 
