@@ -136,12 +136,12 @@ type SectionId
     | PublicTrust
     | Telegram
     | UlteriorMotives
-    | Section6
-    | Section7
-    | Section8
-    | Section9
-    | Section10
-    | Section11
+    | PanicLit
+    | PublicOrderSafety
+    | DisproportionateEssayEnd
+    | FacialRecognition
+    | IncompetenceIntro
+    | IncompetencePostsAndPapers
     | Section12
     | Section13
     | Section14
@@ -485,23 +485,23 @@ sectionIdFromString sectionString =
         "ulterior-motives" ->
             Json.Decode.succeed UlteriorMotives
 
-        "section-six" ->
-            Json.Decode.succeed Section6
+        "panic-lit" ->
+            Json.Decode.succeed PanicLit
 
-        "section-seven" ->
-            Json.Decode.succeed Section7
+        "public-order-safety" ->
+            Json.Decode.succeed PublicOrderSafety
 
-        "section-eight" ->
-            Json.Decode.succeed Section8
+        "disproportionate-essay-end" ->
+            Json.Decode.succeed DisproportionateEssayEnd
 
-        "section-nine" ->
-            Json.Decode.succeed Section9
+        "facial-recognition" ->
+            Json.Decode.succeed FacialRecognition
 
-        "section-ten" ->
-            Json.Decode.succeed Section10
+        "incompetence-intro" ->
+            Json.Decode.succeed IncompetenceIntro
 
-        "section-eleven" ->
-            Json.Decode.succeed Section11
+        "incompetence-posts-and-papers" ->
+            Json.Decode.succeed IncompetencePostsAndPapers
 
         "section-twelve" ->
             Json.Decode.succeed Section12
@@ -543,23 +543,23 @@ sectionIdToString sectionId =
         UlteriorMotives ->
             "ulterior-motives"
 
-        Section6 ->
-            "section-six"
+        PanicLit ->
+            "panic-lit"
 
-        Section7 ->
-            "section-seven"
+        PublicOrderSafety ->
+            "public-order-safety"
 
-        Section8 ->
-            "section-eight"
+        DisproportionateEssayEnd ->
+            "disproportionate-essay-end"
 
-        Section9 ->
-            "section-nine"
+        FacialRecognition ->
+            "facial-recognition"
 
-        Section10 ->
-            "section-ten"
+        IncompetenceIntro ->
+            "incompetence-intro"
 
-        Section11 ->
-            "section-eleven"
+        IncompetencePostsAndPapers ->
+            "incompetence-posts-and-papers"
 
         Section12 ->
             "section-twelve"
@@ -601,22 +601,22 @@ sectionIdToInt sectionId =
         UlteriorMotives ->
             5
 
-        Section6 ->
+        PanicLit ->
             6
 
-        Section7 ->
+        PublicOrderSafety ->
             7
 
-        Section8 ->
+        DisproportionateEssayEnd ->
             8
 
-        Section9 ->
+        FacialRecognition ->
             9
 
-        Section10 ->
+        IncompetenceIntro ->
             10
 
-        Section11 ->
+        IncompetencePostsAndPapers ->
             11
 
         Section12 ->

@@ -1,5 +1,6 @@
-module View.Section7 exposing (view)
+module View.Section.FacialRecognition exposing (view)
 
+import Data
 import Html
 import Html.Attributes
 import Html.Events
@@ -7,6 +8,7 @@ import InView
 import Json.Decode
 import Model exposing (Model)
 import Msg exposing (Msg(..))
+import View.StackingImage
 
 
 type alias FadeImage =
@@ -19,7 +21,8 @@ type alias FadeImage =
 
 view : Model -> List (Html.Html Msg)
 view model =
-    [ Html.div [ Html.Attributes.class "faces-with-info" ]
+    [ View.StackingImage.viewImageList Data.FacialRecognition model
+    , Html.div [ Html.Attributes.class "faces-with-info" ]
         (List.range 1 3
             |> List.foldl
                 (\imageSrcId ( offset, listElements ) ->

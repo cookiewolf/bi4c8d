@@ -70,7 +70,7 @@ view model sectionId =
                         ]
                         [ Svg.text (formatFullTime Time.utc info.timestamp) ]
                     ]
-            , if sectionId == Data.Telegram || sectionId == Data.Section7 then
+            , if sectionId == Data.Telegram || sectionId == Data.PublicOrderSafety then
                 Chart.series .x
                     ([ Chart.interpolatedMaybe (\item -> item.y1.count)
                         [ Chart.Attributes.color "#E4003B" ]
@@ -232,7 +232,7 @@ viewYLabel section yValueString =
         Data.Telegram ->
             yValueString
 
-        Data.Section7 ->
+        Data.PublicOrderSafety ->
             "£" ++ yValueString ++ " mil"
 
         _ ->

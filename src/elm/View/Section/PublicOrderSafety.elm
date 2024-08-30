@@ -1,4 +1,4 @@
-module View.Section5 exposing (view)
+module View.Section.PublicOrderSafety exposing (view)
 
 import Data
 import Html
@@ -11,11 +11,11 @@ import View.MainText
 
 view : Model -> List (Html.Html Msg)
 view model =
-    [ View.MainText.viewTop Data.Section7 model.content.mainText
+    [ View.MainText.viewTop Data.PublicOrderSafety model.content.mainText
     , Html.div
         [ Html.Attributes.class "graph-container"
         , Html.Attributes.style "min-height" (String.fromFloat (Tuple.first model.viewportHeightWidth) ++ "px")
         ]
-        [ View.Graph.view model Data.Section7
+        [ View.Graph.view model Data.PublicOrderSafety
         ]
     ]

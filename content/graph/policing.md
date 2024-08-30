@@ -1,5 +1,5 @@
 ---
-section: section-five
+section: public-order-safety
 title: Public Order and Safety spending
 label1: Labour government
 label2: Conservative government

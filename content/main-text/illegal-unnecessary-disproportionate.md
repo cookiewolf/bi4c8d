@@ -1,5 +1,5 @@
 ---
-section: section-five
+section: public-order-safety
 title: Illegal, Unnecessary and disproportionate?
 ---
 In May 2001, after four years in office, Tony Blair called a national election. When announcing it for the following month, he sought a “mandate for fresh, radical change”. Little did he know that such radical change would be precipitated not by the New Labour manifesto, but by the international terrorist threat emerging from the Middle East and that would take place on Western soil.
