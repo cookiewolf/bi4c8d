@@ -53,24 +53,26 @@ init flags =
 
         trackableSections : List String
         trackableSections =
-            [ "introduction"
-            , "social-media-posts"
-            , "public-trust"
-            , "telegram"
-            , "ulterior-motives"
-            , "section-six"
-            , "section-seven"
-            , "section-eight"
-            , "section-nine"
-            , "section-ten"
-            , "section-eleven"
-            , "section-twelve"
-            , "section-thirteen"
-            , "section-fourteen"
-            , "section-fifteen"
-            , "section-sixteen"
-            , "section-seventeen"
-            ]
+            List.map (\id -> Data.sectionIdToString id)
+                [ Data.SectionInvalid
+                , Data.Introduction
+                , Data.SocialMediaPosts
+                , Data.PublicTrust
+                , Data.Telegram
+                , Data.UlteriorMotives
+                , Data.PanicLit
+                , Data.PublicOrderSafety
+                , Data.DisproportionateEssayEnd
+                , Data.FacialRecognition
+                , Data.IncompetenceIntro
+                , Data.IncompetencePostsAndPapers
+                , Data.Section12
+                , Data.Section13
+                , Data.Section14
+                , Data.Section15
+                , Data.Section16
+                , Data.Section17
+                ]
 
         ( inViewModel, inViewCmds ) =
             InView.init InViewMsg (trackableSections ++ trackableImages)
@@ -91,13 +93,17 @@ init flags =
         ulteriorMotivesDraggableImages =
             ( ( Data.UlteriorMotives, 2 ), content.images |> Data.filterBySection Data.UlteriorMotives |> List.map Pile.Image )
 
-        section8draggableContent : ( ( Data.SectionId, Int ), List Pile.Data )
-        section8draggableContent =
-            ( ( Data.Section8, 1 ), content.images |> Data.filterBySection Data.Section8 |> List.map Pile.Image )
+        panicLitdraggableContent : ( ( Data.SectionId, Int ), List Pile.Data )
+        panicLitdraggableContent =
+            ( ( Data.PanicLit, 1 ), content.images |> Data.filterBySection Data.PanicLit |> List.map Pile.Image )
 
-        section10draggableContent : ( ( Data.SectionId, Int ), List Pile.Data )
-        section10draggableContent =
-            ( ( Data.Section10, 1 ), content.posts |> Data.filterBySection Data.Section10 |> List.map Pile.Post )
+        incompentencedraggablePosts : ( ( Data.SectionId, Int ), List Pile.Data )
+        incompentencedraggablePosts =
+            ( ( Data.IncompetencePostsAndPapers, 1 ), content.posts |> Data.filterBySection Data.IncompetencePostsAndPapers |> List.map Pile.Post )
+
+        incompentencedraggableImages : ( ( Data.SectionId, Int ), List Pile.Data )
+        incompentencedraggableImages =
+            ( ( Data.IncompetencePostsAndPapers, 2 ), content.images |> Data.filterBySection Data.IncompetencePostsAndPapers |> List.map Pile.Image )
 
         section16draggableContent : ( ( Data.SectionId, Int ), List Pile.Data )
         section16draggableContent =
@@ -112,14 +118,15 @@ init flags =
       , inView = inViewModel
       , viewportHeightWidth = ( 800, 800 )
       , chartHovering = []
-      , terminalState = AssocList.fromList [ ( Data.Section13, { input = "", history = [] } ), ( Data.Section9, { input = "", history = [] } ) ]
+      , terminalState = AssocList.fromList [ ( Data.Section13, { input = "", history = [] } ), ( Data.Section13, { input = "", history = [] } ) ]
       , piles =
             Pile.init
                 [ socialMediaPostsDraggableContent
                 , ulteriorMotivesDraggablePosts
                 , ulteriorMotivesDraggableImages
-                , section8draggableContent
-                , section10draggableContent
+                , panicLitdraggableContent
+                , incompentencedraggablePosts
+                , incompentencedraggableImages
                 , section16draggableContent
                 ]
       }
