@@ -66,9 +66,9 @@ p {
 
 #ulterior-motives,
 #public-order-safety .graph-container,
-#section-six,
-#section-seven,
-#section-ten {
+#panic-lit,
+#facial-recognition,
+#incompetence-posts-and-papers{
   background: var(--black);
 }
 
@@ -249,10 +249,10 @@ p {
 }
 
 @media (min-width: 800px) {
-  #section-eight .hand-drawn-border,
+  #public-order-safety .hand-drawn-border,
   #section-eleven .hand-drawn-border,
   #section-fifteen .hand-drawn-border,
-  #section-five .hand-drawn-border {
+  #ulterior-motives .hand-drawn-border {
     border-image: url(/images/borders/hand-drawn-border-1.svg) 25 25 50 25
       stretch stretch;
     border-style: solid;
@@ -261,7 +261,6 @@ p {
 
   #ulterior-motives .hand-drawn-border,
   #section-fourteen .hand-drawn-border,
-  #section-nine .hand-drawn-border,
   #introduction .hand-drawn-border {
     border-image: url(/images/borders/hand-drawn-border-2.svg) 25 25 50 25
       stretch stretch;
@@ -269,9 +268,8 @@ p {
     border-width: 25px 25px 50px 25px;
   }
 
-  #section-seven .hand-drawn-border,
+  #incompetence-intro .hand-drawn-border,
   #section-seventeen .hand-drawn-border,
-  #section-six .hand-drawn-border,
   #section-sixteen .hand-drawn-border {
     border-image: url(/images/borders/hand-drawn-border-3.svg) 25 25 100 25
       stretch stretch;
@@ -279,7 +277,6 @@ p {
     border-width: 25px 25px 100px 25px;
   }
 
-  #section-ten .hand-drawn-border,
   #section-thirteen .hand-drawn-border,
   #section-twelve .hand-drawn-border {
     border-image: url(/images/borders/hand-drawn-border-4.svg) 25 25 95 25
@@ -313,11 +310,11 @@ p {
   padding: 10px 20px;
 }
 
-#section-ten .post {
+#ulterior-motives .post {
   background: var(--black);
 }
 
-#section-ten .post-inner {
+#ulterior-motives .post-inner {
   background: var(--black);
   border: solid var(--white) 1px;
   color: var(--white);
@@ -509,12 +506,12 @@ p {
   margin: 0 auto;
 }
 
-#section-six .image img {
+#facial-recognition .image img {
   max-width: 80%;
   opacity: 50%;
 }
 
-#section-six .image img[alt="Image Recognition 1"] {
+#facial-recognition .image img[alt="Image Recognition 1"] {
   opacity: 90%;
 }
 

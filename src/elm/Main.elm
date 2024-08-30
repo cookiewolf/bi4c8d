@@ -53,25 +53,25 @@ init flags =
 
         trackableSections : List String
         trackableSections =
-            List.map (\id -> Data.sectionIdToString)
-                [ SectionInvalid
-                , Introduction
-                , SocialMediaPosts
-                , PublicTrust
-                , Telegram
-                , UlteriorMotives
-                , PanicLit
-                , PublicOrderSafety
-                , DisproportionateEssayEnd
-                , FacialRecognition
-                , IncompetenceIntro
-                , IncompetencePostsAndPapers
-                , Section12
-                , Section13
-                , Section14
-                , Section15
-                , Section16
-                , Section17
+            List.map (\id -> Data.sectionIdToString id)
+                [ Data.SectionInvalid
+                , Data.Introduction
+                , Data.SocialMediaPosts
+                , Data.PublicTrust
+                , Data.Telegram
+                , Data.UlteriorMotives
+                , Data.PanicLit
+                , Data.PublicOrderSafety
+                , Data.DisproportionateEssayEnd
+                , Data.FacialRecognition
+                , Data.IncompetenceIntro
+                , Data.IncompetencePostsAndPapers
+                , Data.Section12
+                , Data.Section13
+                , Data.Section14
+                , Data.Section15
+                , Data.Section16
+                , Data.Section17
                 ]
 
         ( inViewModel, inViewCmds ) =
@@ -118,7 +118,7 @@ init flags =
       , inView = inViewModel
       , viewportHeightWidth = ( 800, 800 )
       , chartHovering = []
-      , terminalState = AssocList.fromList [ ( Data.Section13, { input = "", history = [] } ), ( Data.Section9, { input = "", history = [] } ) ]
+      , terminalState = AssocList.fromList [ ( Data.Section13, { input = "", history = [] } ), ( Data.Section13, { input = "", history = [] } ) ]
       , piles =
             Pile.init
                 [ socialMediaPostsDraggableContent
