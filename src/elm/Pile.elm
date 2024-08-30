@@ -86,14 +86,14 @@ dragActiveBy delta ({ activeCard } as pack) =
 
 
 type alias Model =
-    { activePile : Maybe Data.SectionId
-    , piles : AssocList.Dict Data.SectionId CardPile
+    { activePile : Maybe ( Data.SectionId, Int )
+    , piles : AssocList.Dict ( Data.SectionId, Int ) CardPile
     , drag : Draggable.State DragState
     }
 
 
 type alias DragState =
-    { dictKey : Data.SectionId
+    { dictKey : ( Data.SectionId, Int )
     , cardId : Id
     }
 
@@ -112,7 +112,7 @@ clamp { minVal, maxVal } value =
         |> max minVal
 
 
-init : List ( Data.SectionId, List Data ) -> Model
+init : List ( ( Data.SectionId, Int ), List Data ) -> Model
 init prePiles =
     let
         ( centerX, centerY ) =
@@ -247,7 +247,7 @@ subscriptions { drag } =
     Draggable.subscriptions DragMsg drag
 
 
-cardView : Data.SectionId -> (Data -> Html.Html Msg) -> Card -> Html.Html Msg
+cardView : ( Data.SectionId, Int ) -> (Data -> Html.Html Msg) -> Card -> Html.Html Msg
 cardView key toView { id, position, cont } =
     let
         x =
@@ -267,7 +267,7 @@ cardView key toView { id, position, cont } =
         [ toView cont ]
 
 
-view : Data.SectionId -> (Data -> Html.Html Msg) -> Model -> Html.Html Msg
+view : ( Data.SectionId, Int ) -> (Data -> Html.Html Msg) -> Model -> Html.Html Msg
 view key toView model =
     AssocList.get key model.piles
         |> Maybe.map

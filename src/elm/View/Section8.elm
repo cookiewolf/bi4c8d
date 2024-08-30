@@ -17,5 +17,5 @@ view model =
         View.StackingImage.viewImageListStatic Data.Section8 model.content.images
 
       else
-        Pile.view Data.Section8 View.Pile.view model.piles |> Html.map Msg.Piles
+        Pile.view ( Data.Section8, 1 ) View.Pile.view model.piles |> Html.map Msg.Piles
     ]
