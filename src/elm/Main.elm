@@ -79,25 +79,29 @@ init flags =
         content =
             Data.decodedContent flags
 
-        socialMediaPostsDraggableContent : ( Data.SectionId, List Pile.Data )
+        socialMediaPostsDraggableContent : ( ( Data.SectionId, Int ), List Pile.Data )
         socialMediaPostsDraggableContent =
-            ( Data.SocialMediaPosts, content.posts |> Data.filterBySection Data.SocialMediaPosts |> List.map Pile.Post )
+            ( ( Data.SocialMediaPosts, 1 ), content.posts |> Data.filterBySection Data.SocialMediaPosts |> List.map Pile.Post )
 
-        ulteriorMotivesDraggableContent : ( Data.SectionId, List Pile.Data )
-        ulteriorMotivesDraggableContent =
-            ( Data.UlteriorMotives, content.images |> Data.filterBySection Data.UlteriorMotives |> List.map Pile.Image )
+        ulteriorMotivesDraggablePosts : ( ( Data.SectionId, Int ), List Pile.Data )
+        ulteriorMotivesDraggablePosts =
+            ( ( Data.UlteriorMotives, 1 ), content.posts |> Data.filterBySection Data.UlteriorMotives |> List.map Pile.Post )
 
-        section8draggableContent : ( Data.SectionId, List Pile.Data )
+        ulteriorMotivesDraggableImages : ( ( Data.SectionId, Int ), List Pile.Data )
+        ulteriorMotivesDraggableImages =
+            ( ( Data.UlteriorMotives, 2 ), content.images |> Data.filterBySection Data.UlteriorMotives |> List.map Pile.Image )
+
+        section8draggableContent : ( ( Data.SectionId, Int ), List Pile.Data )
         section8draggableContent =
-            ( Data.Section8, content.images |> Data.filterBySection Data.Section8 |> List.map Pile.Image )
+            ( ( Data.Section8, 1 ), content.images |> Data.filterBySection Data.Section8 |> List.map Pile.Image )
 
-        section10draggableContent : ( Data.SectionId, List Pile.Data )
+        section10draggableContent : ( ( Data.SectionId, Int ), List Pile.Data )
         section10draggableContent =
-            ( Data.Section10, content.posts |> Data.filterBySection Data.Section10 |> List.map Pile.Post )
+            ( ( Data.Section10, 1 ), content.posts |> Data.filterBySection Data.Section10 |> List.map Pile.Post )
 
-        section16draggableContent : ( Data.SectionId, List Pile.Data )
+        section16draggableContent : ( ( Data.SectionId, Int ), List Pile.Data )
         section16draggableContent =
-            ( Data.Section16, content.posts |> Data.filterBySection Data.Section16 |> List.map Pile.Post )
+            ( ( Data.Section16, 1 ), content.posts |> Data.filterBySection Data.Section16 |> List.map Pile.Post )
     in
     ( { time = Time.millisToPosix 0
       , content = content
@@ -112,7 +116,8 @@ init flags =
       , piles =
             Pile.init
                 [ socialMediaPostsDraggableContent
-                , ulteriorMotivesDraggableContent
+                , ulteriorMotivesDraggablePosts
+                , ulteriorMotivesDraggableImages
                 , section8draggableContent
                 , section10draggableContent
                 , section16draggableContent

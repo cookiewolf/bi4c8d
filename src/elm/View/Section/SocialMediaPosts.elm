@@ -16,4 +16,4 @@ view model =
         [ View.Posts.view Data.SocialMediaPosts model.content.posts ]
 
     else
-        [ Pile.view Data.SocialMediaPosts View.Pile.view model.piles |> Html.map Piles ]
+        [ Pile.view ( Data.SocialMediaPosts, 1 ) View.Pile.view model.piles |> Html.map Piles ]

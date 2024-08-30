@@ -18,10 +18,10 @@ view model =
         View.Posts.view Data.UlteriorMotives model.content.posts
 
       else
-        Pile.view Data.UlteriorMotives View.Pile.view model.piles |> Html.map Piles
+        Pile.view ( Data.UlteriorMotives, 1 ) View.Pile.view model.piles |> Html.map Piles
     , if Tuple.second model.viewportHeightWidth < 800 then
         View.StackingImage.viewImageListStatic Data.UlteriorMotives model.content.images
 
       else
-        Pile.view Data.UlteriorMotives View.Pile.view model.piles |> Html.map Piles
+        Pile.view ( Data.UlteriorMotives, 2 ) View.Pile.view model.piles |> Html.map Piles
     ]
