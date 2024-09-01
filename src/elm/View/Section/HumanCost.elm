@@ -1,4 +1,4 @@
-module View.HumanCost exposing (view)
+module View.Section.HumanCost exposing (view)
 
 import Copy.Keys
 import Copy.Text exposing (t)

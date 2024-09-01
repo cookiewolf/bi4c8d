@@ -1,5 +1,5 @@
 ---
-section: section-seventeen
+section: outro
 references:
   - reference: https://ransomwatch.telemetry.ltd/#/recentposts
 ---
