@@ -29,16 +29,16 @@ t key =
         ForwardedLabel ->
             "Forwarded from: "
 
-        Section11Heading ->
+        DataLossHeading ->
             "Between July 2020 and June 2021, data breaches exposed financial data from 42.2 million accounts."
 
-        Section15MessageHeading ->
+        RoyalMailNegotiationMessageHeading ->
             "LockBit"
 
-        Section15MessageTranscriptLink ->
+        RoyalMailNegotiationMessageTranscriptLink ->
             "[LockBit message transcripts](https://lockbittranscripturi)"
 
-        Section16MessageHeading ->
+        HackneySocialMessageHeading ->
             "Hackney"
 
         TotalBreachesSinceView count ->

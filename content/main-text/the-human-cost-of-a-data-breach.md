@@ -1,5 +1,5 @@
 ---
-section: section-thirteen
+section: human-cost
 title: The human cost of a data breach
 ---
 In October 2020, Hackney Council’s IT team observed outages in their IT systems and it was obvious that it wasn’t some kind of server blowout or failing code. The ransomware group, Mespinoza, also known as PYSA (Protect Your Systems, Amigo), had breached Hackney Council’s servers most likely because an employee clicked a link in a phishing email. It devastated their systems and the council services had come to a standstill, forcing staff to turn to pen and paper. From speaking to Hackney residents in 2023, it was clear that even two and half years later, it hadn’t fully recovered. While Hackney council hasn’t released details about the negotiations with the group or for how much they were held to ransom, we do know from an inspection of the Council’s accounts that they have spent over £12 million on recovery and replacing systems since the attack¹.

@@ -66,12 +66,12 @@ init flags =
                 , Data.FacialRecognition
                 , Data.IncompetenceIntro
                 , Data.IncompetencePostsAndPapers
-                , Data.Section12
-                , Data.Section13
-                , Data.Section14
-                , Data.Section15
-                , Data.Section16
-                , Data.Section17
+                , Data.HmrcTerminal
+                , Data.DataLoss
+                , Data.HumanCost
+                , Data.RoyalMailNegotiation
+                , Data.HackneySocial
+                , Data.Outro
                 ]
 
         ( inViewModel, inViewCmds ) =
@@ -107,7 +107,7 @@ init flags =
 
         section16draggableContent : ( ( Data.SectionId, Int ), List Pile.Data )
         section16draggableContent =
-            ( ( Data.Section16, 1 ), content.posts |> Data.filterBySection Data.Section16 |> List.map Pile.Post )
+            ( ( Data.HackneySocial, 1 ), content.posts |> Data.filterBySection Data.HackneySocial |> List.map Pile.Post )
     in
     ( { time = Time.millisToPosix 0
       , content = content
@@ -118,7 +118,7 @@ init flags =
       , inView = inViewModel
       , viewportHeightWidth = ( 800, 800 )
       , chartHovering = []
-      , terminalState = AssocList.fromList [ ( Data.Section13, { input = "", history = [] } ), ( Data.Section13, { input = "", history = [] } ) ]
+      , terminalState = AssocList.fromList [ ( Data.HmrcTerminal, { input = "", history = [] } ), ( Data.DataLoss, { input = "", history = [] } ) ]
       , piles =
             Pile.init
                 [ socialMediaPostsDraggableContent

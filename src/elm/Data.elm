@@ -142,12 +142,12 @@ type SectionId
     | FacialRecognition
     | IncompetenceIntro
     | IncompetencePostsAndPapers
-    | Section12
-    | Section13
-    | Section14
-    | Section15
-    | Section16
-    | Section17
+    | HmrcTerminal
+    | DataLoss
+    | HumanCost
+    | RoyalMailNegotiation
+    | HackneySocial
+    | Outro
 
 
 decodedContent : Json.Decode.Value -> Content
@@ -503,23 +503,23 @@ sectionIdFromString sectionString =
         "incompetence-posts-and-papers" ->
             Json.Decode.succeed IncompetencePostsAndPapers
 
-        "section-twelve" ->
-            Json.Decode.succeed Section12
+        "hmrc-terminal" ->
+            Json.Decode.succeed HmrcTerminal
 
-        "section-thirteen" ->
-            Json.Decode.succeed Section13
+        "data-loss" ->
+            Json.Decode.succeed DataLoss
 
-        "section-fourteen" ->
-            Json.Decode.succeed Section14
+        "human-cost" ->
+            Json.Decode.succeed HumanCost
 
-        "section-fifteen" ->
-            Json.Decode.succeed Section15
+        "royal-mail-negotiations" ->
+            Json.Decode.succeed RoyalMailNegotiation
 
-        "section-sixteen" ->
-            Json.Decode.succeed Section16
+        "hackney-social" ->
+            Json.Decode.succeed HackneySocial
 
-        "section-seventeen" ->
-            Json.Decode.succeed Section17
+        "outro" ->
+            Json.Decode.succeed Outro
 
         _ ->
             Json.Decode.succeed SectionInvalid
@@ -561,23 +561,23 @@ sectionIdToString sectionId =
         IncompetencePostsAndPapers ->
             "incompetence-posts-and-papers"
 
-        Section12 ->
-            "section-twelve"
+        HmrcTerminal ->
+            "hmrc-terminal"
 
-        Section13 ->
-            "section-thirteen"
+        DataLoss ->
+            "data-loss"
 
-        Section14 ->
-            "section-fourteen"
+        HumanCost ->
+            "human-cost"
 
-        Section15 ->
-            "section-fifteen"
+        RoyalMailNegotiation ->
+            "royal-mail-negotiation"
 
-        Section16 ->
-            "section-sixteen"
+        HackneySocial ->
+            "hackney-social"
 
-        Section17 ->
-            "section-seventeen"
+        Outro ->
+            "outro"
 
         SectionInvalid ->
             "section-invalid"
@@ -619,22 +619,22 @@ sectionIdToInt sectionId =
         IncompetencePostsAndPapers ->
             11
 
-        Section12 ->
+        HmrcTerminal ->
             12
 
-        Section13 ->
+        DataLoss ->
             13
 
-        Section14 ->
+        HumanCost ->
             14
 
-        Section15 ->
+        RoyalMailNegotiation ->
             15
 
-        Section16 ->
+        HackneySocial ->
             16
 
-        Section17 ->
+        Outro ->
             17
 
         SectionInvalid ->

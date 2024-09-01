@@ -1,4 +1,4 @@
-module View.Section13 exposing (view)
+module View.Section.HmrcTerminal exposing (view)
 
 import Data
 import Html
@@ -11,6 +11,5 @@ import View.Terminal
 
 view : Model -> List (Html.Html Msg)
 view model =
-    [ View.MainText.viewTop Data.Section13 model.content.mainText
-    , View.Terminal.view model Data.Section13
+    [ View.Terminal.view model Data.HmrcTerminal
     ]
