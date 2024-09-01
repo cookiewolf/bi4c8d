@@ -1,4 +1,4 @@
-module View.Section11 exposing (view)
+module View.Section.DataLoss exposing (view)
 
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
@@ -12,6 +12,7 @@ import Simple.Animation
 import Simple.Animation.Animated
 import Simple.Animation.Property
 import Time
+import View.Terminal
 
 
 view : Model -> List (Html.Html Msg)
@@ -22,7 +23,7 @@ view model =
                 |> Maybe.withDefault False
     in
     [ Html.div []
-        [ Html.h2 [ Html.Attributes.class "heading" ] [ Html.text (t Section11Heading) ]
+        [ Html.h2 [ Html.Attributes.class "heading" ] [ Html.text (t DataLossHeading) ]
         , if sectionInView then
             viewTickers
                 model
@@ -35,6 +36,13 @@ view model =
           else
             Html.text ""
         ]
+    , Html.h2
+        [ Html.Attributes.class "final-ticker"
+        , Html.Attributes.style "font-size" (fontSizeStringFromViewport model.viewportHeightWidth)
+        , Html.Attributes.style "height" (sectionHeightStringFromViewport model.viewportHeightWidth)
+        ]
+        [ Html.text (t (Copy.Keys.TotalBreachesSinceView model.breachCount)) ]
+    , View.Terminal.view model Data.DataLoss
     ]
 
 
@@ -191,3 +199,17 @@ slideInTicker ( height, width ) id =
         , Simple.Animation.Property.xy startX startY
         ]
         [ Simple.Animation.Property.xy endX endY ]
+
+
+sectionHeightStringFromViewport : ( Float, Float ) -> String
+sectionHeightStringFromViewport ( height, _ ) =
+    String.fromFloat height ++ "px"
+
+
+fontSizeStringFromViewport : ( Float, Float ) -> String
+fontSizeStringFromViewport ( height, width ) =
+    if width < 800 then
+        String.fromFloat (height / 24) ++ "px"
+
+    else
+        String.fromFloat (width / 18) ++ "px"

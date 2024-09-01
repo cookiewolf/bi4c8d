@@ -1,5 +1,5 @@
 ---
-section: section-nine
+section: hmrc-terminal
 title: HMRC data breach terminal
 welcome-message: In 2007, HMRC suffered the largest loss of data in UK history.
   Explore this terminal to find out what was lost, who was affected and the

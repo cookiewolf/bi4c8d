@@ -1,4 +1,4 @@
-module View.Section14 exposing (view)
+module View.HumanCost exposing (view)
 
 import Copy.Keys
 import Copy.Text exposing (t)
@@ -12,5 +12,5 @@ import View.MainText
 
 view : Model -> List (Html.Html Msg)
 view model =
-    [ View.MainText.viewTop Data.Section14 model.content.mainText
+    [ View.MainText.viewTop Data.HumanCost model.content.mainText
     ]

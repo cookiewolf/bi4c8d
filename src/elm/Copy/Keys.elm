@@ -11,10 +11,10 @@ type Key
       -- Post
     | ForwardedLabel
       -- Message
-    | Section11Heading
-    | Section15MessageHeading
-    | Section15MessageTranscriptLink
-    | Section16MessageHeading
+    | DataLossHeading
+    | RoyalMailNegotiationMessageHeading
+    | RoyalMailNegotiationMessageTranscriptLink
+    | HackneySocialMessageHeading
       -- Breaches
     | TotalBreachesSinceView Int
       -- Terminal
