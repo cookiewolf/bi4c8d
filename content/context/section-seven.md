@@ -1,13 +1,6 @@
 ---
-section: section-seven
-context: >-
-  Panic Lit project (If addition of photo stop and search, and ASBO docs then
-  I’ll amend the context)
-
-
-
-
-  UM newspapers - To be Added
+section: panic-lit
+context: ""
 fact-check: The consequences of 9/11 were felt in numerous ways, from airport
   security, increased surveillance capacities of intelligence agencies and
   increased international collaboration between agencies. Despite the tens of
