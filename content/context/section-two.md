@@ -1,9 +1,7 @@
 ---
 section: public-trust
 context: ""
-fact-check: There is no connection between a piece of legislation allowing for
-  the retention of some biometrics for national security purposes and testing
-  for COVID-19
+fact-check: ""
 references:
-  - reference: https://www.reuters.com/article/idUSKBN26837N/
+  - reference: https://journals.sagepub.com/doi/full/10.1111/1467-856X.12073#fig1-1467-856X-12073
 ---
