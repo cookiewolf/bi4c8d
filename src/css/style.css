@@ -72,14 +72,12 @@ p {
   background: var(--black);
 }
 
-#section-eleven,
-#section-twelve,
-#section-fourteen {
+#data-loss {
   max-width: 100%;
   width: 100%;
 }
 
-#section-eleven h2.heading {
+#data-loss h2.heading {
   font-size: 2.5rem;
   margin: 0 auto;
   max-width: var(--max-section-width);
@@ -87,8 +85,7 @@ p {
   width: 100%;
 }
 
-#section-twelve,
-#section-fourteen {
+#royal-mail-negotiation {
   padding-top: 0;
 }
 
@@ -250,8 +247,7 @@ p {
 
 @media (min-width: 800px) {
   #public-order-safety .hand-drawn-border,
-  #section-eleven .hand-drawn-border,
-  #section-fifteen .hand-drawn-border,
+  #human-cost .hand-drawn-border,
   #ulterior-motives .hand-drawn-border {
     border-image: url(/images/borders/hand-drawn-border-1.svg) 25 25 50 25
       stretch stretch;
@@ -259,7 +255,6 @@ p {
     border-width: 25px 25px 50px 25px;
   }
 
-  #ulterior-motives .hand-drawn-border,
   #section-fourteen .hand-drawn-border,
   #introduction .hand-drawn-border {
     border-image: url(/images/borders/hand-drawn-border-2.svg) 25 25 50 25
@@ -269,7 +264,7 @@ p {
   }
 
   #incompetence-intro .hand-drawn-border,
-  #section-seventeen .hand-drawn-border,
+  #outro .hand-drawn-border,
   #section-sixteen .hand-drawn-border {
     border-image: url(/images/borders/hand-drawn-border-3.svg) 25 25 100 25
       stretch stretch;
