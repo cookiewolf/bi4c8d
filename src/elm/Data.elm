@@ -512,7 +512,7 @@ sectionIdFromString sectionString =
         "human-cost" ->
             Json.Decode.succeed HumanCost
 
-        "royal-mail-negotiations" ->
+        "royal-mail-negotiation" ->
             Json.Decode.succeed RoyalMailNegotiation
 
         "hackney-social" ->
