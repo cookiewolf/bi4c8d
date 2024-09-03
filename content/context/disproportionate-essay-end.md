@@ -1,5 +1,5 @@
 ---
-section: dispropotionate-essay-end
+section: disproportionate-essay-end
 context: ""
 references:
   - reference: https://www.wired.com/story/internet-connection-records-uk-surveillance/
