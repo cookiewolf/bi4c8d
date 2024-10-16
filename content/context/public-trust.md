@@ -1,6 +1,4 @@
 ---
-May 1997: Change of government
-June 2009: MPs Expenses Scandal
 section: public-trust
 context: |-
   **Events in the timeline**
