@@ -161,10 +161,10 @@ update msg model =
                 | time = newTime
                 , tickerState =
                     let
-                        section8InView =
-                            InView.isInOrAboveView "section-eleven" model.inView |> Maybe.withDefault False
+                        tickerSectionInView =
+                            InView.isInOrAboveView "data-loss" model.inView |> Maybe.withDefault False
                     in
-                    if section8InView then
+                    if tickerSectionInView then
                         List.map (\tickerState -> Data.updateTickerState tickerState) model.tickerState
 
                     else
