@@ -1,6 +1,6 @@
 ---
 section: public-trust
-context: **Events in the timeline**
+context: Events in the timeline
 
 May 1997: Change of government
 
