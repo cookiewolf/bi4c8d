@@ -6,4 +6,4 @@ view-count: ""
 avatar-src: /images/uploads/generic-avatar.png
 video-src: ""
 ---
-Subsequently we lost the house we were planning on buying and had already spent more than £1,000 on a survey for.
+We lost the house we were planning on buying and had already spent more than £1,000 on a survey for.
