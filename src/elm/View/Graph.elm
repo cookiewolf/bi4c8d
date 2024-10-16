@@ -5,6 +5,7 @@ import Chart.Attributes
 import Chart.Events
 import Chart.Item
 import Chart.Svg
+import Copy.Text
 import Data
 import Html
 import Html.Attributes
@@ -68,9 +69,14 @@ view model sectionId =
                         , Chart.Attributes.withGrid
                         , Chart.Attributes.color "#FFFFFF"
                         ]
-                        [ Svg.text (formatFullTime Time.utc info.timestamp) ]
+                        [ if sectionId == Data.Telegram then
+                            Svg.text (formatTimeMonth Time.utc info.timestamp)
+
+                          else
+                            Svg.text (formatTimeYear Time.utc info.timestamp)
+                        ]
                     ]
-            , if sectionId == Data.Telegram || sectionId == Data.PublicOrderSafety then
+            , if sectionId == Data.PublicTrust || sectionId == Data.PublicOrderSafety then
                 Chart.series .x
                     ([ Chart.interpolatedMaybe (\item -> item.y1.count)
                         [ Chart.Attributes.color "#E4003B" ]
@@ -354,6 +360,14 @@ plusTenPercent count =
     count + (count * 0.1)
 
 
-formatFullTime : Time.Zone -> Time.Posix -> String
-formatFullTime timezone posix =
+formatTimeYear : Time.Zone -> Time.Posix -> String
+formatTimeYear timezone posix =
     String.fromInt (Time.toYear timezone posix)
+
+
+formatTimeMonth : Time.Zone -> Time.Posix -> String
+formatTimeMonth timezone posix =
+    String.join " "
+        [ String.fromInt (Time.toDay timezone posix)
+        , Copy.Text.monthToString (Time.toMonth timezone posix)
+        ]
