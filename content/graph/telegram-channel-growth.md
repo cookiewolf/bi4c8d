@@ -1,6 +1,6 @@
 ---
 section: telegram
-title: Telegram Channel growth
+title: Telegram Channel growth in 2021
 label1: COVID-19 Agenda
 label2: UK – No Mandatory Vaccines – Medical Freedom
 label3: TGR

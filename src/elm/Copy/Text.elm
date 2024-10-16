@@ -59,16 +59,16 @@ monthToString : Time.Month -> String
 monthToString month =
     case month of
         Time.Jan ->
-            "January"
+            "Jan"
 
         Time.Feb ->
-            "February"
+            "Feb"
 
         Time.Mar ->
-            "March"
+            "Mar"
 
         Time.Apr ->
-            "April"
+            "Apr"
 
         Time.May ->
             "May"
@@ -80,16 +80,16 @@ monthToString month =
             "July"
 
         Time.Aug ->
-            "August"
+            "Aug"
 
         Time.Sep ->
-            "September"
+            "Sept"
 
         Time.Oct ->
-            "October"
+            "Oct"
 
         Time.Nov ->
-            "November"
+            "Nov"
 
         Time.Dec ->
-            "December"
+            "Dec"
