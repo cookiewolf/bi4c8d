@@ -3,7 +3,7 @@ section: ulterior-motives
 datetime: 2021-12-15T21:21:29.472Z
 forwarded-from: Michael Yeadon
 view-count: 17300
-avatar-src: /images/uploads/generic-avatar.png
+avatar-src: /images/uploads/michael-yeadon.png
 ---
 On the 8th of December our government brought in ‘Plan B’ because of a WEAK cold called Omicron that to date has caused ZERO DEATHS.
 
