@@ -3,7 +3,7 @@ section: ulterior-motives
 datetime: 2021-03-26T05:39:36.166Z
 forwarded-from: "Tim Morgan, We are Awake "
 view-count: 129000
-avatar-src: /images/uploads/generic-avatar.png
+avatar-src: /images/uploads/tim-morgan.png
 video-src: ""
 ---
 The whole point of COVID is lockdown /masks..
