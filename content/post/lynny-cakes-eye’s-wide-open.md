@@ -3,7 +3,7 @@ section: incompetence-posts-and-papers
 datetime: 2021-02-10T11:50:00.000Z
 forwarded-from: Lynny Cakes @Eye’s Wide Open
 view-count: 18982
-avatar-src: /images/uploads/generic-avatar.png
+avatar-src: /images/uploads/lynny-cakes.png
 ---
 The level of so called professionals involved is epic ... 
 
