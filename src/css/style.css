@@ -78,6 +78,7 @@ p {
 }
 
 #data-loss h2.heading {
+  font-family:"TT Firs Neue Var Roman", Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial, sans-serif;
   font-size: 2.5rem;
   margin: 0 auto;
   max-width: var(--max-section-width);
@@ -437,16 +438,16 @@ p {
 .message-body {
   border: solid 1px var(--white);
   border-radius: 2rem;
-  margin: 10px 0;
-  padding: 20px;
+  margin: 5px 0;
+  padding: 15px;
 }
 
 .left .message {
-  margin-right: 30%;
+  margin-right: 10%;
 }
 
 .right .message {
-  margin-left: 30%;
+  margin-left: 10%;
 }
 
 @media (max-width: 800px) {
@@ -468,7 +469,7 @@ p {
   color: var(--black);
 }
 .message-time {
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
 .right .message .message-time {
@@ -704,6 +705,7 @@ p {
 }
 
 .ticker {
+  font-family:"TT Firs Neue Var Roman", Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial, sans-serif;
   background-color: var(--black);
   color: var(--white);
   padding: 10px 20px;
@@ -714,6 +716,9 @@ p {
 
 /** Final ticker **/
 h2.final-ticker {
+  font-family:"TT Firs Neue Var Roman", Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial, sans-serif;
+  font-size: 2.5rem !important;
+  width:75% !important;
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -765,6 +770,7 @@ h2.final-ticker {
 
 .post-avatar-draggable {
   grid-area: avatar;
+  
 }
 
 .post-forwarded-from-draggable {

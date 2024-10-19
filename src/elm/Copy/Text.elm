@@ -30,7 +30,7 @@ t key =
             "Forwarded from: "
 
         DataLossHeading ->
-            "Between July 2020 and June 2021, data breaches exposed financial data from 42.2 million accounts."
+            "Between July 2020 and June 2021, data breaches exposed financial data from 42.2 million UK accounts."
 
         RoyalMailNegotiationMessageHeading ->
             "LockBit"
@@ -45,7 +45,7 @@ t key =
             String.join " "
                 [ "Since you’ve been on this webpage"
                 , String.fromInt count
-                , "people have had their personal data compromised..."
+                , "people in the UK have had their personal data compromised..."
                 ]
 
         HelpText ->
