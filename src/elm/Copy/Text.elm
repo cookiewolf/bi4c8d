@@ -39,7 +39,7 @@ t key =
             "[LockBit message transcripts](https://lockbittranscripturi)"
 
         HackneySocialMessageHeading ->
-            "Hackney"
+            "Cristina, Hackney Resident"
 
         TotalBreachesSinceView count ->
             String.join " "
