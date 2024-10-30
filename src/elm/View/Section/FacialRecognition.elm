@@ -93,9 +93,9 @@ viewImage delay state fadeImage =
             , Html.Attributes.style "transition" (infoTransition fadeImage.isBlank delay)
             ]
             [ Html.p [] [ Html.text "_________ Name" ]
-            , Html.p [] [ Html.text "_________ Age" ]
-            , Html.p [] [ Html.text "_________ Location" ]
-            , Html.p [] [ Html.text "_________ Place of work" ]
+            , Html.p [] [ Html.text "_________ Job Title" ]
+            , Html.p [] [ Html.text "_________ City of Residence" ]
+            , Html.p [] [ Html.text "_________ Place of Work" ]
             ]
         ]
 
