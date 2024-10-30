@@ -20,6 +20,9 @@ commands:
 
 
       The loss of the discs was a national scandal that gained widespread public and media attention. An internal and Metropolitan Police investigation followed, as did several reports, including a government-commissioned report by PWC which labelled the loss as ‘avoidable’ and found ‘institutional deficiencies’ at HMRC. The loss was a wake-up call to implement more rigorous data security and handling measures in government, and raised serious questions about whether the public could trust the government to keep their data safe. It remains the largest known loss of data by any UK public institution.
+
+
+      Type ‘help’ to explore...
   - name: search
     help-text: " "
     output: >-
@@ -73,6 +76,9 @@ commands:
 
 
       To this date, the discs have not been found.
+
+
+      Type ‘help’ to explore...
   - name: contents
     help-text: " "
     output: >-
@@ -94,6 +100,9 @@ commands:
 
 
       12,500 agents who claim the benefit on behalf of a third party.
+
+
+      Type ‘help’ to explore...
   - name: media
     help-text: " "
     output: >-
@@ -107,6 +116,9 @@ commands:
 
 
       <https://news.bbc.co.uk/2/hi/uk_news/politics/7472814.stm>
+
+
+      Type ‘help’ to explore...
   - name: gov
     help-text: " "
     output: >-
@@ -168,6 +180,9 @@ commands:
 
 
       But let me reiterate: there is no evidence that these data have reached the wrong hands and no evidence of fraud or criminal activity; banks and building societies are putting in place safeguards to protect people’s accounts; banks and building societies will continue to monitor those accounts; and no one will suffer any loss if they are innocent victims of fraud. I will, of course, keep the House updated of any further developments. I commend the statement to the House.
+
+
+      Type ‘help’ to explore...
   - name: accountability
     help-text: Please add a secondary argument such as "Accountability paul-gray"
     args:
@@ -179,10 +194,11 @@ commands:
       - references
     output: Not displayed - because requires sub command
   - name: paul-gray
-    output: "[https://web.archive.org/web/20081118223337/http://www.channel4.com/ne\
-      ws/articles/politics/domestic_politics/paul+gray+back+at+work/1136847](ht\
-      tps://web.archive.org/web/20081118223337/http://www.channel4.com/news/art\
-      icles/politics/domestic_politics/paul+gray+back+at+work/1136847)"
+    output: >-
+      [https://web.archive.org/web/20081118223337/http://www.channel4.com/news/articles/politics/domestic_politics/paul+gray+back+at+work/1136847](https://web.archive.org/web/20081118223337/http://www.channel4.com/news/articles/politics/domestic_politics/paul+gray+back+at+work/1136847)
+
+
+      Type ‘help’ to explore...
     help-text: " "
   - name: handling
     help-text: " "
@@ -246,6 +262,9 @@ commands:
 
 
       The Northern Ireland Office (NIO) have completed a detailed review of their Data Handling and Information Assurance Policies and are satisfied that they comply with HMG policies/standards and ISO 27001. Policies will be continuously monitored to ensure compliance with any changes proposed or "lessons learnt" centrally. The Department has introduced new governance arrangements; an Accreditation Panel of key users and a Senior Risk Owners Council under the chairmanship of the SIRO have been established. The Department is complying with central guidance vis-à-vis removable media unencrypted laptops holding personal or protectively marked material. All staff in the NIO and satellite bodies are receiving refresher training for Data Handling and Information Assurance.
+
+
+      Type ‘help’ to explore...
   - name: review
     help-text: " "
     output: >-
@@ -296,6 +315,9 @@ commands:
 
 
       HMRC should make its access control consistent across all of its systems and estate.
+
+
+      Type ‘help’ to explore...
   - name: ico
     help-text: " "
     output: >-
@@ -351,7 +373,14 @@ commands:
 
 
       As I have tried to explain, this order sets out some of the provisions required to ensure that the monetary penalty framework for serious contraventions of the data protection principles is robust and fair to data controllers and the Information Commissioner. Although the Data Protection Act already gives the Information Commissioner an effective framework with which to regulate the Act, the power to impose monetary penalties of up to £500,000 will provide the commissioner with an important additional tool. It will act as an effective sanction and a deterrent against non-compliance. The commissioner will have no financial incentive to issue monetary penalties because any money recovered as a result of the issue of these penalties will go to the Consolidated Fund, managed by the Treasury. The new powers will contribute to increased compliance with data protection principles and strengthen public confidence that data protection safeguards are observed. I beg to move.
+
+
+      Type ‘help’ to explore...
   - name: sorry
     help-text: " "
-    output: https://www.whatdotheyknow.com/cy/request/23313/response/57549/attach/html/4/Data%20Loss%20Apology%20Letter.pdf.html
+    output: >-
+      https://www.whatdotheyknow.com/cy/request/23313/response/57549/attach/html/4/Data%20Loss%20Apology%20Letter.pdf.html
+
+
+      Type ‘help’ to explore...
 ---
