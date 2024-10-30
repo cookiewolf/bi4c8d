@@ -379,7 +379,7 @@ commands:
   - name: sorry
     help-text: " "
     output: >-
-      https://www.whatdotheyknow.com/cy/request/23313/response/57549/attach/html/4/Data%20Loss%20Apology%20Letter.pdf.html
+      <https://www.whatdotheyknow.com/cy/request/23313/response/57549/attach/html/4/Data%20Loss%20Apology%20Letter.pdf.html>
 
 
       Type ‘help’ to explore...
