@@ -48,6 +48,15 @@ p {
   }
 }
 
+a {
+  color: var(--white);
+}
+
+a:hover,
+a:focus {
+  color: var(--grey-light);
+}
+
 #introduction {
   padding-top: 0;
 }
