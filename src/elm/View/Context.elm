@@ -75,7 +75,7 @@ viewContextSectionHeader sectionId =
             [ Html.Attributes.class "screen-reader-only"
             ]
             [ Html.text (t ContextNewSectionMessage) ]
-        , Html.text ("Section " ++ String.fromInt (Data.sectionIdToInt sectionId) ++ " of 17")
+        , Html.text ("Section " ++ String.fromInt (Data.sectionIdToInt sectionId) ++ " of 18")
         ]
 
 
@@ -114,7 +114,15 @@ viewReferences referenceList =
             [ Html.ol [ Html.Attributes.class "references" ]
                 (List.map
                     (\reference ->
-                        Html.li [] [ Html.a [ Html.Attributes.class "reference-link", Html.Attributes.href reference ] [ Html.text reference ] ]
+                        Html.li []
+                            [ Html.a
+                                [ Html.Attributes.class "reference-link"
+                                , Html.Attributes.href reference
+                                , Html.Attributes.target "_blank"
+                                , Html.Attributes.rel "noopener noreferral"
+                                ]
+                                [ Html.text reference ]
+                            ]
                     )
                     referenceList
                 )

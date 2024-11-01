@@ -40,7 +40,7 @@ const app = Elm.Main.init({
 
 
 customElements.define("hyvor-talk-comments-wrapper", class extends HTMLElement {
-  
+
   constructor() { 
       super(); 
   }
@@ -52,6 +52,7 @@ customElements.define("hyvor-talk-comments-wrapper", class extends HTMLElement {
       const comments = document.createElement("hyvor-talk-comments");
       comments.setAttribute('website-id', "11670");
       comments.setAttribute('page-id', newValue);
+      comments.shadowRoot.innerHTML = '<style>.reactions-title {display: none;}</style>';
       this.replaceChildren(comments);
     }
   }

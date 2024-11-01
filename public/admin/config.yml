@@ -12,7 +12,7 @@ collections:
     create: false # Allow users to create new documents in this collection
     identifier_field: section
     fields:
-      - { label: "Section", name: "section", widget: "select", options: ["introduction", "social-media-posts", "public-trust", "telegram", "ulterior-motives", "panic-lit", "public-order-safety", "disproportionate-essay-end", "facial-recognition", "incompetence-intro", "incompetence-posts-and-papers", "hmrc-terminal", "data-loss", "human-cost", "royal-mail-negotiation", "hackney-social", "outro"] }
+      - { label: "Section", name: "section", widget: "select", options: ["introduction", "social-media-posts", "public-trust", "telegram", "ulterior-motives", "panic-lit", "public-order-safety", "disproportionate-essay-end", "facial-recognition", "incompetence-intro", "incompetence-posts-and-papers", "hmrc-terminal", "data-loss", "ransomware-terminal", "human-cost", "royal-mail-negotiation", "hackney-social", "outro"] }
       - { label: "Context", name: "context", widget: "markdown", required: false }
       - { label: "Fact check", name: "fact-check", widget: "markdown", required: false }
       - label: "References"
@@ -110,7 +110,7 @@ collections:
     folder: "content/terminal"
     create: true
     fields:
-      - { label: "Section", name: "section", widget: "select", options: ["hmrc-terminal", "data-loss"] }
+      - { label: "Section", name: "section", widget: "select", options: ["hmrc-terminal", "ransomware-terminal"] }
       - { label: "Title", name: "title", widget: "string", hint: "Displayed in terminal title bar"  }
       - { label: "Welcome message", name: "welcome-message", widget: "string", hint: "Displayed above initial prompt"}
       - { label: "Prompt", name: "prompt", widget: "string" }

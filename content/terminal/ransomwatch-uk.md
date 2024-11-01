@@ -1,5 +1,5 @@
 ---
-section: data-loss
+section: ransomware-terminal
 title: Ransomwatch UK
 welcome-message: Ransomwatch UK - please type 'explore' to see the latest data breaches
 prompt: Prompt

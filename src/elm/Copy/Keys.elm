@@ -13,7 +13,6 @@ type Key
       -- Message
     | DataLossHeading
     | RoyalMailNegotiationMessageHeading
-    | RoyalMailNegotiationMessageTranscriptLink
     | HackneySocialMessageHeading
       -- Breaches
     | TotalBreachesSinceView Int

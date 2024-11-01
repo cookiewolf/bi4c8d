@@ -23,7 +23,14 @@ view model =
                 |> Maybe.withDefault False
     in
     [ Html.div []
-        [ Html.h2 [ Html.Attributes.class "heading" ] [ Html.text (t DataLossHeading) ]
+        [ Html.h2 [ Html.Attributes.class "heading" ]
+            [ Html.text (t DataLossHeading) ]
+        , Html.h2
+            [ Html.Attributes.class "final-ticker"
+            , Html.Attributes.style "font-size" (fontSizeStringFromViewport model.viewportHeightWidth)
+            , Html.Attributes.style "height" (sectionHeightStringFromViewport model.viewportHeightWidth)
+            ]
+            [ Html.text (t (Copy.Keys.TotalBreachesSinceView model.breachCount)) ]
         , if sectionInView then
             viewTickers
                 model
@@ -36,13 +43,6 @@ view model =
           else
             Html.text ""
         ]
-    , Html.h2
-        [ Html.Attributes.class "final-ticker"
-        , Html.Attributes.style "font-size" (fontSizeStringFromViewport model.viewportHeightWidth)
-        , Html.Attributes.style "height" (sectionHeightStringFromViewport model.viewportHeightWidth)
-        ]
-        [ Html.text (t (Copy.Keys.TotalBreachesSinceView model.breachCount)) ]
-    , View.Terminal.view model Data.DataLoss
     ]
 
 

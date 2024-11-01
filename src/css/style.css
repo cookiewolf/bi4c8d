@@ -48,6 +48,15 @@ p {
   }
 }
 
+a {
+  color: var(--white);
+}
+
+a:hover,
+a:focus {
+  color: var(--grey-light);
+}
+
 #introduction {
   padding-top: 0;
 }
@@ -816,8 +825,4 @@ h2.final-ticker {
   width: 1px;
   height: 1px;
   overflow: hidden;
-}
-
-.reactions-title {
-  display:none;
 }

@@ -35,9 +35,6 @@ t key =
         RoyalMailNegotiationMessageHeading ->
             "LockBit"
 
-        RoyalMailNegotiationMessageTranscriptLink ->
-            "[LockBit message transcripts](https://lockbittranscripturi)"
-
         HackneySocialMessageHeading ->
             "Cristina, Hackney Resident"
 
