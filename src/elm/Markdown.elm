@@ -71,11 +71,18 @@ htmlRenderer =
                     Html.a
                         [ Html.Attributes.href link.destination
                         , Html.Attributes.title title
+                        , Html.Attributes.target "_blank"
+                        , Html.Attributes.rel "noopener noreferrer"
                         ]
                         content
 
                 Nothing ->
-                    Html.a [ Html.Attributes.href link.destination ] content
+                    Html.a
+                        [ Html.Attributes.href link.destination
+                        , Html.Attributes.target "_blank"
+                        , Html.Attributes.rel "noopener noreferrer"
+                        ]
+                        content
     , image =
         \imageInfo ->
             case imageInfo.title of
