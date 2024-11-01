@@ -12,5 +12,5 @@ import View.Messages
 
 view : Model -> List (Html.Html Msg)
 view model =
-    [ View.Messages.view model.inView Data.RoyalMailNegotiation model.content.messages (t RoyalMailNegotiationMessageHeading) (Just (t RoyalMailNegotiationMessageTranscriptLink))
+    [ View.Messages.view model.inView Data.RoyalMailNegotiation model.content.messages (t RoyalMailNegotiationMessageHeading) Nothing
     ]
