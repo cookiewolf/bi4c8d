@@ -43,7 +43,6 @@ view model =
           else
             Html.text ""
         ]
-    , View.Terminal.view model Data.DataLoss
     ]
 
 

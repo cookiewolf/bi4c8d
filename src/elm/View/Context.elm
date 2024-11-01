@@ -75,7 +75,7 @@ viewContextSectionHeader sectionId =
             [ Html.Attributes.class "screen-reader-only"
             ]
             [ Html.text (t ContextNewSectionMessage) ]
-        , Html.text ("Section " ++ String.fromInt (Data.sectionIdToInt sectionId) ++ " of 17")
+        , Html.text ("Section " ++ String.fromInt (Data.sectionIdToInt sectionId) ++ " of 18")
         ]
 
 

@@ -144,6 +144,7 @@ type SectionId
     | IncompetencePostsAndPapers
     | HmrcTerminal
     | DataLoss
+    | RansomwareTerminal
     | HumanCost
     | RoyalMailNegotiation
     | HackneySocial
@@ -509,6 +510,9 @@ sectionIdFromString sectionString =
         "data-loss" ->
             Json.Decode.succeed DataLoss
 
+        "ransomware-terminal" ->
+            Json.Decode.succeed RansomwareTerminal
+
         "human-cost" ->
             Json.Decode.succeed HumanCost
 
@@ -566,6 +570,9 @@ sectionIdToString sectionId =
 
         DataLoss ->
             "data-loss"
+
+        RansomwareTerminal ->
+            "ransomware-terminal"
 
         HumanCost ->
             "human-cost"
@@ -625,17 +632,20 @@ sectionIdToInt sectionId =
         DataLoss ->
             13
 
-        HumanCost ->
+        RansomwareTerminal ->
             14
 
-        RoyalMailNegotiation ->
+        HumanCost ->
             15
 
-        HackneySocial ->
+        RoyalMailNegotiation ->
             16
 
-        Outro ->
+        HackneySocial ->
             17
+
+        Outro ->
+            18
 
         SectionInvalid ->
             0

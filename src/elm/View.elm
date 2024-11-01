@@ -19,6 +19,7 @@ import View.Section.Outro
 import View.Section.PanicLit
 import View.Section.PublicOrderSafety
 import View.Section.PublicTrust
+import View.Section.RansomwareTerminal
 import View.Section.RoyalMailNegotiation
 import View.Section.SocialMediaPosts
 import View.Section.Telegram
@@ -40,6 +41,7 @@ sectionViews model =
     , ( Data.IncompetencePostsAndPapers, View.Section.IncompetencePostsAndPapers.view model )
     , ( Data.HmrcTerminal, View.Section.HmrcTerminal.view model )
     , ( Data.DataLoss, View.Section.DataLoss.view model )
+    , ( Data.RansomwareTerminal, View.Section.RansomwareTerminal.view model )
     , ( Data.HumanCost, View.Section.HumanCost.view model )
     , ( Data.RoyalMailNegotiation, View.Section.RoyalMailNegotiation.view model )
     , ( Data.HackneySocial, View.Section.HackneySocial.view model )

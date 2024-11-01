@@ -68,6 +68,7 @@ init flags =
                 , Data.IncompetencePostsAndPapers
                 , Data.HmrcTerminal
                 , Data.DataLoss
+                , Data.RansomwareTerminal
                 , Data.HumanCost
                 , Data.RoyalMailNegotiation
                 , Data.HackneySocial
@@ -118,7 +119,7 @@ init flags =
       , inView = inViewModel
       , viewportHeightWidth = ( 800, 800 )
       , chartHovering = []
-      , terminalState = AssocList.fromList [ ( Data.HmrcTerminal, { input = "", history = [] } ), ( Data.DataLoss, { input = "", history = [] } ) ]
+      , terminalState = AssocList.fromList [ ( Data.HmrcTerminal, { input = "", history = [] } ), ( Data.RansomwareTerminal, { input = "", history = [] } ) ]
       , piles =
             Pile.init
                 [ socialMediaPostsDraggableContent
