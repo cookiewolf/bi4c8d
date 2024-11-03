@@ -55,6 +55,9 @@ viewContextSection context =
         , Html.node "hyvor-talk-comments-wrapper"
             [ Html.Attributes.attribute "website-id" "11670"
             , Html.Attributes.attribute "page-id" (sectionIdStringFromSection context.section)
+            , Html.Attributes.style "display" "block"
+            , Html.Attributes.style "height" "80px"
+            , Html.Attributes.style "overflow" "clip"
             ]
             []
         ]
