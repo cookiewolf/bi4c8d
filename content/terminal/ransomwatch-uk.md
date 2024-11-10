@@ -4,7 +4,7 @@ title: Ransomwatch UK
 welcome-message: Ransomwatch UK - please type 'explore' to see the latest data breaches
 prompt: Prompt
 commands:
-  - name: Explore
+  - name: explore
     output: >-
       | Date              | Title | Group |
 
