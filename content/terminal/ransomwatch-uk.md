@@ -1,7 +1,7 @@
 ---
 section: ransomware-terminal
 title: Ransomwatch UK
-welcome-message: Ransomwatch UK - please type 'explore' to see the latest data breaches
+welcome-message: Ransomwatch UK - please type 'explore' to see the latest data breaches of UK-based companies and organisations
 prompt: Prompt
 commands:
   - name: explore
@@ -10,13 +10,13 @@ commands:
 
       | :---------------- | :------: | ----: |
 
-      | 2024-07-30        |   www.whittakersystem.com  | ransomhub |
+      | 2024-11-11        |   Plowman Craven  | Lynx |
 
-      | 2024-07-30           |  chubb-bulleid.co.uk\$14M\United Kingdom\362GB\&lt;1% DISCLOSED   | cactus |
+      | 2024-11-08           |  Otto Simon Ltd   | Cactus |
 
-      | 2024-07-30    |  leonardssyrups.com\$22M\USA\575GB\&lt;1% DISCLOSED   | cactus |
+      | 2024-11-07    |  Equator Worldwide   | Meow |
 
-      | 2024-07-30 |  westernwyomingbeverages.com\$59.2M\USA\102GB\&lt;1% DISCLOSED   | cactus |
+      | 2024-11-05 |  Fylde Coast Academy Trust   | Rhysida |
 
       | 2024-07-30 |  demos.fr\$37.5M\France\870GB\&lt;1% DISCLOSED   | cactus |
 
