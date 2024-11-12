@@ -5,9 +5,10 @@ import Copy.Text exposing (t)
 import Data
 import Html
 import Html.Attributes
+import Html.Events
 import InView
 import Markdown
-import Msg exposing (Msg)
+import Msg exposing (Msg(..))
 
 
 view : InView.State -> List Data.Context -> Html.Html Msg
@@ -70,15 +71,24 @@ sectionIdStringFromSection sectionId =
 
 viewContextSectionHeader : Data.SectionId -> Html.Html Msg
 viewContextSectionHeader sectionId =
-    Html.h2
-        [ Html.Attributes.class "context-section-title"
-        , Html.Attributes.attribute "aria-live" "polite"
-        ]
-        [ Html.span
-            [ Html.Attributes.class "screen-reader-only"
+    Html.div [ Html.Attributes.class "context-header" ]
+        [ Html.a [ Html.Events.onClick ToggleViewIntro ]
+            [ if sectionId == Data.Introduction then
+                Html.text (t ViewContentLinkText)
+
+              else
+                Html.text (t ViewIntroLinkText)
             ]
-            [ Html.text (t ContextNewSectionMessage) ]
-        , Html.text ("Section " ++ String.fromInt (Data.sectionIdToInt sectionId) ++ " of 18")
+        , Html.h2
+            [ Html.Attributes.class "context-section-title"
+            , Html.Attributes.attribute "aria-live" "polite"
+            ]
+            [ Html.span
+                [ Html.Attributes.class "screen-reader-only"
+                ]
+                [ Html.text (t ContextNewSectionMessage) ]
+            , Html.text ("Section " ++ String.fromInt (Data.sectionIdToInt sectionId) ++ " of 18")
+            ]
         ]
 
 

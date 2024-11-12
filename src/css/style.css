@@ -73,6 +73,13 @@ a:focus {
   background: none;
 }
 
+#introduction a {
+  background-color: var(--black);
+  cursor: pointer;
+  padding: 1rem 2rem;
+  text-decoration: none;
+}
+
 #ulterior-motives,
 #public-order-safety .graph-container,
 #panic-lit,
@@ -125,13 +132,31 @@ a:focus {
   outline: var(--blue) solid 5px;
 }
 
+.context-header {
+  align-items: center;
+  display: flex;
+  justify-content: end;
+}
+
+.context-header a {
+  color: var(--black);
+  cursor: pointer;
+  font-size: 0.75rem;
+  padding: 1rem 0;
+  text-decoration: underline;
+}
+
+.context-header a,
 .context-section-title {
   font-family: "TT Firs Neue Var Roman", Inter, Roboto, "Helvetica Neue",
     "Arial Nova", "Nimbus Sans", Arial, sans-serif;
-  font-size: 0.875rem;
   font-weight: bold;
-  padding: 1rem 1.5rem;
   text-align: right;
+}
+
+.context-section-title {
+  font-size: 0.875rem;
+  padding: 1rem 1.5rem;
 }
 
 .context-summary {
