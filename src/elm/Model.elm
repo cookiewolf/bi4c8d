@@ -11,6 +11,7 @@ import Time
 type alias Model =
     { time : Time.Posix
     , content : Data.Content
+    , viewingIntro : Bool
     , tickerState : List Data.TickerState
     , breachCount : Int
     , randomIntList : List Int

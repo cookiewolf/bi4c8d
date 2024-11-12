@@ -14,6 +14,9 @@ t key =
         SiteTitle ->
             "Bifurcated"
 
+        ViewContentButtonLabel ->
+            "Explore content"
+
         ContextLabel ->
             "Context"
 

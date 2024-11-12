@@ -112,6 +112,7 @@ init flags =
     in
     ( { time = Time.millisToPosix 0
       , content = content
+      , viewingIntro = True
       , tickerState = initialTickerState
       , breachCount = 0
       , domHeight = 0.0
@@ -188,6 +189,13 @@ update msg model =
         GotViewport viewport ->
             ( { model | viewportHeightWidth = Maybe.withDefault model.viewportHeightWidth (Just ( viewport.viewport.height, viewport.viewport.width )) }
             , Cmd.none
+            )
+
+        ToggleViewIntro ->
+            ( { model
+                | viewingIntro = not model.viewingIntro
+              }
+            , Task.perform (always NoOp) (Browser.Dom.setViewport 0 0)
             )
 
         OnScroll offset ->
@@ -274,7 +282,7 @@ update msg model =
                         )
                         model.terminalState
               }
-              --       -- maybe playing with this will help
+              -- maybe playing with this will help
             , scrollToElement "terminal-output"
             )
 
