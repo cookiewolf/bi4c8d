@@ -3,6 +3,9 @@ module Copy.Keys exposing (Key(..))
 
 type Key
     = SiteTitle
+      -- Intro
+    | ViewContentLinkText
+    | ViewIntroLinkText
       -- Context
     | ContextLabel
     | ContextNewSectionMessage

@@ -12,6 +12,7 @@ type Msg
     = NoOp
     | Tick Time.Posix
     | NewRandomIntList (List Int)
+    | ToggleViewIntro
     | OnScroll { x : Float, y : Float }
     | OnGrow Float
     | OnResize ( Float, Float )
