@@ -37,7 +37,7 @@ collections:
     create: true
     identifier_field: "forwarded-from"
     fields:
-      - { label: "Section", name: "section", widget: "select", options: ["social-media-posts", "ulterior-motives", "incompetence-posts-and-papers", "hackney-social"] }
+      - { label: "Section", name: "section", widget: "select", options: ["social-media-posts", "ulterior-motives", "incompetence-posts-and-papers"] }
       - { label: "Date & time", name: "datetime", widget: "datetime" }
       - { label: "Forwarded from", name: "forwarded-from", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
@@ -50,9 +50,10 @@ collections:
     folder: "content/message"
     create: true
     fields:
-      - { label: "Section", name: "section", widget: "select", options: ["royal-mail-negotiation"] }
+      - { label: "Section", name: "section", widget: "select", options: ["royal-mail-negotiation", "hackney-social"] }
       - { label: "Message Title", name: "title", widget: "string", hint: "Not displayed - for id in CMS" }
       - { label: "Side", name: "side", widget: "select", options: ["left", "right"] }
+      - { label: "Avatar icon", name: "avatar-src", widget: "image", required: false }
       - { label: "Date & time", name: "datetime", widget: "datetime" }
       - { label: "Body", name: "body", widget: "markdown" }
 

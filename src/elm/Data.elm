@@ -51,6 +51,7 @@ type alias Post =
 type alias Message =
     { section : SectionId
     , side : Side
+    , maybeAvatarSrc : Maybe String
     , datetime : Time.Posix
     , body : String
     }
@@ -268,13 +269,14 @@ messageDictDecoder =
 
 messageDecoder : Json.Decode.Decoder Message
 messageDecoder =
-    Json.Decode.map4 Message
+    Json.Decode.map5 Message
         (Json.Decode.field "section" Json.Decode.string
             |> Json.Decode.andThen sectionIdFromString
         )
         (Json.Decode.field "side" Json.Decode.string
             |> Json.Decode.andThen sideFromString
         )
+        (Json.Decode.maybe (Json.Decode.field "avatar-src" Json.Decode.string))
         (Json.Decode.field "datetime" Json.Decode.string
             |> Json.Decode.andThen posixFromStringDecoder
         )
