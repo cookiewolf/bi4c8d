@@ -612,7 +612,8 @@ a:focus {
   background-color: var(--grey-dark);
   font-size: 0.75rem;
   height: 100%;
-  margin-top: 100px;
+  margin-left: -70px;
+  margin-top: 200px;
   padding: 1rem 1em 1rem 0.5rem;
 }
 
