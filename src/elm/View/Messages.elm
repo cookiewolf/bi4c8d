@@ -111,7 +111,10 @@ viewMessage message isLast fadeInDelayTyping fadeInDelayMessage =
                 ]
                 (Markdown.markdownToHtml message.body)
             , if isLast then
-                Html.div [ Html.Attributes.class "message-time" ] [ viewMessageTime message.datetime ]
+                Html.div [ Html.Attributes.class "message-avatar-time" ]
+                    [ viewAvatar message.maybeAvatarSrc
+                    , viewMessageTime message.datetime
+                    ]
 
               else
                 Html.text ""
@@ -201,12 +204,24 @@ viewTypingDot position =
         ]
 
 
+viewAvatar : Maybe String -> Html.Html Msg
+viewAvatar maybeSrc =
+    case maybeSrc of
+        Just src ->
+            Html.img [ Html.Attributes.src src ] []
+
+        Nothing ->
+            Html.text ""
+
+
 viewMessageTime : Time.Posix -> Html.Html Msg
 viewMessageTime posix =
-    Html.text
-        ([ String.fromInt (Time.toHour Time.utc posix)
-         , String.fromInt (Time.toMinute Time.utc posix)
-         ]
-            |> List.map (\timeDigit -> String.padLeft 2 '0' timeDigit)
-            |> String.join ":"
-        )
+    Html.div []
+        [ Html.text
+            ([ String.fromInt (Time.toHour Time.utc posix)
+             , String.fromInt (Time.toMinute Time.utc posix)
+             ]
+                |> List.map (\timeDigit -> String.padLeft 2 '0' timeDigit)
+                |> String.join ":"
+            )
+        ]

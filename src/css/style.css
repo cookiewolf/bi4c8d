@@ -502,16 +502,24 @@ a:focus {
   background-color: var(--white);
   color: var(--black);
 }
-.message-time {
+
+.message-avatar-time {
+  align-items: center;
+  display: flex;
   margin: 10px 0;
 }
 
-.right .message .message-time {
-  text-align: right;
+.message-avatar-time img {
+  margin-right: 10px;
+  width: 50px;
 }
 
-.left .message .message-time {
-  text-align: left;
+.right .message-avatar-time {
+  justify-content: end;
+}
+
+.left .message-avatar-time {
+  justify-content: start;
 }
 
 /** Image **/
