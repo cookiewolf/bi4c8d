@@ -617,9 +617,12 @@ a:focus {
 }
 
 .profile-info {
+  background-color: var(--grey-dark);
   font-size: 0.75rem;
-  margin-top: 100px;
-  padding-left: 1rem;
+  height: 100%;
+  margin-left: -70px;
+  margin-top: 200px;
+  padding: 1rem 1em 1rem 0.5rem;
 }
 
 .profile-info p {
