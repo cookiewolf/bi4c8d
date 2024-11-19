@@ -10,30 +10,38 @@ commands:
 
       | :---------------- | :------: | ----: |
 
-      | 2024-11-11        |   Plowman Craven  | Lynx |
+      | 2024-11-19 |  City West Commercials  | Ransomhub |
 
-      | 2024-11-08           |  Otto Simon Ltd   | Cactus |
+      | 2024-11-18 |  Talon Solutions   | Bashe |
 
-      | 2024-11-07    |  Equator Worldwide   | Meow |
+      | 2024-11-18 |  Pindrop Hearing  | Bashe |
 
-      | 2024-11-05 |  Fylde Coast Academy Trust   | Rhysida |
+      | 2024-11-18 |  Gannons Solicitors  | Bashe |
 
-      | 2024-07-30 |  demos.fr\$37.5M\France\870GB\&lt;1% DISCLOSED   | cactus |
+      | 2024-11-18 |  Big Al's Food Solutions  | Bashe |
 
-      | 2024-07-30 |  denkaiamerica.com/\$18.1M\USA\80GB\&lt;1% DISCLOSED   | cactus |
+      | 2024-11-18 |  The Beauty Click  | Bashe |
 
-      | 2024-07-30 |  Macadam Europe  | akira |
+      | 2024-11-18 |  Modplan  | Bashe |
 
-      | 2024-07-30 |  Olschewski Davie   | akira |
+      | 2024-11-18 |  Brightway Consultants  | Bashe |
 
-      | 2024-07-30 |  Gemicar   | spacebears |
+      | 2024-11-18 |  Apex Engineering   | Bashe |
 
-      | 2024-07-30 |  welevelup.com   | ransomhub |
+      | 2024-11-18 |  AMI Global Assistance   | Bashe |
 
-      | 2024-07-30 |  udch.in.th   | ransomhub |
+      | 2024-11-18 |  SW Reclaim   | Killsecurity |
 
-      | 2024-07-30 |  http://www.chsd117.org  | blacksuit |
+      | 2024-11-18 |  Wilson Tarquin   | Killsecurity |
 
-      | 2024-07-30 |  SAGE Publishing   | akira |
+      | 2024-11-18 |  The University and College Union   | Incransom |
+
+      | 2024-11-11 |  Plowman Craven  | Lynx |
+
+      | 2024-11-08 |  Otto Simon Ltd  | Cactus |
+
+      | 2024-11-07 |  Equator Worldwide  | Meow |
+
+      | 2024-11-05 |  Fylde Coast Academy Trust  | Rhysida |
     help-text: " "
 ---
