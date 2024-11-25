@@ -10,6 +10,14 @@ commands:
 
       | :---------------- | :------: | ----: |
 
+      | 2024-11-25 |  Hadwins Volkswagen  | Incransom |
+
+      | 2024-11-24 |  Nicholsons Solicitors  | Incransom |
+
+      | 2024-11-24 |  Pastor Real Estate  | Incransom |
+
+      | 2024-11-23 |  Darlington E M S  | Incransom |
+
       | 2024-11-19 |  City West Commercials  | Ransomhub |
 
       | 2024-11-18 |  Talon Solutions   | Bashe |
