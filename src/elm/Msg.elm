@@ -12,6 +12,10 @@ type Msg
     = NoOp
     | Tick Time.Posix
     | NewRandomIntList (List Int)
+    | NewRandomInsertChar Char
+    | NewRandomInsertPosition Int
+    | MousedOverTitle
+    | MousedOffTitle
     | ToggleViewIntro
     | OnScroll { x : Float, y : Float }
     | OnGrow Float

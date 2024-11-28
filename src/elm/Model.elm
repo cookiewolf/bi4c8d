@@ -1,4 +1,4 @@
-module Model exposing (Model, TerminalState)
+module Model exposing (Model, TerminalState, TitleText)
 
 import AssocList
 import Chart.Item
@@ -11,6 +11,7 @@ import Time
 type alias Model =
     { time : Time.Posix
     , content : Data.Content
+    , titleText : TitleText
     , viewingIntro : Bool
     , tickerState : List Data.TickerState
     , breachCount : Int
@@ -21,6 +22,14 @@ type alias Model =
     , terminalState : AssocList.Dict Data.SectionId TerminalState
     , piles : Pile.Model
     , domHeight : Float
+    }
+
+
+type alias TitleText =
+    { text : String
+    , animationRunningTime : Int
+    , insertPosition : Int
+    , insertCharacter : Char
     }
 
 

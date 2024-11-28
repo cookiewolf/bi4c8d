@@ -9,6 +9,7 @@ import Copy.Text exposing (t)
 import Data
 import Html
 import Html.Attributes
+import Html.Events
 import InView
 import Model exposing (Model)
 import Msg exposing (Msg(..))
@@ -112,6 +113,7 @@ init flags =
     in
     ( { time = Time.millisToPosix 0
       , content = content
+      , titleText = titleTextInit
       , viewingIntro = True
       , tickerState = initialTickerState
       , breachCount = 0
@@ -152,6 +154,24 @@ subscriptions model =
         ]
 
 
+titleTextInit : Model.TitleText
+titleTextInit =
+    { text = "Bi4c8d"
+    , animationRunningTime = 0
+    , insertPosition = 3
+    , insertCharacter = '*'
+    }
+
+
+titleTextEnd : Model.TitleText
+titleTextEnd =
+    { text = t SiteTitle
+    , animationRunningTime = 2001
+    , insertPosition = 0
+    , insertCharacter = 'B'
+    }
+
+
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
@@ -159,8 +179,20 @@ update msg model =
             ( model, Cmd.none )
 
         Tick newTime ->
+            let
+                titleAnimationIsRunning : Bool
+                titleAnimationIsRunning =
+                    model.titleText.animationRunningTime <= 2000
+            in
             ( { model
                 | time = newTime
+                , titleText =
+                    if titleAnimationIsRunning then
+                        viewTitleAnimation model.titleText
+                            |> incrementRunningTime
+
+                    else
+                        titleTextEnd
                 , tickerState =
                     let
                         tickerSectionInView =
@@ -178,7 +210,14 @@ update msg model =
                     else
                         model.breachCount
               }
-            , Cmd.none
+            , if titleAnimationIsRunning then
+                Cmd.batch
+                    [ Random.generate NewRandomInsertChar generateRandomChar
+                    , Random.generate NewRandomInsertPosition (generateRandomInt (String.length model.titleText.text))
+                    ]
+
+              else
+                Cmd.none
             )
 
         NewRandomIntList newRandomIntList ->
@@ -186,8 +225,24 @@ update msg model =
             , Cmd.none
             )
 
+        NewRandomInsertChar randomCharacter ->
+            ( { model | titleText = setInsertChar randomCharacter model.titleText }, Cmd.none )
+
+        NewRandomInsertPosition randomInt ->
+            ( { model | titleText = setInsertPosition randomInt model.titleText }, Cmd.none )
+
         GotViewport viewport ->
             ( { model | viewportHeightWidth = Maybe.withDefault model.viewportHeightWidth (Just ( viewport.viewport.height, viewport.viewport.width )) }
+            , Cmd.none
+            )
+
+        MousedOverTitle ->
+            ( { model | titleText = titleTextInit }
+            , Cmd.none
+            )
+
+        MousedOffTitle ->
+            ( { model | titleText = titleTextEnd }
             , Cmd.none
             )
 
@@ -310,6 +365,70 @@ scrollToElement id =
         |> Task.attempt ScrollResult
 
 
+randomChars : List Char
+randomChars =
+    "&^%$/<'|*()!@:;~#"
+        |> String.toList
+
+
+generateRandomChar : Random.Generator Char
+generateRandomChar =
+    Random.int 0 (List.length randomChars)
+        |> Random.map randomIntToChar
+
+
+randomIntToChar : Int -> Char
+randomIntToChar randomInt =
+    List.drop randomInt randomChars
+        |> List.head
+        |> Maybe.withDefault '*'
+
+
+setInsertChar : Char -> Model.TitleText -> Model.TitleText
+setInsertChar randomChar titleText =
+    { titleText | insertCharacter = randomChar }
+
+
+generateRandomInt : Int -> Random.Generator Int
+generateRandomInt max =
+    Random.int 0 max
+
+
+setInsertPosition : Int -> Model.TitleText -> Model.TitleText
+setInsertPosition randomInt titleText =
+    { titleText | insertPosition = randomInt }
+
+
+incrementRunningTime : Model.TitleText -> Model.TitleText
+incrementRunningTime initialTitleText =
+    { initialTitleText | animationRunningTime = initialTitleText.animationRunningTime + 20 }
+
+
+viewTitleAnimation : Model.TitleText -> Model.TitleText
+viewTitleAnimation initialTitleText =
+    let
+        newTitleText =
+            { initialTitleText
+                | text = insertCharacter initialTitleText
+            }
+    in
+    newTitleText
+
+
+insertCharacter : Model.TitleText -> String
+insertCharacter titleText =
+    (titleText.text
+        |> String.toList
+        |> List.take titleText.insertPosition
+    )
+        ++ [ titleText.insertCharacter ]
+        ++ (titleText.text
+                |> String.toList
+                |> List.drop (titleText.insertPosition + 1)
+           )
+        |> String.fromList
+
+
 viewDocument : Model -> Browser.Document Msg
 viewDocument model =
     { title = t SiteTitle
@@ -317,7 +436,13 @@ viewDocument model =
         [ Html.div
             [ Html.Attributes.class "page-wrapper"
             ]
-            [ Html.h1 [] [ Html.text (t SiteTitle) ]
+            [ Html.h1 []
+                [ Html.span
+                    [ Html.Events.onMouseOver MousedOverTitle
+                    , Html.Events.onMouseLeave MousedOffTitle
+                    ]
+                    [ Html.text model.titleText.text ]
+                ]
             , Html.div [] (View.viewSections model)
             ]
         ]
