@@ -3,7 +3,9 @@ module Model exposing (Model, TerminalState, TitleText)
 import AssocList
 import Chart.Item
 import Data
+import Html
 import InView
+import Msg
 import Pile
 import Time
 
@@ -26,10 +28,11 @@ type alias Model =
 
 
 type alias TitleText =
-    { text : String
+    { text : List (Html.Html Msg.Msg)
     , animationRunningTime : Int
     , insertPosition : Int
     , insertCharacter : Char
+    , changeBool : Bool
     }
 
 

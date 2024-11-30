@@ -156,20 +156,27 @@ subscriptions model =
 
 titleTextInit : Model.TitleText
 titleTextInit =
-    { text = "Bi4c8d"
+    { text = titleHtmlFromString "Bi4c8d"
     , animationRunningTime = 0
     , insertPosition = 3
     , insertCharacter = '*'
+    , changeBool = False
     }
 
 
 titleTextEnd : Model.TitleText
 titleTextEnd =
-    { text = t SiteTitle
+    { text = titleHtmlFromString (t SiteTitle)
     , animationRunningTime = 2001
     , insertPosition = 0
     , insertCharacter = 'B'
+    , changeBool = False
     }
+
+
+titleHtmlFromString : String -> List (Html.Html Msg)
+titleHtmlFromString aString =
+    List.map (\char -> Html.text (String.fromChar char)) (String.toList aString)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -213,7 +220,8 @@ update msg model =
             , if titleAnimationIsRunning then
                 Cmd.batch
                     [ Random.generate NewRandomInsertChar generateRandomChar
-                    , Random.generate NewRandomInsertPosition (generateRandomInt (String.length model.titleText.text))
+                    , Random.generate NewRandomInsertPosition (generateRandomInt (List.length model.titleText.text))
+                    , Random.generate NewWeightedFalse generateWeightedFalseBool
                     ]
 
               else
@@ -230,6 +238,9 @@ update msg model =
 
         NewRandomInsertPosition randomInt ->
             ( { model | titleText = setInsertPosition randomInt model.titleText }, Cmd.none )
+
+        NewWeightedFalse weightedFalseBool ->
+            ( { model | titleText = setChangeBool weightedFalseBool model.titleText }, Cmd.none )
 
         GotViewport viewport ->
             ( { model | viewportHeightWidth = Maybe.withDefault model.viewportHeightWidth (Just ( viewport.viewport.height, viewport.viewport.width )) }
@@ -394,9 +405,19 @@ generateRandomInt max =
     Random.int 0 max
 
 
+generateWeightedFalseBool : Random.Generator Bool
+generateWeightedFalseBool =
+    Random.weighted ( 70, False ) [ ( 30, True ) ]
+
+
 setInsertPosition : Int -> Model.TitleText -> Model.TitleText
 setInsertPosition randomInt titleText =
     { titleText | insertPosition = randomInt }
+
+
+setChangeBool : Bool -> Model.TitleText -> Model.TitleText
+setChangeBool weightedBool titleText =
+    { titleText | changeBool = weightedBool }
 
 
 incrementRunningTime : Model.TitleText -> Model.TitleText
@@ -415,18 +436,21 @@ viewTitleAnimation initialTitleText =
     newTitleText
 
 
-insertCharacter : Model.TitleText -> String
+insertCharacter : Model.TitleText -> List (Html.Html Msg)
 insertCharacter titleText =
-    (titleText.text
-        |> String.toList
+    (titleTextEnd.text
         |> List.take titleText.insertPosition
     )
-        ++ [ titleText.insertCharacter ]
-        ++ (titleText.text
-                |> String.toList
-                |> List.drop (titleText.insertPosition + 1)
+        ++ (if titleText.changeBool then
+                [ Html.span [ Html.Attributes.class "dud-char" ] [ Html.text (String.fromChar titleText.insertCharacter) ] ]
+                    ++ (titleText.text
+                            |> List.drop (titleText.insertPosition + 1)
+                       )
+
+            else
+                titleText.text
+                    |> List.drop titleText.insertPosition
            )
-        |> String.fromList
 
 
 viewDocument : Model -> Browser.Document Msg
@@ -441,7 +465,7 @@ viewDocument model =
                     [ Html.Events.onMouseOver MousedOverTitle
                     , Html.Events.onMouseLeave MousedOffTitle
                     ]
-                    [ Html.text model.titleText.text ]
+                    model.titleText.text
                 ]
             , Html.div [] (View.viewSections model)
             ]

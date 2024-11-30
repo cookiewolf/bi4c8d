@@ -1,5 +1,6 @@
 :root {
   --black: #000000;
+  --black-light: #4d4d4d;
   --white: #ffffff;
   --grey-light: #d9d9d9;
   --grey-dark: #a9a4a4;
@@ -24,7 +25,13 @@ h1 {
     "Arial Nova", "Nimbus Sans", Arial, sans-serif;
   background-color: var(--white);
   color: var(--black);
+  font-weight: bold;
   padding: 2rem 0 0 0;
+}
+
+h1 .dud-char {
+  color: var(--black-light);
+  font-weight: normal;
 }
 
 p {

@@ -14,6 +14,7 @@ type Msg
     | NewRandomIntList (List Int)
     | NewRandomInsertChar Char
     | NewRandomInsertPosition Int
+    | NewWeightedFalse Bool
     | MousedOverTitle
     | MousedOffTitle
     | ToggleViewIntro
