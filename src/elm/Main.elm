@@ -378,7 +378,7 @@ scrollToElement id =
 
 randomChars : List Char
 randomChars =
-    "&^%$/<'|*()!@:;~#"
+    "!<>-_\\/[]{}—=+*^?#________"
         |> String.toList
 
 
