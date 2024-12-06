@@ -4,6 +4,8 @@ import "../css/style.css";
 import "@fontsource/inter";
 import "@fontsource/source-code-pro";
 
+import TitleAnimation from "../js/scramble";
+
 import { Elm } from "../elm/Main.elm";
 
 import context from "../../data/context.json";
@@ -60,6 +62,20 @@ customElements.define("hyvor-talk-comments-wrapper", class extends HTMLElement {
   }
 });
 
+
+const phrases = ['Bi4c8d', 'Bifurcated', 'Bi4c8d', 'Bifurcated']
+const el = document.querySelector('.title-text')
+const fx = new TitleAnimation(el)
+
+let counter = 0
+const next = () => {
+  fx.setText(phrases[counter]).then(() => {
+    setTimeout(next, 1000)
+  })
+  counter = (counter + 1) % phrases.length
+}
+
+next()
 
 window.addEventListener("scroll", () => {
   app.ports.onScroll.send({ x: window.scrollX, y: window.scrollY });
