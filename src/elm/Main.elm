@@ -317,7 +317,15 @@ viewDocument model =
         [ Html.div
             [ Html.Attributes.class "page-wrapper"
             ]
-            [ Html.h1 [ Html.Attributes.class "title-text" ] [ Html.text (t SiteTitle) ]
+            [ Html.h1
+                [ Html.Attributes.class "title-text"
+                , if model.viewingIntro then
+                    Html.Attributes.class "light"
+
+                  else
+                    Html.Attributes.class "dark"
+                ]
+                [ Html.text (t SiteTitle) ]
             , Html.div [] (View.viewSections model)
             ]
         ]
