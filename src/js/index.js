@@ -68,9 +68,14 @@ const el = document.querySelector('.title-text')
 const fx = new TitleAnimation(el)
 
 let counter = 0
+let cycles = 0
+
 const next = () => {
   fx.setText(phrases[counter]).then(() => {
-    setTimeout(next, 1000)
+    if (cycles < 5) {
+      setTimeout(next, 1000)
+      cycles++
+    }
   })
   counter = (counter + 1) % phrases.length
 }
