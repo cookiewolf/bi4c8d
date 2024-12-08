@@ -317,7 +317,7 @@ viewDocument model =
         [ Html.div
             [ Html.Attributes.class "page-wrapper"
             ]
-            [ Html.h1 [] [ Html.text (t SiteTitle) ]
+            [ Html.h1 [ Html.Attributes.class "title-text" ] [ Html.text (t SiteTitle) ]
             , Html.div [] (View.viewSections model)
             ]
         ]
