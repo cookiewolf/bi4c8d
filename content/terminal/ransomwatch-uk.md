@@ -11,6 +11,18 @@ commands:
       | :---------------- | :------: | ----: |
 
 
+      | 2024-12-14 |  Midland Turbo  | Eldorado |
+
+      | 2024-12-13 |  Anetic Aid  | Kairos |
+
+      | 2024-12-09 |  hosting.co.uk  | Lynx |
+
+      | 2024-12-04 |  Deloitte UK | Braincipher |
+
+      | 2024-12-04 |  BT | Blackbasta |
+
+      | 2024-12-04 |  Lorne Stewart | Braincipher |
+
       | 2024-11-28 |  Alder Hey Children's NHS Trust  | Incransom |
 
       | 2024-11-25 |  Hadwins Volkswagen  | Incransom |
