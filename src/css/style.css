@@ -825,7 +825,7 @@ h2.final-ticker {
 
 .post-avatar-draggable {
   grid-area: avatar;
-  
+  width:50px;
 }
 
 .post-forwarded-from-draggable {
