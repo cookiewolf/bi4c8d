@@ -90,7 +90,7 @@ datapoints:
       count5: 12650
       count6: 6568
       count7: 1354
-  - date: 2021-07-27T00:00:00Z
+  - date: 2021-07-27T00:00:00.000Z
     data:
       count1: 8093
       count2: 6686
@@ -100,7 +100,7 @@ datapoints:
       count6: 6729
       tooltip7: ""
       count7: 1566
-  - date: 2021-07-31T00:00:00Z
+  - date: 2021-07-31T00:00:00.000Z
     data:
       count1: 8838
       count2: 6934
