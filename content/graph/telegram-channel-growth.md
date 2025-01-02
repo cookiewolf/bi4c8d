@@ -90,23 +90,23 @@ datapoints:
       count5: 12650
       count6: 6568
       count7: 1354
-  - date: 2021-07-30T00:00:00Z
-    data:
-      count1: 8838
-      count2: 6936
-      count3: 18781
-      count4: 20342
-      count5: 13238
-      count6: 7171
-      tooltip7: ""
-      count7: 1677
   - date: 2021-07-27T00:00:00Z
     data:
       count1: 8093
-      count2: 6689
-      count3: 18511
-      count4: 18954
-      count5: 12848
-      count6: 6730
-      count7: 1568
+      count2: 6686
+      count3: 18509
+      count4: 18591
+      count5: 12846
+      count6: 6729
+      tooltip7: ""
+      count7: 1566
+  - date: 2021-07-27T00:00:00.000Z
+    data:
+      count1: 8838
+      count2: 6934
+      count3: 18781
+      count4: 20340
+      count5: 13237
+      count6: 7168
+      count7: 1677
 ---
