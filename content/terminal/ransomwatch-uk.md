@@ -11,6 +11,8 @@ commands:
       | :---------------- | :------: | ----: |
 
 
+      | 2024-12-17 |  Nuneaton & Bedworth Leisure Trust  | Ransomhub |
+
       | 2024-12-14 |  Midland Turbo  | Eldorado |
 
       | 2024-12-13 |  Anetic Aid  | Kairos |
