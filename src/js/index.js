@@ -5,6 +5,7 @@ import "@fontsource/inter";
 import "@fontsource/source-code-pro";
 
 import TitleAnimation from "../js/scramble";
+import Spotlight from "../js/spotlight";
 
 import { Elm } from "../elm/Main.elm";
 
@@ -62,6 +63,7 @@ customElements.define("hyvor-talk-comments-wrapper", class extends HTMLElement {
   }
 });
 
+new Spotlight({toggleEl: '#light-switch'});
 
 const phrases = ['Bi4c8d', 'Bifurcated', 'Bi4c8d', 'Bifurcated']
 const el = document.querySelector('.title-text')

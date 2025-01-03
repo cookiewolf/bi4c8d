@@ -69,6 +69,7 @@ a:focus {
 
 #introduction {
   background-color: var(--white);
+  background-image: url(/images/introduction-background.png);
   padding-top: 0;
 }
 
@@ -88,6 +89,29 @@ a:focus {
   cursor: pointer;
   padding: 1rem 2rem;
   text-decoration: none;
+}
+
+#spotlight {
+  height: 100vh;
+  left: 0;
+  opacity: 1;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+
+#light-switch {
+  background-color: var(--black);
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  margin-top: 1rem;
+  padding: 0.5rem;
+}
+
+#light-switch:hover {
+  background-color: var(--grey-dark);
 }
 
 #ulterior-motives,

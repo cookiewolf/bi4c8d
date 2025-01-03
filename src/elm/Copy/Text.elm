@@ -14,6 +14,9 @@ t key =
         SiteTitle ->
             "Bifurcated"
 
+        SpotlightSwitchButtonText ->
+            "Toggle illumination"
+
         ViewContentLinkText ->
             "Explore content"
 
