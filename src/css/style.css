@@ -23,8 +23,10 @@ h1 {
   font-family: "TT Firs Neue Var Roman", Inter, Roboto, "Helvetica Neue",
     "Arial Nova", "Nimbus Sans", Arial, sans-serif;
   background-color: var(--white);
-  color: var(--black);
+  color: var(--white);
   padding: 2rem 0 0 0;
+  z-index:9999;
+  position: relative;
 }
 
 h1.dark {
@@ -70,11 +72,15 @@ a:focus {
 #introduction {
   background-color: var(--white);
   background-image: url(/images/introduction-background.png);
+  background-repeat:no-repeat;
+  background-size: cover;
   padding-top: 0;
+  color: var(--white);
+  
 }
 
 #introduction .introduction {
-  color: var(--black);
+  color: var(--white);
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   padding: 4.5rem 1rem;
@@ -89,6 +95,9 @@ a:focus {
   cursor: pointer;
   padding: 1rem 2rem;
   text-decoration: none;
+  z-index:9999;
+  position:relative;
+  border: 1px solid var(--grey-dark)
 }
 
 #spotlight {
@@ -273,11 +282,14 @@ a:focus {
 .main-texts {
   margin: 0 auto;
   max-width: var(--max-section-width);
+  z-index:9999;
+  position:relative;
 }
 
 .main-text {
   padding: 30px 30px 20px 30px;
   text-align: left;
+  
 }
 
 @media (max-width: 800px) {
@@ -294,6 +306,8 @@ a:focus {
   text-align: center;
   font-size: 1.375rem;
   padding: 0 0 20px 0;
+  z-index:9999;
+  position:relative;
 }
 
 .main-text-body {
@@ -651,12 +665,18 @@ a:focus {
 }
 
 .profile-info {
-  background-color: var(--grey-dark);
+  background-color: var(--black);
   font-size: 0.75rem;
   height: 100%;
   margin-left: -70px;
   margin-top: 200px;
   padding: 1rem 1em 1rem 0.5rem;
+  line-height:1.4rem;
+  text-align: left;
+  opacity: 100%!important;
+  z-index:9999;
+  border: 1px solid var(--grey-dark);
+  font-weight:100;
 }
 
 .profile-info p {

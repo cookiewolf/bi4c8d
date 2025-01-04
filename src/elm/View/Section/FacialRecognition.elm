@@ -92,10 +92,12 @@ viewImage delay state fadeImage =
                 (String.fromFloat (fadeImage.scale - 0.25))
             , Html.Attributes.style "transition" (infoTransition fadeImage.isBlank delay)
             ]
-            [ Html.p [] [ Html.text "_________ Name" ]
-            , Html.p [] [ Html.text "_________ Job Title" ]
-            , Html.p [] [ Html.text "_________ City of Residence" ]
-            , Html.p [] [ Html.text "_________ Place of Work" ]
+            [ Html.p [] [ Html.text "Extracted Information" ]
+            , Html.p [] [ Html.text "Name: █████ ███████" ]
+            , Html.p [] [ Html.text "Job Title: █████ █████████" ]
+            , Html.p [] [ Html.text "City of Residence: ██████" ]
+            , Html.p [] [ Html.text "Place of Work: ██████" ]
+            , Html.p [] [ Html.text "Email: ██████@██████.com" ]
             ]
         ]
 
