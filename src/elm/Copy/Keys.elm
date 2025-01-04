@@ -4,6 +4,7 @@ module Copy.Keys exposing (Key(..))
 type Key
     = SiteTitle
       -- Intro
+    | SpotlightSwitchButtonText
     | ViewContentLinkText
     | ViewIntroLinkText
       -- Context

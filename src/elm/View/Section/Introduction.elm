@@ -16,7 +16,9 @@ import View.Posts
 
 view : Model -> List (Html.Html Msg)
 view model =
-    [ View.MainText.viewTop Data.Introduction model.content.mainText
+    [ Html.div [ Html.Attributes.id "spotlight" ] []
+    , Html.button [ Html.Attributes.id "light-switch" ] [ Html.text (t SpotlightSwitchButtonText) ]
+    , View.MainText.viewTop Data.Introduction model.content.mainText
     , Html.a
         [ Html.Events.onClick ToggleViewIntro
         ]
