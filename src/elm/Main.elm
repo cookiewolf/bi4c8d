@@ -320,7 +320,7 @@ viewDocument model =
             [ Html.h1
                 [ Html.Attributes.class "title-text"
                 , if model.viewingIntro then
-                    Html.Attributes.class "light"
+                    Html.Attributes.class "dark"
 
                   else
                     Html.Attributes.class "dark"
