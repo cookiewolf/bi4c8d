@@ -236,7 +236,12 @@ viewYLabel section yValueString =
             yValueString ++ "%"
 
         Data.Telegram ->
-            yValueString
+            if String.endsWith "000" yValueString then
+                String.dropRight 3 yValueString
+                    ++ ",000"
+
+            else
+                yValueString
 
         Data.PublicOrderSafety ->
             "£" ++ yValueString ++ " mil"
