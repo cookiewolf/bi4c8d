@@ -17,11 +17,14 @@ t key =
         SpotlightSwitchButtonText ->
             "Toggle illumination"
 
-        ViewContentLinkText ->
+        ViewContentButtonText ->
             "Explore content"
 
-        ViewIntroLinkText ->
+        ViewIntroButtonText ->
             "View intro"
+
+        ViewProjectInfoButtonText ->
+            "Project info"
 
         ContextLabel ->
             "Context"

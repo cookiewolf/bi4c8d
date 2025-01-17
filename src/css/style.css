@@ -90,14 +90,19 @@ a:focus {
   background: none;
 }
 
-#introduction a {
+#introduction button {
   background-color: var(--black);
+  color: var(--white);
   cursor: pointer;
   padding: 1rem 2rem;
   text-decoration: none;
   z-index:9999;
   position:relative;
   border: 1px solid var(--grey-dark)
+}
+
+#introduction button:hover {
+  color: var(--grey-light);
 }
 
 #spotlight {
@@ -181,15 +186,20 @@ a:focus {
   justify-content: end;
 }
 
-.context-header a {
+.context-header button {
+  background: none;
+  border: none;
   color: var(--black);
   cursor: pointer;
   font-size: 0.75rem;
-  padding: 1rem 0;
   text-decoration: underline;
 }
 
-.context-header a,
+.context-header button:hover {
+  color: var(--grey-dark);
+}
+
+.context-header button,
 .context-section-title {
   font-family: "TT Firs Neue Var Roman", Inter, Roboto, "Helvetica Neue",
     "Arial Nova", "Nimbus Sans", Arial, sans-serif;
@@ -197,14 +207,27 @@ a:focus {
   text-align: right;
 }
 
+.context-header button,
 .context-section-title {
   font-size: 0.875rem;
-  padding: 1rem 1.5rem;
+  padding: 1rem 1.2rem;
+}
+
+.project-info-summary {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  font-size: 0.875rem;
+  justify-content: space-between;
+  min-width: 150px;
+  padding: 1rem;
+  position: relative;
 }
 
 .context-summary {
   align-items: center;
   border-inline: 2px solid;
+  cursor: pointer;
   display: flex;
   font-size: 1.25rem;
   font-weight: bold;
@@ -212,18 +235,31 @@ a:focus {
   position: relative;
 }
 
+.project-info-summary::marker,
 .context-summary::marker {
   content: none;
 }
 
+.project-info-summary::after{
+  background-image: url(/images/chevron-up-dark.svg);
+}
+
 .context-summary::after {
   background-image: url(/images/chevron-up.svg);
+}
+
+.project-info-summary::after,
+.context-summary::after {
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100%;
   content: "";
   height: 1em;
   width: 1em;
+}
+
+[open] .project-info-summary::after {
+  background-image: url(/images/chevron-down-dark.svg);
 }
 
 [open] .context-summary::after {

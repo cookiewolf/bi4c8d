@@ -5,8 +5,9 @@ type Key
     = SiteTitle
       -- Intro
     | SpotlightSwitchButtonText
-    | ViewContentLinkText
-    | ViewIntroLinkText
+    | ViewContentButtonText
+    | ViewIntroButtonText
+    | ViewProjectInfoButtonText
       -- Context
     | ContextLabel
     | ContextNewSectionMessage

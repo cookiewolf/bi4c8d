@@ -72,14 +72,7 @@ sectionIdStringFromSection sectionId =
 viewContextSectionHeader : Data.SectionId -> Html.Html Msg
 viewContextSectionHeader sectionId =
     Html.div [ Html.Attributes.class "context-header" ]
-        [ Html.a [ Html.Events.onClick ToggleViewIntro ]
-            [ if sectionId == Data.Introduction then
-                Html.text (t ViewContentLinkText)
-
-              else
-                Html.text (t ViewIntroLinkText)
-            ]
-        , Html.h2
+        [ Html.h2
             [ Html.Attributes.class "context-section-title"
             , Html.Attributes.attribute "aria-live" "polite"
             ]
@@ -88,6 +81,17 @@ viewContextSectionHeader sectionId =
                 ]
                 [ Html.text (t ContextNewSectionMessage) ]
             , Html.text ("Section " ++ String.fromInt (Data.sectionIdToInt sectionId) ++ " of 18")
+            ]
+        , Html.button [ Html.Events.onClick ToggleViewIntro ]
+            [ if sectionId == Data.Introduction then
+                Html.text (t ViewContentButtonText)
+
+              else
+                Html.text (t ViewIntroButtonText)
+            ]
+        , Html.details []
+            [ Html.summary [ Html.Attributes.class "project-info-summary" ] [ Html.text (t ViewProjectInfoButtonText) ]
+            , Html.p [] [ Html.text "project info markdown" ]
             ]
         ]
 

@@ -19,8 +19,8 @@ view model =
     [ Html.div [ Html.Attributes.id "spotlight" ] []
     , Html.button [ Html.Attributes.id "light-switch" ] [ Html.text (t SpotlightSwitchButtonText) ]
     , View.MainText.viewTop Data.Introduction model.content.mainText
-    , Html.a
+    , Html.button
         [ Html.Events.onClick ToggleViewIntro
         ]
-        [ Html.text (t ViewContentLinkText) ]
+        [ Html.text (t ViewContentButtonText) ]
     ]
