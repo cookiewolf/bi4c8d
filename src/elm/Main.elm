@@ -109,10 +109,18 @@ init flags =
         section16draggableContent : ( ( Data.SectionId, Int ), List Pile.Data )
         section16draggableContent =
             ( ( Data.HackneySocial, 1 ), content.posts |> Data.filterBySection Data.HackneySocial |> List.map Pile.Post )
+
+        viewingIntro : Bool
+        viewingIntro =
+            if Data.urlContainsHash content.url then
+                False
+
+            else
+                True
     in
     ( { time = Time.millisToPosix 0
       , content = content
-      , viewingIntro = True
+      , viewingIntro = viewingIntro
       , tickerState = initialTickerState
       , breachCount = 0
       , domHeight = 0.0
