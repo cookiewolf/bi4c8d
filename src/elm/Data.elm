@@ -1,4 +1,4 @@
-module Data exposing (Command, Content, Context, Flags, Graph, Image, LineChartDatum, MainText, Message, Post, SectionId(..), Terminal, TickerState, YPoint, decodedContent, defaultCommand, filterBySection, initialTickerState, lineChartData, sectionIdToInt, sectionIdToString, sideToString, trackableIdFromItem, trackableIdListFromFlags, updateTickerState)
+module Data exposing (Command, Content, Context, Flags, Graph, Image, LineChartDatum, MainText, Message, Post, SectionId(..), Terminal, TickerState, YPoint, decodedContent, defaultCommand, filterBySection, initialTickerState, lineChartData, sectionIdToInt, sectionIdToString, sideToString, trackableIdFromItem, trackableIdListFromFlags, updateTickerState, urlContainsHash)
 
 import Dict
 import Iso8601
@@ -7,7 +7,8 @@ import Time
 
 
 type alias Content =
-    { context : List Context
+    { url : String
+    , context : List Context
     , mainText : List MainText
     , posts : List Post
     , messages : List Message
@@ -164,7 +165,8 @@ decodedContent flags =
             }
 
         Err error ->
-            { context = []
+            { url = ""
+            , context = []
             , mainText = []
             , posts = []
             , messages = []
@@ -197,16 +199,16 @@ orderByDisplayPosition items =
 
 flagsDecoder : Json.Decode.Decoder Content
 flagsDecoder =
-    Json.Decode.map8
-        Content
-        (Json.Decode.field "context" contextDictDecoder)
-        (Json.Decode.field "main-text" mainTextDictDecoder)
-        (Json.Decode.field "posts" postDictDecoder)
-        (Json.Decode.field "messages" messageDictDecoder)
-        (Json.Decode.field "images" imageDictDecoder)
-        (Json.Decode.field "graphs" graphDictDecoder)
-        (Json.Decode.field "terminals" terminalDictDecoder)
-        (Json.Decode.field "tickers" tickerDictDecoder)
+    Json.Decode.succeed Content
+        |> andMap (Json.Decode.field "url" Json.Decode.string)
+        |> andMap (Json.Decode.field "context" contextDictDecoder)
+        |> andMap (Json.Decode.field "main-text" mainTextDictDecoder)
+        |> andMap (Json.Decode.field "posts" postDictDecoder)
+        |> andMap (Json.Decode.field "messages" messageDictDecoder)
+        |> andMap (Json.Decode.field "images" imageDictDecoder)
+        |> andMap (Json.Decode.field "graphs" graphDictDecoder)
+        |> andMap (Json.Decode.field "terminals" terminalDictDecoder)
+        |> andMap (Json.Decode.field "tickers" tickerDictDecoder)
 
 
 contextDictDecoder : Json.Decode.Decoder (List Context)
@@ -443,6 +445,15 @@ andMap :
     -> Json.Decode.Decoder b
 andMap =
     Json.Decode.map2 (|>)
+
+
+urlContainsHash : String -> Bool
+urlContainsHash url =
+    if List.length (String.split "#" url) > 1 then
+        True
+
+    else
+        False
 
 
 posixFromStringDecoder : String -> Json.Decode.Decoder Time.Posix

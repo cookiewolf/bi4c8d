@@ -30,6 +30,7 @@ const root = document.querySelector("#app div");
 const app = Elm.Main.init({
   node: root,
   flags: {
+    url: window.location.href,
     context: context,
     "main-text": mainText,
     posts: posts,
