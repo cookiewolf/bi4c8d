@@ -110,19 +110,6 @@ a:focus {
   width: 100vw;
 }
 
-#light-switch {
-  background-color: var(--black);
-  border: none;
-  color: var(--white);
-  cursor: pointer;
-  margin-top: 1rem;
-  padding: 0.5rem;
-}
-
-#light-switch:hover {
-  background-color: var(--grey-dark);
-}
-
 #ulterior-motives,
 #public-order-safety .graph-container,
 #panic-lit,

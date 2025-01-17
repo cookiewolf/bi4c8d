@@ -16,11 +16,23 @@ import View.Posts
 
 view : Model -> List (Html.Html Msg)
 view model =
-    [ Html.div [ Html.Attributes.id "spotlight" ] []
-    , Html.button [ Html.Attributes.id "light-switch" ] [ Html.text (t SpotlightSwitchButtonText) ]
+    [ if mightBeMobileTablet model.viewportHeightWidth then
+        Html.text ""
+
+      else
+        Html.div [ Html.Attributes.id "spotlight" ] []
     , View.MainText.viewTop Data.Introduction model.content.mainText
     , Html.a
         [ Html.Events.onClick ToggleViewIntro
         ]
         [ Html.text (t ViewContentLinkText) ]
     ]
+
+
+mightBeMobileTablet : ( Float, Float ) -> Bool
+mightBeMobileTablet ( _, width ) =
+    if width > 1024 then
+        False
+
+    else
+        True
