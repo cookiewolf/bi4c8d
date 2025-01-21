@@ -63,6 +63,7 @@ customElements.define("hyvor-talk-comments-wrapper", class extends HTMLElement {
   }
 });
 
+new Spotlight({});
 
 const phrases = ['Bi4c8d', 'Bifurcated', 'Bi4c8d', 'Bifurcated']
 const el = document.querySelector('.title-text')
@@ -89,9 +90,6 @@ window.addEventListener("scroll", () => {
 
 const sizeObserver = new ResizeObserver((entries) => {
   app.ports.onGrow.send(entries[0].borderBoxSize[0].blockSize);
-  if (document.querySelector("#spotlight")) {
-    new Spotlight({});
-  }
 });
 
 sizeObserver.observe(document.body);
