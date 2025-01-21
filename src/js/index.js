@@ -64,7 +64,7 @@ customElements.define("hyvor-talk-comments-wrapper", class extends HTMLElement {
   }
 });
 
-new Spotlight({toggleEl: '#light-switch'});
+new Spotlight({});
 
 const phrases = ['Bi4c8d', 'Bifurcated', 'Bi4c8d', 'Bifurcated']
 const el = document.querySelector('.title-text')
