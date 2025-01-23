@@ -72,14 +72,7 @@ sectionIdStringFromSection sectionId =
 viewContextSectionHeader : Data.SectionId -> Html.Html Msg
 viewContextSectionHeader sectionId =
     Html.div [ Html.Attributes.class "context-header" ]
-        [ Html.a [ Html.Events.onClick ToggleViewIntro ]
-            [ if sectionId == Data.Introduction then
-                Html.text (t ViewContentLinkText)
-
-              else
-                Html.text (t ViewIntroLinkText)
-            ]
-        , Html.h2
+        [ Html.h2
             [ Html.Attributes.class "context-section-title"
             , Html.Attributes.attribute "aria-live" "polite"
             ]

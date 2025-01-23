@@ -3,7 +3,7 @@ module View exposing (viewSections)
 import Data
 import Html
 import Html.Attributes
-import Model exposing (Model)
+import Model exposing (MenuItem(..), Model)
 import Msg exposing (Msg)
 import View.Context
 import View.Section.DataLoss
@@ -17,6 +17,7 @@ import View.Section.IncompetencePostsAndPapers
 import View.Section.Introduction
 import View.Section.Outro
 import View.Section.PanicLit
+import View.Section.ProjectInfo
 import View.Section.PublicOrderSafety
 import View.Section.PublicTrust
 import View.Section.RansomwareTerminal
@@ -28,28 +29,32 @@ import View.Section.UlteriorMotives
 
 sectionViews : Model -> List ( Data.SectionId, List (Html.Html Msg) )
 sectionViews model =
-    if model.viewingIntro then
-        [ ( Data.Introduction, View.Section.Introduction.view model ) ]
+    case model.currentView of
+        Intro ->
+            [ ( Data.Introduction, View.Section.Introduction.view model ) ]
 
-    else
-        [ ( Data.SocialMediaPosts, View.Section.SocialMediaPosts.view model )
-        , ( Data.PublicTrust, View.Section.PublicTrust.view model )
-        , ( Data.Telegram, View.Section.Telegram.view model )
-        , ( Data.UlteriorMotives, View.Section.UlteriorMotives.view model )
-        , ( Data.PanicLit, View.Section.PanicLit.view model )
-        , ( Data.PublicOrderSafety, View.Section.PublicOrderSafety.view model )
-        , ( Data.DisproportionateEssayEnd, View.Section.DisproportionateEssayEnd.view model )
-        , ( Data.FacialRecognition, View.Section.FacialRecognition.view model )
-        , ( Data.IncompetenceIntro, View.Section.IncompetenceIntro.view model )
-        , ( Data.IncompetencePostsAndPapers, View.Section.IncompetencePostsAndPapers.view model )
-        , ( Data.HmrcTerminal, View.Section.HmrcTerminal.view model )
-        , ( Data.DataLoss, View.Section.DataLoss.view model )
-        , ( Data.RansomwareTerminal, View.Section.RansomwareTerminal.view model )
-        , ( Data.HumanCost, View.Section.HumanCost.view model )
-        , ( Data.RoyalMailNegotiation, View.Section.RoyalMailNegotiation.view model )
-        , ( Data.HackneySocial, View.Section.HackneySocial.view model )
-        , ( Data.Outro, View.Section.Outro.view model )
-        ]
+        Content ->
+            [ ( Data.SocialMediaPosts, View.Section.SocialMediaPosts.view model )
+            , ( Data.PublicTrust, View.Section.PublicTrust.view model )
+            , ( Data.Telegram, View.Section.Telegram.view model )
+            , ( Data.UlteriorMotives, View.Section.UlteriorMotives.view model )
+            , ( Data.PanicLit, View.Section.PanicLit.view model )
+            , ( Data.PublicOrderSafety, View.Section.PublicOrderSafety.view model )
+            , ( Data.DisproportionateEssayEnd, View.Section.DisproportionateEssayEnd.view model )
+            , ( Data.FacialRecognition, View.Section.FacialRecognition.view model )
+            , ( Data.IncompetenceIntro, View.Section.IncompetenceIntro.view model )
+            , ( Data.IncompetencePostsAndPapers, View.Section.IncompetencePostsAndPapers.view model )
+            , ( Data.HmrcTerminal, View.Section.HmrcTerminal.view model )
+            , ( Data.DataLoss, View.Section.DataLoss.view model )
+            , ( Data.RansomwareTerminal, View.Section.RansomwareTerminal.view model )
+            , ( Data.HumanCost, View.Section.HumanCost.view model )
+            , ( Data.RoyalMailNegotiation, View.Section.RoyalMailNegotiation.view model )
+            , ( Data.HackneySocial, View.Section.HackneySocial.view model )
+            , ( Data.Outro, View.Section.Outro.view model )
+            ]
+
+        ProjectInfo ->
+            [ ( Data.ProjectInfo, View.Section.ProjectInfo.view model ) ]
 
 
 viewSections : Model -> List (Html.Html Msg)

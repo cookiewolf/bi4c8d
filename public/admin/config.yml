@@ -27,7 +27,7 @@ collections:
     folder: "content/main-text"
     create: true
     fields:
-      - { label: "Section", name: "section", widget: "select", options: ["introduction", "ulterior-motives", "public-order-safety", "dispropotionate-essay-end", "incompetence-intro", "incompetence-posts-and-papers", "human-cost", "outro"] }
+      - { label: "Section", name: "section", widget: "select", options: ["introduction", "ulterior-motives", "public-order-safety", "dispropotionate-essay-end", "incompetence-intro", "incompetence-posts-and-papers", "human-cost", "outro", "project-info"] }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
 
