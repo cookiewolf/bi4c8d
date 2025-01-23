@@ -151,6 +151,7 @@ type SectionId
     | RoyalMailNegotiation
     | HackneySocial
     | Outro
+    | ProjectInfo
 
 
 decodedContent : Json.Decode.Value -> Content
@@ -538,6 +539,9 @@ sectionIdFromString sectionString =
         "outro" ->
             Json.Decode.succeed Outro
 
+        "project-info" ->
+            Json.Decode.succeed ProjectInfo
+
         _ ->
             Json.Decode.succeed SectionInvalid
 
@@ -599,6 +603,9 @@ sectionIdToString sectionId =
         Outro ->
             "outro"
 
+        ProjectInfo ->
+            "project-info"
+
         SectionInvalid ->
             "section-invalid"
 
@@ -659,6 +666,9 @@ sectionIdToInt sectionId =
 
         Outro ->
             18
+
+        ProjectInfo ->
+            19
 
         SectionInvalid ->
             0

@@ -1,4 +1,4 @@
-module Model exposing (Model, TerminalState)
+module Model exposing (MenuItem(..), Model, TerminalState)
 
 import AssocList
 import Chart.Item
@@ -11,7 +11,7 @@ import Time
 type alias Model =
     { time : Time.Posix
     , content : Data.Content
-    , viewingIntro : Bool
+    , currentView : MenuItem
     , tickerState : List Data.TickerState
     , breachCount : Int
     , randomIntList : List Int
@@ -22,6 +22,12 @@ type alias Model =
     , piles : Pile.Model
     , domHeight : Float
     }
+
+
+type MenuItem
+    = Intro
+    | Content
+    | ProjectInfo
 
 
 type alias TerminalState =

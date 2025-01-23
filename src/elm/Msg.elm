@@ -4,6 +4,7 @@ import Browser.Dom
 import Chart.Item
 import Data
 import InView
+import Model exposing (MenuItem)
 import Pile
 import Time
 
@@ -12,7 +13,7 @@ type Msg
     = NoOp
     | Tick Time.Posix
     | NewRandomIntList (List Int)
-    | ToggleViewIntro
+    | ToggleView MenuItem
     | OnScroll { x : Float, y : Float }
     | OnGrow Float
     | OnResize ( Float, Float )

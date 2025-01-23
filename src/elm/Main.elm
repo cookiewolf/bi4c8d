@@ -9,8 +9,9 @@ import Copy.Text exposing (t)
 import Data
 import Html
 import Html.Attributes
+import Html.Events
 import InView
-import Model exposing (Model)
+import Model exposing (MenuItem(..), Model)
 import Msg exposing (Msg(..))
 import Pile
 import Random
@@ -110,17 +111,17 @@ init flags =
         section16draggableContent =
             ( ( Data.HackneySocial, 1 ), content.posts |> Data.filterBySection Data.HackneySocial |> List.map Pile.Post )
 
-        viewingIntro : Bool
-        viewingIntro =
+        landingView : MenuItem
+        landingView =
             if Data.urlContainsHash content.url then
-                False
+                Content
 
             else
-                True
+                Intro
     in
     ( { time = Time.millisToPosix 0
       , content = content
-      , viewingIntro = viewingIntro
+      , currentView = landingView
       , tickerState = initialTickerState
       , breachCount = 0
       , domHeight = 0.0
@@ -199,9 +200,9 @@ update msg model =
             , Cmd.none
             )
 
-        ToggleViewIntro ->
+        ToggleView menuItem ->
             ( { model
-                | viewingIntro = not model.viewingIntro
+                | currentView = menuItem
               }
             , Task.perform (always NoOp) (Browser.Dom.setViewport 0 0)
             )
@@ -322,22 +323,50 @@ viewDocument : Model -> Browser.Document Msg
 viewDocument model =
     { title = t SiteTitle
     , body =
-        [ Html.div
-            [ Html.Attributes.class "page-wrapper"
-            ]
-            [ Html.h1
-                [ Html.Attributes.class "title-text"
-                , if model.viewingIntro then
-                    Html.Attributes.class "dark"
-
-                  else
-                    Html.Attributes.class "dark"
+        [ Html.div [ Html.Attributes.class "page-wrapper" ]
+            [ Html.header []
+                [ Html.h1
+                    [ Html.Attributes.class "title-text"
+                    , Html.Attributes.class "dark"
+                    ]
+                    [ Html.text (t SiteTitle) ]
+                , Html.nav []
+                    [ Html.ul []
+                        (List.map
+                            (\( view, viewTitleKey ) ->
+                                viewMenuLi model view viewTitleKey
+                            )
+                            [ ( Intro, IntroMenuItemText )
+                            , ( Content, ContentMenuItemText )
+                            , ( ProjectInfo, ProjectInfoMenuItemText )
+                            ]
+                        )
+                    ]
                 ]
-                [ Html.text (t SiteTitle) ]
             , Html.div [] (View.viewSections model)
             ]
         ]
     }
+
+
+viewMenuLi : Model -> MenuItem -> Key -> Html.Html Msg
+viewMenuLi model view viewTitleKey =
+    Html.li []
+        [ Html.a
+            (navAttributes model view
+                ++ [ Html.Events.onClick (ToggleView view) ]
+            )
+            [ Html.text (t viewTitleKey) ]
+        ]
+
+
+navAttributes : Model -> MenuItem -> List (Html.Attribute Msg)
+navAttributes model menuItem =
+    if menuItem == model.currentView then
+        [ Html.Attributes.class "active" ]
+
+    else
+        []
 
 
 generateRandomIntList : Random.Generator (List Int)
