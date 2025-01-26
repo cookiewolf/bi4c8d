@@ -9,7 +9,5 @@ Bifurcated (bi4c8d) documents some of those events, focusing on institutional pr
 
 The project tries to understand how these events have contributed to the decline in institutional trust, and why the rabbit hole is overfowing.
 
-**Get in touch**
-
-[hello@bifucated.uk](mailto:hello@bifucated.uk)
+[hello@bifurcated.uk](mailto:hello@bifurcated.uk)
 
