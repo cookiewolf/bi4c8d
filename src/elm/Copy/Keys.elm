@@ -1,4 +1,4 @@
-module Copy.Keys exposing (Key(..))
+module Copy.Keys exposing (InfoLabel(..), Key(..))
 
 
 type Key
@@ -18,8 +18,19 @@ type Key
     | DataLossHeading
     | RoyalMailNegotiationMessageHeading
     | HackneySocialMessageHeading
+      -- Profile Info
+    | ProfileInfoHeading
+    | ProfileInfoLabel InfoLabel
       -- Breaches
     | TotalBreachesSinceView Int
       -- Terminal
     | HelpText
     | ErrorText String
+
+
+type InfoLabel
+    = Name ( Int, Int )
+    | Job ( Int, Int )
+    | City ( Int, Int )
+    | Work ( Int, Int )
+    | Email ( Int, Int, String )
