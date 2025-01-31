@@ -89,7 +89,14 @@ viewImage delay state fadeImage =
         , Html.div
             [ Html.Attributes.class "profile-info"
             , Html.Attributes.style "opacity"
-                (String.fromFloat (fadeImage.scale - 0.25))
+                (String.fromFloat
+                    (if fadeImage.isBlank then
+                        0
+
+                     else
+                        1
+                    )
+                )
             , Html.Attributes.style "transition" (infoTransition fadeImage.isBlank delay)
             ]
             [ Html.p [] [ Html.text "Extracted Information" ]

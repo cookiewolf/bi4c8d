@@ -717,7 +717,6 @@ header nav li a:active {
   padding: 1rem 1em 1rem 0.5rem;
   line-height:1.4rem;
   text-align: left;
-  opacity: 100%!important;
   z-index:9999;
   border: 1px solid var(--grey-dark);
   font-weight:100;
