@@ -1,5 +1,7 @@
 module View.Section.FacialRecognition exposing (view)
 
+import Copy.Keys exposing (InfoLabel(..), Key(..))
+import Copy.Text exposing (t)
 import Data
 import Html
 import Html.Attributes
@@ -99,14 +101,66 @@ viewImage delay state fadeImage =
                 )
             , Html.Attributes.style "transition" (infoTransition fadeImage.isBlank delay)
             ]
-            [ Html.p [] [ Html.text "Extracted Information" ]
-            , Html.p [] [ Html.text "Name: █████ ███████" ]
-            , Html.p [] [ Html.text "Job Title: █████ █████████" ]
-            , Html.p [] [ Html.text "City of Residence: ██████" ]
-            , Html.p [] [ Html.text "Place of Work: ██████" ]
-            , Html.p [] [ Html.text "Email: ██████@██████.com" ]
-            ]
+            ([ Html.p [] [ Html.text (t ProfileInfoHeading) ]
+             ]
+                ++ viewProfileInfoList (profileInfoFromSrcId fadeImage.srcId)
+            )
         ]
+
+
+profile1InfoList : List InfoLabel
+profile1InfoList =
+    -- Type of info (Name, Job, City, Work, Email)
+    -- (int, int) character count first and second word
+    -- Email needs additional top level domain string
+    [ Name ( 4, 9 )
+    , Work ( 7, 10 )
+    , Email ( 5, 14, "com" )
+    ]
+
+
+profile2InfoList : List InfoLabel
+profile2InfoList =
+    [ Name ( 8, 5 )
+    , Job ( 12, 0 )
+    , City ( 8, 0 )
+    ]
+
+
+profile3InfoList : List InfoLabel
+profile3InfoList =
+    [ Name ( 3, 8 )
+    , Email ( 8, 10, "co.uk" )
+    ]
+
+
+profileInfoFromSrcId : Int -> List InfoLabel
+profileInfoFromSrcId imageId =
+    if imageId == 1 then
+        profile1InfoList
+
+    else if imageId == 2 then
+        profile2InfoList
+
+    else if imageId == 3 then
+        profile3InfoList
+
+    else
+        profile1InfoList
+
+
+viewProfileInfoList : List InfoLabel -> List (Html.Html Msg)
+viewProfileInfoList infoList =
+    List.map
+        (\labelData ->
+            viewProfileInfoListItem labelData
+        )
+        infoList
+
+
+viewProfileInfoListItem : InfoLabel -> Html.Html Msg
+viewProfileInfoListItem labelData =
+    Html.p [] [ Html.text (t (ProfileInfoLabel labelData)) ]
 
 
 imageTransition : Bool -> Int -> String

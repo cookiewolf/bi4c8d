@@ -1,6 +1,6 @@
 module Copy.Text exposing (monthToString, t)
 
-import Copy.Keys exposing (Key(..))
+import Copy.Keys exposing (InfoLabel(..), Key(..))
 import Time
 
 
@@ -47,6 +47,31 @@ t key =
         HackneySocialMessageHeading ->
             "Cristina, Hackney Resident"
 
+        ProfileInfoHeading ->
+            "Extracted Information"
+
+        ProfileInfoLabel label ->
+            case label of
+                Name boxCountTuple ->
+                    labelledBoxededStrings "Name" boxCountTuple
+
+                Job boxCountTuple ->
+                    labelledBoxededStrings "Job Title" boxCountTuple
+
+                City boxCountTuple ->
+                    labelledBoxededStrings "City of Residence" boxCountTuple
+
+                Work boxCountTuple ->
+                    labelledBoxededStrings "Place of Work" boxCountTuple
+
+                Email ( nameCount, domainCount, tld ) ->
+                    "Email: "
+                        ++ countToBoxString nameCount
+                        ++ "@"
+                        ++ countToBoxString domainCount
+                        ++ "."
+                        ++ tld
+
         TotalBreachesSinceView count ->
             String.join " "
                 [ "Since you’ve been on this webpage"
@@ -59,6 +84,20 @@ t key =
 
         ErrorText command ->
             "bash: " ++ command ++ ": command not found"
+
+
+labelledBoxededStrings : String -> ( Int, Int ) -> String
+labelledBoxededStrings label ( firstCount, lastCount ) =
+    String.join " "
+        [ label ++ ":"
+        , countToBoxString firstCount
+        , countToBoxString lastCount
+        ]
+
+
+countToBoxString : Int -> String
+countToBoxString numberOfBoxes =
+    String.repeat numberOfBoxes "█"
 
 
 monthToString : Time.Month -> String
