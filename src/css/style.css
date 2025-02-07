@@ -69,11 +69,18 @@ a:focus {
 header {
   align-items: center;
   display: flex;
+  justify-content: space-between; /* Push items to the edges */
   padding: 1rem 0;
+  background-color: var(--black);
+  z-index: 99999;
+  width: 100%;
+  position: fixed;
 }
 
 header h1 {
-  margin: auto;
+  text-align: left; /* Ensure it's left-aligned */
+  margin: 0; /* Remove default margin */
+  margin-left: 200px;
 }
 
 header nav {
@@ -86,6 +93,7 @@ header nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
+  margin-right:200px;
 }
 
 header nav li {
@@ -170,6 +178,13 @@ header nav li a:active {
 #incompetence-posts-and-papers{
   background: var(--black);
 }
+
+#public-order-safety .graph-container {
+  margin-top:200px;
+  margin-bottom:-1000px;
+}
+
+
 
 #data-loss {
   max-width: 100%;
@@ -871,8 +886,6 @@ h2.final-ticker {
 /** Draggable Pile **/
 
 .pile {
-  border-bottom: 1px solid var(--white);
-  border-top: 1px solid var(--white);
   height: 100vh;
   /* needed to make element use whole width of screen */
   margin-left: calc(50% - 50vw);
