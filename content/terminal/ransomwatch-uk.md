@@ -9,7 +9,9 @@ commands:
     output: |
       | Date         | Title                               | Group        |
       |--------------|-------------------------------------|-------------|
-      | 2024-12-17   | Nuneaton & Bedworth Leisure Trust    | Ransomhub    |
+      | 2025-02-10   | Marshall Motor Holdings             | Lynx         |
+      | 2025-01-29   | Boldon James                        | Incransom    |
+      | 2024-12-17   | Nuneaton & Bedworth Leisure Trust   | Ransomhub    |
       | 2024-12-14   | Midland Turbo                       | Eldorado     |
       | 2024-12-13   | Anetic Aid                          | Kairos       |
       | 2024-12-09   | hosting.co.uk                       | Lynx         |
