@@ -1,6 +1,6 @@
 ---
 section: ransomware-terminal
-title: Ransomwatch UK
+title: Ransomware attacks on UK-based companies and organisations
 welcome-message: Ransomwatch UK - please type 'explore' to see the latest data
   breaches of UK-based companies and organisations
 prompt: Prompt
