@@ -42,7 +42,7 @@ t key =
             "Between July 2020 and June 2021, data breaches exposed financial data from 42.2 million UK accounts."
 
         RoyalMailNegotiationMessageHeading ->
-            "LockBit"
+            "Lockbit/Royal Mail private transcript"
 
         HackneySocialMessageHeading ->
             "Cristina, Hackney Resident"
