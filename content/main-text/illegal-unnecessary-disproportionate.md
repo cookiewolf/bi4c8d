@@ -2,7 +2,7 @@
 section: public-order-safety
 title: Illegal, Unnecessary and disproportionate?
 ---
-In May 2001, after four years in office, Tony Blair called a national election. When announcing it for the following month, he sought a “mandate for fresh, radical change”. Little did he know that it wouldn't be the New Labour manifesto that created such radical change. Instead, it would be the international terrorist threat emerging from the Middle East and that would take place on Western soil.
+In May 2001, after four years in office, Tony Blair called a national election. When announcing it for the following month, he sought a “mandate for fresh, radical change”. Little did he know that it wouldn't be the New Labour manifesto that would usher in such radical change. Instead, it would be the international terrorist threat emerging from the Middle East, one that would soon strike on Western soil.
 
 Tony Blair’s first term as Prime Minister marked a change in law and order politics in the UK. The famous slogan that the Labour Party would be “tough on crime, tough on the causes of crime” put tackling social factors on an equal footing to the punishment of criminals in the public’s consciousness. In opposition, and especially in the 2001 election campaign, the Conservative Party leapt on this as a potential political vulnerability – that the Labour Party was spending too much time and money on education and youth support, and not enough on keeping Britons safe. Crime was falling throughout that first Labour Party term, but public fear had been roused. In the 2001 election campaign, the Labour Party duly responded that crime control would be a priority of its second term.
 
