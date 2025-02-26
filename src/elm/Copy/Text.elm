@@ -80,7 +80,7 @@ t key =
                 ]
 
         HelpText ->
-            "These shell commands are defined internally. Type `help` to see this list."
+            "Use the commands below to explore the content of this terminal. e.g. to see info, type 'info' and hit enter."
 
         ErrorText command ->
             "bash: " ++ command ++ ": command not found"
