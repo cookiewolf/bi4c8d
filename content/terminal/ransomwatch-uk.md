@@ -9,6 +9,12 @@ commands:
     output: |
       | Date         | Title                               | Group        |
       |--------------|-------------------------------------|-------------|
+      | 2025-02-26   | Arc & Co                            | Termite      |
+      | 2025-02-26   | Rooks Rider Solicitors              | Termite      |
+      | 2025-02-26   | National Legal Service              | Termite      |
+      | 2025-02-26   | London Belgravia Brokers            | Termite      |
+      | 2025-02-24   | Denby & Co                          | Ransomhub    |
+      | 2025-02-17   | Dane Court Grammar School           | Kairos       |
       | 2025-02-10   | Marshall Motor Holdings             | Lynx         |
       | 2025-01-29   | Boldon James                        | Incransom    |
       | 2024-12-17   | Nuneaton & Bedworth Leisure Trust   | Ransomhub    |
