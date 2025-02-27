@@ -8,8 +8,10 @@ Bifurcated (bi4c8d) documents some of those events, focusing on institutional pr
 
 The project tries to understand how these events have contributed to the decline in institutional trust, and why the rabbit hole is overflowing.
 
+Christo Hall is a writer, editor, MPP student of digital policy at McMaster University in Canada, AI governance researcher at the Centre for International Governance Innovation and former assistant editor of a global health journal.
+
+
 ```html
-&nbsp;
 ```
 
 [hello@bifurcated.uk](mailto:hello@bifurcated.uk)
