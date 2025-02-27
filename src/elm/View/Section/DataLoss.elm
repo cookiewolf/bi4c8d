@@ -31,6 +31,9 @@ view model =
             , Html.Attributes.style "height" (sectionHeightStringFromViewport model.viewportHeightWidth)
             ]
             [ Html.text (t (Copy.Keys.TotalBreachesSinceView model.breachCount)) ]
+        , Html.h3 [Html.Attributes.class "heading"] [Html.text (t AdditionalTickerHeader)]
+        ]
+
         , if sectionInView then
             viewTickers
                 model
@@ -38,12 +41,12 @@ view model =
           else
             Html.text ""
         , if sectionInView then
-            viewPortraitList model.randomIntList
+            viewPortraitList (Tuple.second model.viewportHeightWidth) model.randomIntList
 
           else
             Html.text ""
         ]
-    ]
+    
 
 
 viewTickers : Model -> Html.Html Msg
@@ -82,8 +85,15 @@ viewTickerCount now tickerState =
     String.fromInt tickerState.count
 
 
-viewPortraitList : List Int -> Html.Html Msg
-viewPortraitList randomIntList =
+viewPortraitList : Float -> List Int -> Html.Html Msg
+viewPortraitList viewportWidth randomIntList =
+    let
+        portraitCount =
+            if viewportWidth > 480 then 
+                619
+            else
+                300
+    in
     Html.div [ Html.Attributes.class "portraits" ]
         (List.map2
             (\count randomInt ->
@@ -104,7 +114,7 @@ viewPortraitList randomIntList =
                         []
                     ]
             )
-            (List.range 1 619)
+            (List.range 1 portraitCount)
             randomIntList
         )
 
