@@ -1,6 +1,6 @@
 ---
 section: outro
-title: Open government and open dialogue is critical to resurrecting trust
+title: Open government and open dialogue are critical to resurrecting trust
 ---
 Though it feels like a lifetime ago, we are just five years on from the onset of the pandemic, and only 18 months since the WHO declared the global health emergency over. Because of the lockdowns, economic and trade shutdowns, access to care and education limitations, the rise of remote working, changes in personal habits and a whole lot more, the legacy of the pandemic will continue to be felt for many years to come. But what was its impact on trust? Studies have shown that political events create wild fluctuations in levels of trust and distrust¹, but the overall trend is a decline of trust in politicians, business, the media, and even in each other. According to the 2024 Edelman Trust Barometer, trust in the UK fell 4 percentage points last year and is now ranked among the least trusting countries in the world². In a survey by the Office for National Statistics, in answer to the question: ‘On a scale of 0 to 10, where 0 is not at all and 10 is completely, how much do you trust Parliament (the House of Commons and the House of Lords)?’, the most common answer was ‘0’.
 
