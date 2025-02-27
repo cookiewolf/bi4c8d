@@ -79,6 +79,10 @@ t key =
                 , "people in the UK have had their personal data compromised..."
                 ]
 
+        AdditionalTickerHeader ->
+            "Causes of government data breaches in 2023"
+
+
         HelpText ->
             "Use the commands below to explore the content of this terminal. e.g. to see info, type 'info' and hit enter."
 
