@@ -221,10 +221,17 @@ header nav li a:active {
   background: var(--black);
 }
 
+
 #public-order-safety .graph-container {
   margin-top:200px;
   margin-bottom:-1000px;
 }
+
+@media (max-width:480px) {
+  #public-trust, #telegram, #public-order-safety, #disproportionate-essay-end {
+      display: none !important;
+  }
+  }
 
 
 
@@ -752,6 +759,8 @@ header nav li a:active {
   margin: 2rem auto;
   padding: 6rem 0 2rem 0;
 }
+
+
 
 .chart {
   font-size: 0.60rem;
