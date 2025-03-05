@@ -9,6 +9,7 @@ commands:
     output: |
       | Date         | Title                               | Group        |
       |--------------|-------------------------------------|-------------|
+      | 2025-03-03   | Grafitec                            | Arcusmedia   |
       | 2025-02-26   | Arc & Co                            | Termite      |
       | 2025-02-26   | Rooks Rider Solicitors              | Termite      |
       | 2025-02-26   | National Legal Service              | Termite      |
