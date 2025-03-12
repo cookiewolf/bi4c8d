@@ -9,6 +9,9 @@ commands:
     output: |
       | Date         | Title                               | Group        |
       |--------------|-------------------------------------|-------------|
+      | 2025-03-12   | Visualisation One                   | Embargo      |
+      | 2025-03-09   | Insider Technologies                | Ransomhub    |
+      | 2025-03-09   | British Virgin Islands London Office| Rhysida      |
       | 2025-03-03   | Grafitec                            | Arcusmedia   |
       | 2025-02-26   | Arc & Co                            | Termite      |
       | 2025-02-26   | Rooks Rider Solicitors              | Termite      |
