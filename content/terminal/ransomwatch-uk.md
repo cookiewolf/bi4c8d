@@ -9,6 +9,9 @@ commands:
     output: |
       | Date         | Title                               | Group        |
       |--------------|-------------------------------------|-------------|
+      | 2025-03-19   | Warsmworth Primary School           | Incransom    |
+      | 2025-03-17   | Ccktech                             | Ransomhub    |
+      | 2025-03-14   | Bancroft Wines                      | Incransom    |
       | 2025-03-12   | Visualisation One                   | Embargo      |
       | 2025-03-09   | Insider Technologies                | Ransomhub    |
       | 2025-03-09   | British Virgin Islands London Office| Rhysida      |
