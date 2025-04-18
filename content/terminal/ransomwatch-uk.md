@@ -1,15 +1,30 @@
 ---
 section: ransomware-terminal
-title: Ransomwatch UK
-welcome-message: Ransomwatch UK - please type 'explore' to see the latest data
-  breaches of UK-based companies and organisations
+title: Ransomware attacks on UK-based companies and organisations
+welcome-message: Type 'explore' to see the latest data breaches of UK-based
+  companies and organisations
 prompt: Prompt
 commands:
   - name: explore
     output: |
       | Date         | Title                               | Group        |
       |--------------|-------------------------------------|-------------|
-      | 2024-12-17   | Nuneaton & Bedworth Leisure Trust    | Ransomhub    |
+      | 2025-03-19   | Warsmworth Primary School           | Incransom    |
+      | 2025-03-17   | Ccktech                             | Ransomhub    |
+      | 2025-03-14   | Bancroft Wines                      | Incransom    |
+      | 2025-03-12   | Visualisation One                   | Embargo      |
+      | 2025-03-09   | Insider Technologies                | Ransomhub    |
+      | 2025-03-09   | British Virgin Islands London Office| Rhysida      |
+      | 2025-03-03   | Grafitec                            | Arcusmedia   |
+      | 2025-02-26   | Arc & Co                            | Termite      |
+      | 2025-02-26   | Rooks Rider Solicitors              | Termite      |
+      | 2025-02-26   | National Legal Service              | Termite      |
+      | 2025-02-26   | London Belgravia Brokers            | Termite      |
+      | 2025-02-24   | Denby & Co                          | Ransomhub    |
+      | 2025-02-17   | Dane Court Grammar School           | Kairos       |
+      | 2025-02-10   | Marshall Motor Holdings             | Lynx         |
+      | 2025-01-29   | Boldon James                        | Incransom    |
+      | 2024-12-17   | Nuneaton & Bedworth Leisure Trust   | Ransomhub    |
       | 2024-12-14   | Midland Turbo                       | Eldorado     |
       | 2024-12-13   | Anetic Aid                          | Kairos       |
       | 2024-12-09   | hosting.co.uk                       | Lynx         |

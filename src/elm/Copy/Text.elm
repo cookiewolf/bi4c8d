@@ -42,7 +42,7 @@ t key =
             "Between July 2020 and June 2021, data breaches exposed financial data from 42.2 million UK accounts."
 
         RoyalMailNegotiationMessageHeading ->
-            "LockBit"
+            "Lockbit/Royal Mail private transcript"
 
         HackneySocialMessageHeading ->
             "Cristina, Hackney Resident"
@@ -79,8 +79,12 @@ t key =
                 , "people in the UK have had their personal data compromised..."
                 ]
 
+        AdditionalTickerHeader ->
+            "Causes of government data breaches in 2023"
+
+
         HelpText ->
-            "These shell commands are defined internally. Type `help` to see this list."
+            "Use the commands below to explore the content of this terminal. e.g. to see info, type 'info' and hit enter."
 
         ErrorText command ->
             "bash: " ++ command ++ ": command not found"

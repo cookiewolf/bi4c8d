@@ -3,7 +3,7 @@ section: telegram
 title: Telegram Channel growth in 2021
 label1: COVID-19 Agenda
 label2: UK – No Mandatory Vaccines – Medical Freedom
-label3: TGR
+label3: The Great Reopening
 label4: Covid Vaccine Awareness
 label5: Official Voice
 label6: ULM

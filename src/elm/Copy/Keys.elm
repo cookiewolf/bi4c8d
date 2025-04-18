@@ -23,6 +23,7 @@ type Key
     | ProfileInfoLabel InfoLabel
       -- Breaches
     | TotalBreachesSinceView Int
+    | AdditionalTickerHeader
       -- Terminal
     | HelpText
     | ErrorText String

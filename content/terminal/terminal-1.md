@@ -184,7 +184,7 @@ commands:
 
       type ‘help’ to see list of commands
   - name: accountability
-    help-text: Please add a secondary argument such as "Accountability paul-gray"
+    help-text: For the accountability commands, please type 'accountability ico' or 'accountability review' and so on"
     args:
       - paul-gray
       - handling
