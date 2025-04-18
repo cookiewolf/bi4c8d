@@ -1,0 +1,22 @@
+name: Feature request
+description: Request a new feature
+labels: ["triage","backlog"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for letting us know what you need
+  - type: textarea
+    id: user-story
+    attributes:
+      label: User story
+      description: Let us know what you need to be able to do and why
+      placeholder: And show us what you mean with an image if you can
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Make a list of what done would look like
+      value: "- [ ] I can... "
