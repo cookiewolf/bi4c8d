@@ -56,6 +56,7 @@ We're using elm-test-rs(https://github.com/mpizenberg/elm-test-rs) to run [elm t
 
 - Assets to be copied to deploy bundle root are in `public/`
 - Markdown content is in `content/` and compiled to `data/*.json` files with `npm run generate`
+- Html added between `<template>` tags in [index.html](/index.html) will render in `<footer>`
 
 
 ### Styling & layouts
