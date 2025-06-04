@@ -344,6 +344,7 @@ viewDocument model =
                     ]
                 ]
             , Html.div [] (View.viewSections model)
+            , Html.footer [ Html.Attributes.id "footer" ] []
             ]
         ]
     }
