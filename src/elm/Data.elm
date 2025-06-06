@@ -1,4 +1,4 @@
-module Data exposing (Command, Content, Context, Flags, Graph, Image, LineChartDatum, MainText, Message, Post, SectionId(..), Terminal, TickerState, YPoint, decodedContent, defaultCommand, filterBySection, initialTickerState, lineChartData, sectionIdToInt, sectionIdToString, sideToString, trackableIdFromItem, trackableIdListFromFlags, updateTickerState, urlContainsHash)
+module Data exposing (Command, Content, Context, Flags, Graph, Image, LineChartDatum, MainText, Message, Post, SectionId(..), Terminal, TickerState, YPoint, decodedContent, defaultCommand, filterBySection, initialTickerState, lineChartData, sectionIdToInt, sectionIdToString, sectionsFromPage, sideToString, trackableIdFromItem, trackableIdListFromFlags, updateTickerState, urlContainsHash)
 
 import Dict
 import Iso8601
@@ -680,6 +680,10 @@ filterBySection :
     -> List { item | section : SectionId }
 filterBySection sectionId itemList =
     List.filter (\item -> item.section == sectionId) itemList
+
+
+sectionsFromPage =
+    []
 
 
 sideFromString : String -> Json.Decode.Decoder Side

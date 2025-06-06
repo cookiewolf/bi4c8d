@@ -15,7 +15,7 @@ view : Model -> List (Html.Html Msg)
 view model =
     [ View.MainText.viewTop Data.ProjectInfo model.content.mainText
     , Html.a
-        [ Html.Events.onClick (ToggleView Content)
+        [ Html.Events.onClick (ToggleView Page1)
         ]
         [ Html.text (t ContentMenuItemText) ]
     ]

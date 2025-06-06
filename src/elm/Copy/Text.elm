@@ -1,6 +1,7 @@
 module Copy.Text exposing (monthToString, t)
 
 import Copy.Keys exposing (InfoLabel(..), Key(..))
+import Model
 import Time
 
 
@@ -14,14 +15,20 @@ t key =
         SiteTitle ->
             "Bifurcated"
 
-        IntroMenuItemText ->
-            "Introduction"
+        CurrentViewText menuItem ->
+            "Page "
+                ++ Model.menuItemToString menuItem
+                ++ " of "
+                ++ String.fromInt (List.length Model.pageOrderList)
+
+        MenuItemLinkText pagePosition ->
+            pagePosition ++ " Page"
 
         ContentMenuItemText ->
             "Explore content"
 
         ProjectInfoMenuItemText ->
-            "Project information"
+            Model.menuItemToString Model.ProjectInfo
 
         ContextLabel ->
             "Context"
@@ -81,7 +88,6 @@ t key =
 
         AdditionalTickerHeader ->
             "Causes of government data breaches in 2023"
-
 
         HelpText ->
             "Use the commands below to explore the content of this terminal. e.g. to see info, type 'info' and hit enter."

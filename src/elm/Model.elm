@@ -1,4 +1,4 @@
-module Model exposing (MenuItem(..), Model, TerminalState)
+module Model exposing (MenuItem(..), Model, TerminalState, menuItemToString, pageOrderList)
 
 import AssocList
 import Chart.Item
@@ -25,9 +25,47 @@ type alias Model =
 
 
 type MenuItem
-    = Intro
-    | Content
-    | ProjectInfo
+    = ProjectInfo
+    | Page1
+    | Page2
+    | Page3
+    | Page4
+    | Page5
+    | Page6
+    | Page7
+
+
+pageOrderList : List MenuItem
+pageOrderList =
+    [ Page1, Page2, Page3, Page4, Page5, Page6, Page7 ]
+
+
+menuItemToString : MenuItem -> String
+menuItemToString menuItem =
+    case menuItem of
+        ProjectInfo ->
+            "Project Information"
+
+        Page1 ->
+            "2"
+
+        Page2 ->
+            "3"
+
+        Page3 ->
+            "4"
+
+        Page4 ->
+            "5"
+
+        Page5 ->
+            "6"
+
+        Page6 ->
+            "7"
+
+        Page7 ->
+            "8"
 
 
 type alias TerminalState =

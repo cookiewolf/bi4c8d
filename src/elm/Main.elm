@@ -11,7 +11,7 @@ import Html
 import Html.Attributes
 import Html.Events
 import InView
-import Model exposing (MenuItem(..), Model)
+import Model exposing (MenuItem(..), Model, pageOrderList)
 import Msg exposing (Msg(..))
 import Pile
 import Random
@@ -110,18 +110,10 @@ init flags =
         section16draggableContent : ( ( Data.SectionId, Int ), List Pile.Data )
         section16draggableContent =
             ( ( Data.HackneySocial, 1 ), content.posts |> Data.filterBySection Data.HackneySocial |> List.map Pile.Post )
-
-        landingView : MenuItem
-        landingView =
-            if Data.urlContainsHash content.url then
-                Content
-
-            else
-                Intro
     in
     ( { time = Time.millisToPosix 0
       , content = content
-      , currentView = landingView
+      , currentView = Page1
       , tickerState = initialTickerState
       , breachCount = 0
       , domHeight = 0.0
@@ -336,17 +328,78 @@ viewDocument model =
                             (\( view, viewTitleKey ) ->
                                 viewMenuLi model view viewTitleKey
                             )
-                            [ ( Intro, IntroMenuItemText )
-                            , ( Content, ContentMenuItemText )
-                            , ( ProjectInfo, ProjectInfoMenuItemText )
+                            [ ( ProjectInfo, ProjectInfoMenuItemText )
                             ]
                         )
                     ]
                 ]
             , Html.div [] (View.viewSections model)
+            , viewPageNavigation model.currentView
             ]
         ]
     }
+
+
+viewPageNavigation : MenuItem -> Html.Html Msg
+viewPageNavigation currentView =
+    let
+        ( previousPage, _, nextPage ) =
+            pageNeighbors (\page -> page == currentView) pageOrderList
+    in
+    Html.nav [ Html.Attributes.class "pagination" ]
+        [ viewNextPreviousLink previousPage "Previous"
+        , Html.text (t (CurrentViewText currentView))
+        , viewNextPreviousLink nextPage "Next"
+        ]
+
+
+viewNextPreviousLink : Maybe MenuItem -> String -> Html.Html Msg
+viewNextPreviousLink maybePage position =
+    case maybePage of
+        Just aPage ->
+            Html.a
+                [ Html.Events.onClick (ToggleView aPage)
+                , Html.Attributes.class (String.toLower position)
+                ]
+                [ Html.text (t (MenuItemLinkText position))
+                ]
+
+        Nothing ->
+            Html.text ""
+
+
+pageNeighbors : (MenuItem -> Bool) -> List MenuItem -> ( Maybe MenuItem, Maybe MenuItem, Maybe MenuItem )
+pageNeighbors item list =
+    case list of
+        a :: b :: c :: rest ->
+            if item b then
+                ( Just a, Just b, Just c )
+
+            else if item a then
+                ( Nothing, Just a, Just b )
+
+            else
+                pageNeighbors item (b :: c :: rest)
+
+        a :: b :: [] ->
+            if item a then
+                ( Nothing, Just a, Just b )
+
+            else if item b then
+                ( Just a, Just b, Nothing )
+
+            else
+                pageNeighbors item [ b ]
+
+        a :: [] ->
+            if item a then
+                ( Nothing, Just a, Nothing )
+
+            else
+                ( Nothing, Nothing, Nothing )
+
+        [] ->
+            ( Nothing, Nothing, Nothing )
 
 
 viewMenuLi : Model -> MenuItem -> Key -> Html.Html Msg
