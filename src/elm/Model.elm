@@ -47,25 +47,25 @@ menuItemToString menuItem =
             "Project Information"
 
         Page1 ->
-            "2"
+            "1"
 
         Page2 ->
-            "3"
+            "2"
 
         Page3 ->
-            "4"
+            "3"
 
         Page4 ->
-            "5"
+            "4"
 
         Page5 ->
-            "6"
+            "5"
 
         Page6 ->
-            "7"
+            "6"
 
         Page7 ->
-            "8"
+            "7"
 
 
 type alias TerminalState =

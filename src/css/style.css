@@ -208,9 +208,9 @@ nav.pagination a,
   text-decoration: none;
   z-index:9999;
   position:relative;
-  border: 1px solid var(--grey-dark)
+  border: 1px solid var(--grey-dark);
+  width: 270px;
 }
-
 
 nav.pagination a.previous::before,
 nav.pagination a.next::after {
