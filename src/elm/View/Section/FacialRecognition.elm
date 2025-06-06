@@ -45,7 +45,6 @@ view model =
 
                         element =
                             viewImage offset
-                                model.inView
                                 { id = itemId
                                 , srcId = imageSrcId
                                 , isBlank = isBlank
@@ -65,8 +64,8 @@ view model =
     ]
 
 
-viewImage : Int -> InView.State -> FadeImage -> Html.Html Msg
-viewImage delay state fadeImage =
+viewImage : Int -> FadeImage -> Html.Html Msg
+viewImage delay fadeImage =
     Html.div
         [ Html.Attributes.id ("profile-" ++ fadeImage.id)
         , Html.Attributes.class "profile"

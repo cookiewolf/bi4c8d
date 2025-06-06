@@ -1,6 +1,5 @@
 module Views exposing (suite)
 
-import Data exposing (SectionId(..))
 import Html
 import InView
 import Model exposing (Model)

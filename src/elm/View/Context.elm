@@ -5,10 +5,9 @@ import Copy.Text exposing (t)
 import Data
 import Html
 import Html.Attributes
-import Html.Events
 import InView
 import Markdown
-import Msg exposing (Msg(..))
+import Msg exposing (Msg)
 
 
 view : InView.State -> List Data.Context -> Html.Html Msg

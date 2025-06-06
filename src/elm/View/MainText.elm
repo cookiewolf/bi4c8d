@@ -1,6 +1,6 @@
 module View.MainText exposing (viewBottom, viewTop)
 
-import Data exposing (SectionId(..))
+import Data
 import Html
 import Html.Attributes
 import Markdown
