@@ -5,7 +5,6 @@ import Html
 import Model exposing (Model)
 import Msg exposing (Msg)
 import Pile
-import View.MainText
 import View.Pile
 import View.Posts
 import View.StackingImage

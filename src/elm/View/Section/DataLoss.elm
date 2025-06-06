@@ -11,8 +11,6 @@ import Msg exposing (Msg)
 import Simple.Animation
 import Simple.Animation.Animated
 import Simple.Animation.Property
-import Time
-import View.Terminal
 
 
 view : Model -> List (Html.Html Msg)
@@ -31,22 +29,20 @@ view model =
             , Html.Attributes.style "height" (sectionHeightStringFromViewport model.viewportHeightWidth)
             ]
             [ Html.text (t (Copy.Keys.TotalBreachesSinceView model.breachCount)) ]
-        , Html.h3 [Html.Attributes.class "heading"] [Html.text (t AdditionalTickerHeader)]
+        , Html.h3 [ Html.Attributes.class "heading" ] [ Html.text (t AdditionalTickerHeader) ]
         ]
+    , if sectionInView then
+        viewTickers
+            model
 
-        , if sectionInView then
-            viewTickers
-                model
+      else
+        Html.text ""
+    , if sectionInView then
+        viewPortraitList (Tuple.second model.viewportHeightWidth) model.randomIntList
 
-          else
-            Html.text ""
-        , if sectionInView then
-            viewPortraitList (Tuple.second model.viewportHeightWidth) model.randomIntList
-
-          else
-            Html.text ""
-        ]
-    
+      else
+        Html.text ""
+    ]
 
 
 viewTickers : Model -> Html.Html Msg
@@ -54,34 +50,34 @@ viewTickers model =
     if Tuple.second model.viewportHeightWidth < 800 then
         Html.ul [ Html.Attributes.class "tickers", Html.Attributes.attribute "role" "list" ]
             (List.map
-                (\ticker -> viewTicker model.viewportHeightWidth model.time ticker)
+                (\ticker -> viewTicker model.viewportHeightWidth ticker)
                 model.tickerState
             )
 
     else
         Html.div [ Html.Attributes.class "tickers" ]
             (List.map
-                (\ticker -> viewTicker model.viewportHeightWidth model.time ticker)
+                (\ticker -> viewTicker model.viewportHeightWidth ticker)
                 model.tickerState
             )
 
 
-viewTicker : ( Float, Float ) -> Time.Posix -> Data.TickerState -> Html.Html Msg
-viewTicker viewportHeightWidth now tickerState =
+viewTicker : ( Float, Float ) -> Data.TickerState -> Html.Html Msg
+viewTicker viewportHeightWidth tickerState =
     if Tuple.second viewportHeightWidth < 800 then
         Html.li
             [ Html.Attributes.class "ticker" ]
-            [ Html.div [] [ Html.text (tickerState.label ++ ": " ++ viewTickerCount now tickerState) ] ]
+            [ Html.div [] [ Html.text (tickerState.label ++ ": " ++ viewTickerCount tickerState) ] ]
 
     else
         Simple.Animation.Animated.div
             (slideInTicker viewportHeightWidth tickerState.id)
             [ Html.Attributes.class "ticker" ]
-            [ Html.h2 [] [ Html.text (tickerState.label ++ ": " ++ viewTickerCount now tickerState) ] ]
+            [ Html.h2 [] [ Html.text (tickerState.label ++ ": " ++ viewTickerCount tickerState) ] ]
 
 
-viewTickerCount : Time.Posix -> Data.TickerState -> String
-viewTickerCount now tickerState =
+viewTickerCount : Data.TickerState -> String
+viewTickerCount tickerState =
     String.fromInt tickerState.count
 
 
@@ -89,8 +85,9 @@ viewPortraitList : Float -> List Int -> Html.Html Msg
 viewPortraitList viewportWidth randomIntList =
     let
         portraitCount =
-            if viewportWidth > 480 then 
+            if viewportWidth > 480 then
                 619
+
             else
                 300
     in
@@ -142,7 +139,7 @@ fadeIn delay =
 
 
 slideInTicker : ( Float, Float ) -> Int -> Simple.Animation.Animation
-slideInTicker ( height, width ) id =
+slideInTicker ( _, width ) id =
     let
         idFloat =
             toFloat (id + 1)
