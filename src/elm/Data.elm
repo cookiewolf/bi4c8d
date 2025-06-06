@@ -1,4 +1,4 @@
-module Data exposing (Command, Content, Context, Flags, Graph, Image, LineChartDatum, MainText, Message, Post, SectionId(..), Terminal, TickerState, YPoint, decodedContent, defaultCommand, filterBySection, initialTickerState, lineChartData, sectionIdToInt, sectionIdToString, sideToString, trackableIdFromItem, trackableIdListFromFlags, updateTickerState, urlContainsHash)
+module Data exposing (Command, Content, Context, Flags, Graph, Image, LineChartDatum, MainText, Message, Post, SectionId(..), Terminal, TickerState, YPoint, decodedContent, defaultCommand, filterBySection, initialTickerState, lineChartData, sectionIdToInt, sectionIdToString, sideToString, updateTickerState, urlContainsHash)
 
 import Dict
 import Iso8601
@@ -165,7 +165,7 @@ decodedContent flags =
                 , images = orderByDisplayPosition goodContent.images
             }
 
-        Err error ->
+        Err _ ->
             { url = ""
             , context = []
             , mainText = []
@@ -705,20 +705,6 @@ sideToString side =
 
 -- TRACKABLE element helpers
 -- TODO not in use but will be for section 5
-
-
-trackableIdListFromFlags : Flags -> List String
-trackableIdListFromFlags flags =
-    (decodedContent flags).images
-        |> List.map trackableIdFromItem
-
-
-trackableIdFromItem : { item | section : SectionId, displayPosition : Int } -> String
-trackableIdFromItem item =
-    String.join "-"
-        [ sectionIdToString item.section
-        , String.fromInt item.displayPosition
-        ]
 
 
 lineChartData : Graph

@@ -6,7 +6,6 @@ import Data
 import Html
 import Html.Attributes
 import Markdown
-import Msg exposing (Msg)
 import Time
 
 
@@ -25,21 +24,6 @@ view sectionId postList =
 
     else
         Html.text ""
-
-
-posts : Data.SectionId -> List Data.Post -> List (Html.Html msg)
-posts sectionId postList =
-    if List.length postList > 0 then
-        List.map
-            (\post ->
-                viewPost post
-                    (isFirstOnDate post postList)
-            )
-            (Data.filterBySection sectionId postList)
-            |> List.concat
-
-    else
-        []
 
 
 isFirstOnDate : Data.Post -> List Data.Post -> Bool

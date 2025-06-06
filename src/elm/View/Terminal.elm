@@ -10,7 +10,7 @@ import Html.Events
 import Html.Events.Extra
 import Markdown
 import Model exposing (Model)
-import Msg exposing (Msg(..))
+import Msg exposing (Msg)
 
 
 view : Model -> Data.SectionId -> Html.Html Msg
@@ -159,16 +159,6 @@ isNotSubCommand commands =
                 |> List.concat
     in
     List.filter (\command -> not (List.member command.name subCommands)) commands
-
-
-isSubCommand : List Data.Command -> List Data.Command
-isSubCommand commands =
-    let
-        subCommands =
-            List.map (\command -> command.subCommands) commands
-                |> List.concat
-    in
-    List.filter (\command -> List.member command.name subCommands) commands
 
 
 stripToSubCommand : String -> String
