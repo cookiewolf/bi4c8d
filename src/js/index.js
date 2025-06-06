@@ -42,6 +42,14 @@ const app = Elm.Main.init({
   },
 });
 
+const footer = document.querySelector("#footer");
+footer.append(
+  document.importNode(
+    document.querySelector('template').content,
+    true
+  )
+);
+
 
 customElements.define("hyvor-talk-comments-wrapper", class extends HTMLElement {
 
