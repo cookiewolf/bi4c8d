@@ -255,14 +255,13 @@ nav.pagination a.next::after {
 
 #public-order-safety .graph-container {
   margin-top:200px;
-  margin-bottom:-1000px;
 }
 
 @media (max-width:480px) {
   #public-trust, #telegram, #public-order-safety, #disproportionate-essay-end {
       display: none !important;
   }
-  }
+}
 
 
 
