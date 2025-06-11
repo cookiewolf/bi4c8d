@@ -1,10 +1,13 @@
 module Copy.Keys exposing (InfoLabel(..), Key(..))
 
+import Model exposing (MenuItem)
+
 
 type Key
     = SiteTitle
       -- Menu
-    | IntroMenuItemText
+    | CurrentViewText MenuItem
+    | MenuItemLinkText String
     | ContentMenuItemText
     | ProjectInfoMenuItemText
       -- Context

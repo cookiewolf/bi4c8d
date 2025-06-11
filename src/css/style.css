@@ -192,7 +192,15 @@ header nav li a:active {
   background: none;
 }
 
-#introduction a,
+nav.pagination {
+  align-items: center;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  padding: 1rem 0 2rem 0;
+}
+
+nav.pagination a,
 #project-info a {
   background-color: var(--black);
   cursor: pointer;
@@ -200,7 +208,30 @@ header nav li a:active {
   text-decoration: none;
   z-index:9999;
   position:relative;
-  border: 1px solid var(--grey-dark)
+  border: 1px solid var(--grey-dark);
+  width: 270px;
+}
+
+nav.pagination a.previous::before,
+nav.pagination a.next::after {
+  background-image: url(/images/chevron-up.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  content: "";
+  display: inline-block;
+  height: 0.5em;
+  width: 1em;
+}
+
+nav.pagination a.previous::before {
+  margin-right: 1rem;
+  transform: rotate(270deg);
+}
+
+nav.pagination a.next::after {
+  margin-left: 1rem;
+  transform: rotate(90deg);
 }
 
 #spotlight {
@@ -224,14 +255,13 @@ header nav li a:active {
 
 #public-order-safety .graph-container {
   margin-top:200px;
-  margin-bottom:-1000px;
 }
 
 @media (max-width:480px) {
   #public-trust, #telegram, #public-order-safety, #disproportionate-essay-end {
       display: none !important;
   }
-  }
+}
 
 
 

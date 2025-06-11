@@ -15,8 +15,4 @@ view : Model -> List (Html.Html Msg)
 view model =
     [ Html.div [ Html.Attributes.id "spotlight" ] []
     , View.MainText.viewTop Data.Introduction model.content.mainText
-    , Html.a
-        [ Html.Events.onClick (ToggleView Content)
-        ]
-        [ Html.text (t ContentMenuItemText) ]
     ]

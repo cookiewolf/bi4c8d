@@ -30,27 +30,43 @@ import View.Section.UlteriorMotives
 sectionViews : Model -> List ( Data.SectionId, List (Html.Html Msg) )
 sectionViews model =
     case model.currentView of
-        Intro ->
-            [ ( Data.Introduction, View.Section.Introduction.view model ) ]
-
-        Content ->
-            [ ( Data.SocialMediaPosts, View.Section.SocialMediaPosts.view model )
+        Page1 ->
+            [ ( Data.Introduction, View.Section.Introduction.view model )
+            , ( Data.SocialMediaPosts, View.Section.SocialMediaPosts.view model )
             , ( Data.PublicTrust, View.Section.PublicTrust.view model )
             , ( Data.Telegram, View.Section.Telegram.view model )
             , ( Data.UlteriorMotives, View.Section.UlteriorMotives.view model )
-            , ( Data.PanicLit, View.Section.PanicLit.view model )
+            ]
+
+        Page2 ->
+            [ ( Data.PanicLit, View.Section.PanicLit.view model )
             , ( Data.PublicOrderSafety, View.Section.PublicOrderSafety.view model )
-            , ( Data.DisproportionateEssayEnd, View.Section.DisproportionateEssayEnd.view model )
+            ]
+
+        Page3 ->
+            [ ( Data.DisproportionateEssayEnd, View.Section.DisproportionateEssayEnd.view model )
             , ( Data.FacialRecognition, View.Section.FacialRecognition.view model )
-            , ( Data.IncompetenceIntro, View.Section.IncompetenceIntro.view model )
+            ]
+
+        Page4 ->
+            [ ( Data.IncompetenceIntro, View.Section.IncompetenceIntro.view model )
             , ( Data.IncompetencePostsAndPapers, View.Section.IncompetencePostsAndPapers.view model )
             , ( Data.HmrcTerminal, View.Section.HmrcTerminal.view model )
-            , ( Data.DataLoss, View.Section.DataLoss.view model )
+            ]
+
+        Page5 ->
+            [ ( Data.DataLoss, View.Section.DataLoss.view model )
             , ( Data.RansomwareTerminal, View.Section.RansomwareTerminal.view model )
-            , ( Data.HumanCost, View.Section.HumanCost.view model )
+            ]
+
+        Page6 ->
+            [ ( Data.HumanCost, View.Section.HumanCost.view model )
             , ( Data.RoyalMailNegotiation, View.Section.RoyalMailNegotiation.view model )
             , ( Data.HackneySocial, View.Section.HackneySocial.view model )
-            , ( Data.Outro, View.Section.Outro.view model )
+            ]
+
+        Page7 ->
+            [ ( Data.Outro, View.Section.Outro.view model )
             ]
 
         ProjectInfo ->
