@@ -318,10 +318,14 @@ viewDocument model =
         [ Html.div [ Html.Attributes.class "page-wrapper" ]
             [ Html.header []
                 [ Html.h1
-                    [ Html.Attributes.class "title-text"
-                    , Html.Attributes.class "dark"
+                    [ Html.Attributes.class "dark"
                     ]
-                    [ Html.text (t SiteTitle) ]
+                    [ Html.a
+                        [ Html.Attributes.href "/"
+                        , Html.Attributes.class "title-text"
+                        ]
+                        [ Html.text (t SiteTitle) ]
+                    ]
                 , Html.nav []
                     [ Html.ul []
                         (List.map
