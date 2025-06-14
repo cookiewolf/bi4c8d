@@ -10,6 +10,7 @@ import InView
 import Json.Decode
 import Model exposing (Model)
 import Msg exposing (Msg(..))
+import View.MainText
 import View.StackingImage
 
 
@@ -23,7 +24,8 @@ type alias FadeImage =
 
 view : Model -> List (Html.Html Msg)
 view model =
-    [ View.StackingImage.viewImageList Data.FacialRecognition model
+    [ View.MainText.viewTop Data.FacialRecognition model.content.mainText
+    , View.StackingImage.viewImageList Data.FacialRecognition model
     , Html.div [ Html.Attributes.class "faces-with-info" ]
         (List.range 1 3
             |> List.foldl
