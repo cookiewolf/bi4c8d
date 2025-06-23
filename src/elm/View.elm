@@ -41,11 +41,11 @@ sectionViews model =
         Page2 ->
             [ ( Data.PanicLit, View.Section.PanicLit.view model )
             , ( Data.PublicOrderSafety, View.Section.PublicOrderSafety.view model )
+            , ( Data.DisproportionateEssayEnd, View.Section.DisproportionateEssayEnd.view model )
             ]
 
         Page3 ->
-            [ ( Data.DisproportionateEssayEnd, View.Section.DisproportionateEssayEnd.view model )
-            , ( Data.FacialRecognition, View.Section.FacialRecognition.view model )
+            [ ( Data.FacialRecognition, View.Section.FacialRecognition.view model )
             ]
 
         Page4 ->
