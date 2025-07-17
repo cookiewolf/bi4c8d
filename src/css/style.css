@@ -817,7 +817,7 @@ nav.pagination a.next::after {
 
 /** Faces with information **/
 .faces-with-info {
-  align-items: flex-start;
+  align-items: center;
   background-image: url(/images/info-faces/background.png);
   background-repeat: no-repeat;
   background-size: cover;
@@ -825,9 +825,10 @@ nav.pagination a.next::after {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  min-height: 500px;
+  min-height: 1000px;
   justify-content: center;
   width: 100%;
+  margin-top:200px;
 }
 
 #profile-fade-image-1 {
