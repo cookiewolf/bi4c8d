@@ -1,6 +1,6 @@
 ---
 section: disproportionate-essay-end
-title: " "
+title: " Title"
 ---
 In the years since the Labour Party were unseated from government, the direction of travel for new monitoring and surveillance tools are largely digital. Police and intelligence agencies have long had the power to trawl through anyone’s phone logs to see who they have called and for how long. This kind of information is termed ‘communications data’. In 2016, the Investigatory Powers Act updated that police power for the digital age. It gave police and intelligence agencies the opportunity to collect communications data from all internet connections, e.g. every website someone has visited. The logic being that an Internet communications data, which includes timestamps, URLs, IP addresses, data volume, email addresses and names associated to an account, usernames, passwords and location data, is equivalent to a phone log.
 
