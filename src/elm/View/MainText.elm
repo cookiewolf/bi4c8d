@@ -40,13 +40,12 @@ viewBottom sectionId mainTextList =
             List.map
                 (\mainText -> viewMainText mainText False)
                 (Data.filterBySection sectionId mainTextList)
-                |> List.reverse
-                |> List.tail
+                |> List.head
     in
     case maybeMainTextList of
         Just mainTextTail ->
             Html.div [ Html.Attributes.class "main-texts" ]
-                mainTextTail
+                [ mainTextTail ]
 
         Nothing ->
             Html.text ""
