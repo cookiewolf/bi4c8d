@@ -1,4 +1,4 @@
-module Data exposing (Command, Content, Context, Flags, Graph, Image, LineChartDatum, MainText, Message, Post, SectionId(..), Terminal, TickerState, YPoint, decodedContent, defaultCommand, filterBySection, initialTickerState, lineChartData, sectionIdToInt, sectionIdToString, sectionsFromPage, sideToString, updateTickerState, urlContainsHash)
+module Data exposing (Command, Content, Context, Flags, Graph, Image, LineChartDatum, MainText, Message, Post, SectionId(..), Terminal, TickerState, YPoint, decodedContent, defaultCommand, filterBySection, initialTickerState, lineChartData, sectionIdToInt, sectionIdToString, sideToString, updateTickerState)
 
 import Dict
 import Iso8601
@@ -448,15 +448,6 @@ andMap =
     Json.Decode.map2 (|>)
 
 
-urlContainsHash : String -> Bool
-urlContainsHash url =
-    if List.length (String.split "#" url) > 1 then
-        True
-
-    else
-        False
-
-
 posixFromStringDecoder : String -> Json.Decode.Decoder Time.Posix
 posixFromStringDecoder dateString =
     case Iso8601.toTime dateString of
@@ -680,10 +671,6 @@ filterBySection :
     -> List { item | section : SectionId }
 filterBySection sectionId itemList =
     List.filter (\item -> item.section == sectionId) itemList
-
-
-sectionsFromPage =
-    []
 
 
 sideFromString : String -> Json.Decode.Decoder Side

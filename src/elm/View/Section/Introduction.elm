@@ -1,13 +1,10 @@
 module View.Section.Introduction exposing (view)
 
-import Copy.Keys exposing (Key(..))
-import Copy.Text exposing (t)
 import Data
 import Html
 import Html.Attributes
-import Html.Events
-import Model exposing (MenuItem(..), Model)
-import Msg exposing (Msg(..))
+import Model exposing (Model)
+import Msg exposing (Msg)
 import View.MainText
 
 
