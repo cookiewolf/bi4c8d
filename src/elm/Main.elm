@@ -113,7 +113,7 @@ init flags =
     in
     ( { time = Time.millisToPosix 0
       , content = content
-      , currentView = Page1
+      , currentView = Model.menuItemFromUrl content.url
       , tickerState = initialTickerState
       , breachCount = 0
       , domHeight = 0.0
