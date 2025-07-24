@@ -4,10 +4,11 @@ import Dict
 import Iso8601
 import Json.Decode
 import Time
+import Url
 
 
 type alias Content =
-    { url : String
+    { url : Maybe Url.Url
     , context : List Context
     , mainText : List MainText
     , posts : List Post
@@ -166,7 +167,7 @@ decodedContent flags =
             }
 
         Err _ ->
-            { url = ""
+            { url = Url.fromString ""
             , context = []
             , mainText = []
             , posts = []
@@ -201,7 +202,10 @@ orderByDisplayPosition items =
 flagsDecoder : Json.Decode.Decoder Content
 flagsDecoder =
     Json.Decode.succeed Content
-        |> andMap (Json.Decode.field "url" Json.Decode.string)
+        |> andMap
+            (Json.Decode.field "url" Json.Decode.string
+                |> Json.Decode.andThen maybeUrlFromString
+            )
         |> andMap (Json.Decode.field "context" contextDictDecoder)
         |> andMap (Json.Decode.field "main-text" mainTextDictDecoder)
         |> andMap (Json.Decode.field "posts" postDictDecoder)
@@ -210,6 +214,11 @@ flagsDecoder =
         |> andMap (Json.Decode.field "graphs" graphDictDecoder)
         |> andMap (Json.Decode.field "terminals" terminalDictDecoder)
         |> andMap (Json.Decode.field "tickers" tickerDictDecoder)
+
+
+maybeUrlFromString : String -> Json.Decode.Decoder (Maybe Url.Url)
+maybeUrlFromString urlString =
+    Json.Decode.succeed (Url.fromString urlString)
 
 
 contextDictDecoder : Json.Decode.Decoder (List Context)

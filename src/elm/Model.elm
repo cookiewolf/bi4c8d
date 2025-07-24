@@ -1,4 +1,4 @@
-module Model exposing (MenuItem(..), Model, TerminalState, menuItemToString, pageOrderList)
+module Model exposing (MenuItem(..), Model, TerminalState, menuItemFromUrl, menuItemToString, pageOrderList)
 
 import AssocList
 import Chart.Item
@@ -6,6 +6,7 @@ import Data
 import InView
 import Pile
 import Time
+import Url
 
 
 type alias Model =
@@ -66,6 +67,60 @@ menuItemToString menuItem =
 
         Page7 ->
             "7"
+
+
+menuItemFromUrl : Maybe Url.Url -> MenuItem
+menuItemFromUrl maybeUrl =
+    case maybeUrl of
+        Just url ->
+            case url.query of
+                Just queryString ->
+                    menuItemFromQueryString queryString
+
+                Nothing ->
+                    Page1
+
+        Nothing ->
+            Page1
+
+
+menuItemFromQueryString : String -> MenuItem
+menuItemFromQueryString queryString =
+    let
+        pageString : String
+        pageString =
+            String.replace "page=" "" queryString
+    in
+    case pageString of
+        "project-info" ->
+            ProjectInfo
+
+        "project-information" ->
+            ProjectInfo
+
+        "1" ->
+            Page1
+
+        "2" ->
+            Page2
+
+        "3" ->
+            Page3
+
+        "4" ->
+            Page4
+
+        "5" ->
+            Page5
+
+        "6" ->
+            Page6
+
+        "7" ->
+            Page7
+
+        _ ->
+            Page1
 
 
 type alias TerminalState =
