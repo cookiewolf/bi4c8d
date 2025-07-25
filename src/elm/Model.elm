@@ -1,4 +1,4 @@
-module Model exposing (MenuItem(..), Model, TerminalState, menuItemFromUrl, menuItemToString, pageOrderList)
+module Model exposing (MenuItem(..), Model, TerminalState, menuItemFromUrl, menuItemToString, menuItemToUrlString, pageOrderList)
 
 import AssocList
 import Chart.Item
@@ -7,6 +7,7 @@ import InView
 import Pile
 import Time
 import Url
+import Url.Builder
 
 
 type alias Model =
@@ -67,6 +68,17 @@ menuItemToString menuItem =
 
         Page7 ->
             "7"
+
+
+menuItemToUrlString : MenuItem -> String
+menuItemToUrlString menuItem =
+    Url.Builder.absolute []
+        [ Url.Builder.string "page"
+            (menuItemToString menuItem
+                |> String.toLower
+                |> String.replace " " "-"
+            )
+        ]
 
 
 menuItemFromUrl : Maybe Url.Url -> MenuItem
