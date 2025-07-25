@@ -339,7 +339,7 @@ viewDocument model =
                         )
                     ]
                 ]
-            , Html.div [] (View.viewSections model)
+            , Html.main_ [] (View.viewSections model)
             , viewPageNavigation model.currentView
             , Html.footer [ Html.Attributes.id "footer" ] []
             ]

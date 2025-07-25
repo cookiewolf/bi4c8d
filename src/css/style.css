@@ -10,19 +10,43 @@
 
   --default-radius: 30px;
   --max-section-width: 800px;
+
+  /* Horizontal scroll indicator */
+  --header-size: 90px;
+  --scrollbar-height: 4px;
+  --scrollbar-bg: #a9a4a4;
+  --scrollbar-progress-color: #ffffff;
 }
 
 html body {
-  background-color: var(--black);
   color: var(--white);
   font-family: "Courier Prime", "Nimbus Mono PS", "Courier New", monospace;
   overflow-x: hidden; /* needed to allow full-bleed elements within sections on chrome */
 }
 
-@media (max-width:480px) {
 html body {
-  margin-top:120px;
+  background: linear-gradient(
+    to right top,
+    var(--scrollbar-progress-color) 50%,
+    var(--scrollbar-bg) 50%
+  );
+  background-size: 100%
+    calc(100% - 100vh + var(--header-size) + var(--scrollbar-height) + 1px);
 }
+
+html body::before {
+  background: var(--black);
+  bottom: 0;
+  content: "";
+  top: calc(var(--header-size) + var(--scrollbar-height));
+  position: fixed;
+  width: 100%;
+}
+
+@media (max-width:480px) {
+  html body {
+    margin-top: 120px;
+  }
 }
 
 h1 {
@@ -97,17 +121,21 @@ a:focus {
   }
 }
 
-
 header {
   align-items: center;
+  background-color: var(--black);
   display: flex;
+  height: var(--header-size);
   justify-content: space-between; /* Push items to the edges */
   padding: 1rem 0;
-  background-color: var(--black);
-  z-index: 99999;
-  width: 100%;
   position: fixed;
-  top:0;
+  top: 0;
+  width: 100%;
+  z-index: 99999;
+}
+
+main {
+  margin-top: calc(var(--header-size) + var(--scrollbar-height));
 }
 
 header h1 {
@@ -178,6 +206,7 @@ header nav li a:active {
     margin-top:150px;
   }
 }
+
 
 #introduction {
   background-color: var(--white);
@@ -253,15 +282,6 @@ nav.pagination a.next::after {
   width: 100vw;
 }
 
-#ulterior-motives,
-#public-order-safety .graph-container,
-#panic-lit,
-#facial-recognition,
-#incompetence-posts-and-papers{
-  background: var(--black);
-}
-
-
 #public-order-safety .graph-container {
   margin-top:200px;
 }
@@ -271,8 +291,6 @@ nav.pagination a.next::after {
       display: none !important;
   }
 }
-
-
 
 #data-loss {
   max-width: 100%;
