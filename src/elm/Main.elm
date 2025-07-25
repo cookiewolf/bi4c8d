@@ -4,6 +4,7 @@ import AssocList
 import Browser
 import Browser.Dom
 import Browser.Events
+import Browser.Navigation
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Data
@@ -193,10 +194,11 @@ update msg model =
             )
 
         ToggleView menuItem ->
-            ( { model
-                | currentView = menuItem
-              }
-            , Task.perform (always NoOp) (Browser.Dom.setViewport 0 0)
+            ( model
+            , Cmd.batch
+                [ Browser.Navigation.load (Model.menuItemToUrlString menuItem)
+                , Task.perform (always NoOp) (Browser.Dom.setViewport 0 0)
+                ]
             )
 
         OnScroll offset ->
