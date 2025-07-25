@@ -355,7 +355,11 @@ viewPageNavigation currentView =
     in
     Html.nav [ Html.Attributes.class "pagination" ]
         [ viewNextPreviousLink previousPage "Previous"
-        , Html.text (t (CurrentViewText currentView))
+        , if not (currentView == ProjectInfo) then
+            Html.text (t (CurrentViewText currentView))
+
+          else
+            Html.text ""
         , viewNextPreviousLink nextPage "Next"
         ]
 
