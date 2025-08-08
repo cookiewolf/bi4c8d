@@ -28,16 +28,18 @@ class Spotlight {
   }
 
   switchOn() {
-    this.active = true;
+    if (this.el) {
+      this.active = true;
 
-    document.addEventListener("mousemove", this.boundEventListener);
+      document.addEventListener("mousemove", this.boundEventListener);
 
-    this.el.style.animation = "enter 1s ease forwards";
+      this.el.style.animation = "enter 1s ease forwards";
 
-    setTimeout(() => {
-      this.el.style.animation =
+      setTimeout(() => {
+        this.el.style.animation =
   "pulse 3s ease-in-out infinite alternate forwards";
-    }, 1000);
+      }, 1000);
+    }
   }
 
   insertSpotlightElement() {
@@ -55,7 +57,9 @@ class Spotlight {
   }
 
   updateEl(x: number, y: number) {
-    this.el.style.background = `radial-gradient(circle at ${x}px ${y}px, #00000000 ${this.innerRadius}px, ${this.outerColor} ${this.outerRadius}px)`;
+    if (this.el) {
+      this.el.style.background = `radial-gradient(circle at ${x}px ${y}px, #00000000 ${this.innerRadius}px, ${this.outerColor} ${this.outerRadius}px)`;
+    }
   }
 }
 
